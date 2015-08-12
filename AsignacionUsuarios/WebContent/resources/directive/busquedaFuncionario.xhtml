@@ -1,0 +1,38 @@
+<div class="box">
+	<div class="header">
+		<div>
+			<table>
+				<tr>
+					<td><img class="img" ng-src="{{bfCtrl.propiedadesWeb.imagenes.imgPersona}}" /></td>
+					<td><span style="color: white">Funcionarios</span></td>
+				<tr>
+			</table>
+		</div>
+	</div>
+	<div class="box2">
+		<div style="height: 40px;">
+			<p style="position: absolute">
+				<b>Nombre:</b><input id="idTextQuery" type="text" ng-model="query"
+					size="15" style="margin: 8px;"><img class="link1" ng-src="{{bfCtrl.propiedadesWeb.imagenes.imgBuscar}}" /> 
+					<img class="link1" ng-click="query = ''"ng-src="{{bfCtrl.propiedadesWeb.imagenes.imgLimpiar}}" />
+			</p>
+		</div>
+		<div style="overflow-y: scroll; overflow-x: scroll; height: 500px;">
+			<table ng-controller="AutorizacionUsuarioController as auCtrl">
+				<tr>
+					<th></th>
+					<th></th>
+				</tr>
+				<tr ng-repeat="funcionario in bfCtrl.funcionarios | filter:query"
+					ng-click="auCtrl.update($index, funcionario);bfCtrl.setFuncionarioSeleccionado(funcionario);"
+					ng-class='{selected: $index==auCtrl.selectedRow}'>
+					<td><img class="link1" ng-src="{{bfCtrl.propiedadesWeb.imagenes.imgPersona}}" /></td>
+					<td>
+						<span class="link1" style="font-size: 10px; white-space:nowrap;">({{funcionario.userName}})
+							{{funcionario.userCompleteName}}</span>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,407 @@
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Administración Autorización de Usuarios</title>
+
+	<script>document.write('<base href="' + document.location + '" />');</script>
+
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+	<script src="resources/js/angular1.4.0-rc.js"></script>
+	<script src="resources/js/angular-animate.js"></script>	
+  
+  <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" ></script> -->
+
+	<script src="resources/js/ar.js"></script>
+	<script src="resources/js/checklist-model.js"></script>
+	<script src="resources/vendors/dist/angular-grid.js"></script>
+  <link rel="stylesheet" href="resources/vendors/dist/angular-grid.css" />
+  <script src="resources\vendors\dist\angular-route/angular-route.js"></script>
+
+  <link rel="stylesheet" href="resources/vendors/dist/theme-fresh.css"/>
+  <link rel="stylesheet" href="resources/vendors/dist/theme-dark.css"/>
+  <link rel="stylesheet" href="resources/css/style.css" />
+  <link rel="stylesheet" href="resources/css/animation.css" />
+  <link rel="stylesheet" href="resources/css/bootstrap.css" />
+
+	<script src="resources/busquedaFuncionarios.js"></script>
+	<script src="resources/controller/clasificacionArticulosRegistroController.js"></script>
+	<script src="resources/controller/busquedaFuncionariosController.js"></script>
+	<script src="resources/controller/busquedaClaseArticulosController.js"></script>
+	<script src="resources/controller/autorizacionUsuarioController.js"></script>
+	<script src="resources/controller/articulosRelacionadosController.js"></script>
+	<script src="resources/controller/articulosNoRelacionadosController.js"></script>
+  <script src="resources/controller/intercambioController.js"></script>
+  <script src="resources/controller/paginacionController.js"></script>
+
+	<script	src="resources/controller/clasificacionNoRelacionadaUsuarioController.js"></script>
+	<script src="resources/controller/clasificacionRelacionadaUsuarioController.js"></script>
+	<script src="resources/directive/busquedaFuncionariosDirective.js"></script>
+  <script src="resources/directive/paginacionDirective.js"></script>
+	<script src="resources/directive/busquedaClaseArticulosDirective.js"></script>
+	<script src="resources/directive/validNumberDirective.js"></script>
+	<script src="resources/service/busquedaFuncionariosDataService.js"></script>
+	<script src="resources/service/busquedaClaseArticulosService.js"></script>
+	<script src="resources/service/articulosRelacionadosService.js"></script>
+	<script src="resources/service/articulosNoRelacionadosService.js"></script>
+
+	<script	src="resources/service/clasificacionRelacionadaUsuarioService.js"></script>
+	<script	src="resources/service/clasificacionNoRelacionadaUsuarioService.js"></script>
+
+	<script	src="resources/service/creacionClasificacionFuncionarioService.js"></script>
+	<script src="resources/service/obtenerUsuarioSesionService.js"></script>
+
+
+
+	<script src="resources/js/ui-bootstrap-tpls-0.13.0.min.js"></script>
+	<!-- ********* KENDO ******************* -->
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.1.416/styles/kendo.common.min.css"/>
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.1.416/styles/kendo.rtl.min.css"/>
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.1.416/styles/kendo.silver.min.css"/>
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.1.416/styles/kendo.silver.mobile.min.css"/>
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.1.416/styles/kendo.dataviz.min.css"/>
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.1.416/styles/kendo.dataviz.default.min.css"/>
+
+    <script src="http://cdn.kendostatic.com/2015.1.429/js/kendo.all.min.js"></script>
+  
+</head>
+<body ng-app="asignacionUsuarios">
+
+	<div ng-controller="BusquedaFuncionariosController as bfCtrlc">
+
+		<div style="float: left; width: 18%;">
+			<div busqueda-funcionarios></div>
+		</div>
+
+		<div style="float: right; width: 82%;"
+		ng-controller="AutorizacionUsuarioController as auCtrl">
+
+		<div style="text-align: center; position: relative; top: 250;">
+			<b style="border: 1px solid #d6e6fb; padding: 15% 35% 15% 35%"
+			ng-hide="auCtrl.funcionarioSeleccionado">POR FAVOR SELECCIONE
+			UN FUNCIONARIO</b>
+		</div>
+
+		<div class="labelUsuario" style="height: 60px;">
+
+			<br /><br />
+			<b style="color: red; top: -20px;font-size: 15px;"
+			ng-show="auCtrl.funcionarioSeleccionado">Descripción usuario</b>
+			<br /> <br /> <b ng-show="auCtrl.funcionarioSeleccionado" style="font-size: 18px;">Usuario:
+		</b><span style="font-size: 15px;">{{auCtrl.funcionarioSeleccionado.userName}}</span>
+		<b style="margin-left: 200px;font-size: 18px;" ng-show="auCtrl.funcionarioSeleccionado">Nombre:</b> 
+		<span ng-show="auCtrl.funcionarioSeleccionado" style="font-size: 15px;">{{auCtrl.funcionarioSeleccionado.userCompleteName}}</span>
+		<br />
+	</div>
+
+
+	<tabset style="margin:30px; border-color: #000000;" justified="true"  ng-show="auCtrl.funcionarioSeleccionado"> 
+		<tab heading="Clasificaciones" style="width:10px; border-color: #000000;" id="TabClasificaciones"  ng-controller="ClasificacionArticulosRegistroController">
+
+    		<div style="width: auto;" ng-show="auCtrl.funcionarioSeleccionado"
+    			ng-controller="ClasificacionNoRelacionadaUsuarioController as cNoRCtrl">
+    			<table ng-controller="ClasificacionRelacionadaUsuarioController as CRCtrl">
+    				<tr>
+    					<td align="top">
+    						<div style="width: 540px;">
+    							<div class="headerTab">
+    								<b>Clasificaciones disponibles</b>
+    							</div>
+    							<table align="center">
+    								<tr>
+    									<td valign="top" style="padding-top: 0px;">
+    										<div style="border: 1px solid #d6e6fb; width: 200px; " class="container"><br /> <br /> 
+                          <b>Código estructura:</b><br /> 
+                          <input valid-number	ng-model="cNoRCtrl.txtCodigoEstructura" id="idCodigoQuery"
+                          type="text" size="20" maxlength="6"	style="margin-left: 5px; margin-right: 5px"> 
+                          <br /><br /> 
+                          <b>Código subbodega:</b><br /> 
+                          <input valid-number	ng-model="cNoRCtrl.txtCodigoSubbodega" id="idCodigoQuery"
+                          maxlength="6" type="text" size="20"	style="margin-left: 5px; margin-right: 5px"> <br /> <br />                         
+                        </div> 	<br />											
+                        <button style="float: right;"  ng-click="cNoRCtrl.buscarClasificacionArticulos(cNoRCtrl.txtCodigoEstructura, cNoRCtrl.txtCodigoSubbodega)" class="btn btn-sm btn-asignacionUsuarios"><span  class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar</button>
+                      </td>
+              					<td>                          
+                          <div ag-grid="gridOptions" class="ag-fresh" style="width: 330px; height: 300px;">
+                             <div class="no-rows" ng-show="!cNoRCtrl.hayDatos">
+                              <div class="msg">
+                                <span>NADA PARA MOSTRAR</span>
+                              </div>
+                            </div>
+                          </div>                                      							
+              					</td>
+              			</tr>
+              		</table>
+              	</div>
+              </td>
+              <td>
+                <div style="margin: 18px;">
+              		<img class="img" ng-click="cNoRCtrl.registrarClasificaciones()" ng-src="{{auCtrl.propiedadesWeb.imagenes.imgDer}}" /> <br/>
+                  <img class="img" ng-click="CRCtrl.desactivarClasificacionesSolicitarDataSeleccionada()"
+                        ng-src="{{auCtrl.propiedadesWeb.imagenes.imgIzq}}" />
+                </div>
+              </td>
+              <td valign="top">
+              	<div class="headerTab">
+        					<b>Clasificaciones asignadas</b>
+        				</div>
+              	<!-- <div  style="width: 322px; overflow-y: none; overflow-x: none; height: 300px; padding-top: 0px">  -->
+                   <div ag-grid="CRCtrl.gridOptionsArt" class="ag-fresh" style="width: 330px; height: 300px;">
+                     <div class="no-rows" ng-if="!CRCtrl.hayDatos">
+                              <div class="msg">
+                                <span>NADA PARA MOSTRAR</span>
+                              </div>
+                      </div>
+                   </div>
+              	<!-- </div> -->
+              </td>
+         		</tr>
+          </table>
+        </div>
+          <!--Fin clasificaciones  -->
+    </tab> 
+    <tab heading="Articulos"  style="width:10px; border-color: blak;" ng-controller="AutorizacionUsuarioController as auCtrl" select="auCtrl.clickArticulos()" id="TabArticulos" active="false">
+
+      	<!--*************************************************************************************ARTICULOS*****************************************************************  -->
+      <div style="width: auto;"  ng-controller="ArticulosRelacionadosController as aRCtrl" ng-show="auCtrl.funcionarioSeleccionado" >
+      	<table ng-controller="ArticulosNoRelacionadosController as aNRCtrl">
+      		<tr>
+      			<td valign="top">
+      				<div style="width: 540px;">
+      					<div class="headerTab">
+      						<b>Artículos disponibles</b>
+      					</div>
+      					<table align="center">
+      						<tr>
+      							<td valign="top" style="padding-top: 0px;">
+      									<div style="border: 1px solid #d6e6fb; width: 200px; padding: 5px" class="container"><br /> 
+        									 <b>Código barras:</b>
+                           <br/> 
+                           <input valid-number ng-model="aNRCtrl.txtCodigoBarras" id="idCodigoBarras"
+        									 type="text" size="20" maxlength="15" style="margin-left: 5px; margin-right: 5px"> 
+                           <br /> <br /> 
+                           <b>Descripción artículo:</b><br /> 
+                           <input ng-model="aNRCtrl.txtDescripcion" id="idDescripcion" maxlength="20" type="text" size="20"
+        									 style="margin-left: 5px; margin-right: 5px"> 
+                            <br /> <br /> 
+                            <b>Código Clasificación:</b><br /> 
+                            <input valid-number ng-model="aNRCtrl.txtCodigoEstructura" id="idCodigoEstructura" maxlength="6" type="text" size="20"
+        									   style="margin-left: 5px; margin-right: 5px"> <br />
+                             <div ng-controller="BusquedaClaseArticulosController as bCArtCtrl" > <br />
+                                <div busqueda-claseart></div>
+                             </div> 
+                                                        
+      								  </div><br />
+                          <button style="float: right;" ng-click="aNRCtrl.buscarArticulosNoRelacionados()" class="btn btn-sm btn-asignacionUsuarios">
+                             <span  class="glyphicon glyphicon-search" ></span> Buscar
+                          </button>
+      							</td>
+      							<td>
+                        <div ng-controller="PaginacionController as pagCtrl">
+                                <div paginacion-directiva></div>
+                             </div>   
+      									<div ag-grid="aNRCtrl.gridOptions" class="ag-fresh" style="width: 330px; height: 300px;">
+                          <div class="no-rows" ng-if="!aNRCtrl.hayDatos">
+                            <div class="msg">
+                              <span>NADA PARA MOSTRAR</span>
+                            </div>
+                          </div>          
+                        </div>
+      							
+                  </td>
+                </tr>
+      				</div>
+      			</td>
+      		</tr>
+      	</table>
+      </div>      		
+      	<td> 
+      		<div style="margin: 18px;">
+      			<img class="img" ng-click="aNRCtrl.registrarArticulos()" ng-src="{{aNRCtrl.propiedadesWeb.imagenes.imgDer}}" /> <br />
+      			<img class="img" ng-src="{{aNRCtrl.propiedadesWeb.imagenes.imgIzq}}" ng-click="aRCtrl.desactivarArticulosAsignados()" />
+      		</div> 
+        </td>
+      	<td valign="top" >
+      		<div class="headerTab">
+      			<b>Artículos asignados</b>
+      		</div>
+            <div ag-grid="aRCtrl.gridOptionsAR" class="ag-fresh" style="width: 330px; height: 300px;">
+             <div class="no-rows" ng-if="!aRCtrl.hayDatos">
+              <div class="msg">
+                <span>NADA PARA MOSTRAR</span>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+</div>
+<!--Fin articulos  -->
+
+  </tab> 
+<!--************************************************************INTERCAMBIO ********************************************* -->
+    <tab heading="Intercambios"  style="width:10px" ng-controller="ClasificacionRelacionadaUsuarioController as cRCtrl" id="TabIntercambio" active="false">
+      <div style="width:900px; border-width: 5px;" ng-controller="AutorizacionUsuarioController as auCtrl">
+        <div ng-controller="IntercambioController as iCtrl">
+            <table >
+              <td>
+                <img class="img" ng-src="{{auCtrl.propiedadesWeb.imagenes.img1}}" />
+              </td>
+              <td>
+                <b>Seleccione los usuarios</b>
+              </td>			
+              <form name="myForm" >
+                <td>
+                  <label>
+                    <input type="radio" ng-model="iCtrl.accion" value="intercambio">Intercambio
+                  </label>
+                  <br/>
+                  <label>
+                    <input type="radio" ng-model="iCtrl.accion" value="reemplazar">Reemplazar
+                  </label>
+                  <br/>
+                  <label>
+                    <input type="radio" ng-model="iCtrl.accion" value="adicionar">Adicionar
+                  </label>
+                  <br/>
+                </td>	
+                <td>
+                  <button class="k-button"  ng-click="iCtrl.clickAccion()">
+                    <img class="link1"  />Asignar
+                  </button>
+                </td>
+              </form>
+            </table>	
+            </br> </br>			
+
+
+
+        <div class="panel panel-default" style=" background-color: #EFFBFB; width:900px; height:130px;">
+            <div class="panel-heading" style="color:red;"> &#8213;Usuario origen</div>
+            </br>
+
+            <b>Usuario</b>
+            <div class="input-append">
+              <input type="text" id="idTextQuery" ng-model="query" class="span2 search-query"/>
+              <button class="k-button " ng-show="!win1visible" ng-click="win1.open()" style="background-color: #d6e6fb;">
+                <span  class="glyphicon glyphicon-search" ></span>
+              </button>
+            </div>
+            
+
+            </br>
+
+
+            <div kendo-window="win1" k-title="'USUARIOS'" k-width="400" k-height="200" k-animate="true"	k-on-open="win1visible = true" 
+                k-on-close="win1visible = false" ng-model="query" style="overflow-y: scroll; overflow-x: scroll;"  k-position="{ top: 346.980105151815, left: 590.980102539063 }">						
+              <table >
+                <tr>
+                  <th></th>
+                  <th></th>
+                </tr>
+                <tr ng-repeat="funcionario in bfCtrl.funcionarios | filter:query" ng-click="auCtrl.update($index, funcionario);bfCtrl.setFuncionarioSeleccionadoIntercambio(funcionario); win1.close()" ng-class='{selected: $index==auCtrl.selectedRow}'>
+                  <td>
+                    <img class="link1" ng-src="{{bfCtrl.propiedadesWeb.imagenes.imgPersona}}" />
+                  </td>
+                  <td>
+                    <span class="link1" style="font-size: 10px; white-space:nowrap;">({{funcionario.userName}}) - 
+                      {{funcionario.userCompleteName}}
+                    </span>
+                  </td>
+                </tr>
+              </table>					
+            </div>
+<!-- <div ng-controller="intercambioController intercambioCtrl"> -->
+            <table class="table" style="width:500px; heigth: 100px;" ng-if="iCtrl.funcionarioOrigen">
+              <tr>
+                <th style="text-align: center; background-color: #d6e6fb;">Código</th>
+                <th style="text-align: center; background-color: #d6e6fb;">Nombre</th>
+              </tr>
+              <tr style="width: 500px;">
+                <td class="celda" style="background-color: white;">{{cRCtrl.funcionarioSeleccionadoOrigenDetalles.userName}}</td>
+                <td class="celda" style="background-color: white;">{{cRCtrl.funcionarioSeleccionadoOrigenDetalles.userCompleteName}}</td>
+              </tr>
+            </table>
+<!-- </div> -->
+      </div>
+          </br>
+          </br>
+          <div style="color:black;"> Clasificaciones</div>
+          </br>
+          <div  style=" width: 300px; height:140px;"  >
+             <div   ag-grid="gridOptionsOrigen"  class="ag-fresh" style="position: relative;" ng-show="iCtrl.selecFuncionarioOrigen"></div>
+              <div class="no-rows" ng-show="!iCtrl.selecFuncionarioOrigen" style=" width: 300px; height:140px; top: 403">
+                  <div class="msg">
+                   <span>NADA PARA MOSTRAR</span>
+                  </div>
+              </div>
+          </div>
+          </br>
+         <div style="width:900px; border-width: 5px;" >
+          </br> </br>
+          <div class="panel panel-default" style=" background-color: #EFFBFB; width:900px; height:130px;">
+            <div class="panel-heading" style="color:red;"> &#8213;Usuario destino
+            </div>
+            </br>
+
+            <b>Usuario</b>
+            <input type="text" id="idTextQuery2" ng-model="query2"/>
+            <button class="k-button" ng-show="!win1visible" ng-click="win2.open()"><img class="link1" ng-src="{{bfCtrl.propiedadesWeb.imagenes.imgBuscar}}" /></button>
+            </br></br>
+
+          <div kendo-window="win2" k-title="'USUARIOS'" k-width="400" k-height="200" k-animate="true"	k-on-open="win2visible = true" 
+            k-on-close="win2visible = false" ng-model="query2" style="overflow-y: scroll; overflow-x: scroll;" k-position="{ top: 705.980105151815, left: 590.980102539063 }">						
+            <table  style="position:relative">
+              <tr>
+                <th></th>
+                <th></th>
+              </tr>
+              <tr ng-repeat="funcionario in bfCtrl.funcionarios | filter:query2" ng-click="auCtrl.update($index, funcionario);bfCtrl.setFuncionarioSeleccionadoIntercambioDestino(funcionario);win2.close()" ng-class='{selected: $index==auCtrl.selectedRow}'>
+                <td>
+                  <img class="link1" ng-src="{{bfCtrl.propiedadesWeb.imagenes.imgPersona}}" />
+                </td>
+                <td>
+                  <span class="link1" style="font-size: 10px; white-space:nowrap;">({{funcionario.userName}}) - 
+                    {{funcionario.userCompleteName}}
+                  </span>
+                </td>
+              </tr>
+            </table>					
+          </div>
+
+        <table class="table" style="width:500px; heigth: 100px;" ng-if="iCtrl.funcionarioDestino">
+          <tr>
+            <th style="text-align: center; background-color: #d6e6fb;">Código</th>
+            <th style="text-align: center; background-color: #d6e6fb;">Nombre</th>
+          </tr>
+          <tr style="width: 500px;">
+            <td class="celda" style="background-color: white;">{{cRCtrl.funcionarioSeleccionadoDestinoDetalles.userName}}</td>
+            <td class="celda" style="background-color: white;">{{cRCtrl.funcionarioSeleccionadoDestinoDetalles.userCompleteName}}</td>
+          </tr>
+        </table>
+</div>
+          </br>
+          <div style="color:black;"> Clasificaciones</div>
+          </br>
+          <div  style=" width: 300px; height:140px;"  >
+             <div   ag-grid="gridOptionsDestino"  class="ag-fresh" style="position: relative;" ng-show="iCtrl.selecFuncionarioDestino"></div>
+              <div class="no-rows" ng-show="!iCtrl.selecFuncionarioDestino" style=" width: 300px; height:140px; top: 756">
+                  <div class="msg">
+                   <span>NADA PARA MOSTRAR</span>
+                  </div>
+              </div>
+          </div>			
+        </div>
+      </div>
+    </tab>
+</tabset>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
+

@@ -1,0 +1,16 @@
+<script src="resources/vendors/dist/angularGrid.js"></script>
+<link rel="stylesheet" href="resources/vendors/dist/angularGrid.css">
+<link rel="stylesheet" href="resources/css/bootstrap.css" />
+<script src="resources/controller/articulosNoRelacionadosController.js"></script>
+	<div ng-controller="ArticulosNoRelacionadosController as aNRCtrl">
+    
+		<button class="btn btn-sm btn-asignacionUsuarios" ng-click="pagCtrl.paginaAnterior()" ng-disabled="pagCtrl.numPagActual==1" >
+		 <span  class="glyphicon glyphicon-backward" ></span> 
+		</button>
+			{{pagCtrl.numPagActual}} de {{pagCtrl.numeroTotalPaginas}}
+		<button class="btn btn-sm btn-asignacionUsuarios" ng-click="pagCtrl.paginaSiguiente()" ng-disabled="pagCtrl.numPagActual==pagCtrl.numeroTotalPaginas">
+		 <span  class="glyphicon glyphicon-forward" ></span> 
+		</button>
+
+			
+	</div>
