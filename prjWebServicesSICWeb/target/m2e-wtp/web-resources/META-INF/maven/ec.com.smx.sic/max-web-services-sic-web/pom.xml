@@ -1,0 +1,212 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>max-web-services-sic-web</artifactId>
+	<packaging>war</packaging>
+	<name>prjWebServicesSICWeb</name>
+	<distributionManagement>
+		<repository>
+			<id>supermaxi</id>
+			<name>smx-public-releases</name>
+			<url>http://svr-kruger1:8081/nexus/content/repositories/releases/</url>
+			<layout>default</layout>
+		</repository>
+		<snapshotRepository>
+			<id>supermaxi</id>
+			<name>smx-public-snapshots</name>
+			<url>http://svr-kruger1:8081/nexus/content/repositories/snapshots/</url>
+			<uniqueVersion>true</uniqueVersion>
+			<layout>default</layout>
+		</snapshotRepository>
+	</distributionManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ec.com.kruger</groupId>
+			<artifactId>fwk-log-util</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ec.com.smx.frameworkv2</groupId>
+			<artifactId>fwk-cliente</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ec.com.kruger</groupId>
+			<artifactId>fwk-utilitario-dao</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ec.com.smx.corpv2</groupId>
+			<artifactId>corp-cliente</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>ec.com.smx.frameworkv2</groupId>
+			<artifactId>fwk-utilitario-jsf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ec.com.smx.sic</groupId>
+			<artifactId>max-cliente-sic</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ec.com.smx.sic</groupId>
+			<artifactId>max-utilitario-jsf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ec.com.kruger</groupId>
+			<artifactId>fwk-utilitario-aplicacion</artifactId>
+			<!-- <classifier>${framework.environment.param}</classifier> -->
+		</dependency>
+		<dependency>
+			<artifactId>max-cliente-inventarioV2</artifactId>
+			<groupId>ec.com.smx.sic</groupId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20080701</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>1.7.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.opensymphony.quartz</groupId>
+			<artifactId>quartz</artifactId>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
+				</configuration>
+			</plugin>
+
+
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-pmd-plugin</artifactId> 
+				<version>2.5</version> <configuration> <targetJdk>1.6</targetJdk> <linkXref>false</linkXref> 
+				<failOnViolation>true</failOnViolation> <failurePriority>1</failurePriority> 
+				<rulesets> <ruleset>../prjSICRoot/pmd-rulesets.xml</ruleset> </rulesets> 
+				</configuration> <executions> <execution> <phase>install</phase> <goals> 
+				<goal>check</goal> </goals> </execution> </executions> </plugin> -->
+		</plugins>
+	</build>
+	<parent>
+		<groupId>ec.com.smx.sic</groupId>
+		<artifactId>max-root-sic</artifactId>
+		<version>1.7.0-SNAPSHOT</version>
+	</parent>
+</project>
