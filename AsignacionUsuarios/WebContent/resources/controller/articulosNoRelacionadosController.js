@@ -8,7 +8,7 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
 	articulosNoRelacionadosController.txtCodigoEstructura = '';
 	articulosNoRelacionadosController.lista;//contiene lista a desagregar
 	articulosNoRelacionadosController.listaCArticulos=[];
-	articulosNoRelacionadosController.listaticulosSeleccionados=[];
+	//articulosNoRelacionadosController.listaticulosSeleccionados=[];
 	articulosNoRelacionadosController.datalistaClasesArticulos;
 	articulosNoRelacionadosController.datalistaArticulosRelacionados;
 	articulosNoRelacionadosController.cargardata=false;
@@ -101,9 +101,9 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
 		//rowHeight: 25,
     	//virtualPaging: true,
     	enableColResize: true,
-    	columnDefs: [{headerName: "#", width: 25, cellRenderer: function(params) {
+    	columnDefs: [/*{headerName: "#", width: 25, cellRenderer: function(params) {
             return params.node.id + 1;
-        } },
+        } },*/
     	{headerName: "", width: 30, checkboxSelection: true},
     	{headerName: "C&oacute;digo", field: "codigoArticulo", width: 80, headerTooltip: "Código"},
     	{headerName: "Descripci&oacute;n", field: "descripcion", width: 160,headerTooltip: "Descripción"},
@@ -137,8 +137,9 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
 
        
        articulosNoRelacionadosController.first=0;
-       articulosNoRelacionadosController.max=51;
+       articulosNoRelacionadosController.max=25;
        var ws = PROPIEDADES.propiedades.urlWebServiceArticulosNoRelacionadaUsuario;
+
     articulosNoRelacionadosController.buscarArticulosNoRelacionados = function(){
        	articulosNoRelacionadosController.hayDatos=true;
        	
@@ -153,7 +154,7 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
 	       			'dataType': 'json'
 	       		},
 	       		data: { codigoCompania:ws.codigoCompania,
-	       			maxResult:articulosNoRelacionadosController.filaFin,
+	       			maxResult:articulosNoRelacionadosController.max,
 	       			firstResult: articulosNoRelacionadosController.filaInicio,
 	       			usuarioSesion:articulosNoRelacionadosController.funcionarioSeleccionado.userId,
 	       			codigoBarras:articulosNoRelacionadosController.txtCodigoBarras,
@@ -169,7 +170,7 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
        				articulosNoRelacionadosController.dataArticulosNoRelacionados.push(result.coleccionArticulos[i]);
        			};       			
        			articulosNoRelacionadosController.crearDataSource(result.coleccionArticulos, articulosNoRelacionadosController.txtCodigoBarras, articulosNoRelacionadosController.txtDescripcion, articulosNoRelacionadosController.txtCodigoEstructura);
-            	$scope.$broadcast('numeroRegistrosANR', result.numeroArticulos, articulosNoRelacionadosController.filaFin);
+            	$scope.$broadcast('numeroRegistrosANR', result.numeroArticulos, 25);
        			console.log('dataArticulosNoRelacionados: '+ articulosNoRelacionadosController.dataArticulosNoRelacionados.length);
 
             	})
@@ -195,77 +196,27 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
 	articulosNoRelacionadosController.crearDataSource=function(result, codigoBarras, descripcion, codigoEstructura){
 				var allOfTheData = result;
             	var dataSource = {
-                rowCount: -1, // behave as infinite scroll
+                rowCount: -1, 
                 pageSize: 25,
 
                 getRows: function (params) {
                     console.log('asking for ' + articulosNoRelacionadosController.filaInicio + ' to ' + articulosNoRelacionadosController.filaFin);
-                   /* if (desde< params.startRow) {
-						console.log('boton next');
-						desde=params.startRow;
-                    	hasta= params.endRow;
-                    }
-                    if(desde> params.startRow){
-                    	console.log('boton previus');
-                    	desde=params.startRow;
-                    	hasta= params.endRow;
-                    }*/
-
-                    
-                    // para saber si presiona botOn nex o previus
-                    // comparar sartRow y endRows, ya que estos valores dependen del boton que presione
-                
-                        var rowsThisPage = allOfTheData.slice(articulosNoRelacionadosController.filaInicio,articulosNoRelacionadosController.filaFin) ;
-                        //var rowsThisPageNueva= articulosNoRelacionadosController.dataArticulosNoRelacionados.slice(params.startRow, params.endRow)
+                        var rowsThisPage = allOfTheData.slice(0,articulosNoRelacionadosController.max) ;
                         // if on or after the last page, work out the last row.
                         var lastRow = -1;
                         if (allOfTheData.length <= params.endRow) {
                             lastRow = allOfTheData.length;
-                            //articulosNoRelacionadosController.first= params.endRow;
-                    		//articulosNoRelacionadosController.max=articulosNoRelacionadosController.first+50;
                         }
                         // call the success callback
                         params.successCallback(rowsThisPage, lastRow);
-                        console.log('rowsThisPage: ' + rowsThisPage+ ' lastRow: ' +lastRow);
-                   /*
-                     if (params.endRow==lastRow) {
-                     	articulosNoRelacionadosController.crearNuevoDataSource(articulosNoRelacionadosController.first, articulosNoRelacionadosController.max, codigoBarras, descripcion, codigoEstructura);
-                    	//articulosNoRelacionadosController.buscarArticulosNoRelacionados(codigoBarras, descripcion, codigoEstructura);
-                    };*/
+                        console.log('rowsThisPage: ' + rowsThisPage+ ' lastRow: ' +lastRow);                  
                 }
             };
             if (articulosNoRelacionadosController.gridOptions.api) {
             	articulosNoRelacionadosController.gridOptions.api.setDatasource(dataSource);
-            	//articulosNoRelacionadosController.gridOptions.api.onNewRows();
             };
 	}
 
-	articulosNoRelacionadosController.crearNuevoDataSource= function(desde, hasta, codBarras, desc, codEstructura){
-		articulosNoRelacionadosController.req2 = {
-	       		method: 'POST',
-	       		url: 'http://localhost:8080/prjWebServicesSICWeb/ws/autorizacionUsuarios/findAllArticulos',
-	       		headers: {
-	       			'Content-Type': 'application/json; charset=utf-8',
-	       			'dataType': 'json'
-	       		},
-	       		data: { codigoCompania:ws.codigoCompania,
-	       			maxResult:hasta,
-	       			firstResult: desde,
-	       			usuarioSesion:ws.usuarioSesion,
-	       			codigoBarras:codBarras,
-	       			descripcion:desc,
-	       			codigoEstructura: codEstructura,
-	       			clasesArticulos:{claseArticulo:articulosNoRelacionadosController.listaCArticulos} }
-       		}
-		articulosNoRelacionadosService.getDataNoRelacionada(articulosNoRelacionadosController.req2).then(function(result){
-            for (var i = 0; i <=result.length-1; i++) {
-       			articulosNoRelacionadosController.dataArticulosNoRelacionados.push(result[i]);
-       		};
-       		articulosNoRelacionadosController.crearDataSource(articulosNoRelacionadosController.dataArticulosNoRelacionados, codBarras, desc, codEstructura);
-
-        })
-	}
-	
 	articulosNoRelacionadosController.eliminarArticulosRelacionados = function(dataDeArticulosRelacionados){
 
 		for (var i = 0 ; i < (dataDeArticulosRelacionados != undefined && dataDeArticulosRelacionados.length) ; i++){

@@ -3,7 +3,7 @@ angular.module('asignacionUsuarios').controller('PaginacionController' , ['busqu
 	'use strict';
 	var paginacionController = this;
 	paginacionController.numeroRegistrosANR=0;
-	paginacionController.numeroTotalPaginas=0;
+	paginacionController.numeroTotalPaginas="...";
 	paginacionController.numPagActual=1;
 	this.paginaSiguiente= function(){
 		paginacionController.numPagActual=paginacionController.numPagActual+1;
