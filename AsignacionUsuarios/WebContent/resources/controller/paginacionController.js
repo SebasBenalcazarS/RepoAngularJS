@@ -5,14 +5,35 @@ angular.module('asignacionUsuarios').controller('PaginacionController' , ['busqu
 	paginacionController.numeroRegistrosANR=0;
 	paginacionController.numeroTotalPaginas="...";
 	paginacionController.numPagActual=1;
+
+
+	$scope.$on('panelArticulos', function(event, obj){
+		paginacionController.numeroRegistrosANR=0;
+		paginacionController.numeroTotalPaginas="...";
+		paginacionController.numPagActual=1;
+	});
+	$scope.$on('actualizarPaginador', function(event, obj){
+		paginacionController.numeroRegistrosANR=0;
+		paginacionController.numeroTotalPaginas="...";
+		paginacionController.numPagActual=1;
+	});
+
 	this.paginaSiguiente= function(){
 		paginacionController.numPagActual=paginacionController.numPagActual+1;
 		$scope.$emit('numPaginaaMostrar', paginacionController.numPagActual);
-
-
 	}
-	this.paginaAnterior= function(){
+	this.paginaAnterior= function(){				
 		paginacionController.numPagActual=paginacionController.numPagActual-1;
+		$scope.$emit('numPaginaaMostrar', paginacionController.numPagActual);
+	}
+
+	this.ultimaPagina= function(){		
+		paginacionController.numPagActual=paginacionController.numeroTotalPaginas;
+		$scope.$emit('numPaginaaMostrar', paginacionController.numPagActual);
+	}
+
+	this.primeraPagina= function(){		
+		paginacionController.numPagActual=1;
 		$scope.$emit('numPaginaaMostrar', paginacionController.numPagActual);
 	}
 

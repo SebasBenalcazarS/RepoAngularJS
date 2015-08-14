@@ -6,9 +6,14 @@ angular.module('asignacionUsuarios').controller('BusquedaClaseArticulosControlle
 	busquedaClaseArticulosController.lista;
 	busquedaClaseArticulosController.listaCA;
 	busquedaClaseArticulosController.estado = false;
-	//busquedaClaseArticulosController.check=false;
-	
+	//busquedaClaseArticulosController.check=false;	
 	busquedaClaseArticulosController.propiedadesWeb = PROPIEDADES.propiedadesWeb;
+
+	
+	$scope.$on('panelArticulos', function(event, obj){
+		busquedaClaseArticulosController.listaCA=[];	
+		busquedaClaseArticulosController.estado = false;
+	});
 
 	busquedaClaseArticulosService.getClaseArticulos(PROPIEDADES.propiedades.server+PROPIEDADES.propiedades.port+PROPIEDADES.propiedades.urlWebServiceObtenerClasesArticulos)
 		.then(function(result){
@@ -22,11 +27,11 @@ angular.module('asignacionUsuarios').controller('BusquedaClaseArticulosControlle
 	busquedaClaseArticulosController.checkAll = function(){
 		busquedaClaseArticulosController.listaCA=[];
 		if(busquedaClaseArticulosController.estado){
-			this.estado=true;
+			
 			busquedaClaseArticulosController.listaCA= angular.copy(busquedaClaseArticulosController.listaDataClaseArticulos);
 			$scope.$emit('checkAllClaseArti', this.estado, busquedaClaseArticulosController.listaCA);
 		}else{
-			this.estado=false;
+			
 			$scope.$emit('checkAllClaseArti', this.estado, busquedaClaseArticulosController.listaCA);
 		}
 	}

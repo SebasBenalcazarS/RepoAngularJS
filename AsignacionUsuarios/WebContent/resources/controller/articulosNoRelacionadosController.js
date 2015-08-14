@@ -21,6 +21,8 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
 
 	$scope.$on('selectFuncionario', function(event,funcionarioSeleccionado) {
 		articulosNoRelacionadosController.funcionarioSeleccionado = funcionarioSeleccionado;
+		articulosNoRelacionadosController.filaInicio=0;
+		articulosNoRelacionadosController.listaCArticulos=[];
 		articulosNoRelacionadosController.cargardata=true;
 	});
 	$scope.$on('dataArticulosRelacionada', function(event, dataRelacionada) {
@@ -73,13 +75,14 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
 		articulosNoRelacionadosController.txtCodigoBarras= '';
 		articulosNoRelacionadosController.txtDescripcion= '';
 		articulosNoRelacionadosController.txtCodigoEstructura = '';
-		if(articulosNoRelacionadosController.cargardata){
+		articulosNoRelacionadosController.listaCArticulos=[];
+		//if(articulosNoRelacionadosController.cargardata){
 			if (articulosNoRelacionadosController.gridOptions.api) {
 				articulosNoRelacionadosController.gridOptions.api.showLoading(true);
 			}
 			articulosNoRelacionadosController.buscarArticulosNoRelacionados('','','');
-		}
-		articulosNoRelacionadosController.cargardata=false;
+		//}
+		//articulosNoRelacionadosController.cargardata=false;
 	});
 	
 	$scope.$on('agregarRegistroTablaArticulosNoRelacionados', function(event, obj){
@@ -88,9 +91,13 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
 				articulosNoRelacionadosController.hayDatos=true;
 			};
 		articulosNoRelacionadosController.dataArticulosNoRelacionados.splice(0,0,{ codigoArticulo : obj.codigoArticulo,descripcion : obj.descripcion ,referenciaMedida:obj.referenciaMedida, valorUnidadMaanejo:obj.valorUnidadManejo,	claseArticulo:obj.claseArticulo, codigoClasificacion:obj.codigoClasificacion});
-		articulosNoRelacionadosController.gridOptions.api.setDatasource(articulosNoRelacionadosController.data);
-		articulosNoRelacionadosController.gridOptions.api.onNewRows();
-		event.stopPropagation();
+		 articulosNoRelacionadosController.filaInicio=  articulosNoRelacionadosController.filaInicio-1;
+		if (articulosNoRelacionadosController.gridOptions.api) {
+			articulosNoRelacionadosController.gridOptions.api.setDatasource(articulosNoRelacionadosController.data);
+			articulosNoRelacionadosController.gridOptions.api.onNewRows();
+		};
+		
+		//event.stopPropagation();
 	});
 	
 	this.gridOptions = {
@@ -140,6 +147,14 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
        articulosNoRelacionadosController.max=25;
        var ws = PROPIEDADES.propiedades.urlWebServiceArticulosNoRelacionadaUsuario;
 
+      articulosNoRelacionadosController.clickBuscarArticulosNoRelacionados = function(){
+      	$scope.$broadcast('actualizarPaginador', true);
+      	articulosNoRelacionadosController.filaFin=25;
+		articulosNoRelacionadosController.filaInicio=0;
+		articulosNoRelacionadosController.numPagActual=1;
+		articulosNoRelacionadosController.buscarArticulosNoRelacionados();
+      }
+
     articulosNoRelacionadosController.buscarArticulosNoRelacionados = function(){
        	articulosNoRelacionadosController.hayDatos=true;
        	
@@ -170,23 +185,14 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
        				articulosNoRelacionadosController.dataArticulosNoRelacionados.push(result.coleccionArticulos[i]);
        			};       			
        			articulosNoRelacionadosController.crearDataSource(result.coleccionArticulos, articulosNoRelacionadosController.txtCodigoBarras, articulosNoRelacionadosController.txtDescripcion, articulosNoRelacionadosController.txtCodigoEstructura);
-            	$scope.$broadcast('numeroRegistrosANR', result.numeroArticulos, 25);
+            	$scope.$broadcast('numeroRegistrosANR', result.numeroArticulos, articulosNoRelacionadosController.max);
        			console.log('dataArticulosNoRelacionados: '+ articulosNoRelacionadosController.dataArticulosNoRelacionados.length);
 
             	})
 
 	}
 	$scope.$on('numPaginaaMostrar', function(event, numPagina){
-		if(numPagina > articulosNoRelacionadosController.numPagActual){
-		   	articulosNoRelacionadosController.filaInicio=articulosNoRelacionadosController.filaFin;
-		   	articulosNoRelacionadosController.filaFin=articulosNoRelacionadosController.filaInicio+25;
-		   	articulosNoRelacionadosController.numPagActual=numPagina;
-		}
-		if(numPagina < articulosNoRelacionadosController.numPagActual){
-			articulosNoRelacionadosController.filaInicio=articulosNoRelacionadosController.filaInicio-25;
-		   	articulosNoRelacionadosController.filaFin=articulosNoRelacionadosController.filaInicio+25;
-		   	articulosNoRelacionadosController.numPagActual=numPagina;
-		}
+		articulosNoRelacionadosController.filaInicio=(numPagina*articulosNoRelacionadosController.max)- articulosNoRelacionadosController.max;		
 		articulosNoRelacionadosController.buscarArticulosNoRelacionados();
 		event.stopPropagation();
 	});

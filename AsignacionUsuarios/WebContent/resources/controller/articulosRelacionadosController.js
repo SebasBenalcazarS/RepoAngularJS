@@ -27,7 +27,8 @@ angular.module('asignacionUsuarios').controller("ArticulosRelacionadosController
 	$scope.$on('agregarRegistroTablaArticulosRelacionados', function (event, obj){
 		articulosRelacionadosController.hayDatos=true;
 		articulosRelacionadosController.gridOptionsAR.api.showLoading(true);
-		articulosRelacionadosController.ArticulosRelacionados.splice(0,0,{ codigoArticulo : obj.codigoArticulo,descripcion : obj.descripcion ,referenciaMedida:obj.referenciaMedida, valorUnidadMaanejo:obj.valorUnidadManejo,	claseArticulo:obj.claseArticulo, codigoClasificacion:obj.codigoClasificacion});
+		
+		articulosRelacionadosController.ArticulosRelacionados.splice(0,0,{ codigoArticulo : obj.codigoArticulo,descripcion : obj.descripcion ,referenciaMedida:obj.referenciaMedida, valorUnidadManejo:obj.valorUnidadManejo,	claseArticulo:obj.claseArticulo, codigoClasificacion:obj.codigoClasificacion});
 		articulosRelacionadosController.gridOptionsAR.api.setDatasource(articulosRelacionadosController.data);
 		articulosRelacionadosController.gridOptionsAR.api.onNewRows();
 	});
@@ -156,8 +157,8 @@ angular.module('asignacionUsuarios').controller("ArticulosRelacionadosController
 					console.log("status WS: FAIL");
 				});			  
 			  articulosRelacionadosController.eliminarFila(listaSeleccionados[i].codigoArticulo);
-			  console.log("elementos a eleminar:"+ listaSeleccionados[i].codigoArticulo);
-			$scope.$emit('agregarRegistroTablaArticulosNoRelacionados', listaSeleccionados[i]);
+			  console.log("elementos a eliminar:"+ listaSeleccionados[i].codigoArticulo);
+			$scope.$broadcast('agregarRegistroTablaArticulosNoRelacionados', listaSeleccionados[i]);
 		  	};
 	}
 	
