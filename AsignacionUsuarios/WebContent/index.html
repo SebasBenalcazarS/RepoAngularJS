@@ -97,7 +97,7 @@
 
 
 	<tabset style="margin:30px; border-color: #000000;" justified="true"  ng-show="auCtrl.funcionarioSeleccionado"> 
-		<tab heading="Clasificaciones" style="width:10px; border-color: #000000;" id="TabClasificaciones"  ng-controller="ClasificacionArticulosRegistroController">
+		<tab heading="Clasificaciones" style="width:10px;" id="TabClasificaciones"  ng-controller="ClasificacionArticulosRegistroController">
 
     		<div style="width: auto;" ng-show="auCtrl.funcionarioSeleccionado"
     			ng-controller="ClasificacionNoRelacionadaUsuarioController as cNoRCtrl">
@@ -161,9 +161,8 @@
         </div>
           <!--Fin clasificaciones  -->
     </tab> 
-    <tab heading="Articulos"  style="width:10px; border-color: blak;" ng-controller="AutorizacionUsuarioController as auCtrl" select="auCtrl.clickArticulos()" id="TabArticulos" active="false">
-
-      	<!--*************************************************************************************ARTICULOS*****************************************************************  -->
+    <!--*************************************************************************************ARTICULOS*****************************************************************  -->
+    <tab heading="Articulos"  style="width:10px;" ng-controller="AutorizacionUsuarioController as auCtrl" select="auCtrl.clickArticulos()" id="TabArticulos" active="false">      	
       <div style="width: auto;"  ng-controller="ArticulosRelacionadosController as aRCtrl" ng-show="auCtrl.funcionarioSeleccionado" >
       	<table ng-controller="ArticulosNoRelacionadosController as aNRCtrl">
       		<tr>
@@ -241,11 +240,13 @@
 <!--Fin articulos  -->
 
   </tab> 
-  
-      <div reporte-directiva></div> 
+  <tab heading="Reporte">
+      <div reporte-directiva></div>
+  </tab>
+       
   
 <!--************************************************************INTERCAMBIO ********************************************* -->
-    <tab heading="Intercambios"  style="width:10px" ng-controller="ClasificacionRelacionadaUsuarioController as cRCtrl" id="TabIntercambio" active="false">
+    <tab heading="Intercambios"  style="width:10px;" ng-controller="ClasificacionRelacionadaUsuarioController as cRCtrl" id="TabIntercambio" active="false">
       <div style="width:900px; border-width: 5px;" ng-controller="AutorizacionUsuarioController as auCtrl">
         <div ng-controller="IntercambioController as iCtrl">
             <table >
@@ -400,7 +401,9 @@
         </div>
       </div>
     </tab>
-       
+
+    
+    
 </tabset>
 
 </div>

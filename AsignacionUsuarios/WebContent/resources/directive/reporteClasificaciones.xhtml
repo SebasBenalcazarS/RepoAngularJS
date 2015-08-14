@@ -5,10 +5,14 @@
 <script src="resources/controller/reporteClasificacionesController.js"></script>
 
 
- <tab heading="Reporte"  style="width:10px; "  id="TabReportes" active="false"> 
-	<div>
-		<h1>hola</h1>
-	</div>
-	<b>Usuario</b>
-            
-    </tab> 
+<!-- <tab heading="Reporte"  style="width:10px; "  id="TabReportes" active="false">  -->
+	
+			<nav>
+			  <ul class="pagination">
+			    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+			    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+			    ...
+			  </ul>
+			</nav>
+           <div   ag-grid="reporteCtrl.gridOptions"  class="ag-fresh" style="width:580px; height: 550px;" ></div>
+   <!-- </tab> -->
