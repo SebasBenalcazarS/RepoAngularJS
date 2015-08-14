@@ -84,14 +84,17 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
 		//}
 		//articulosNoRelacionadosController.cargardata=false;
 	});
-	
+	articulosNoRelacionadosController.restarAInicio=0;
 	$scope.$on('agregarRegistroTablaArticulosNoRelacionados', function(event, obj){
 		console.log("scope.on agregarRegistroTablaArticulosNoRelacionados:"+articulosNoRelacionadosController.dataArticulosNoRelacionados);
 		if (articulosNoRelacionadosController.dataArticulosNoRelacionados != undefined || articulosNoRelacionadosController.dataArticulosNoRelacionados.length!=0) {
 				articulosNoRelacionadosController.hayDatos=true;
 			};
+		if(articulosNoRelacionadosController.dataArticulosNoRelacionados.length>=25){
+		  	articulosNoRelacionadosController.restarAInicio=articulosNoRelacionadosController.filaInicio-1;
+		 } 
 		articulosNoRelacionadosController.dataArticulosNoRelacionados.splice(0,0,{ codigoArticulo : obj.codigoArticulo,descripcion : obj.descripcion ,referenciaMedida:obj.referenciaMedida, valorUnidadMaanejo:obj.valorUnidadManejo,	claseArticulo:obj.claseArticulo, codigoClasificacion:obj.codigoClasificacion});
-		 articulosNoRelacionadosController.filaInicio=  articulosNoRelacionadosController.filaInicio-1;
+		 
 		if (articulosNoRelacionadosController.gridOptions.api) {
 			articulosNoRelacionadosController.gridOptions.api.setDatasource(articulosNoRelacionadosController.data);
 			articulosNoRelacionadosController.gridOptions.api.onNewRows();
@@ -152,6 +155,7 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
       	articulosNoRelacionadosController.filaFin=25;
 		articulosNoRelacionadosController.filaInicio=0;
 		articulosNoRelacionadosController.numPagActual=1;
+		articulosNoRelacionadosController.restarAInicio=0;
 		articulosNoRelacionadosController.buscarArticulosNoRelacionados();
       }
 
@@ -183,16 +187,28 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
        			articulosNoRelacionadosController.dataArticulosNoRelacionados=[];
        			for (var i = 0; i <=result.coleccionArticulos.length-1; i++) {
        				articulosNoRelacionadosController.dataArticulosNoRelacionados.push(result.coleccionArticulos[i]);
-       			};       			
-       			articulosNoRelacionadosController.crearDataSource(result.coleccionArticulos, articulosNoRelacionadosController.txtCodigoBarras, articulosNoRelacionadosController.txtDescripcion, articulosNoRelacionadosController.txtCodigoEstructura);
-            	$scope.$broadcast('numeroRegistrosANR', result.numeroArticulos, articulosNoRelacionadosController.max);
-       			console.log('dataArticulosNoRelacionados: '+ articulosNoRelacionadosController.dataArticulosNoRelacionados.length);
+       			};   
+       			if (result.coleccionArticulos.length!=0) {
+       				articulosNoRelacionadosController.crearDataSource(result.coleccionArticulos, articulosNoRelacionadosController.txtCodigoBarras, articulosNoRelacionadosController.txtDescripcion, articulosNoRelacionadosController.txtCodigoEstructura);
+            		$scope.$broadcast('numeroRegistrosANR', result.numeroArticulos, articulosNoRelacionadosController.max);
+       				console.log('dataArticulosNoRelacionados: '+ articulosNoRelacionadosController.dataArticulosNoRelacionados.length);
+       			}else{       				
+       				articulosNoRelacionadosController.dataArticulosNoRelacionados=[];
+       				if (articulosNoRelacionadosController.gridOptions.api) {
+            			articulosNoRelacionadosController.gridOptions.api.setDatasource(articulosNoRelacionadosController.data);
+            		}
+            		articulosNoRelacionadosController.hayDatos=false;
+       			}    			
+       			
 
             	})
 
 	}
 	$scope.$on('numPaginaaMostrar', function(event, numPagina){
-		articulosNoRelacionadosController.filaInicio=(numPagina*articulosNoRelacionadosController.max)- articulosNoRelacionadosController.max;		
+		if (numPagina==1) {
+			articulosNoRelacionadosController.restarAInicio=0;
+		};
+		articulosNoRelacionadosController.filaInicio=(numPagina*articulosNoRelacionadosController.max)- (articulosNoRelacionadosController.max-articulosNoRelacionadosController.restarAInicio);	
 		articulosNoRelacionadosController.buscarArticulosNoRelacionados();
 		event.stopPropagation();
 	});

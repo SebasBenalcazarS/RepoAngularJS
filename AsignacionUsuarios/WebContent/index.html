@@ -33,21 +33,22 @@
 	<script src="resources/controller/articulosNoRelacionadosController.js"></script>
   <script src="resources/controller/intercambioController.js"></script>
   <script src="resources/controller/paginacionController.js"></script>
-
 	<script	src="resources/controller/clasificacionNoRelacionadaUsuarioController.js"></script>
 	<script src="resources/controller/clasificacionRelacionadaUsuarioController.js"></script>
+  <script src="resources/controller/reporteClasificacionesController.js"></script>
+
 	<script src="resources/directive/busquedaFuncionariosDirective.js"></script>
   <script src="resources/directive/paginacionDirective.js"></script>
 	<script src="resources/directive/busquedaClaseArticulosDirective.js"></script>
 	<script src="resources/directive/validNumberDirective.js"></script>
+  <script src="resources/directive/reporteDirective.js"></script>
+
 	<script src="resources/service/busquedaFuncionariosDataService.js"></script>
 	<script src="resources/service/busquedaClaseArticulosService.js"></script>
 	<script src="resources/service/articulosRelacionadosService.js"></script>
 	<script src="resources/service/articulosNoRelacionadosService.js"></script>
-
 	<script	src="resources/service/clasificacionRelacionadaUsuarioService.js"></script>
 	<script	src="resources/service/clasificacionNoRelacionadaUsuarioService.js"></script>
-
 	<script	src="resources/service/creacionClasificacionFuncionarioService.js"></script>
 	<script src="resources/service/obtenerUsuarioSesionService.js"></script>
 
@@ -240,6 +241,9 @@
 <!--Fin articulos  -->
 
   </tab> 
+  
+      <div reporte-directiva></div> 
+  
 <!--************************************************************INTERCAMBIO ********************************************* -->
     <tab heading="Intercambios"  style="width:10px" ng-controller="ClasificacionRelacionadaUsuarioController as cRCtrl" id="TabIntercambio" active="false">
       <div style="width:900px; border-width: 5px;" ng-controller="AutorizacionUsuarioController as auCtrl">
@@ -381,7 +385,8 @@
           </tr>
         </table>
 </div>
-          </br>
+          </br> 
+    
           <div style="color:black;"> Clasificaciones</div>
           </br>
           <div  style=" width: 300px; height:140px;"  >
@@ -395,6 +400,7 @@
         </div>
       </div>
     </tab>
+       
 </tabset>
 
 </div>

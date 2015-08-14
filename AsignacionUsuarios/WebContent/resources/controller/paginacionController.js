@@ -36,6 +36,10 @@ angular.module('asignacionUsuarios').controller('PaginacionController' , ['busqu
 		paginacionController.numPagActual=1;
 		$scope.$emit('numPaginaaMostrar', paginacionController.numPagActual);
 	}
+	this.irAPagina= function(){		
+		//paginacionController.numPagActual=1;
+		$scope.$emit('numPaginaaMostrar', paginacionController.numPagActual);
+	}
 
 	$scope.$on('numeroRegistrosANR', function(event, num, numPorPagina){
 		//metodo.run();		
