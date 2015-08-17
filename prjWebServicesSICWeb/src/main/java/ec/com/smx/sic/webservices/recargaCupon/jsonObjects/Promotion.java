@@ -1,6 +1,5 @@
 package ec.com.smx.sic.webservices.recargaCupon.jsonObjects;
 
-
 /**
  * @author ediaz
  *
@@ -19,6 +18,10 @@ public class Promotion {
 	private Long to;
 	private Integer codigoCompania;
 	private String codigoArticulo;
+	private String color;
+	private Long phoneFileId;
+	private Long tabletFileId;
+	private Long specialFileId;
 
 	public Promotion() {
 
@@ -120,4 +123,36 @@ public class Promotion {
 		this.codigoArticulo = codigoArticulo;
 	}
 
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public Long getPhoneFileId() {
+		return phoneFileId;
+	}
+
+	public void setPhoneFileId(Long phoneFileId) {
+		this.phoneFileId = phoneFileId;
+	}
+
+	public Long getTabletFileId() {
+		return tabletFileId;
+	}
+
+	public void setTabletFileId(Long tabletFileId) {
+		this.tabletFileId = tabletFileId;
+	}
+
+	public Long getSpecialFileId() {
+		return specialFileId;
+	}
+
+	public void setSpecialFileId(Long specialFileId) {
+		this.specialFileId = specialFileId;
+	}
+	
 }

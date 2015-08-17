@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>max-articulos</artifactId>
+	<packaging>jar</packaging>
+	<name>prjLnArticulo</name>
+	<parent>
+		<groupId>ec.com.smx.sic</groupId>
+		<artifactId>max-root-sic</artifactId>
+		<version>1.7.0-SNAPSHOT</version>
+		<relativePath>../prjSICRoot</relativePath>
+	</parent>
+	<distributionManagement>
+		<repository>
+			<id>supermaxi</id>
+			<name>Repositorio Supermaxi</name>
+			<url>http://svr-kruger1:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>supermaxi</id>
+			<name>Repositorio Supermaxi</name>
+			<url>http://svr-kruger1:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	<dependencies>
+	
+	<!-- 
+		<dependency>
+			<groupId>ec.com.smx.frameworkv2</groupId>
+			<artifactId>fwk-acceso-datos</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+		</dependency>
+		
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-aop</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-asm</artifactId>
+		</dependency>
+		
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-aspects</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>aopalliance</groupId>
+			<artifactId>aopalliance</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>ec.com.smx.corpv2</groupId>
+			<artifactId>corp-core</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>ec.com.smx.frameworkv2</groupId>
+			<artifactId>fwk-auditoria-cliente</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>ec.com.smx.frameworkv2</groupId>
+			<artifactId>fwk-auditoria-core</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>ec.com.smx.frameworkv2</groupId>
+			<artifactId>fwk-core</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>ec.com.smx.frameworkv2</groupId>
+			<artifactId>fwk-integracion-core</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-excelant</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-scratchpad</artifactId>
+			<version>3.9</version>
+		</dependency>
+		 -->
+		<dependency>
+			<groupId>ec.com.kruger</groupId>
+			<artifactId>fwk-utilitario-aplicacion</artifactId>
+<!-- 			<classifier>${framework.environment.param}</classifier> -->
+		</dependency>
+		<dependency>
+			<groupId>ec.com.kruger</groupId>
+			<artifactId>fwk-utilitario-dao</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>ec.com.smx.mensajeria</groupId>
+			<artifactId>mensajeria-core</artifactId>
+		</dependency>		
+		<dependency>
+			<groupId>ec.com.kruger</groupId>
+			<artifactId>fwk-log-util</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ec.com.smx.framework</groupId>
+			<artifactId>fwk-aplicacion</artifactId>
+		</dependency>		
+		
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>ec.com.smx.frameworkv2</groupId>
+			<artifactId>fwk-cliente</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.batch</groupId>
+			<artifactId>spring-batch-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.batch</groupId>
+			<artifactId>spring-batch-infrastructure</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ec.com.smx.corpv2</groupId>
+			<artifactId>corp-cliente</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ec.com.smx.sic</groupId>
+			<artifactId>max-sic-integracion-util</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ec.com.smx.sic</groupId>
+			<artifactId>max-cliente-sic</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ec.com.smx.sic</groupId>
+			<artifactId>max-administracion</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ec.com.smx.corpv2</groupId>
+			<artifactId>corp-utilitario-plantillas</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>ec.com.smx.framework</groupId>
+			<artifactId>fwk-generacion-exportacion</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>ec.com.smx.integracion</groupId>
+			<artifactId>integracion-cmkonector</artifactId>
+		</dependency>
+		<!-- Roberto -->
+		<dependency>
+			<groupId>ec.com.kruger</groupId>
+		    <artifactId>fwk-encriptacion</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>ec.com.smx.corpv2</groupId>
+		    <artifactId>corp-cliente-etiquetado</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>commons-io</groupId>
+		    <artifactId>commons-io</artifactId>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.slf4j</groupId>
+    		<artifactId>slf4j-api</artifactId>
+  		</dependency>
+  		<dependency>
+			<groupId>ec.com.smx.frameworkv2</groupId>
+			<artifactId>fwk-auditoria-core</artifactId>
+		</dependency>
+	</dependencies>
+</project>

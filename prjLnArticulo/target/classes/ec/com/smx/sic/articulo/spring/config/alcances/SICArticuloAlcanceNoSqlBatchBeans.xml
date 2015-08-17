@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	default-lazy-init="true"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/batch 
+	http://www.springframework.org/schema/batch/spring-batch.xsd">
+	
+	<!-- REPOSITORY -->
+	<!-- Job para migrar ArticuloLocalDTO -->
+	<bean id="sicJobRepositoryMigracionArticuloAlcanceNoSql" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean" >
+		<property name="transactionManager"><ref bean="transactionManager" /></property>
+		<property name="isolationLevelForCreate" value="ISOLATION_DEFAULT"/>
+		<property name="validateTransactionState" value="false"/>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
+	
+	<!-- JOBLAUCHER -->
+	<!-- Launcher para ArticuloLocalDTO -->
+	<bean id="sicJobLauncherMigracionArticuloAlcanceNoSql" class="org.springframework.batch.core.launch.support.SimpleJobLauncher" >
+		<property name="jobRepository" ref="sicJobRepositoryMigracionArticuloAlcanceNoSql" />
+	</bean>
+	
+	<!-- JOBS Migracion articulo local -->
+	<batch:job id="sicMigracionArticuloAlcanceNoSqlJob" job-repository="sicJobRepositoryMigracionArticuloAlcanceNoSql" >
+		<!-- Paso Uno migrar ArticuloLocal -->
+		<batch:step id="migracionArticuloAlcanceNoSqlStepA" next="migracionArticuloAlcanceNoSqlStepB">
+			<batch:tasklet throttle-limit="5">
+				<batch:chunk commit-interval="250" reader="sicMigracionArticuloAlcanceNoSqlReader" writer="sicMigracionArticuloAlcanceNoSqlWriter" retry-limit="3">
+					<batch:retryable-exception-classes>
+						<batch:include class="org.springframework.dao.DeadlockLoserDataAccessException" />
+					</batch:retryable-exception-classes>
+				</batch:chunk>
+			</batch:tasklet>
+		</batch:step>
+		<!-- Paso Dos migrar ArticuloAlcanceBitacora -->
+		<batch:step id="migracionArticuloAlcanceNoSqlStepB" next="migracionArticuloAlcanceNoSqlStepC">
+			<batch:tasklet throttle-limit="5">
+				<batch:chunk commit-interval="250" reader="sicMigracionArticuloAlcanceBitacoraNoSqlReader" writer="sicMigracionArticuloAlcanceBitacoraNoSqlWriter" retry-limit="3">
+					<batch:retryable-exception-classes>
+						<batch:include class="org.springframework.dao.DeadlockLoserDataAccessException" />
+					</batch:retryable-exception-classes>
+				</batch:chunk>
+			</batch:tasklet>
+		</batch:step>
+		<!-- Paso Tres migrar ArticuloEstablecimiento -->
+		<batch:step id="migracionArticuloAlcanceNoSqlStepC" >
+			<batch:tasklet throttle-limit="5">
+				<batch:chunk commit-interval="250" reader="sicMigracionArticuloEstablecimientoNoSqlReader" writer="sicMigracionArticuloEstablecimientoNoSqlWriter" retry-limit="3">
+					<batch:retryable-exception-classes>
+						<batch:include class="org.springframework.dao.DeadlockLoserDataAccessException" />
+					</batch:retryable-exception-classes>
+				</batch:chunk>
+			</batch:tasklet>
+		</batch:step>
+	</batch:job>
+	
+	<!-- stepA READER Consultar los datos en DB2 de la tabla articuloLocal-->
+	<bean id="sicMigracionArticuloAlcanceNoSqlReader" class="ec.com.smx.generadorexportacion.spring.batch.item.reader.DinamicViewCursorItemReader" scope="step">
+		<property name="sessionFactory"> <ref bean="sessionFactory" /></property>
+		<property name="saveState" value="true" />
+		<property name="fetchSize" value="250"/>
+		<property name="useStatelessSession" value="true"/>
+		<property name="queryString" value="#{jobParameters['consultaSql']}"/>
+		<property name="viewAlias" value="#{jobParameters['viewAlias']}"/>
+		<property name="encodedBaseDTO" value="#{jobParameters['vistaArticuloLocalNoSqlDTO']}"/>
+		<property name="parameterValues">
+			<map>
+				<entry key="pCodigoCompania">
+					<value type="java.lang.Integer">#{jobParameters['pCodigoCompania']}</value>
+				</entry>
+				<entry key="pCodigoLocal">
+					<value type="java.lang.Integer">#{jobParameters['pCodigoLocal']}</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	<!-- stepA WRITER Registrar los datos consultados en DB2 a orientDB -->
+	<bean id="sicMigracionArticuloAlcanceNoSqlWriter" class="ec.com.smx.sic.articulo.gestor.batch.writer.ArticuloAlcanceMigracionNoSqlItemWriter" scope="step" >
+		<property name="almacenamientoArticuloAlcanceNoSqlGestor"><ref bean="sicAlmacenamientoArticuloAlcanceNoSqlGestor" /></property>
+		<property name="codigoCompania" value="#{jobParameters['pCodigoCompania']}" />
+		<property name="sufijoTabla" value="#{jobParameters['pSufijoTabla']}" />
+	</bean>
+	
+	<!-- stepB READER Consultar los datos en DB2 de la tabla ArticuloAlcanceBitacora-->
+	<bean id="sicMigracionArticuloAlcanceBitacoraNoSqlReader" class="ec.com.smx.generadorexportacion.spring.batch.item.reader.DinamicViewCursorItemReader" scope="step">
+		<property name="sessionFactory"> <ref bean="sessionFactory" /></property>
+		<property name="saveState" value="true" />
+		<property name="fetchSize" value="250"/>
+		<property name="useStatelessSession" value="true"/>
+		<property name="queryString" value="#{jobParameters['consultaArticuloBitacoraSql']}"/>
+		<property name="viewAlias" value="#{jobParameters['viewAlias']}"/>
+		<property name="encodedBaseDTO" value="#{jobParameters['articuloAreaTrabajoBitacoraDTO']}"/>
+		<property name="parameterValues">
+			<map>
+				<entry key="pCodigoCompania">
+					<value type="java.lang.Integer">#{jobParameters['pCodigoCompania']}</value>
+				</entry>
+				<entry key="pCodigoLocal">
+					<value type="java.lang.Integer">#{jobParameters['pCodigoLocal']}</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	<!-- stepB WRITER Registrar los datos consultados en DB2 a orientDB -->
+	<bean id="sicMigracionArticuloAlcanceBitacoraNoSqlWriter" class="ec.com.smx.sic.articulo.gestor.batch.writer.ArticuloAlcanceBitacoraMigracionNoSqlItemWriter" scope="step" >
+		<property name="almacenamientoArticuloAlcanceNoSqlGestor"><ref bean="sicAlmacenamientoArticuloAlcanceNoSqlGestor" /></property>
+		<property name="codigoCompania" value="#{jobParameters['pCodigoCompania']}" />
+		<property name="sufijoTabla" value="#{jobParameters['pSufijoTabla']}" />
+	</bean>
+	
+	<!-- stepC READER Consultar los datos en DB2 de la tabla ArticuloAlcanceBitacora-->
+	<bean id="sicMigracionArticuloEstablecimientoNoSqlReader" class="ec.com.smx.generadorexportacion.spring.batch.item.reader.DinamicViewCursorItemReader" scope="step">
+		<property name="sessionFactory"> <ref bean="sessionFactory" /></property>
+		<property name="saveState" value="true" />
+		<property name="fetchSize" value="250"/>
+		<property name="useStatelessSession" value="true"/>
+		<property name="queryString" value="#{jobParameters['consultaArticuloEstablecimientoSql']}"/>
+		<property name="viewAlias" value="#{jobParameters['viewAlias']}"/>
+		<property name="encodedBaseDTO" value="#{jobParameters['articuloEstablecimientoDTO']}"/>
+		<property name="parameterValues">
+			<map>
+				<entry key="pCodigoCompania">
+					<value type="java.lang.Integer">#{jobParameters['pCodigoCompania']}</value>
+				</entry>
+				<entry key="pCodigoLocal">
+					<value type="java.lang.Integer">#{jobParameters['pCodigoLocal']}</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	<!-- stepC WRITER Registrar los datos consultados en DB2 a orientDB -->
+	<bean id="sicMigracionArticuloEstablecimientoNoSqlWriter" class="ec.com.smx.sic.articulo.gestor.batch.writer.ArticuloEstablecimientoMigracionNoSqlItemWriter" scope="step" >
+		<property name="almacenamientoArticuloAlcanceNoSqlGestor"><ref bean="sicAlmacenamientoArticuloAlcanceNoSqlGestor" /></property>
+		<property name="codigoCompania" value="#{jobParameters['pCodigoCompania']}" />
+		<property name="sufijoTabla" value="#{jobParameters['pSufijoTabla']}" />
+	</bean>
+	
+</beans>

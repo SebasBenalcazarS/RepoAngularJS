@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd" default-lazy-init="true">
+	<!-- GESTORES PARA LA SOLICITUD DE IMPRESION -->
+	<bean id="sicArticuloSolicitudImpresionGestor" class="ec.com.smx.sic.articulo.gestor.impresionEtiquetas.ArticuloSolicitudImpresionEtiquetasGestor">
+		<property name="dataGestor">
+			<ref bean="dataGestor"/>
+		</property>
+		<property name="solicitudImpresionGestor">
+			<ref bean="corpSolicitudImpresionGestor"/>
+		</property>
+		<property name="solicitudImpresionDAO">
+			<ref bean="sicArticuloSolicitudImpresionDAO"/>
+		</property>
+		
+	</bean>
+	<bean id="sicArticuloSolicitudImpresionDAO" class="ec.com.smx.sic.articulo.persistence.dao.ArticuloSolicitudImpresionDAO">
+		<property name="hibernateH">
+			<ref bean="hibernateH"/>
+		</property>
+		<property name="hibernateHArtProv">
+			<ref bean="hibernateH"/>
+		</property>
+		<property name="hibernateHArtEti">
+			<ref bean="hibernateH"/>
+		</property>
+	</bean>
+
+	<!-- SERVICIOS PARA LA SOLICITUD DE IMPRESION -->
+	<bean id="sicArticuloSolicitudImpresionServicio" class="ec.com.smx.sic.articulo.servicio.ArticuloSolicitudImpresionEtiquetasServicio">
+		<property name="articuloSolicitudImpresionEtiquetasGestor">
+			<ref bean="sicArticuloSolicitudImpresionGestor"/>
+		</property>
+		
+		
+	</bean>
+	
+
+</beans>

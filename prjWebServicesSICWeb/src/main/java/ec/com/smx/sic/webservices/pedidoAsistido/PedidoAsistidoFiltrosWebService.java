@@ -48,7 +48,6 @@ import ec.com.smx.sic.cliente.mdl.vo.ConfiguracionPedidoAsistidoVO;
 import ec.com.smx.sic.cliente.mdl.vo.EstructuraConfiguracionPedidoAsistidoVO;
 import ec.com.smx.sic.cliente.mdl.vo.PedidoAsistidoVO;
 
-
 @Controller
 @Scope(value = "request")
 public class PedidoAsistidoFiltrosWebService {
@@ -62,7 +61,6 @@ public class PedidoAsistidoFiltrosWebService {
 	String codFuncionario = "51304";
 	String idUsuario = "USR16321";
 	Integer codigoLocal = 711;
-
 
 	private HttpHeaders createHttpHeaders() {
 		HttpHeaders responseHeaders = new HttpHeaders();
@@ -90,12 +88,11 @@ public class PedidoAsistidoFiltrosWebService {
 
 		try {
 
-			
 			String perfilUsuario = ComparadorPerfilUtil.verificarPerfil(this.perfil);
 
 			SICFactory.getInstancia().pedidoAsistido.getPedidoAsistidoCalculoServicio()
-			.inicializarDatosBusquedaAreaTrabajoWS(1, this.codFuncionario, this.idUsuario, this.perfil,
-					this.datosBusquedaPedidoAsistidoWS, this.areaTrabajoLocal);
+					.inicializarDatosBusquedaAreaTrabajoWS(1, this.codFuncionario, this.idUsuario, this.perfil,
+							this.datosBusquedaPedidoAsistidoWS, this.areaTrabajoLocal);
 
 			/** Armando el JSON */
 			Map<String, Object> datosCDMap = null;
@@ -125,77 +122,23 @@ public class PedidoAsistidoFiltrosWebService {
 
 				// Obtiene subbodegas del CD actual
 				subbodegas = getSubbodegasCD(this.cdActual);
-//				subbodegas = (HashSet<AreaSublugarTrabajoDTO>) ColeccionesUtil.sort(subbodegas, ColeccionesUtil.ORDEN_ASC, "subLugarTrabajoDTO.nombreAreaTrabajo");
-				
-				
+				// subbodegas = (HashSet<AreaSublugarTrabajoDTO>)
+				// ColeccionesUtil.sort(subbodegas, ColeccionesUtil.ORDEN_ASC,
+				// "subLugarTrabajoDTO.nombreAreaTrabajo");
+
 				if (CollectionUtils.isNotEmpty(subbodegas)) {
-					Integer idSubbodega = 1;
+
 					for (AreaSublugarTrabajoDTO areaSublugarTrabajoDTO : subbodegas) {
-						
-						AreaTrabajoDTO areaTrabajo= areaSublugarTrabajoDTO.getSubLugarTrabajoDTO();
+
+						AreaTrabajoDTO areaTrabajo = areaSublugarTrabajoDTO.getSubLugarTrabajoDTO();
 
 						datosSubbodegaMap = new HashMap<String, Object>();
 						datosSubbodegaMap.put("id", areaTrabajo.getId().getCodigoAreaTrabajo());
 						datosSubbodegaMap.put("nombreSubbodega",
-								areaTrabajo.getCodigoReferencia() + "-" + areaTrabajo.getNombreAreaTrabajo());						
-						datosSubbodegaMap.put("codigoAreTraBodega", areaSublugarTrabajoDTO.getId().getCodigoAreaTrabajo());
+								areaTrabajo.getCodigoReferencia() + "-" + areaTrabajo.getNombreAreaTrabajo());
+						datosSubbodegaMap.put("codigoAreTraBodega",
+								areaSublugarTrabajoDTO.getId().getCodigoAreaTrabajo());
 
-						if (idSubbodega.equals(1)) {
-							datosSubbodegaMap.put("selected", Boolean.TRUE);
-
-							// Valida configuracion de la primera subbodega
-							if (cdActual.getId().getCodigoAreaTrabajo()
-									.equals(this.datosBusquedaPedidoAsistidoWS.getCdDefault())) {
-								estructuraConfiguracionDia = validarConfiguracionBodega(this.cdActual, areaTrabajo,
-										1, fechaPedido, this.areaTrabajoLocal, this.tipoApertura);
-								if (estructuraConfiguracionDia != null) {
-
-									/** Primero chequea bloqueo */
-									boolean bloqueo = Boolean.FALSE;
-
-									Integer diaSemanaComponente = fechaPedido.getDay() + 1;
-
-									if (estructuraConfiguracionDia.getCodigoTipoBloqueo() != null) {
-										Long tiempoPedido = fechaPedido.getTime();
-										Long tiempoInicial = estructuraConfiguracionDia.getDetalleDiaBloqueoPedido()
-												.getAreaTrabajoCalendarioProcesoDetalleDTO().getFechaInicioBloqueo()
-												.getTime();
-										Long tiempoFinal = estructuraConfiguracionDia.getDetalleDiaBloqueoPedido()
-												.getAreaTrabajoCalendarioProcesoDetalleDTO().getFechaFinBloqueo()
-												.getTime();
-
-										if (diaSemanaComponente == estructuraConfiguracionDia
-												.getDetalleDiaBloqueoPedido()
-												.getAreaTrabajoCalendarioProcesoDetalleDTO().getCodigoDiaSemana()
-												.intValue()) {
-											if (tiempoPedido >= tiempoInicial && tiempoPedido <= tiempoFinal) {
-												datosSubbodegaMap.put("bloqueo", Boolean.TRUE);
-												bloqueo = Boolean.TRUE;
-
-											}
-										}
-									}
-									/** Si no bloqueo escribe config en JSON */
-									if (!bloqueo) {
-										datosSubbodegaMap.put("valida", Boolean.TRUE);
-										datosSubbodegaMap.put("fechaDes", this.calcularFechaPedido(
-												estructuraConfiguracionDia.getCodigoDiaDespacho()));
-										datosSubbodegaMap.put("fechaRec", this.calcularFechaPedido(
-												estructuraConfiguracionDia.getCodigoDiaRecepcion()));
-										datosSubbodegaMap.put("horaConf",
-												estructuraConfiguracionDia.getHoraMaximaTransmisionText());
-
-									}
-
-								} else {
-									datosSubbodegaMap.put("valida", Boolean.FALSE);
-								}
-
-							}
-						} else
-							datosSubbodegaMap.put("selected", Boolean.FALSE);
-
-						idSubbodega++;
 						datosSubbodegaCol.add(datosSubbodegaMap);
 
 					}
@@ -253,7 +196,7 @@ public class PedidoAsistidoFiltrosWebService {
 			bodegas = CollectionUtils.removeAll(bodegas, bodegasCol);
 
 			// Subbodegas relacionadas a bodegas del CD
-			
+
 			if (CollectionUtils.isNotEmpty(this.datosBusquedaPedidoAsistidoWS.getSubbodegasUsuarioCollection())
 					&& CollectionUtils.isNotEmpty(bodegasCol)) {
 
@@ -276,17 +219,12 @@ public class PedidoAsistidoFiltrosWebService {
 							}
 						});
 
-				// Add areaSublugarTrabajoDTO de subbodega
-//				if (CollectionUtils.isNotEmpty(subbodegasCol)) {
-//					for (AreaSublugarTrabajoDTO areaSublugarTrabajoDTO : subbodegasCol) {
-//						subbodegas.add(areaSublugarTrabajoDTO);
-//					}
-//				}
+				
 
 			}
 
 		}
-		subbodegas = new LinkedHashSet<AreaSublugarTrabajoDTO>(subbodegasCol) ;
+		subbodegas = new LinkedHashSet<AreaSublugarTrabajoDTO>(subbodegasCol);
 		return subbodegas;
 
 	}
@@ -340,7 +278,7 @@ public class PedidoAsistidoFiltrosWebService {
 			if (areaTrabajoPedido != null
 					&& areaTrabajoPedido.getTipoAreaTrabajoValor().equals(CorporativoConstantes.TIPO_AREATRABAJO_LOCAL)
 					&& areaTrabajoPedido.getTipoAreaTrabajoTIC()
-					.intValue() == TiposCatalogoConstantes.TIPO_AREA_TRABAJO) {
+							.intValue() == TiposCatalogoConstantes.TIPO_AREA_TRABAJO) {
 
 				// Validar estado operativo del local
 				localDTO = SICFactory.getInstancia().pedidoAsistido.getPedidoAsistidoCalculoServicio()
@@ -349,9 +287,9 @@ public class PedidoAsistidoFiltrosWebService {
 				// Local en operacion
 				if (localDTO != null && localDTO.getEstadoOperativo() != null
 						&& localDTO.getEstadoOperativo()
-						.equals(CorporativoConstantes.TIPO_ESTADO_OPERATIVO_LOCAL_APERTURA)
+								.equals(CorporativoConstantes.TIPO_ESTADO_OPERATIVO_LOCAL_APERTURA)
 						&& localDTO.getEstadoOperativoTIC()
-						.intValue() == TiposCatalogoConstantes.TIPO_ESTADOS_OPERATIVO_LOCAL) {
+								.intValue() == TiposCatalogoConstantes.TIPO_ESTADOS_OPERATIVO_LOCAL) {
 					esApertura = Boolean.TRUE;
 				}
 			}
@@ -483,7 +421,7 @@ public class PedidoAsistidoFiltrosWebService {
 
 	}
 
-	/**Metodo que obtiene los pedidos del dia*/
+	/** Metodo que obtiene los pedidos del dia */
 	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/pedidoDia", method = RequestMethod.GET, headers = "Accept= application/json")
 	public @ResponseBody ResponseEntity<String> findPedidoDia(
@@ -510,9 +448,9 @@ public class PedidoAsistidoFiltrosWebService {
 			pedidoAsistidoVO.getBaseDTO().getPedidoInformacion().getId().setCodigoCompania(1);
 			pedidoAsistidoVO.getBaseDTO().getPedidoInformacion().setCodigoAreaTrabajoPedido(711);
 			pedidoAsistidoVO.getBaseDTO().getPedidoInformacion()
-			.setCodigoAreaTrabajoCentroDistribucion(Integer.parseInt(codigoCD));
+					.setCodigoAreaTrabajoCentroDistribucion(Integer.parseInt(codigoCD));
 			pedidoAsistidoVO.getBaseDTO().getPedidoInformacion()
-			.setCodigoAreaTrabajoSubbodega(Integer.parseInt(codigoSubbodega));
+					.setCodigoAreaTrabajoSubbodega(Integer.parseInt(codigoSubbodega));
 			pedidoAsistidoVO.getBaseDTO().getPedidoInformacion().setFechaPedido(fecha);
 
 			pedidosHijosDia = SICFactory.getInstancia().pedidoAsistido.getPedidoAsistidoCalculoServicio()
@@ -531,8 +469,12 @@ public class PedidoAsistidoFiltrosWebService {
 							pedidoAreaTrabajoDTO.getPedidoInformacion().getNumeroPedido());
 					datosPedidosDiaMap.put("subbodega",
 							pedidoAreaTrabajoDTO.getPedidoInformacion().getAreaTrabajoSubbodega().getCodigoReferencia()
-							+ "-" + pedidoAreaTrabajoDTO.getPedidoInformacion().getAreaTrabajoSubbodega()
-							.getNombreAreaTrabajo());
+									+ "-" + pedidoAreaTrabajoDTO.getPedidoInformacion().getAreaTrabajoSubbodega()
+											.getNombreAreaTrabajo());
+					datosPedidosDiaMap.put("cd",
+							pedidoAreaTrabajoDTO.getPedidoInformacion().getAreaTrabajoCentroDistribucion().getCodigoReferencia()
+									+ "-" + pedidoAreaTrabajoDTO.getPedidoInformacion().getAreaTrabajoCentroDistribucion()
+											.getNombreAreaTrabajo());
 					datosPedidosDiaMap.put("tipoPedido",
 							pedidoAreaTrabajoDTO.getPedidoInformacion().getCodigoTipoPedidoCatalogoValor());
 					datosPedidosDiaMap.put("horaConfig",
@@ -575,7 +517,7 @@ public class PedidoAsistidoFiltrosWebService {
 							datosPedidosDiaHijosMap.put("cantTotalVolumen",
 									pedidoHijoAreaTrabajoDTO.getCantidadTotalVolumen());
 							pedidosHijosCol.add(datosPedidosDiaHijosMap);
-							
+
 							break;
 						}
 
@@ -600,8 +542,5 @@ public class PedidoAsistidoFiltrosWebService {
 		}
 
 	}
-
-
-
 
 }

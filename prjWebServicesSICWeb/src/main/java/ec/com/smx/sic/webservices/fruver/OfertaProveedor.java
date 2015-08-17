@@ -88,6 +88,8 @@ public class OfertaProveedor {
 			@RequestParam(value = "descripcion", required = false) String descripcion,
 			@RequestParam(value = "condicionalCodigoBarras", required = false) String  condicionalCodigoBarras,
 			@RequestParam(value = "condicionalDescripcion", required = false) String condicionalDescripcion,
+			@RequestParam(value = "firstResult", required = true) Integer  firstResult,
+			@RequestParam(value = "maxResult", required = true) Integer maxResult,
 			@RequestParam(value = "usuarioSesion", required = true) String usuarioSesion) {
 
 
@@ -98,7 +100,7 @@ public class OfertaProveedor {
 
 		try{
 
-			datosBusqueda = buscarArticulosOfertaProveedor(codigoCompania, codigoProveedor, codigoBarras, descripcion, condicionalCodigoBarras, condicionalDescripcion, usuarioSesion);
+			datosBusqueda = buscarArticulosOfertaProveedor(codigoCompania, codigoProveedor, codigoBarras, descripcion, condicionalCodigoBarras, condicionalDescripcion, usuarioSesion,firstResult,maxResult);
 			if( datosBusqueda != null ){
 				datos = JsonPojoMapper.getInstance().writeValueAsString(datosBusqueda);
 			}
@@ -299,9 +301,9 @@ public class OfertaProveedor {
 	 * @param usuarioSesion
 	 * @return
 	 */
-	public DatosBusquedaArticulosJSON buscarArticulosOfertaProveedor( Integer codigoCompania, String codigoProveedor, String  codigoBarras, String descripcion, String condicionalCodigoBarras, String condicionalDescripcion, String usuarioSesion){
+	public DatosBusquedaArticulosJSON buscarArticulosOfertaProveedor( Integer codigoCompania, String codigoProveedor, String  codigoBarras, String descripcion, String condicionalCodigoBarras, String condicionalDescripcion, String usuarioSesion,Integer firstResult, Integer maxResult){
 
-		Map<String,Object> filtros = cargarFiltros(codigoCompania, codigoBarras, descripcion, condicionalCodigoBarras,condicionalDescripcion);
+		Map<String,Object> filtros = cargarFiltros(codigoCompania, codigoBarras, descripcion, condicionalCodigoBarras,condicionalDescripcion,firstResult,maxResult);
 
 		ParametroRangoFechaDTO  parametroRangoFechaDTO = SICFactory.getInstancia().fruver.getFruverServicio().obtenerParametroRangoFecha(codigoCompania, FruverConstantes.CODIGO_RANGO_FECHAS);
 		Collection<ArticuloOfertaProveedorDTO> articulosOfertaCol = SICFactory.getInstancia().fruver.getFruverServicio().buscarArticulosOfertaProveedor(codigoCompania, codigoProveedor, filtros, parametroRangoFechaDTO);
@@ -443,7 +445,7 @@ public class OfertaProveedor {
 
 
 
-	private Map<String, Object> cargarFiltros(Integer codigoCompania, String codigoBarras, String descripcion,String condicionalCodigoBarras, String condicionalDescripcion) {
+	private Map<String, Object> cargarFiltros(Integer codigoCompania, String codigoBarras, String descripcion,String condicionalCodigoBarras, String condicionalDescripcion, Integer firstResult, Integer maxResult) {
 
 		//Ocultar filtros
 		List<TipoFiltroBusqueda> filtrosOcultosArt = new ArrayList<TipoFiltroBusqueda>();
@@ -483,6 +485,8 @@ public class OfertaProveedor {
 		}
 		Map<String, Object> filtros = new HashMap<>();
 		filtros.put("filtroBusquedaArticuloF", filtroBusquedaArticuloF.obtenerPlantillaBusquedaArticulo());
+		filtros.put("firstResult", firstResult);
+		filtros.put("maxResults", maxResult);
 
 		return filtros;
 	}

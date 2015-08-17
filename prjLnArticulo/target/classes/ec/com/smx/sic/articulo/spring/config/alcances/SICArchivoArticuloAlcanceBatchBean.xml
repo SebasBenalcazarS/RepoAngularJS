@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/batch 
+	http://www.springframework.org/schema/batch/spring-batch.xsd" default-lazy-init="true">
+	
+	<batch:job id="sicArticulosArchivoAlcanceJob" job-repository="sicJobRepositoryArticuloALcances">		
+		<batch:step id="articuloArchivoAlcance">
+			<batch:tasklet   throttle-limit="10">
+				<batch:chunk commit-interval="5000" reader="sicArticuloArchivoAlcanceReader" writer="sicArticuloArchivoAlcanceWriter"/>
+			</batch:tasklet>
+		</batch:step>	
+	</batch:job>
+	<bean id="sicArticuloArchivoAlcanceReader" class="ec.com.smx.generadorexportacion.spring.batch.item.reader.TemplateCursorItemReader" scope="step">
+		<property name="hibernateH"><ref bean="hibernateH"/></property>
+		<property name="sessionFactory"> <ref bean="sessionFactory" /></property>
+		<property name="saveState" value="true" />
+		<property name="fetchSize" value="5000"/>
+		<property name="useStatelessSession" value="true"/>
+		<property name="encodedBaseDTO" value="#{jobParameters['plantilla']}"/>
+<!-- 		<property name="baseDTO" value="#{sicArticuloAlcanceGestor.articuloVO.baseDTO}"/> -->
+	</bean>
+	<bean id="sicArticuloArchivoAlcanceWriter" class="ec.com.smx.sic.articulo.gestor.batch.writer.ArticuloArchivoAlcanceItemWriter" scope="step">
+		<property name="articuloDTOCol" value="#{sicArticuloAlcanceGestor.artResulArchiv}"/>
+	</bean>
+	
+	
+	
+	
+	<batch:job id="sicMigracionArticuloAreaTrabajoJob" job-repository="sicJobRepositoryArticuloALcances">		
+		<batch:step id="articuloLocalBodegaArchivo">
+			<batch:tasklet   throttle-limit="10">
+				<batch:chunk commit-interval="10" reader="sicArticuloAreaTrabajoArchivoReader" writer="sicArticuloAreaTrabajoArchivoWriter"/>
+			</batch:tasklet>
+		</batch:step>	
+	</batch:job>
+	
+	
+	<bean id="sicArticuloAreaTrabajoArchivoReader" class="org.springframework.batch.item.file.FlatFileItemReader"
+		scope="step" lazy-init="true">
+		<property name="resource" value="file:#{jobParameters['rutaArchivo']}" />
+		<property name="linesToSkip" value="1" />
+		<property name="strict" value="false" />
+		<property name="lineMapper">
+			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+				<property name="lineTokenizer">
+					<bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+						<property name="names" value="CODIGOBARRAS,CODIGOAREATRABAJO,ESTADOALCANCE" />
+						<property name="delimiter" value=";"/>
+					</bean>
+				</property>
+				<property name="fieldSetMapper">
+					<bean class="ec.com.smx.sic.articulo.gestor.batch.rowmapper.MigracionArticuloAreaTrabajoRowMapper"/>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	
+	<bean id="sicArticuloAreaTrabajoArchivoWriter" class="ec.com.smx.sic.articulo.gestor.batch.writer.ArticuloAreaTrabajoArchivoWriter" scope="step" lazy-init="true">
+		<property name="dataGestor"><ref bean="dataGestor"/></property>
+		<property name="articuloAlcanceDAO"><ref bean="sicArticuloAlcanceDAO"/></property>
+	</bean>
+	
+	
+	
+	
+</beans>

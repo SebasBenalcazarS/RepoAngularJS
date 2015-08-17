@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -20,7 +21,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import ec.com.smx.sic.cliente.common.Logeable;
 import ec.com.smx.sic.cliente.exception.SICException;
+import ec.com.smx.sic.cliente.mdl.dto.asistentecompras.BinTarjetaArchivoDTO;
 import ec.com.smx.sic.cliente.mdl.dto.asistentecompras.ContenidoArchivoDto;
+import ec.com.smx.sic.cliente.mdl.vo.FileInformationBinCardVO;
 import ec.com.smx.sic.cliente.mdl.vo.FileInformationContentVO;
 import ec.com.smx.sic.webservices.recargaCupon.enums.JsonParameter;
 
@@ -70,7 +73,7 @@ public final class RecargaCuponUtils {
 		return result;
 	}
 	
-	public static Collection<FileInformationContentVO> fileUpload(MultipartHttpServletRequest input, String key) throws IOException {
+	public static Collection<FileInformationContentVO> fileUploadByKey (MultipartHttpServletRequest input, String key) throws IOException {
 		Collection<FileInformationContentVO> archivosAdjuntos = null;
 		if (input != null && input.getFileMap() != null && StringUtils.isNotBlank(key) && CollectionUtils.isNotEmpty(input.getFileMap().values())) {
 			archivosAdjuntos = new ArrayList<FileInformationContentVO>();
@@ -109,4 +112,51 @@ public final class RecargaCuponUtils {
 		}
 		return dateFecha;
 	}
+	
+	public static Long getLong(Map<String, Object> data, String key) {
+		return Long.valueOf(get(data, key).toString());
+	}
+	
+	private static Object get(Map<String, Object> data, String key) {
+		if (data == null || StringUtils.isBlank(key) || data.get(key) == null) {
+			throw new SICException("invalid mandatory parameters " + key);
+		}
+		return data.get(key);
+	}
+
+	
+	/**
+	 * Subir Archivos
+	 * 
+	 * @param input
+	 * @param userId
+	 * @param companyId
+	 * @return
+	 * @throws IOException 
+	 * @throws FluxWSException
+	 */
+	public static Collection<FileInformationBinCardVO> fileUpload(MultipartHttpServletRequest input) throws IOException {
+		Collection<FileInformationBinCardVO> archivosAdjuntos = null;
+			if (input != null && input.getFileMap() != null && CollectionUtils.isNotEmpty(input.getFileMap().values())) {
+				archivosAdjuntos = new ArrayList<FileInformationBinCardVO>();
+				Collection<MultipartFile> files = input.getFileMap().values();
+				for (MultipartFile file : files) {
+					byte[] bytes = file.getBytes();
+					String filename = (file.getOriginalFilename().length() > 31) ? file.getOriginalFilename().substring(0, 31) : file.getOriginalFilename();
+					String contentType = file.getContentType();
+					FileInformationBinCardVO fileInfo = new FileInformationBinCardVO();
+					fileInfo.setNombreArchivo(filename);
+					fileInfo.setTamanioArchivo(Long.valueOf(bytes.length));
+					fileInfo.setTipoContenidoArchivo(contentType);
+					BinTarjetaArchivoDTO binTarjetaArchivoDTO = new BinTarjetaArchivoDTO();
+					binTarjetaArchivoDTO.setContenidoArchivo(bytes);
+					Collection<BinTarjetaArchivoDTO> binTarjetaArchivoDTOs = new ArrayList<BinTarjetaArchivoDTO>();
+					binTarjetaArchivoDTOs.add(binTarjetaArchivoDTO);
+					fileInfo.setBinTarjetaArchivoDTOs(binTarjetaArchivoDTOs);
+					archivosAdjuntos.add(fileInfo);
+				}
+			}
+		return archivosAdjuntos;
+	}
+	
 }

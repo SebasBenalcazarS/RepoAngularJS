@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
+	<persistence-unit-metadata>
+		<persistence-unit-defaults>
+			<access>FIELD</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	
+	<mapped-superclass class="ec.com.smx.sic.cliente.mdl.dto.sispe.BaseDTO">
+	</mapped-superclass>
+	
+	<mapped-superclass class="ec.com.smx.sic.cliente.mdl.dto.sispe.AuditoriaBaseDTO">
+	</mapped-superclass>
+	
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.sispe.EspecialClasificacionDTO"> </entity> 
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.sispe.EspecialDTO"> </entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.sispe.TipoDescuentoClasificacionDTO"> </entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.sispe.TipoDescuentoDTO"> </entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.sispe.DescuentoDTO"> </entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.sispe.MotivoDescuentoDTO"> </entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.sispe.TipoPedidoDTO"> </entity> 
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.sispe.DetalleRespaldoArticuloDTO"></entity>
+	
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.sispe.ArticuloTemporadaDetalleDTO"> </entity> 
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.sispe.ArticuloTemporadaDTO"> </entity> 
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.sispe.GrupoMovimientoDTO"> </entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.sispe.TemporadaDTO"> </entity> 
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.sispe.TipoStockDTO"> </entity>
+	
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.sispe.ClienteDTO"> </entity>
+	
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.sispe.EntregaPedidoEspecialDTO"> </entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.sispe.EntregaPedidoEspecialConvenioDTO"> </entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.sispe.EntregaDetallePedidoEspecialDTO"> </entity>
+	
+</entity-mappings>

@@ -1,0 +1,107 @@
+<Factura>
+	<Cabecera>
+		<Compania>
+			<CodCd>10 ABASTOS</CodCd>
+			<NomCom>CORPORACION FAVORITA C.A.</NomCom>
+			<DirCom>AV. GENERAL ENRIQUEZ VIA COTOGCHOA</DirCom>
+			<TelCom>022996500</TelCom>
+			<RucCom>1790016919001</RucCom>
+		</Compania>
+		<Bodega>
+			<CodBod>10</CodBod>
+			<NomBod>ABASTOS</NomBod>
+		</Bodega>
+		<Proveedor>
+			<CodProv>06707</CodProv>
+			<NomProv>ORDONEZ DELIA DE</NomProv>
+			<DirProv>ALPALLANA 227</DirProv>
+			<TelProv>2522564</TelProv>
+			<RucProv>1701634527001</RucProv>
+			<PlaPagProv>45</PlaPagProv>
+		</Proveedor>
+		<InfFac>
+			<fecha>12/DIC/2013 </fecha>
+			<Hora>10:13</Hora>
+			<NumFac>001-001-012625503</NumFac>
+			<FecFac>11/dic/2013</FecFac>
+			<FecRec>11/dic/2013</FecRec>
+			<Recibidor>bodega1</Recibidor>
+			<AgrFac>SMX 1010009</AgrFac>
+		</InfFac>
+	</Cabecera>
+	<detalles>
+		<articulo>
+			<codBar>7861000100014</codBar>
+			<Dp>0005</Dp>
+			<DesArt>COCINEMOS KRISTY D-ORDON</DesArt>
+			<TamArt>UNIDAD</TamArt>
+			<Iva></Iva>
+			<Uc>1</Uc>
+			<CanArt>26.0</CanArt>
+			<CosTotArt>507.0</CosTotArt>
+			<descuento1>25.0</descuento1>
+			<descuento2>0.0</descuento2>
+			<descuento3>0.0</descuento3>
+			<descuento4>0.0</descuento4>
+			<descuento5>0.0</descuento5>
+			<descuento6>0.0</descuento6>
+			<descuento7>0.0</descuento7>
+		</articulo>
+		<articulo>
+			<codBar>7861000115834</codBar>
+			<Dp>0005</Dp>
+			<DesArt>COCINEMOS KRISTY D-ORDON</DesArt>
+			<TamArt>UNIDAD</TamArt>
+			<Iva></Iva>
+			<Uc>1</Uc>
+			<CanArt>14.0</CanArt>
+			<CosArt>13.0</CosArt>
+			<CosTotArt>273.0</CosTotArt>
+			<descuento1>25.0</descuento1>
+			<descuento2>0.0</descuento2>
+			<descuento3>0.0</descuento3>
+			<descuento4>0.0</descuento4>
+			<descuento5>0.0</descuento5>
+			<descuento6>0.0</descuento6>
+			<descuento7>0.0</descuento7>
+		</articulo>
+	</detalles>
+	<Totales>
+		<ValTotFac>1560.0</ValTotFac>
+		<ValTotTarO>1560.0</ValTotTarO>
+		<ValTotTar12>0.0</ValTotTar12>
+		<ValIva>0.0</ValIva>
+		<ValTotImpVer>0.0</ValTotImpVer>
+		<ValTot>1560.0</ValTot>
+		<ValDif>0.0</ValDif>
+	</Totales>
+	<FacProv>
+		<Item>
+			<NumFacProv>001-001-012625503</NumFacProv>
+			<ImpMercancia>253.5</ImpMercancia>
+			<Des>0.0</Des>
+			<Iva>0.0</Iva>
+			<ValTotFac>253.5</ValTotFac>
+		</Item>
+		<Item>
+			<NumFacProv>001-001-008194527</NumFacProv>
+			<ImpMercancia>136.5</ImpMercancia>
+			<Des>0.0</Des>
+			<Iva>0.0</Iva>
+			<ValTotFac>136.5</ValTotFac>
+		</Item>
+		<ValTotDesFacProv>0.0</ValTotDesFacProv>
+		<ValTotDetFacProv>780.0</ValTotDetFacProv>
+		<ValTotImpMer>780.0</ValTotImpMer>
+		<ValTotIvaFacProv>0.0</ValTotIvaFacProv>
+	</FacProv>
+	<OrdComPrv>
+		<Item>
+			<NumOrdComProv>100222950553</NumOrdComProv>
+			<ValTotOrdCom>390.0</ValTotOrdCom>
+		</Item>
+		<ValTotalOrdCom>780.0</ValTotalOrdCom>
+	</OrdComPrv>
+	<usuarioResponsable>bodega1</usuarioResponsable>
+	<mensajeReporte>null</mensajeReporte>
+</Factura>

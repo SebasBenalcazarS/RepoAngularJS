@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:batch="http://www.springframework.org/schema/batch" 
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/batch 
+		http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util 
+		http://www.springframework.org/schema/util/spring-util-2.0.xsd
+		" default-lazy-init="true">
+
+	<bean id="jobRepository"
+		class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+ 	
+	<bean id="transactionManager"
+		class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
+	 
+	<bean id="jobLauncher"
+		class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+		<property name="jobRepository" ref="jobRepository" />
+	</bean>
+	
+	<!-- partitioner job articulo local-->
+	<batch:job id="sicArticuloLocalAlcancePartitionJob">
+		<batch:step id="sicArticuloLocalAlcanceSlave">
+		<batch:tasklet task-executor="sicAlcanceTaskExecutor" throttle-limit="1">
+			<batch:chunk reader="sicArticuloLocalPagingItemReader" writer="sicArticuloLocalFlatFileItemWriter"
+				 commit-interval="10000" />
+		</batch:tasklet>
+	</batch:step>
+		<!-- master step, 10 threads (grid-size) -->
+<!-- 		<batch:step id="sicArticuloLocalAlcanceMasterStep"> -->
+<!-- 			<batch:partition step="sicArticuloLocalAlcanceSlave" partitioner="sicAlcancesRangePartitioner"> -->
+<!-- 				<batch:handler grid-size="1" task-executor="sicAlcanceTaskExecutor" /> -->
+<!-- 			</batch:partition> -->
+<!-- 		</batch:step> -->
+	</batch:job>
+
+	<!-- Jobs to run -->
+<!-- 	<batch:step id="sicArticuloLocalAlcanceSlave"> -->
+<!-- 		<batch:tasklet task-executor="sicAlcanceTaskExecutor" throttle-limit="1"> -->
+<!-- 			<batch:chunk reader="sicArticuloLocalPagingItemReader" writer="sicArticuloLocalFlatFileItemWriter" -->
+<!-- 				processor="sicArticuloLocalItemProcessor" commit-interval="10000" /> -->
+<!-- 		</batch:tasklet> -->
+<!-- 	</batch:step> -->
+
+
+<!-- 	<bean id="sicAlcancesRangePartitioner" class="ec.com.smx.sic.articulo.gestor.batch.partitioner.AlcancePartitioner" /> -->
+
+	<bean id="sicAlcanceTaskExecutor" class="org.springframework.core.task.SimpleAsyncTaskExecutor" />
+
+<!-- 	<bean id="sicArticuloLocalItemProcessor" class="ec.com.smx.sic.articulo.gestor.batch.processor.ArticuloLocalProcessor" scope="step" /> -->
+
+	<bean id="sicArticuloLocalRowMapper" class="ec.com.smx.sic.articulo.gestor.batch.rowmapper.ArticuloLocalRowMapper" />
+
+	<bean id="sicArticuloLocalPagingItemReader"
+		class="org.springframework.batch.item.database.JdbcCursorItemReader"
+		scope="step">
+		<property name="dataSource" ref="sicDataSource" />
+		<property name="sql" value="#{jobParameters['consulta']}" />
+		<property name="rowMapper" ref="sicArticuloLocalRowMapper" />
+
+		<!-- Inject via the ExecutionContext in sicAlcancesRangePartitioner -->
+
+	</bean>
+
+	<!-- csv file writer -->
+	<bean id="sicArticuloLocalFlatFileItemWriter" class="org.springframework.batch.item.file.FlatFileItemWriter"
+		scope="step">
+		<property name="resource" value="#{jobParameters['resource']}" />
+		<property name="appendAllowed" value="false" />
+		<property name="lineAggregator">
+			<bean
+				class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">
+				<property name="delimiter" value="," />
+				<property name="fieldExtractor">
+					<bean
+						class="org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor">
+						<property name="names"
+							value="codigoBarras, codigoLocal, estadoArticuloLocal" />
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	
+	
+	<!-- partitioner job articulo-->
+	<batch:job id="sicArticuloAlcancePartitionJob">
+		<batch:step id="sicArticuloAlcanceSlave">
+			<batch:tasklet task-executor="sicAlcanceTaskExecutor" throttle-limit="1">
+				<batch:chunk reader="sicArticuloPagingItemReader" writer="sicArticuloFlatFileItemWriter" commit-interval="10000" />
+			</batch:tasklet>
+		</batch:step>
+		<!-- master step, 10 threads (grid-size) -->
+<!-- 		<batch:step id="sicArticuloMasterStep"> -->
+<!-- 			<batch:partition step="sicArticuloAlcanceSlave" partitioner="sicAlcancesRangePartitioner"> -->
+<!-- 				<batch:handler grid-size="1" task-executor="sicAlcanceTaskExecutor" /> -->
+<!-- 			</batch:partition> -->
+<!-- 		</batch:step> -->
+	</batch:job>
+
+	<!-- Jobs to run -->
+<!-- 	<batch:step id="sicArticuloAlcanceSlave"> -->
+<!-- 		<batch:tasklet task-executor="sicAlcanceTaskExecutor" throttle-limit="1"> -->
+<!-- 			<batch:chunk reader="sicArticuloPagingItemReader" writer="sicArticuloFlatFileItemWriter" -->
+<!-- 				processor="sicArticuloItemProcessor" commit-interval="10000" /> -->
+<!-- 		</batch:tasklet> -->
+<!-- 	</batch:step> -->
+
+
+<!-- 	<bean id="sicArticuloItemProcessor" class="ec.com.smx.sic.articulo.gestor.batch.processor.ArticuloProcessor" scope="step" /> -->
+
+	<bean id="sicArticuloRowMapper" class="ec.com.smx.sic.articulo.gestor.batch.rowmapper.ArticuloRowMapper" />
+
+	<bean id="sicArticuloPagingItemReader"
+		class="org.springframework.batch.item.database.JdbcCursorItemReader"
+		scope="step">
+		<property name="dataSource" ref="sicDataSource" />
+		<property name="sql" value="#{jobParameters['consulta']}" />
+		<property name="rowMapper" ref="sicArticuloRowMapper" />
+
+		<!-- Inject via the ExecutionContext in sicAlcancesRangePartitioner -->
+
+	</bean>
+
+	<!-- csv file writer -->
+	<bean id="sicArticuloFlatFileItemWriter" class="org.springframework.batch.item.file.FlatFileItemWriter"
+		scope="step">
+		<property name="resource" value="#{jobParameters['resource']}" />
+		<property name="appendAllowed" value="false" />
+		<property name="lineAggregator">
+			<bean
+				class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">
+				<property name="delimiter" value="," />
+				<property name="fieldExtractor">
+					<bean
+						class="org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor">
+						<property name="names"
+							value="codigoBarras, codigoReferenciaGrupoAlcance, estadoArticulo" />
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd" default-lazy-init="true">
+	
+	<bean id="sicEstructuraComercialGestor" class="ec.com.smx.sic.articulo.gestor.estructuracomercial.EstructuraComercialGestor">
+		<property name="dataGestor"><ref bean="dataGestor"/></property>
+		<property name="usuarioClasificacionDAO"><ref bean="sicUsuarioClasificacionDAO"/></property>
+		<property name="articuloDAO"><ref bean="sicArticuloDAO"/></property>
+		<property name="validacionEstComGestor"><ref bean="sicValidacionEstComGestor"/></property>
+		<property name="accionEstructuraComercialGestor"><ref bean="sicAccEstComGestor"/></property>
+		<property name="sequenceDataBaseGestor"><ref bean="fwkSequenceDataBaseGestor"/></property>
+		<property name="estructuraComercialDAO"><ref bean="sicEstructuraComercialDAO"/></property>
+		<property name="clasificacionDAO"><ref bean="sicClasificacionDAO"/></property>
+	</bean>
+	
+	<bean id="sicUsuarioClasificacionDAO" class="ec.com.smx.sic.articulo.persistence.dao.UsuarioClasificacionDAO">
+		<property name="hibernateH"><ref bean="hibernateH"/></property>
+	</bean>
+	
+	<bean id="sicEstructuraComercialDAO" class="ec.com.smx.sic.articulo.persistence.dao.EstructuraComercialDAO">
+		<property name="hibernateH"><ref bean="hibernateH"/></property>
+	</bean>
+	
+	<bean id="sicValidacionEstComGestor" class="ec.com.smx.sic.articulo.gestor.estructuracomercial.validacion.ValidacionEstComGestor">
+		<property name="dataGestor"><ref bean="dataGestor"/></property>
+	</bean>
+
+	<bean id="sicAccEstComGestor" class="ec.com.smx.sic.articulo.gestor.estructuracomercial.accion.AccionEstructuraComercialGestor"/>
+</beans>

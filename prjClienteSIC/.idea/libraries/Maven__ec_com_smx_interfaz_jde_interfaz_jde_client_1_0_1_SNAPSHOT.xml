@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: ec.com.smx.interfaz.jde:interfaz-jde-client:1.0.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/ec/com/smx/interfaz/jde/interfaz-jde-client/1.0.1-SNAPSHOT/interfaz-jde-client-1.0.1-20141208.145109-9.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/ec/com/smx/interfaz/jde/interfaz-jde-client/1.0.1-SNAPSHOT/interfaz-jde-client-1.0.1-20141208.145109-9-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/ec/com/smx/interfaz/jde/interfaz-jde-client/1.0.1-SNAPSHOT/interfaz-jde-client-1.0.1-20141208.145109-9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd" default-lazy-init="true">
+
+	<!-- Servicios -->
+	<bean id="sicArticuloServicio" class="ec.com.smx.sic.articulo.servicio.ArticuloServicio">
+		<property name="articuloGestor"><ref bean="sicArticuloGestor"/></property>
+		<property name="articuloProveedorGestor"><ref bean="sicArticuloProveedorGestor"/></property>
+		<property name="articuloAgrupadorGestor"><ref bean="sicArticuloAgrupadorGestor"/></property>
+		<property name="unidadManejoGestor"><ref bean="sicArticuloUnidadManejoGestor"/></property>
+		<property name="articuloEdicionMasivaGestor"><ref bean="sicArticuloEdicionMasivaGestor"/></property>
+		<property name="articuloPrecioDiferenciadoGestor"><ref bean="sicArticuloPrecioDiferenciadoGestor"/></property>
+<!-- 		<property name="accionArticuloPrecioDiferenciadoGestor"><ref bean="sicAccionArticuloPrecioDiferenciadoGestor"/></property> -->
+		<property name="articuloControlEtiquetadoGestor"><ref bean="sicArticuloControlEtiquetadoGestor"/></property>
+		<property name="articuloClaseGestor"><ref bean="sicArticuloClaseGestor"/></property>
+		<property name="articuloLeyMercadoGestor"><ref bean="sicArticuloLeyMercadoGestor"/></property>
+		<property name="articuloTareaProgramadaGestor"><ref bean="sicArticuloTareaProgramadaGestor"/></property>
+		<property name="calculoBusquedaArticuloGestor"><ref bean="sicCalculoBusquedaArticuloGestor"/></property>
+	</bean>
+	
+	<bean id="sicArticuloArchivoServicio" class="ec.com.smx.sic.articulo.servicio.ArticuloArchivoServicio">
+		<property name="articuloArchivoGestor">
+			<ref bean="sicArticuloArchivoGestor"/>
+		</property>
+	</bean>
+	
+	<bean id="sicEstructuraComercialServicio" class="ec.com.smx.sic.articulo.servicio.EstructuraComercialServicio">
+		<property name="estructuraComercialGestor">
+			<ref bean="sicEstructuraComercialGestor"/>
+		</property>
+	</bean>
+	
+	<bean id="sicCatalogoArticuloServicio" class="ec.com.smx.sic.articulo.servicio.CatalogoArticuloServicio">
+		<property name="catalogoArticuloGestor">
+			<ref bean="sicCatalogoArticuloGestor"/>
+		</property>
+	</bean>
+	
+	<bean id="sicArticuloRegistroSanitarioServicio" class="ec.com.smx.sic.articulo.servicio.ArticuloRegistroSanitarioServicio">
+		<property name="articuloRegistroSanitarioGestor">
+			<ref bean="sicArticuloRegistroSanitarioGestor"/>
+		</property>
+	</bean>
+	
+	<bean id="sicArticuloRotuladoServicio" class="ec.com.smx.sic.articulo.servicio.ArticuloRotuladoServicio">
+			<property name="articuloRotuladoGestor">
+				<ref bean="sicArticuloRotuladoGestor"/>
+			</property>
+			<property name="articuloRotuladoReporteGestor">
+				<ref bean="sicArticuloRotuladoReporteGestor"/>
+			</property>
+	</bean>
+	
+	<bean id="sicArticuloCalculoServicio" class="ec.com.smx.sic.articulo.servicio.ArticuloCalculoServicio">
+		<property name="calculoArticuloGestor">
+			<ref bean="sicCalculoArticuloGestor" />
+		</property>
+		<property name="calculoBusquedaArticuloGestor">
+			<ref bean="sicCalculoBusquedaArticuloGestor" />
+		</property>
+		<property name="articuloBitacoraGestor">
+			<ref bean="sicArticuloBitacoraGestor" />
+		</property>
+		<property name="calculoArticuloProcesoLogisticoGestor">
+			<ref bean="sicCalculoArticuloProcesoLogisticoGestor" />
+		</property>
+	</bean>
+	
+	<bean id="sicArticuloValidacionServicio" class="ec.com.smx.sic.articulo.servicio.ArticuloValidacionServicio">
+		<property name="validacionArticuloGestor"><ref bean="sicValidacionArticuloGestor"/></property>
+		<property name="validacionUnidadManejoGestor"><ref bean="sicValidacionUnidadManejoGestor"/></property>
+	</bean>
+	
+	<bean id="sicArticuloAlcanceServicio" class="ec.com.smx.sic.articulo.servicio.ArticuloAlcanceServicio">
+		<property name="articuloAlcanceGestor"><ref bean="sicArticuloAlcanceGestor"/></property>
+		<property name="validacionAlcanceGestor">	<ref bean="sicValidacionAlcanceGestor"/></property>
+	</bean>
+	
+	<bean id="sicLineaComercialServicio" class="ec.com.smx.sic.articulo.servicio.LineaComercialServicio">
+		<property name="lineaComercialGestor">
+			<ref bean="sicLineaComercialGestor"/>
+		</property>
+	</bean>
+	
+	<bean id="sicArticuloPromocionServicio" class="ec.com.smx.sic.articulo.servicio.ArticuloPromocionServicio">
+		<property name="articuloPromocionGestor">
+			<ref bean="sicArticuloPromocionGestor"/>
+		</property>
+	</bean>
+	
+	<bean id="sicArticuloRelacionadoServicio" class="ec.com.smx.sic.articulo.servicio.ArticuloRelacionadoServicio">
+		<property name="articuloRelacionadoGestor">
+			<ref bean="sicArticuloRelacionadoGestor"/>
+		</property>
+	</bean>
+	
+	<bean id="sicArticuloEtiquetaServicio" class="ec.com.smx.sic.articulo.servicio.ArticuloEtiquetaServicio">
+		<property name="articuloControlEtiquetado">
+			<ref bean="sicArticuloControlEtiquetadoGestor"/>
+		</property>
+	</bean>
+	
+	<bean id="sicMarcaArticuloServicio" class="ec.com.smx.sic.articulo.servicio.MarcaArticuloServicio">
+		<property name="marcaArticuloGestor">
+			<ref bean="sicMarcaArticuloGestor"/>
+		</property>
+	</bean>
+	
+	<bean id="sicArticuloAlcanceNoSqlServicio" class="ec.com.smx.sic.articulo.servicio.ArticuloAlcanceNoSqlServicio">
+		<property name="articuloAlcanceMigracionNoSqlGestor"><ref bean="sicArticuloAlcanceMigracionNoSqlGestor"/></property>
+		<property name="calculoArticuloAlcanceNoSqlGestor"><ref bean="sicCalculoArticuloAlcanceNoSqlGestor"/></property>
+		<property name="almacenamientoArticuloAlcanceNoSqlGestor"><ref bean="sicAlmacenamientoArticuloAlcanceNoSqlGestor"/></property>
+		
+	</bean>
+
+</beans>	

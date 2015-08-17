@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: ec.com.smx.framework:fwk-generacion-exportacion:1.2.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/ec/com/smx/framework/fwk-generacion-exportacion/1.2.0-SNAPSHOT/fwk-generacion-exportacion-1.2.0-20141201.150402-2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/ec/com/smx/framework/fwk-generacion-exportacion/1.2.0-SNAPSHOT/fwk-generacion-exportacion-1.2.0-20141201.150402-2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/ec/com/smx/framework/fwk-generacion-exportacion/1.2.0-SNAPSHOT/fwk-generacion-exportacion-1.2.0-20141201.150402-2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

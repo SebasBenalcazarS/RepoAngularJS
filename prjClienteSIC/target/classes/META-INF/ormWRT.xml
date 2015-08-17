@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
+	<persistence-unit-metadata>
+		<persistence-unit-defaults>
+			<access>FIELD</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="ec.com.smx.sic.cliente.mdl.dto.impcorp.BaseDTO">
+		<attributes>
+			<embedded-id name="id" />
+			<transient name="idClass" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass
+		class="ec.com.smx.sic.cliente.mdl.dto.impcorp.AuditoriaBaseDTO">
+		<attributes>
+			<many-to-one name="usuarioRegistroDTO" fetch="LAZY">
+				<join-column name="USUARIOREGISTRO"
+					referenced-column-name="USERID" insertable="false" updatable="false" />
+			</many-to-one>
+			<many-to-one name="usuarioModificacionDTO" fetch="LAZY">
+				<join-column name="USUARIOMODIFICACION"
+					referenced-column-name="USERID" insertable="false" updatable="false" />
+			</many-to-one>
+		</attributes>
+	</mapped-superclass>
+
+	<mapped-superclass
+		class="ec.com.smx.sic.cliente.mdl.dto.impcorp.OrderAbstract">
+		<attributes>
+			<basic name="consnumber" />
+			<basic name="date" />
+			<basic name="client" />
+			<basic name="vendor" />
+			<basic name="amount" />
+			<basic name="billto" />
+			<basic name="shipto" />
+			<basic name="shiptoid" />
+			<basic name="payterm" />
+			<basic name="currency" />
+			<basic name="rate" />
+			<basic name="fair" />
+			<basic name="fair2" />
+			<basic name="represen" />
+			<basic name="firstdate" />
+			<basic name="lastdate" />
+			<basic name="buyterm" />
+			<basic name="otherterm" />
+			<basic name="origin" />
+			<basic name="shipnumber" />
+			<basic name="buyer" />
+			<basic name="title" />
+			<basic name="country" />
+			<basic name="items" />
+			<basic name="close" />
+			<basic name="download" />
+			<basic name="ecuador" />
+			<basic name="voltype" />
+			<basic name="navideno" />
+			<basic name="textil" />
+			<basic name="ceramica" />
+			<basic name="inen" />
+			<basic name="license" />
+			<basic name="licensewrt" />
+			<basic name="originorder" />
+			<basic name="statusfav" />
+			<basic name="numberCase" />
+			<basic name="replicationStatus" />
+			<many-to-one name="vendorDTO" fetch="LAZY">
+				<join-column name="VENDOR" referenced-column-name="ID"
+					insertable="false" updatable="false" />
+				<join-column name="ORIGINORDER" referenced-column-name="ORIGINORDER"
+					insertable="false" updatable="false" />
+			</many-to-one>
+			<transient name="npCompanyId" />
+			<transient name="npExistVendorDTO" />
+			<transient name="npClientName" />
+			<transient name="npVendorName" />
+			<transient name="npFair1Name" />
+			<transient name="npFair2Name" />
+			<transient name="npRepresentName" />
+			<transient name="npShipDescription" />
+			<transient name="npPaymentDescription" />
+			<transient name="npCurrencyName" />
+
+		</attributes>
+	</mapped-superclass>
+
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.OrderDTO">
+		<table name="WCWIMTORDER" />
+		<attributes>
+
+		</attributes>
+	</entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.DetailDTO">
+		<table name="WCWIMTDETAIL" />
+		<attributes>
+			<basic name="consnumber" />
+			<basic name="part" />
+			<basic name="descrip" />
+			<basic name="upc" />
+			<basic name="qty" />
+			<basic name="unit" />
+			<basic name="price" />
+			<basic name="clazz">
+				<column name="CLASS" />
+			</basic>
+			<basic name="amtdis" />
+			<basic name="isgroup" />
+			<basic name="inner" />
+			<basic name="pack" />
+			<basic name="cube" />
+			<basic name="country" />
+			<basic name="material" />
+			<basic name="brand" />
+			<basic name="ean14" />
+			<basic name="gweight" />
+			<basic name="nweight" />
+			<basic name="unidad" />
+			<basic name="replicationStatus" />
+			<basic name="coleccion" />
+			<basic name="codigoCompania" />
+			<basic name="codigoArticulo" />
+			<basic name="codigoProveedor" />
+			<many-to-one name="articuloProveedorDTO" fetch="LAZY">
+				<join-column name="CODIGOCOMPANIA"
+					referenced-column-name="CODIGOCOMPANIA" insertable="false"
+					updatable="false" />
+				<join-column name="CODIGOARTICULO"
+					referenced-column-name="CODIGOARTICULO" insertable="false"
+					updatable="false" />
+				<join-column name="CODIGOPROVEEDOR"
+					referenced-column-name="CODIGOPROVEEDOR" insertable="false"
+					updatable="false" />
+			</many-to-one>
+		</attributes>
+	</entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.VendorDTO">
+		<table name="WCWIMTVENDOR" />
+		<attributes>
+			<basic name="name" />
+			<basic name="address1" />
+			<basic name="address2" />
+			<basic name="city" />
+			<basic name="state" />
+			<basic name="zip" />
+			<basic name="country" />
+			<basic name="telephone" />
+			<basic name="fax" />
+			<basic name="contact1" />
+			<basic name="contact2" />
+			<basic name="fair" />
+			<basic name="represen" />
+			<basic name="showadd" />
+			<basic name="showcity" />
+			<basic name="showtel" />
+			<basic name="showfax" />
+			<basic name="follnam" />
+			<basic name="folltel" />
+			<basic name="follfax" />
+			<basic name="discount" />
+			<basic name="payterm" />
+			<basic name="frgterm" />
+			<basic name="email" />
+			<basic name="upc" />
+			<basic name="otherterm" />
+			<basic name="bank" />
+			<basic name="branch" />
+			<basic name="swift" />
+			<basic name="blz" />
+			<basic name="aba" />
+			<basic name="abi" />
+			<basic name="cab" />
+			<basic name="account" />
+			<basic name="comment" />
+			<basic name="replicationStatus" />
+		</attributes>
+	</entity>
+	<!-- Claves primarias -->
+	<embeddable class="ec.com.smx.sic.cliente.mdl.dto.id.impcorp.BaseID" />
+	<embeddable class="ec.com.smx.sic.cliente.mdl.dto.id.impcorp.OrderID">
+		<attributes>
+			<basic name="number">
+				<column name="NUMBER" />
+			</basic>
+		</attributes>
+	</embeddable>
+	<embeddable class="ec.com.smx.sic.cliente.mdl.dto.id.impcorp.DetailID">
+		<attributes>
+			<basic name="number">
+				<column name="NUMBER" />
+			</basic>
+			<basic name="line">
+				<column name="LINE" />
+			</basic>
+		</attributes>
+	</embeddable>
+	<embeddable class="ec.com.smx.sic.cliente.mdl.dto.id.impcorp.VendorID">
+		<attributes>
+			<basic name="id">
+				<column name="ID" />
+			</basic>
+			<basic name="originOrder">
+				<column name="ORIGINORDER" />
+			</basic>
+		</attributes>
+	</embeddable>
+</entity-mappings>

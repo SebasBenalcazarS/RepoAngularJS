@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
+	version="2.0">
+
+	<!-- *************************************************************************** -->
+	
+	
+	<!-- Convenio Proveedores-->	
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ConvenioParticipanteDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.CuentaContableDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.NegociacionDTO" />		
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.NegociacionCuentaContableDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.NegociacionArticuloDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DetalleNegociacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.NegociacionGestionPrecioParticipanteDTO" />
+	<!-- Procesamiento de ventas -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ConfiguracionDatosProcesadosDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ConfiguracionDatosProcesadosAcumuladosDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DatosAcumuladosDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DefinicionConfiguracionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DetalleNegociacionGestionPrecioCovenioParticipanteDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.RegistroCobroDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.RegistroCobroDetalleDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.RegistroCobroDiarioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.RegistroCobroDetalleDiarioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.PlanFechaRegistroCobroDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ConceptoTipoImpuestoDTO" />
+	
+	<!-- Mapeo de las clases que representanta tablas -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaEmpresaParticipanteDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaSubBodegaProveedorDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaProcesamientoVentasDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaCobroProveedoresDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaParticipantesDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaRegistroCobroConvenioParticiapanteDTO"/>
+<!-- 	<entity class="ec.com.smx.sic.cliente.mdl.dto.EstructuraBuscaFechaDTO"/> -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaDatosAcumuladosArticuloLocalDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaUltimasFechasCobradasDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaDescuentosDiariosArticuloLocalDTO"/>
+	<!-- Mapeo entidades para integracion con ordenes de compra -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.BitacoraDescuentoOrdenCompraDTO"/>
+</entity-mappings>

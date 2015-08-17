@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" default-lazy-init="true">
+	
+	<bean id="sicUsuarioArticuloDAO" class="ec.com.smx.sic.articulo.persistence.dao.usuarioautorizacion.UsuarioArticuloDAO">
+		<property name="sessionFactory"> <ref bean="sessionFactory" /></property>
+	</bean>
+	
+	<bean id="sicUsuarioClasificacionProcesoDAO" class="ec.com.smx.sic.articulo.persistence.dao.usuarioautorizacion.UsuarioClasificacionProcesoDAO">
+		<property name="sessionFactory"> <ref bean="sessionFactory" /></property>
+	</bean>
+	
+	<bean id="sicCalculoUsuarioAutorizacionGestor" class="ec.com.smx.sic.articulo.gestor.usuarioautorizacion.calculo.CalculoUsuarioAutorizacionGestor">
+		<property name="usuarioArticuloDAO"><ref bean="sicUsuarioArticuloDAO"/></property>
+		
+		<property name="clasificacionDAO"><ref bean="sicClasificacionDAO"/></property>
+		<property name="parametroDAO"><ref bean="sicParametroDAO"/></property>
+		<property name="usuarioClasificacionProcesoDAO"><ref bean="sicUsuarioClasificacionProcesoDAO"/></property>
+		
+		<property name="funcionarioAreaTrabajoDAO"><ref bean="sicFuncionarioAreaTrabajoDAO"/></property>
+		<property name="articuloUnidadManejoDAO"><ref bean="sicArticuloUnidadManejoDAO"/></property>
+		<property name="articuloDAO"><ref bean="sicArticuloDAO"/></property>
+	</bean>
+
+	<bean id="sicAlmacenamientoUsuarioAutorizacionGestor" class="ec.com.smx.sic.articulo.gestor.usuarioautorizacion.almacenamiento.AlmacenamientoUsuarioAutorizacionGestor">
+		<property name="usuarioArticuloDAO">
+			<ref bean="sicUsuarioArticuloDAO"/>
+		</property>
+		<property name="usuarioClasificacionProcesoDAO">
+			<ref bean="sicUsuarioClasificacionProcesoDAO"/>
+		</property>
+		<property name="dataGestor">
+			<ref bean="dataGestor"/>
+		</property>
+	</bean>
+	
+	<bean id="sicUsuarioAutorizacionServicio" class="ec.com.smx.sic.articulo.servicio.UsuarioAutorizacionServicio">
+		<property name="calculoUsuarioAutorizacionGestor">
+			<ref bean="sicCalculoUsuarioAutorizacionGestor"/>
+		</property>
+		<property name="almacenamientoUsuarioAutorizacionGestor">
+			<ref bean="sicAlmacenamientoUsuarioAutorizacionGestor"/>
+		</property>
+	</bean>
+	
+	
+</beans>

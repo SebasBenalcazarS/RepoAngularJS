@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd" default-lazy-init="true">
+	
+	<bean id="sicAccionArticuloGestor" class="ec.com.smx.sic.articulo.gestor.admin.accion.AccionArticuloGestor">
+		<property name="accionArticuloProveedorGestor"><ref bean="sicAccionArticuloProveedorGestor"/></property>
+		<property name="dataGestor"><ref bean="dataGestor"/></property>
+		<property name="calculoBusquedaArticuloGestor"><ref bean="sicCalculoBusquedaArticuloGestor"/></property>
+		<property name="calculoArticuloGestor"><ref bean="sicCalculoArticuloGestor"/></property>
+		<property name="articuloAlcanceGestor"><ref bean="sicArticuloAlcanceGestor"/></property>
+		<property name="articuloIntegracionDAO"><ref bean="sicArticuloIntegracionDAO"/></property>
+		<property name="mensajeriaG"><ref bean="mensajeriaG"/></property>
+		<property name="accionIntegracionRegistroCondicionComercialGestor"><ref bean="sicAccionIntegracionRegistroProveedorGestor"/></property>
+		<property name="articuloMigracionArticuloPortalDAO"><ref bean="sicArticuloMigracionArticuloPortalDAO"/></property>
+		<property name="parametroGestor" ref="sicParametroGestor" />
+		<property name="articuloPendienteIntegracionDAO" ref="sicArticuloPendienteIntegracionDAO" />
+		<property name="articuloAccionDAO" ref="sicArticuloAccionDAO" />
+	</bean>
+	
+	<bean id="sicArticuloIntegracionDAO" class="ec.com.smx.sic.articulo.persistence.dao.ArticuloIntegracionDAO">
+		<property name="hibernateH"><ref bean="hibernateH"/></property>
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="sicArticuloMigracionArticuloPortalDAO" class="ec.com.smx.sic.articulo.persistence.dao.ArticuloMigracionArticuloPortalDAO">
+		<property name="sessionFactory"> <ref bean="sessionFactory" /></property>
+	</bean>
+	
+	<bean id="sicArticuloAccionDAO" class="ec.com.smx.sic.articulo.persistence.dao.accion.AccionArticuloDAO">
+		<property name="sessionFactory"> <ref bean="sessionFactory" /></property>
+	</bean>
+</beans>

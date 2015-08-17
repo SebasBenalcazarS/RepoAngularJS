@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<datos>
+	<para>Luis</para>
+	<textoMensajeCabecera> Se ha asignado los articulos seleccionados por archivo/filtro con las siguientes opciones:</textoMensajeCabecera>
+	<tipoAsignacion>Copia de locales</tipoAsignacion>
+	<codigoTipoAsignacion>CL</codigoTipoAsignacion>
+	<tituloAreasTrabajo>Lista de locales</tituloAreasTrabajo>
+	<tituloBase>Local base:</tituloBase>
+	<tituloDestino>Local destino:</tituloDestino>
+	<areas>
+		<codigo>10</codigo>
+		<nombre>Oficina abastos</nombre>
+	</areas>
+	<areas>
+		<codigo>15</codigo>
+		<nombre>Oficina totales</nombre>
+	</areas>
+	<areasBase>
+		<codigo>101</codigo>
+		<nombre>Oficina abastos</nombre>
+	</areasBase>
+	<areasDestino>
+		<codigo>151</codigo>
+		<nombre>Oficina totales</nombre>
+	</areasDestino>
+</datos>
+
+ 

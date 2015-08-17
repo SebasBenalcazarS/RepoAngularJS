@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -16,6 +17,8 @@ import ec.com.smx.sic.cliente.exception.SICException;
 import ec.com.smx.sic.cliente.mdl.dto.asistentecompras.ContenidoArchivoDto;
 import ec.com.smx.sic.cliente.mdl.dto.asistentecompras.ContenidoDTO;
 import ec.com.smx.sic.cliente.mdl.dto.asistentecompras.ContenidoDefinicionArchivoDTO;
+import ec.com.smx.sic.cliente.mdl.dto.id.asistentecompras.CodigoArchivoID;
+import ec.com.smx.sic.cliente.mdl.dto.id.asistentecompras.ContenidoID;
 import ec.com.smx.sic.cliente.mdl.vo.ContenidoVO;
 import ec.com.smx.sic.cliente.mdl.vo.FileInformationContentVO;
 import ec.com.smx.sic.webservices.commons.utils.LogText;
@@ -42,9 +45,9 @@ public final class ContentController {
 					Promotion promotion = new Promotion();
 					promotion.setOrden(contentDTO.getOrden());
 					promotion.setId(contentDTO.getId().getSecuencialContenido());
-					promotion.setTipo(contentDTO.getValorTipoContenido());
-					promotion.setDetalle(contentDTO.getDetalle());
-					promotion.setName(contentDTO.getDescripcion());
+					promotion.setTipo(contentDTO.getValorTipoContenido().trim());
+					promotion.setDetalle(contentDTO.getDetalle().trim());
+					promotion.setName(contentDTO.getDescripcion().trim());
 					promotion.setCodigoArticulo(contentDTO.getCodigoArticulo());
 					promotion.setCodigoCompania(contentDTO.getCodigoCompania());
 					promotion.setName(contentDTO.getDescripcion());
@@ -62,13 +65,16 @@ public final class ContentController {
 							if (contentDefinitionFileDTO.getEstado().equals(SICConstantes.ESTADO_ACTIVO_LITERAL)) {
 								switch (contentDefinitionFileDTO.getValorTipoArchivo()) {
 								case "IMC":
-									promotion.setNombreImagenCelular(contentDefinitionFileDTO.getNombreArchivo());
+									promotion.setNombreImagenCelular(contentDefinitionFileDTO.getNombreArchivo().trim());
+									promotion.setPhoneFileId(contentDefinitionFileDTO.getId().getCodigoArchivo());
 									break;
 								case "IMT":
-									promotion.setNombreImagenTablet(contentDefinitionFileDTO.getNombreArchivo());
+									promotion.setNombreImagenTablet(contentDefinitionFileDTO.getNombreArchivo().trim());
+									promotion.setTabletFileId(contentDefinitionFileDTO.getId().getCodigoArchivo());
 									break;
 								case "IMD":
-									promotion.setNombreImagenDestacada(contentDefinitionFileDTO.getNombreArchivo());
+									promotion.setNombreImagenDestacada(contentDefinitionFileDTO.getNombreArchivo().trim());
+									promotion.setSpecialFileId(contentDefinitionFileDTO.getId().getCodigoArchivo());
 									break;
 								}
 							}
@@ -97,6 +103,9 @@ public final class ContentController {
 			content.setOrden(promotion.getOrden());
 			content.setCodigoCompania(promotion.getCodigoCompania());
 			content.setCodigoArticulo(promotion.getCodigoArticulo());
+			ContenidoID contenidoID= new ContenidoID();
+			contenidoID.setSecuencialContenido(promotion.getId());
+			content.setId(contenidoID);
 
 			if (promotion.getFrom() == null && promotion.getTo() == null) {
 				LOG_SICV2.error(LogText.INVALID_PARAMETER,"content/create fechaInicioTemporada o fechaFinTemporada es null: {}");
@@ -105,9 +114,11 @@ public final class ContentController {
 				content.setFechaInicioTemporada(new Date(promotion.getFrom()));
 				content.setFechaFinTemporada(new Date(promotion.getTo()));
 			}
-			Collection<FileInformationContentVO> fileIMC = RecargaCuponUtils.fileUpload(input, "IMC");
-			Collection<FileInformationContentVO> fileIMT = RecargaCuponUtils.fileUpload(input, "IMT");
-			Collection<FileInformationContentVO> fileIMD = RecargaCuponUtils.fileUpload(input, "IMD");
+			
+			
+			Collection<FileInformationContentVO> fileIMC = RecargaCuponUtils.fileUploadByKey(input, "IMC");
+			Collection<FileInformationContentVO> fileIMT = RecargaCuponUtils.fileUploadByKey(input, "IMT");
+			Collection<FileInformationContentVO> fileIMD = RecargaCuponUtils.fileUploadByKey(input, "IMD");
 
 			if (CollectionUtils.isNotEmpty(fileIMC)) {
 				Collection<ContenidoArchivoDto> files = new ArrayList<ContenidoArchivoDto>();
@@ -117,6 +128,9 @@ public final class ContentController {
 				definition.setTamanioArchivo(fileIMC.iterator().next().getTamanioArchivo());
 				files.add(fileIMC.iterator().next().getContenidoArchivoDTOs().iterator().next());
 				definition.setValorTipoArchivo("IMC");
+				CodigoArchivoID codigoArchivoID = new CodigoArchivoID();
+				codigoArchivoID.setCodigoArchivo(promotion.getPhoneFileId());
+				definition.setId(codigoArchivoID);
 				definition.setContenidoArchivoDtos(files);
 				definitions.add(definition);
 			}
@@ -129,6 +143,9 @@ public final class ContentController {
 				definition.setTamanioArchivo(fileIMT.iterator().next().getTamanioArchivo());
 				archivos.add(fileIMT.iterator().next().getContenidoArchivoDTOs().iterator().next());
 				definition.setValorTipoArchivo("IMT");
+				CodigoArchivoID codigoArchivoID = new CodigoArchivoID();
+				codigoArchivoID.setCodigoArchivo(promotion.getTabletFileId());
+				definition.setId(codigoArchivoID);
 				definition.setContenidoArchivoDtos(archivos);
 				definitions.add(definition);
 			}
@@ -141,10 +158,42 @@ public final class ContentController {
 				definition.setTamanioArchivo(fileIMD.iterator().next().getTamanioArchivo());
 				archivos.add(fileIMD.iterator().next().getContenidoArchivoDTOs().iterator().next());
 				definition.setValorTipoArchivo("IMD");
+				CodigoArchivoID codigoArchivoID = new CodigoArchivoID();
+				codigoArchivoID.setCodigoArchivo(promotion.getSpecialFileId());
+				definition.setId(codigoArchivoID);
 				definition.setContenidoArchivoDtos(archivos);
 				definitions.add(definition);
 			}
+			
+			if(promotion.getNombreImagenCelular()==null) {
+				ContenidoDefinicionArchivoDTO definition = new ContenidoDefinicionArchivoDTO();
+				CodigoArchivoID codigoArchivoID = new CodigoArchivoID();
+				codigoArchivoID.setCodigoArchivo(promotion.getPhoneFileId());
+				definition.setId(codigoArchivoID);
+				definition.setNombreArchivo(null);
+				definitions.add(definition);
+			}
+			
+			if(promotion.getNombreImagenTablet()==null) {
+				ContenidoDefinicionArchivoDTO definition = new ContenidoDefinicionArchivoDTO();
+				CodigoArchivoID codigoArchivoID = new CodigoArchivoID();
+				codigoArchivoID.setCodigoArchivo(promotion.getTabletFileId());
+				definition.setId(codigoArchivoID);
+				definition.setNombreArchivo(null);
+				definitions.add(definition);
+			}
+			
+			if(promotion.getNombreImagenDestacada()==null) {
+				ContenidoDefinicionArchivoDTO definition = new ContenidoDefinicionArchivoDTO();
+				CodigoArchivoID codigoArchivoID = new CodigoArchivoID();
+				codigoArchivoID.setCodigoArchivo(promotion.getSpecialFileId());
+				definition.setId(codigoArchivoID);
+				definition.setNombreArchivo(null);
+				definitions.add(definition);
+			}
+			
 			content.setContenidoDefinicionArchivoDTOs(definitions);
+			
 			ContenidoVO contentVO = new ContenidoVO();
 			contentVO.setContenidoDTO(content);
 			return SICFactory.getInstancia().recargaCupon.getContenidoService().transCrearContenido(contentVO);
@@ -215,18 +264,23 @@ public final class ContentController {
 					}
 					switch (promotion.getTipo().toUpperCase()) {
 					case "C":
+						promotion.setColor("rgba(130, 103, 57, 0.7)");
 						c.add(promotion);
 						break;
 					case "V":
+						promotion.setColor("rgba(114, 15, 204, 0.5)");
 						v.add(promotion);
 						break;
 					case "R":
+						promotion.setColor("rgba(0, 128, 5, 0.56)");
 						r.add(promotion);
 						break;
 					case "P":
+						promotion.setColor("rgba(95, 81, 81, 0.592157)");
 						p.add(promotion);
 						break;
 					case "D":
+						promotion.setColor("rgba(255, 0, 0, 0.43)");
 						d.add(promotion);
 						break;
 					}
@@ -254,6 +308,18 @@ public final class ContentController {
 		}
 	
 		return result;
+	}
+
+	
+	public static List<ContenidoDefinicionArchivoDTO> findFiles(Collection<Long> fileIds) {
+		 List<ContenidoDefinicionArchivoDTO> answer= new ArrayList<ContenidoDefinicionArchivoDTO>();
+		try {
+			answer = SICFactory.getInstancia().recargaCupon.getContenidoService().findFiles(fileIds);
+		}catch(SICException e) {
+			LOG_SICV2.error(LogText.ERROR_WS, "content/findFiles: {}", e);
+			throw new SICException(LogText.ERROR_WS, "content/findFiles: {}", e);
+		}
+		return answer;
 	}
 
 	

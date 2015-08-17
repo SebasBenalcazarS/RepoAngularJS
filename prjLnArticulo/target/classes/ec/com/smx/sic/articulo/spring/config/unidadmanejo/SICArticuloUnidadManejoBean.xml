@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd" default-lazy-init="true">
+	
+	<bean id="sicArticuloUnidadManejoGestor" class="ec.com.smx.sic.articulo.gestor.unidadmanejo.ArticuloUnidadManejoGestor">
+		<property name="dataGestor"><ref bean="dataGestor"/></property>
+		<property name="articuloUnidadManejoDAO"><ref bean="sicArticuloUnidadManejoDAO"/></property>
+		<property name="calculoUnidadManejoGestor"><ref bean="sicCalculoUnidadManejoGestor"/></property>
+		<property name="validacionUnidadManejoGestor"><ref bean="sicValidacionUnidadManejoGestor"/></property>
+		<property name="calculoArticuloGestor"><ref bean="sicCalculoArticuloGestor"/></property>
+	</bean>
+	
+	<!-- Unidades de manejo DAO de recepcion -->
+	<bean id="sicArticuloUnidadManejoRecepcionGestor" class="ec.com.smx.sic.articulo.gestor.unidadmanejo.ArticuloUnidadManejoRecepcionGestor">
+		<property name="articuloUnidadManejoRecepcionJugueteDAO"><ref bean="sicArticuloUnidadManejoRecepcionJugueteDAO"/></property>
+		<property name="articuloUnidadManejoDAO" ref="sicArticuloUnidadManejoDAO"/>
+	</bean>
+	
+	<bean id="sicCalculoUnidadManejoGestor" class="ec.com.smx.sic.articulo.gestor.unidadmanejo.calculo.CalculoUnidadManejoGestor">
+		<property name="articuloLocalPrecioDAO"><ref bean="sicArticuloLocalPrecioDAO"/></property>
+	</bean>
+	
+	<bean id="sicValidacionUnidadManejoGestor" class="ec.com.smx.sic.articulo.gestor.unidadmanejo.validacion.ValidacionUnidadManejoGestor">
+		<property name="articuloUnidadManejoDAO"><ref bean="sicArticuloUnidadManejoDAO"/></property>
+	</bean>
+	
+	<bean id="sicArticuloUnidadManejoDAO" class="ec.com.smx.sic.articulo.persistence.dao.ArticuloUnidadManejoDAO">
+		<property name="hibernateH"><ref bean="hibernateH"/></property>
+		<property name="sessionFactory"><ref bean="sessionFactory"/></property>
+	</bean>
+	
+	<bean id="sicArticuloUnidadManejoUsoDAO" class="ec.com.smx.sic.articulo.persistence.dao.ArticuloUnidadManejoUsoDAO">
+		<property name="sessionFactory"><ref bean="sessionFactory"/></property>
+	</bean>
+	
+	<!-- Unidades de manejo DAO de recepcion -->
+	<bean id="sicArticuloUnidadManejoRecepcionJugueteDAO" class="ec.com.smx.sic.articulo.persistence.dao.unidadManejo.ArticuloUnidadManejoRecepcionJugueteDAO">
+		<property name="hibernateH"><ref bean="hibernateH"/></property>
+	</bean>
+</beans>

@@ -1025,22 +1025,30 @@ public class ProcesoAutorizacionUsuarios {
 	 * @param usuarioSesion
 	 * @return
 	 */
-	@RequestMapping(value = "/reporteAutorizacionUsuarioClasificaciones", method = RequestMethod.GET, headers = "Accept= application/json")
-	public @ResponseBody ResponseEntity<String> findReporteAutorizacionUsuarioClasificaciones(
-			@RequestParam(value = "codigoCompania", required = true) Integer codigoCompania,
-			@RequestParam(value = "codigoClasificacion", required = false) String codigoClasificacion) {
-
+	@RequestMapping(value = "/reporteAutorizacionUsuarioClasificaciones", method = RequestMethod.POST, headers = "Accept= application/json")
+	public @ResponseBody ResponseEntity<String> findReporteAutorizacionUsuarioClasificaciones(@RequestBody String  data) {
+		JsonParser parser = new JsonParser();
+		JsonObject jsonData =	(JsonObject)parser.parse(data);
+		Integer codigoCompania = jsonData.get("codigoCompania").getAsInt();
+		Integer maxResult = jsonData.get("maxResult").getAsInt();
+		Integer firstResult = jsonData.get("firstResult").getAsInt();
+		String usuarioSesion = jsonData.get("usuarioSesion").toString().replace("\"","");
+		String user = jsonData.get("descripcion").toString().replace("\"","");
+		String codigoClasificacion= jsonData.get("codigoEstructura").toString().replace("\"","");
+//, String user
 		LOG_SICV2
 				.info("Inicio web service findReporteClasificaciones, codigoCompania: {}",
 						codigoCompania);
-		LOG_SICV2.info("usuarioSesion: {}", codigoClasificacion);
+		LOG_SICV2.info("codigoClasificacion: {}", codigoClasificacion);
+		LOG_SICV2.info("usuario: {}", user);
+		
 		Collection<UsuarioClasificacion> autorizacionClasificaciones = null;
 
 		HttpHeaders headers = null;
 		String datos = "[]";
 		try {
 			autorizacionClasificaciones = obtenerReporteAutorizacionUsuarioClasificaciones(
-					codigoCompania, codigoClasificacion);
+					codigoCompania, codigoClasificacion, user);
 			LOG_SICV2.info("funcionarios: {}",
 					autorizacionClasificaciones.size());
 
@@ -1058,14 +1066,14 @@ public class ProcesoAutorizacionUsuarios {
 	}
 
 	public Collection<UsuarioClasificacion> obtenerReporteAutorizacionUsuarioClasificaciones(
-			Integer codigoCompania, String codigoClasificacion) {
+			Integer codigoCompania, String codigoClasificacion, String user) {
 		try {
 			Collection<UsuarioClasificacionProcesoDTO> usuClaCol = new ArrayList<UsuarioClasificacionProcesoDTO>();
 			Collection<UsuarioClasificacion> clasificacionesCol = new ArrayList<ProcesoAutorizacionUsuarios.UsuarioClasificacion>();
 			if (codigoCompania != null) {
 				usuClaCol = SICFactory.getInstancia().articulo
 						.getUsuarioAutorizacionServicio().reportesUsuarios(
-								codigoCompania, codigoClasificacion);
+								codigoCompania, codigoClasificacion, user);
 			}
 			if (CollectionUtils.isNotEmpty(usuClaCol)) {
 				for (UsuarioClasificacionProcesoDTO clasificacion : usuClaCol) {

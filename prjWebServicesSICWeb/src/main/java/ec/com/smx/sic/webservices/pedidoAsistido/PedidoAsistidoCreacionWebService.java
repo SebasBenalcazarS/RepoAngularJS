@@ -34,7 +34,6 @@ import com.google.gson.Gson;
 
 import ec.com.smx.corpv2.dto.AreaTrabajoDTO;
 import ec.com.smx.framework.ad.json.JsonPojoMapper;
-import ec.com.smx.sic.cliente.common.Logeable;
 import ec.com.smx.sic.cliente.common.factory.SICFactory;
 import ec.com.smx.sic.cliente.mdl.dto.PedidoAreaTrabajoClasificacionDTO;
 import ec.com.smx.sic.cliente.mdl.dto.PedidoAreaTrabajoDTO;
@@ -42,6 +41,7 @@ import ec.com.smx.sic.cliente.mdl.dto.PedidoAreaTrabajoDetalleDTO;
 import ec.com.smx.sic.cliente.mdl.dto.PedidoAreaTrabajoInformacionDTO;
 import ec.com.smx.sic.cliente.mdl.vo.PedidoAsistidoVO;
 import ec.com.smx.sic.cliente.resources.pedidoAsistido.SICPedidoAsistidoMessages;
+
 
 
 @Controller
@@ -275,8 +275,7 @@ public class PedidoAsistidoCreacionWebService {
 	}
 
 	
-	/** Validar configuracion para datos seleccionados 
-	 * @throws SchedulerException */
+	/**Datos del pedido seleccionado*/
 	@RequestMapping(value = "/pedidoAsistidoDetalles", method = RequestMethod.GET, headers = "Accept= application/json")
 	public @ResponseBody ResponseEntity<String> gestionarDetalles(
 			@RequestParam(value = "idPedidoHijo", required = false) String idPedidoHijo,
@@ -293,8 +292,7 @@ public class PedidoAsistidoCreacionWebService {
 		Scheduler scheduler = getScheduler(request);
 
 
-		String retorno = "";
-		Boolean esNuevo = Boolean.parseBoolean(pedidoNuevo);
+		String retorno = "";		
 		Map<String, Object> detallesCol = new HashMap<String, Object>();
 		Map<String, Object> articuloMap = new HashMap<String, Object>();
 		Collection<Map<String, Object>> clasificacionesColMap = new ArrayList<Map<String, Object>>();
@@ -332,9 +330,8 @@ public class PedidoAsistidoCreacionWebService {
 		pedidoAsistidoVO.setLlenarCantidadPedida(Boolean.FALSE);
 		
 		pedidoAsistidoVO.setFrecuenciaRotacion(frecuenciaRotacion);
-		/**Gestionar clasificaciones*/
-
-		// Consulto las clasificaciones
+		
+		/**Gestionar clasificaciones*/		
 		clasificacionesCol = SICFactory.getInstancia().pedidoAsistido.getPedidoAsistidoAlmacenamientoServicio()
 				.actualizarEstructuraPedidoClasificacion(pedidoAsistidoVO);
 
@@ -366,15 +363,9 @@ public class PedidoAsistidoCreacionWebService {
 		// Actualizar de acuerdo al pedido
 		if (tipoCreacionPedido.equals("asistido")) {
 
-
 			// Rotaciones
 			actualizarRotacionesPedidoAsistido(frecuenciaRotacion);
 			detallesCol.put("rotacionesCabecera", this.rotaciones);
-
-			// Marcar por primera vez todas las clasificaciones
-			if (esNuevo) {
-				Logeable.LOG_SICV2.error("temporal");
-			}
 
 
 			// Actualizar totales clasificacion en pagina

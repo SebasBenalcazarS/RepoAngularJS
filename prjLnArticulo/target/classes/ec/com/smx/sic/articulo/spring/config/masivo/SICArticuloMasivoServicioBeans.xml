@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd" default-lazy-init="true">
+
+	<!-- Servicios -->
+	<bean id="sicArticuloMasivoServicio" class="ec.com.smx.sic.articulo.servicio.ArticuloMasivoServicio">
+		<property name="articuloMasivoGestor"><ref bean="sicArticuloMasivoGestor"/></property>
+		<property name="articuloCreacionPorArchivoGestor"><ref bean="sicArticuloCreacionPorArchivoGestor"/></property>
+		<property name="articuloValidacionCreacionPorArchivoGestor"><ref bean="sicArticuloValidacionCreacionPorArchivoGestor"/></property>
+		<property name="articuloEdicionArchivoGestor"><ref bean="sicArticuloEdicionArchivoGestor"/></property>
+	</bean>
+	
+	<!-- Gestores -->
+	<bean id="sicArticuloMasivoGestor" class="ec.com.smx.sic.articulo.gestor.masivo.ArticuloMasivoGestor">
+		<property name="articuloMasivoDAO"><ref bean="sicArticuloMasivoDAO"/></property>
+	</bean>
+	
+	<!-- DAO's -->
+	<bean id="sicArticuloMasivoDAO" class="ec.com.smx.sic.articulo.persistence.dao.masivo.ArticuloMasivoDAO">
+		<property name="sessionFactory"><ref bean="sessionFactory"/></property>
+	</bean>
+</beans>

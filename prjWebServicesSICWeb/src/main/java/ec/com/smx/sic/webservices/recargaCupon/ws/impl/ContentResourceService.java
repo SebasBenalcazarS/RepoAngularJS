@@ -3,17 +3,23 @@ package ec.com.smx.sic.webservices.recargaCupon.ws.impl;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -21,11 +27,13 @@ import com.google.gson.Gson;
 
 import ec.com.smx.sic.cliente.common.Logeable;
 import ec.com.smx.sic.cliente.exception.SICException;
+import ec.com.smx.sic.cliente.mdl.dto.asistentecompras.ContenidoDefinicionArchivoDTO;
 import ec.com.smx.sic.webservices.commons.utils.HeaderType;
 import ec.com.smx.sic.webservices.commons.utils.RecargaCuponUtils;
 import ec.com.smx.sic.webservices.recargaCupon.controller.ContentController;
 import ec.com.smx.sic.webservices.recargaCupon.enums.JsonParameter;
 import ec.com.smx.sic.webservices.recargaCupon.jsonObjects.Answer;
+import ec.com.smx.sic.webservices.recargaCupon.jsonObjects.File;
 import ec.com.smx.sic.webservices.recargaCupon.jsonObjects.Promotion;
 import ec.com.smx.sic.webservices.recargaCupon.jsonObjects.Promotions;
 import ec.com.smx.sic.webservices.recargaCupon.ws.IContentResourceService;
@@ -61,7 +69,6 @@ public class ContentResourceService implements IContentResourceService {
 		RecargaCuponUtils.printFooter(idWS, nameWS, jsonResponse, Boolean.FALSE, null);
 		return promotions;
 	}
-
 	
 	@RequestMapping(value = "/create", consumes = HeaderType.MULTIPART_FORM_DATA, method = RequestMethod.POST)
 	@ResponseBody
@@ -127,4 +134,34 @@ public class ContentResourceService implements IContentResourceService {
 		return promotions;
 	}
 	
+	
+	@RequestMapping(value = "/findFiles", method = RequestMethod.GET, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	@ResponseBody
+	public HttpEntity<byte[]> findFiles(
+		@RequestParam(value = "fileIds") Long id) {		
+		File file= new File();
+		List<ContenidoDefinicionArchivoDTO> answer= new ArrayList<ContenidoDefinicionArchivoDTO>();
+		Collection<Long> fileIds = new ArrayList<Long>();
+		fileIds.add(id);
+			answer = ContentController.findFiles(fileIds);
+			if(answer!=null && CollectionUtils.isNotEmpty(answer)) {
+			file.setFile(answer.iterator().next().getContenidoArchivoDtos().iterator().next().getContenidoArchivo());
+			file.setFileId(answer.iterator().next().getContenidoArchivoDtos().iterator().next().getCodigoArchivo());
+			file.setContentType(org.springframework.http.MediaType.parseMediaType(answer.iterator().next().getTipoContenidoArchivo()));
+			
+			HttpHeaders header = new HttpHeaders();
+			/*if (downloadFile.getContentType() == null) {
+				header.setContentType(org.springframework.http.MediaType.APPLICATION_OCTET_STREAM);
+			} else {
+				header.setContentType(org.springframework.http.MediaType.parseMediaType(downloadFile.getContentType().trim()));
+			}*/
+			header.setContentType(file.getContentType());
+			header.set(HeaderType.CONTENT_DISPOSITION,
+					"attachment; filename="+answer.iterator().next().getNombreArchivo());
+			header.setContentLength(answer.iterator().next().getTamanioArchivo());
+			header.add("Accept-Encoding", "gzip");
+			return new HttpEntity<byte[]>(file.getFile(), header);
+			}
+			return null;
+		}
 }

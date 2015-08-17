@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<guiaRemision>
+	<numeroGuia>0010110196188</numeroGuia>	
+	<areaTrabajoEmision>100 CENTRO DE DISTRIBUCION</areaTrabajoEmision>	
+	<direccionEmision>AV. GENERAL ENRIQUEZ S/N VIA COTOGCHOA</direccionEmision>	
+	<ciudadEmision>SANGOLQUI - ECUADOR</ciudadEmision>	
+	<numeroAutorizacion>1107754681</numeroAutorizacion>	
+	<fechaInicioTraslado>03/02/2015</fechaInicioTraslado>	
+	<fechaFinTraslado>05/02/2015</fechaFinTraslado>	
+	<ciudadEmision>SANGOLQUI</ciudadEmision>	
+	<fechaEmision>03/02/2015</fechaEmision>	
+	<horaEmision>15:52</horaEmision>
+	<destinatario>
+		<razonSocial>449 AKI PASAJE</razonSocial>
+		<rucCI>1790016919001</rucCI>
+		<direccionLlegada>JUAN MONTALVO S/N Y AV.ROCAFUERTE</direccionLlegada>
+		<provCiudadLLegada>EL ORO - PASAJE</provCiudadLLegada>
+	</destinatario>
+	<transportista>
+		<razonSocial>SAAVEDRA ALBUJA EDUARDO</razonSocial>
+		<rucCI>17085437050001</rucCI>
+	</transportista>
+	<choferes>
+		<chofer>
+			<nombre>HENRY ESTEBAN GUDIÑO BARAHONA</nombre>
+			<cedula>1002966404</cedula>
+		</chofer>
+		<chofer>
+			<nombre>CARLOS ANDRES LOPEZ RAMIREZ</nombre>
+			<cedula>1701545745</cedula>
+		</chofer>
+	</choferes>
+	<motivoTraslado>
+		<motivoTrasladoLista1>
+			<grupoTraslado>
+				<motivo>Venta</motivo>
+				<resultado>_</resultado>
+			</grupoTraslado>
+			<grupoTraslado>
+				<motivo>Compra</motivo>
+				<resultado>_</resultado>
+			</grupoTraslado>
+			<grupoTraslado>
+				<motivo>Devolucion</motivo>
+				<resultado>_</resultado>
+			</grupoTraslado>
+		</motivoTrasladoLista1>
+		<motivoTrasladoLista2>
+			<grupoTraslado>
+				<motivo>Traslado entre establecimientos de una misma empresa</motivo>
+				<resultado>X</resultado>
+			</grupoTraslado>
+			<grupoTraslado>
+				<motivo>Traslado por emisor itinerante de comprobantes de venta</motivo>
+				<resultado>_</resultado>
+			</grupoTraslado>
+			<grupoTraslado>
+				<motivo>Importacion</motivo>
+				<resultado>_</resultado>
+			</grupoTraslado>
+			<grupoTraslado>
+				<motivo>Otros no incluidos en los puntos anteriores</motivo>
+				<resultado>_</resultado>
+			</grupoTraslado>
+		</motivoTrasladoLista2>
+	</motivoTraslado>
+	<documentos>
+		<grupo>
+			<documento>
+				<numeroDocumento>100410151516</numeroDocumento>
+				<fechaEmisionDoc>11/04/2014</fechaEmisionDoc>
+			</documento>
+			<documento>
+				<numeroDocumento>100410151516</numeroDocumento>
+				<fechaEmisionDoc>11/04/2014</fechaEmisionDoc>
+			</documento>
+			<documento>
+				<numeroDocumento>100410151517</numeroDocumento>
+				<fechaEmisionDoc>11/04/2014</fechaEmisionDoc>
+			</documento>
+		</grupo>
+		<grupo>
+			<documento>
+				<numeroDocumento>100410151518</numeroDocumento>
+				<fechaEmisionDoc>11/04/2014</fechaEmisionDoc>
+			</documento>
+			<documento>
+				<numeroDocumento>100410151519</numeroDocumento>
+				<fechaEmisionDoc>11/04/2014</fechaEmisionDoc>
+			</documento>
+			<documento>
+				<numeroDocumento>100410151520</numeroDocumento>
+				<fechaEmisionDoc>11/04/2014</fechaEmisionDoc>
+			</documento>
+		</grupo>
+		<grupo>
+			<documento>
+				<numeroDocumento>100410151521</numeroDocumento>
+				<fechaEmisionDoc>11/04/2014</fechaEmisionDoc>
+			</documento>
+			<documento>
+				<numeroDocumento>100410151522</numeroDocumento>
+				<fechaEmisionDoc>11/04/2014</fechaEmisionDoc>
+			</documento>
+		</grupo>
+	</documentos>
+	<anexos>
+		<grupo>
+			<articulo>
+				<descripcion>MESAS</descripcion>
+				<cantidad>2</cantidad>
+			</articulo>
+			<articulo>
+				<descripcion>RESMAS PAPEL</descripcion>
+				<cantidad>50</cantidad>
+			</articulo>
+			<articulo>
+				<descripcion>ESFEROS</descripcion>
+				<cantidad>10</cantidad>
+			</articulo>
+		</grupo>
+		<grupo>
+			<articulo>
+				<descripcion>COMPUTADORA</descripcion>
+				<cantidad>1</cantidad>
+			</articulo>			
+		</grupo>
+	</anexos>
+</guiaRemision>

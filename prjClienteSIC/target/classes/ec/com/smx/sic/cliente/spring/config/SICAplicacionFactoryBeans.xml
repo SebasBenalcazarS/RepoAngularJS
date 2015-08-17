@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="sicV2ArticuloFactory" class="ec.com.smx.sic.cliente.common.factory.ArticuloFactory"/>
+	<bean id="sicV2AdministracionFactory" class="ec.com.smx.sic.cliente.common.factory.AdministracionFactory"/>
+	<bean id="sicV2ProveedorFactory" class="ec.com.smx.sic.cliente.common.factory.ProveedorFactory"/>
+	<bean id="sicV2OficinaExteriorFactory" class="ec.com.smx.sic.cliente.common.factory.SICOficinaExteriorFactory"/>
+	<bean id="sicV2OrdenCompraFactory" class="ec.com.smx.sic.cliente.common.factory.OrdenCompraFactory"/>
+	<bean id="sicV2PedidoAsistidoFactory" class="ec.com.smx.sic.cliente.common.factory.PedidoAsistidoFactory"/>
+	<bean id="sicV2BodegaFactoryFactory" class="ec.com.smx.sic.cliente.common.factory.BodegaFactory"/>
+	<bean id="sicV2RecargaCuponFactory" class="ec.com.smx.sic.cliente.common.factory.RecargaCuponFactory"/>
+	<bean id="sicV2CambioPreciosFactory" class="ec.com.smx.sic.cliente.common.factory.CambioPreciosFactory"/>
+	<bean id="sicV2RecipientesFactory" class="ec.com.smx.sic.cliente.common.factory.RecipientesFactory"/>
+	<bean id="sicV2ProduccionFactory" class="ec.com.smx.sic.cliente.common.factory.ProduccionFactory"/>
+	<bean id="sicV2ControlRutasFactory" class="ec.com.smx.sic.cliente.common.factory.ControlRutasFactory"/>
+	<bean id="sicV2OfertasFactory" class="ec.com.smx.sic.cliente.common.factory.OfertasFactory"/>
+	<bean id="sicV2ConveniosFactory" class="ec.com.smx.sic.cliente.common.factory.ConveniosFactory"/>
+	<bean id="sicV2RecibidoNoFacturadoFactory" class="ec.com.smx.sic.cliente.common.factory.RecibidoNoContabilizadoFactory"/>
+	<bean id="sicV2ProcesamientoVentasFactory" class="ec.com.smx.sic.cliente.common.factory.ProcesamientoVentasFactory"/>
+	<bean id="sicV2FruverFactory" class="ec.com.smx.sic.cliente.common.factory.FruverFactory"/>
+</beans>

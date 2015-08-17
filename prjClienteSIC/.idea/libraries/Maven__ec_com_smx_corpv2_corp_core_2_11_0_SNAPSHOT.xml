@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: ec.com.smx.corpv2:corp-core:2.11.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/ec/com/smx/corpv2/corp-core/2.11.0-SNAPSHOT/corp-core-2.11.0-20141210.195104-77.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/ec/com/smx/corpv2/corp-core/2.11.0-SNAPSHOT/corp-core-2.11.0-20141210.195104-77-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/ec/com/smx/corpv2/corp-core/2.11.0-SNAPSHOT/corp-core-2.11.0-20141210.195104-77-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

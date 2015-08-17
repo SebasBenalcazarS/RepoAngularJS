@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" default-lazy-init="true">
+	
+	<bean id="sicArticuloProcesoLogisticoDAO" class="ec.com.smx.sic.articulo.persistence.dao.ArticuloProcesoLogisticoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean id="sicCalculoArticuloProcesoLogisticoGestor" class="ec.com.smx.sic.articulo.gestor.procesoLogistico.CalculoArticuloProcesoLogisticoGestor">
+		<property name="articuloProcesoLogisticoDAO">
+			<ref bean="sicArticuloProcesoLogisticoDAO"/>
+		</property>
+	</bean>
+
+</beans>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="5.2.1" timestamp="2015-08-11T10:45:09.130">
+<pmd version="5.2.1" timestamp="2015-08-17T14:16:56.243">
 <file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\articulos\ArticulosComponentWebService.java">
 <violation beginline="70" endline="70" begincolumn="24" endcolumn="32" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.webservices.articulos" class="ArticulosComponentWebService" method="findDatosComponentAgrupador" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
 Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
@@ -42,19 +42,19 @@ Avoid using if...else statements without curly braces
 <violation beginline="1" endline="1" begincolumn="9" endcolumn="65" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
 Package name contains upper case characters
 </violation>
-<violation beginline="1" endline="1175" begincolumn="1" endcolumn="3" rule="ExcessivePublicCount" ruleset="Code Size" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessivePublicCount" priority="3">
+<violation beginline="1" endline="1183" begincolumn="1" endcolumn="3" rule="ExcessivePublicCount" ruleset="Code Size" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessivePublicCount" priority="3">
 This class has a bunch of public methods and attributes
 </violation>
-<violation beginline="48" endline="1175" begincolumn="8" endcolumn="1" rule="ExcessiveClassLength" ruleset="Code Size" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessiveClassLength" priority="3">
+<violation beginline="48" endline="1183" begincolumn="8" endcolumn="1" rule="ExcessiveClassLength" ruleset="Code Size" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessiveClassLength" priority="3">
 Avoid really long classes.
 </violation>
-<violation beginline="48" endline="1175" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+<violation beginline="48" endline="1183" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
 The class 'ProcesoAutorizacionUsuarios' has a Cyclomatic Complexity of 5 (Highest = 14).
 </violation>
-<violation beginline="48" endline="1175" begincolumn="8" endcolumn="1" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
+<violation beginline="48" endline="1183" begincolumn="8" endcolumn="1" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
 The class 'ProcesoAutorizacionUsuarios' has a Modified Cyclomatic Complexity of 5 (Highest = 11).
 </violation>
-<violation beginline="48" endline="1175" begincolumn="8" endcolumn="1" rule="StdCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
+<violation beginline="48" endline="1183" begincolumn="8" endcolumn="1" rule="StdCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
 The class 'ProcesoAutorizacionUsuarios' has a Standard Cyclomatic Complexity of 5 (Highest = 11).
 </violation>
 <violation beginline="61" endline="61" begincolumn="93" endcolumn="118" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
@@ -64,10 +64,10 @@ The String literal &quot;Accept= application/json&quot; appears 8 times in this 
 The String literal &quot;codigoCompania&quot; appears 9 times in this file; the first occurrence is on line 63
 </violation>
 <violation beginline="65" endline="65" begincolumn="47" endcolumn="61" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" method="findFuncionariosLocal" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
-The String literal &quot;usuarioSesion&quot; appears 5 times in this file; the first occurrence is on line 65
+The String literal &quot;usuarioSesion&quot; appears 6 times in this file; the first occurrence is on line 65
 </violation>
 <violation beginline="80" endline="80" begincolumn="40" endcolumn="57" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" method="findFuncionariosLocal" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
-The String literal &quot;funcionarios: {}&quot; appears 8 times in this file; the first occurrence is on line 80
+The String literal &quot;funcionarios: {}&quot; appears 7 times in this file; the first occurrence is on line 80
 </violation>
 <violation beginline="88" endline="88" begincolumn="37" endcolumn="50" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" method="findFuncionariosLocal" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
 The String literal &quot;Content-Type&quot; appears 9 times in this file; the first occurrence is on line 88
@@ -85,10 +85,10 @@ The String literal &quot;Error: {}&quot; appears 8 times in this file; the first
 Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
 </violation>
 <violation beginline="330" endline="330" begincolumn="50" endcolumn="60" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" method="findAllArticulos" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
-The String literal &quot;maxResult&quot; appears 4 times in this file; the first occurrence is on line 330
+The String literal &quot;maxResult&quot; appears 5 times in this file; the first occurrence is on line 330
 </violation>
 <violation beginline="331" endline="331" begincolumn="52" endcolumn="64" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" method="findAllArticulos" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
-The String literal &quot;firstResult&quot; appears 4 times in this file; the first occurrence is on line 331
+The String literal &quot;firstResult&quot; appears 5 times in this file; the first occurrence is on line 331
 </violation>
 <violation beginline="347" endline="347" begincolumn="32" endcolumn="46" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" method="findAllArticulos" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
 The String literal &quot;maxResult: {}&quot; appears 4 times in this file; the first occurrence is on line 347
@@ -97,7 +97,7 @@ The String literal &quot;maxResult: {}&quot; appears 4 times in this file; the f
 The String literal &quot;firstResult: {}&quot; appears 4 times in this file; the first occurrence is on line 348
 </violation>
 <violation beginline="349" endline="349" begincolumn="32" endcolumn="50" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" method="findAllArticulos" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
-The String literal &quot;usuarioSesion: {}&quot; appears 8 times in this file; the first occurrence is on line 349
+The String literal &quot;usuarioSesion: {}&quot; appears 7 times in this file; the first occurrence is on line 349
 </violation>
 <violation beginline="366" endline="366" begincolumn="17" endcolumn="44" rule="PrematureDeclaration" ruleset="Optimization" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" method="findAllArticulos" variable="datoNumArticulos" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/optimizations.html#PrematureDeclaration" priority="3">
 Avoid declaring a variable if it is unreferenced before a possible exit point.
@@ -171,10 +171,28 @@ Avoid catching generic exceptions such as NullPointerException, RuntimeException
 <violation beginline="1012" endline="1012" begincolumn="26" endcolumn="34" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" method="obtenerReporteAutorizacionClasificaciones" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
 Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
 </violation>
-<violation beginline="1054" endline="1054" begincolumn="26" endcolumn="34" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" method="findReporteAutorizacionUsuarioClasificaciones" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
+<violation beginline="1033" endline="1033" begincolumn="17" endcolumn="72" rule="PrematureDeclaration" ruleset="Optimization" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" method="findReporteAutorizacionUsuarioClasificaciones" variable="maxResult" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/optimizations.html#PrematureDeclaration" priority="3">
+Avoid declaring a variable if it is unreferenced before a possible exit point.
+</violation>
+<violation beginline="1033" endline="1033" begincolumn="25" endcolumn="33" rule="UnusedLocalVariable" ruleset="Unused Code" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" method="findReporteAutorizacionUsuarioClasificaciones" variable="maxResult" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedLocalVariable" priority="3">
+Avoid unused local variables such as 'maxResult'.
+</violation>
+<violation beginline="1034" endline="1034" begincolumn="17" endcolumn="76" rule="PrematureDeclaration" ruleset="Optimization" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" method="findReporteAutorizacionUsuarioClasificaciones" variable="firstResult" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/optimizations.html#PrematureDeclaration" priority="3">
+Avoid declaring a variable if it is unreferenced before a possible exit point.
+</violation>
+<violation beginline="1034" endline="1034" begincolumn="25" endcolumn="35" rule="UnusedLocalVariable" ruleset="Unused Code" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" method="findReporteAutorizacionUsuarioClasificaciones" variable="firstResult" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedLocalVariable" priority="3">
+Avoid unused local variables such as 'firstResult'.
+</violation>
+<violation beginline="1035" endline="1035" begincolumn="17" endcolumn="96" rule="PrematureDeclaration" ruleset="Optimization" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" method="findReporteAutorizacionUsuarioClasificaciones" variable="usuarioSesion" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/optimizations.html#PrematureDeclaration" priority="3">
+Avoid declaring a variable if it is unreferenced before a possible exit point.
+</violation>
+<violation beginline="1035" endline="1035" begincolumn="24" endcolumn="36" rule="UnusedLocalVariable" ruleset="Unused Code" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" method="findReporteAutorizacionUsuarioClasificaciones" variable="usuarioSesion" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedLocalVariable" priority="3">
+Avoid unused local variables such as 'usuarioSesion'.
+</violation>
+<violation beginline="1062" endline="1062" begincolumn="26" endcolumn="34" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" method="findReporteAutorizacionUsuarioClasificaciones" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
 Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
 </violation>
-<violation beginline="1093" endline="1093" begincolumn="26" endcolumn="34" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" method="obtenerReporteAutorizacionUsuarioClasificaciones" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
+<violation beginline="1101" endline="1101" begincolumn="26" endcolumn="34" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios" class="ProcesoAutorizacionUsuarios" method="obtenerReporteAutorizacionUsuarioClasificaciones" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
 Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
 </violation>
 </file>
@@ -278,86 +296,6 @@ Package name contains upper case characters
 <file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\articulos\autorizacionUsuarios\objetosJson\ClasificacionUsuario.java">
 <violation beginline="1" endline="1" begincolumn="9" endcolumn="77" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.articulos.autorizacionUsuarios.objetosJson" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
 Package name contains upper case characters
-</violation>
-</file>
-<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\articulos\proveedor\ArticulosProveedor.java">
-<violation beginline="67" endline="586" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.articulos.proveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
-The class 'ArticulosProveedor' has a Cyclomatic Complexity of 5 (Highest = 20).
-</violation>
-<violation beginline="67" endline="586" begincolumn="8" endcolumn="1" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.articulos.proveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
-The class 'ArticulosProveedor' has a Modified Cyclomatic Complexity of 4 (Highest = 18).
-</violation>
-<violation beginline="67" endline="586" begincolumn="8" endcolumn="1" rule="StdCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.articulos.proveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
-The class 'ArticulosProveedor' has a Standard Cyclomatic Complexity of 4 (Highest = 18).
-</violation>
-<violation beginline="86" endline="86" begincolumn="47" endcolumn="62" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" method="buscarArticulos" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
-The String literal &quot;codigoCompania&quot; appears 4 times in this file; the first occurrence is on line 86
-</violation>
-<violation beginline="87" endline="87" begincolumn="47" endcolumn="63" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" method="buscarArticulos" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
-The String literal &quot;codigoProveedor&quot; appears 4 times in this file; the first occurrence is on line 87
-</violation>
-<violation beginline="121" endline="121" begincolumn="24" endcolumn="32" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" method="buscarArticulos" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
-Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
-</violation>
-<violation beginline="135" endline="232" begincolumn="30" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" method="guardarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
-The method 'guardarOfertasProveedor' has a Cyclomatic Complexity of 20.
-</violation>
-<violation beginline="135" endline="232" begincolumn="30" endcolumn="9" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" method="guardarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
-The method 'guardarOfertasProveedor' has a Modified Cyclomatic Complexity of 18.
-</violation>
-<violation beginline="135" endline="232" begincolumn="30" endcolumn="9" rule="StdCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" method="guardarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
-The method 'guardarOfertasProveedor' has a Standard Cyclomatic Complexity of 18.
-</violation>
-<violation beginline="135" endline="232" begincolumn="30" endcolumn="9" rule="NPathComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" method="guardarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#NPathComplexity" priority="3">
-The method guardarOfertasProveedor() has an NPath complexity of 338583
-</violation>
-<violation beginline="136" endline="136" begincolumn="60" endcolumn="71" rule="AvoidReassigningParameters" ruleset="Design" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" method="guardarOfertasProveedor" variable="codigoOferta" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#AvoidReassigningParameters" priority="2">
-Avoid reassigning parameters such as 'codigoOferta'
-</violation>
-<violation beginline="136" endline="136" begincolumn="39" endcolumn="52" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" method="guardarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
-The String literal &quot;codigoOferta&quot; appears 4 times in this file; the first occurrence is on line 136
-</violation>
-<violation beginline="138" endline="138" begincolumn="17" endcolumn="53" rule="PrematureDeclaration" ruleset="Optimization" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" method="guardarOfertasProveedor" variable="dataOK" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/optimizations.html#PrematureDeclaration" priority="3">
-Avoid declaring a variable if it is unreferenced before a possible exit point.
-</violation>
-<violation beginline="170" endline="170" begincolumn="77" endcolumn="83" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" method="guardarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
-The String literal &quot;fecha&quot; appears 4 times in this file; the first occurrence is on line 170
-</violation>
-<violation beginline="190" endline="190" begincolumn="78" endcolumn="83" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" method="guardarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
-The String literal &quot;peso&quot; appears 4 times in this file; the first occurrence is on line 190
-</violation>
-<violation beginline="191" endline="191" begincolumn="82" endcolumn="91" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" method="guardarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
-The String literal &quot;cantidad&quot; appears 4 times in this file; the first occurrence is on line 191
-</violation>
-<violation beginline="207" endline="209" begincolumn="57" endcolumn="57" rule="AvoidDeeplyNestedIfStmts" ruleset="Design" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" method="guardarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#AvoidDeeplyNestedIfStmts" priority="3">
-Deeply nested if..then statements are hard to read
-</violation>
-<violation beginline="228" endline="228" begincolumn="25" endcolumn="33" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" method="guardarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
-Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
-</violation>
-<violation beginline="240" endline="240" begincolumn="54" endcolumn="105" rule="UnusedPrivateMethod" ruleset="Unused Code" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" method="enviarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedPrivateMethod" priority="3">
-Avoid unused private methods such as 'enviarOfertasProveedor(String)'.
-</violation>
-<violation beginline="242" endline="242" begincolumn="17" endcolumn="53" rule="PrematureDeclaration" ruleset="Optimization" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" method="enviarOfertasProveedor" variable="dataOK" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/optimizations.html#PrematureDeclaration" priority="3">
-Avoid declaring a variable if it is unreferenced before a possible exit point.
-</violation>
-<violation beginline="252" endline="252" begincolumn="24" endcolumn="32" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" method="enviarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
-Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
-</violation>
-<violation beginline="478" endline="501" begincolumn="9" endcolumn="9" rule="MissingSerialVersionUID" ruleset="JavaBeans" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/javabeans.html#MissingSerialVersionUID" priority="3">
-Classes implementing Serializable should set a serialVersionUID
-</violation>
-<violation beginline="503" endline="555" begincolumn="9" endcolumn="9" rule="MissingSerialVersionUID" ruleset="JavaBeans" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/javabeans.html#MissingSerialVersionUID" priority="3">
-Classes implementing Serializable should set a serialVersionUID
-</violation>
-<violation beginline="508" endline="508" begincolumn="33" endcolumn="46" rule="UnusedPrivateField" ruleset="Unused Code" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor$Articulo" variable="cantidadMaxima" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedPrivateField" priority="3">
-Avoid unused private fields such as 'cantidadMaxima'.
-</violation>
-<violation beginline="509" endline="509" begincolumn="36" endcolumn="45" rule="UnusedPrivateField" ruleset="Unused Code" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor$Articulo" variable="pesoMaximo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedPrivateField" priority="3">
-Avoid unused private fields such as 'pesoMaximo'.
-</violation>
-<violation beginline="557" endline="585" begincolumn="9" endcolumn="9" rule="MissingSerialVersionUID" ruleset="JavaBeans" package="ec.com.smx.sic.webservices.articulos.proveedor" class="ArticulosProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/javabeans.html#MissingSerialVersionUID" priority="3">
-Classes implementing Serializable should set a serialVersionUID
 </violation>
 </file>
 <file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\cambioprecios\LecturaDatosWebService.java">
@@ -654,7 +592,7 @@ Avoid appending characters as strings in StringBuffer.append.
 </violation>
 </file>
 <file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\commons\utils\RecargaCuponUtils.java">
-<violation beginline="32" endline="112" begincolumn="38" endcolumn="1" rule="UseUtilityClass" ruleset="Design" package="ec.com.smx.sic.webservices.commons.utils" class="RecargaCuponUtils" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#UseUtilityClass" priority="3">
+<violation beginline="35" endline="162" begincolumn="38" endcolumn="1" rule="UseUtilityClass" ruleset="Design" package="ec.com.smx.sic.webservices.commons.utils" class="RecargaCuponUtils" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#UseUtilityClass" priority="3">
 All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
 </violation>
 </file>
@@ -746,6 +684,86 @@ Avoid concatenating nonliterals in a StringBuffer/StringBuilder constructor or a
 Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
 </violation>
 </file>
+<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\fruver\OfertaProveedor.java">
+<violation beginline="64" endline="658" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.fruver" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+The class 'OfertaProveedor' has a Cyclomatic Complexity of 5 (Highest = 21).
+</violation>
+<violation beginline="64" endline="658" begincolumn="8" endcolumn="1" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.fruver" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
+The class 'OfertaProveedor' has a Modified Cyclomatic Complexity of 5 (Highest = 20).
+</violation>
+<violation beginline="64" endline="658" begincolumn="8" endcolumn="1" rule="StdCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.fruver" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
+The class 'OfertaProveedor' has a Standard Cyclomatic Complexity of 5 (Highest = 20).
+</violation>
+<violation beginline="82" endline="82" begincolumn="91" endcolumn="116" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;Accept= application/json&quot; appears 4 times in this file; the first occurrence is on line 82
+</violation>
+<violation beginline="85" endline="85" begincolumn="47" endcolumn="62" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" method="buscarArticulos" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;codigoCompania&quot; appears 6 times in this file; the first occurrence is on line 85
+</violation>
+<violation beginline="86" endline="86" begincolumn="47" endcolumn="63" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" method="buscarArticulos" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;codigoProveedor&quot; appears 5 times in this file; the first occurrence is on line 86
+</violation>
+<violation beginline="110" endline="110" begincolumn="24" endcolumn="32" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" method="buscarArticulos" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
+Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+</violation>
+<violation beginline="139" endline="139" begincolumn="24" endcolumn="32" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" method="validarAccesoSolicitudes" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
+Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+</violation>
+<violation beginline="154" endline="154" begincolumn="24" endcolumn="32" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" method="esOfertaEnviada" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
+Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+</violation>
+<violation beginline="170" endline="265" begincolumn="30" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" method="guardarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+The method 'guardarOfertasProveedor' has a Cyclomatic Complexity of 21.
+</violation>
+<violation beginline="170" endline="265" begincolumn="30" endcolumn="9" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" method="guardarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
+The method 'guardarOfertasProveedor' has a Modified Cyclomatic Complexity of 20.
+</violation>
+<violation beginline="170" endline="265" begincolumn="30" endcolumn="9" rule="StdCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" method="guardarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
+The method 'guardarOfertasProveedor' has a Standard Cyclomatic Complexity of 20.
+</violation>
+<violation beginline="170" endline="265" begincolumn="30" endcolumn="9" rule="NPathComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" method="guardarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#NPathComplexity" priority="3">
+The method guardarOfertasProveedor() has an NPath complexity of 3402183
+</violation>
+<violation beginline="171" endline="171" begincolumn="60" endcolumn="71" rule="AvoidReassigningParameters" ruleset="Design" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" method="guardarOfertasProveedor" variable="codigoOferta" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'codigoOferta'
+</violation>
+<violation beginline="171" endline="171" begincolumn="39" endcolumn="52" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" method="guardarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;codigoOferta&quot; appears 4 times in this file; the first occurrence is on line 171
+</violation>
+<violation beginline="173" endline="173" begincolumn="17" endcolumn="53" rule="PrematureDeclaration" ruleset="Optimization" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" method="guardarOfertasProveedor" variable="dataOK" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/optimizations.html#PrematureDeclaration" priority="3">
+Avoid declaring a variable if it is unreferenced before a possible exit point.
+</violation>
+<violation beginline="204" endline="204" begincolumn="78" endcolumn="83" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" method="guardarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;peso&quot; appears 4 times in this file; the first occurrence is on line 204
+</violation>
+<violation beginline="205" endline="205" begincolumn="82" endcolumn="91" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" method="guardarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;cantidad&quot; appears 4 times in this file; the first occurrence is on line 205
+</violation>
+<violation beginline="238" endline="238" begincolumn="137" endcolumn="153" rule="BigIntegerInstantiation" ruleset="Basic" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" method="guardarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/basic.html#BigIntegerInstantiation" priority="3">
+Dont create instances of already existing BigInteger and BigDecimal (ZERO, ONE, TEN)
+</violation>
+<violation beginline="261" endline="261" begincolumn="25" endcolumn="33" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" method="guardarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
+Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+</violation>
+<violation beginline="273" endline="273" begincolumn="54" endcolumn="105" rule="UnusedPrivateMethod" ruleset="Unused Code" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" method="enviarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedPrivateMethod" priority="3">
+Avoid unused private methods such as 'enviarOfertasProveedor(String)'.
+</violation>
+<violation beginline="275" endline="275" begincolumn="17" endcolumn="53" rule="PrematureDeclaration" ruleset="Optimization" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" method="enviarOfertasProveedor" variable="dataOK" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/optimizations.html#PrematureDeclaration" priority="3">
+Avoid declaring a variable if it is unreferenced before a possible exit point.
+</violation>
+<violation beginline="285" endline="285" begincolumn="24" endcolumn="32" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" method="enviarOfertasProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
+Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+</violation>
+<violation beginline="515" endline="538" begincolumn="9" endcolumn="9" rule="MissingSerialVersionUID" ruleset="JavaBeans" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/javabeans.html#MissingSerialVersionUID" priority="3">
+Classes implementing Serializable should set a serialVersionUID
+</violation>
+<violation beginline="540" endline="627" begincolumn="9" endcolumn="9" rule="MissingSerialVersionUID" ruleset="JavaBeans" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/javabeans.html#MissingSerialVersionUID" priority="3">
+Classes implementing Serializable should set a serialVersionUID
+</violation>
+<violation beginline="629" endline="657" begincolumn="9" endcolumn="9" rule="MissingSerialVersionUID" ruleset="JavaBeans" package="ec.com.smx.sic.webservices.fruver" class="OfertaProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/javabeans.html#MissingSerialVersionUID" priority="3">
+Classes implementing Serializable should set a serialVersionUID
+</violation>
+</file>
 <file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\inventario\InventarioWebService.java">
 <violation beginline="84" endline="84" begincolumn="26" endcolumn="34" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.webservices.inventario" class="InventarioWebService" method="consultaDatosFormatoJSON" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
 Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
@@ -786,115 +804,182 @@ Too many fields
 Consider using varargs for methods or constructors which take an array the last parameter.
 </violation>
 </file>
-<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\pedidoAsistido\PedidoAsistidoWebService.java">
+<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\pedidoAsistido\PedidoAsistidoCreacionWebService.java">
 <violation beginline="1" endline="1" begincolumn="9" endcolumn="49" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.pedidoAsistido" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
 Package name contains upper case characters
 </violation>
-<violation beginline="54" endline="550" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
-The class 'PedidoAsistidoWebService' has a Cyclomatic Complexity of 7 (Highest = 14).
+<violation beginline="49" endline="410" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+The class 'PedidoAsistidoCreacionWebService' has a Cyclomatic Complexity of 10 (Highest = 39).
 </violation>
-<violation beginline="54" endline="550" begincolumn="8" endcolumn="1" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
-The class 'PedidoAsistidoWebService' has a Modified Cyclomatic Complexity of 6 (Highest = 13).
+<violation beginline="49" endline="410" begincolumn="8" endcolumn="1" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
+The class 'PedidoAsistidoCreacionWebService' has a Modified Cyclomatic Complexity of 10 (Highest = 39).
 </violation>
-<violation beginline="54" endline="550" begincolumn="8" endcolumn="1" rule="StdCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
-The class 'PedidoAsistidoWebService' has a Standard Cyclomatic Complexity of 6 (Highest = 13).
+<violation beginline="49" endline="410" begincolumn="8" endcolumn="1" rule="StdCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
+The class 'PedidoAsistidoCreacionWebService' has a Standard Cyclomatic Complexity of 10 (Highest = 39).
 </violation>
-<violation beginline="58" endline="58" begincolumn="22" endcolumn="25" rule="UnusedPrivateField" ruleset="Unused Code" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoWebService" variable="gson" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedPrivateField" priority="3">
+<violation beginline="53" endline="53" begincolumn="22" endcolumn="25" rule="UnusedPrivateField" ruleset="Unused Code" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoCreacionWebService" variable="gson" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedPrivateField" priority="3">
 Avoid unused private fields such as 'gson'.
 </violation>
-<violation beginline="84" endline="223" begincolumn="30" endcolumn="9" rule="ExcessiveMethodLength" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoWebService" method="findCDsFuncConf" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessiveMethodLength" priority="3">
+<violation beginline="91" endline="251" begincolumn="16" endcolumn="9" rule="ExcessiveMethodLength" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoCreacionWebService" method="actualizarRotacionesPedidoAsistido" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessiveMethodLength" priority="3">
 Avoid really long methods.
 </violation>
-<violation beginline="84" endline="223" begincolumn="30" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoWebService" method="findCDsFuncConf" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
-The method 'findCDsFuncConf' has a Cyclomatic Complexity of 14.
+<violation beginline="91" endline="251" begincolumn="16" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoCreacionWebService" method="actualizarRotacionesPedidoAsistido" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+The method 'actualizarRotacionesPedidoAsistido' has a Cyclomatic Complexity of 39.
 </violation>
-<violation beginline="84" endline="223" begincolumn="30" endcolumn="9" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoWebService" method="findCDsFuncConf" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
-The method 'findCDsFuncConf' has a Modified Cyclomatic Complexity of 13.
+<violation beginline="91" endline="251" begincolumn="16" endcolumn="9" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoCreacionWebService" method="actualizarRotacionesPedidoAsistido" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
+The method 'actualizarRotacionesPedidoAsistido' has a Modified Cyclomatic Complexity of 39.
 </violation>
-<violation beginline="84" endline="223" begincolumn="30" endcolumn="9" rule="StdCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoWebService" method="findCDsFuncConf" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
-The method 'findCDsFuncConf' has a Standard Cyclomatic Complexity of 13.
+<violation beginline="91" endline="251" begincolumn="16" endcolumn="9" rule="StdCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoCreacionWebService" method="actualizarRotacionesPedidoAsistido" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
+The method 'actualizarRotacionesPedidoAsistido' has a Standard Cyclomatic Complexity of 39.
 </violation>
-<violation beginline="155" endline="188" begincolumn="65" endcolumn="65" rule="ConfusingTernary" ruleset="Design" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoWebService" method="findCDsFuncConf" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#ConfusingTernary" priority="3">
+<violation beginline="91" endline="251" begincolumn="16" endcolumn="9" rule="NcssMethodCount" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoCreacionWebService" method="actualizarRotacionesPedidoAsistido" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#NcssMethodCount" priority="3">
+The method actualizarRotacionesPedidoAsistido() has an NCSS line count of 140
+</violation>
+<violation beginline="106" endline="106" begincolumn="29" endcolumn="63" rule="PositionLiteralsFirstInComparisons" ruleset="Design" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoCreacionWebService" method="actualizarRotacionesPedidoAsistido" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#PositionLiteralsFirstInComparisons" priority="3">
+Position literals first in String comparisons
+</violation>
+<violation beginline="136" endline="136" begincolumn="77" endcolumn="79" rule="AppendCharacterWithChar" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoCreacionWebService" method="actualizarRotacionesPedidoAsistido" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AppendCharacterWithChar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="148" endline="148" begincolumn="36" endcolumn="71" rule="PositionLiteralsFirstInComparisons" ruleset="Design" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoCreacionWebService" method="actualizarRotacionesPedidoAsistido" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#PositionLiteralsFirstInComparisons" priority="3">
+Position literals first in String comparisons
+</violation>
+<violation beginline="188" endline="188" begincolumn="77" endcolumn="79" rule="AppendCharacterWithChar" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoCreacionWebService" method="actualizarRotacionesPedidoAsistido" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AppendCharacterWithChar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="200" endline="200" begincolumn="36" endcolumn="71" rule="PositionLiteralsFirstInComparisons" ruleset="Design" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoCreacionWebService" method="actualizarRotacionesPedidoAsistido" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#PositionLiteralsFirstInComparisons" priority="3">
+Position literals first in String comparisons
+</violation>
+<violation beginline="207" endline="207" begincolumn="48" endcolumn="58" rule="UnusedLocalVariable" ruleset="Unused Code" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoCreacionWebService" method="actualizarRotacionesPedidoAsistido" variable="diaFechaRot" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedLocalVariable" priority="3">
+Avoid unused local variables such as 'diaFechaRot'.
+</violation>
+<violation beginline="280" endline="406" begincolumn="30" endcolumn="9" rule="ExcessiveMethodLength" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoCreacionWebService" method="gestionarDetalles" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessiveMethodLength" priority="3">
+Avoid really long methods.
+</violation>
+<violation beginline="364" endline="364" begincolumn="21" endcolumn="57" rule="PositionLiteralsFirstInComparisons" ruleset="Design" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoCreacionWebService" method="gestionarDetalles" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#PositionLiteralsFirstInComparisons" priority="3">
+Position literals first in String comparisons
+</violation>
+</file>
+<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\pedidoAsistido\PedidoAsistidoFiltrosWebService.java">
+<violation beginline="1" endline="1" begincolumn="9" endcolumn="49" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.pedidoAsistido" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
+Package name contains upper case characters
+</violation>
+<violation beginline="102" endline="102" begincolumn="65" endcolumn="90" rule="UnusedLocalVariable" ruleset="Unused Code" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoFiltrosWebService" method="findCDsFuncConf" variable="estructuraConfiguracionDia" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedLocalVariable" priority="3">
+Avoid unused local variables such as 'estructuraConfiguracionDia'.
+</violation>
+<violation beginline="103" endline="103" begincolumn="30" endcolumn="40" rule="UnusedLocalVariable" ruleset="Unused Code" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoFiltrosWebService" method="findCDsFuncConf" variable="fechaPedido" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedLocalVariable" priority="3">
+Avoid unused local variables such as 'fechaPedido'.
+</violation>
+<violation beginline="147" endline="147" begincolumn="41" endcolumn="73" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoFiltrosWebService" method="findCDsFuncConf" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
+Avoid using if...else statements without curly braces
+</violation>
+<violation beginline="375" endline="409" begincolumn="25" endcolumn="25" rule="ConfusingTernary" ruleset="Design" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoFiltrosWebService" method="findValidarSubbodega" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#ConfusingTernary" priority="3">
 Avoid if (x != y) ..; else ..;
 </violation>
-<violation beginline="167" endline="173" begincolumn="81" endcolumn="81" rule="AvoidDeeplyNestedIfStmts" ruleset="Design" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoWebService" method="findCDsFuncConf" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#AvoidDeeplyNestedIfStmts" priority="3">
+<violation beginline="390" endline="394" begincolumn="49" endcolumn="49" rule="CollapsibleIfStatements" ruleset="Basic" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoFiltrosWebService" method="findValidarSubbodega" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="417" endline="417" begincolumn="26" endcolumn="34" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoFiltrosWebService" method="findValidarSubbodega" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
+Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+</violation>
+<violation beginline="427" endline="544" begincolumn="30" endcolumn="9" rule="ExcessiveMethodLength" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoFiltrosWebService" method="findPedidoDia" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessiveMethodLength" priority="3">
+Avoid really long methods.
+</violation>
+<violation beginline="539" endline="539" begincolumn="26" endcolumn="34" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoFiltrosWebService" method="findPedidoDia" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
+Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+</violation>
+</file>
+<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\controller\BinCardController.java">
+<violation beginline="1" endline="1" begincolumn="9" endcolumn="58" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.controller" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
+Package name contains upper case characters
+</violation>
+<violation beginline="34" endline="188" begincolumn="14" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+The class 'BinCardController' has a Cyclomatic Complexity of 7 (Highest = 17).
+</violation>
+<violation beginline="34" endline="188" begincolumn="14" endcolumn="1" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
+The class 'BinCardController' has a Modified Cyclomatic Complexity of 6 (Highest = 15).
+</violation>
+<violation beginline="34" endline="188" begincolumn="14" endcolumn="1" rule="StdCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
+The class 'BinCardController' has a Standard Cyclomatic Complexity of 6 (Highest = 15).
+</violation>
+<violation beginline="39" endline="118" begincolumn="23" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="BinCardController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+The method 'findAll' has a Cyclomatic Complexity of 17.
+</violation>
+<violation beginline="39" endline="118" begincolumn="23" endcolumn="9" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="BinCardController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
+The method 'findAll' has a Modified Cyclomatic Complexity of 15.
+</violation>
+<violation beginline="39" endline="118" begincolumn="23" endcolumn="9" rule="StdCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="BinCardController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
+The method 'findAll' has a Standard Cyclomatic Complexity of 15.
+</violation>
+<violation beginline="39" endline="118" begincolumn="23" endcolumn="9" rule="NPathComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="BinCardController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#NPathComplexity" priority="3">
+The method findAll() has an NPath complexity of 803
+</violation>
+<violation beginline="72" endline="73" begincolumn="41" endcolumn="150" rule="IfStmtsMustUseBraces" ruleset="Braces" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="BinCardController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/braces.html#IfStmtsMustUseBraces" priority="3">
+Avoid using if statements without curly braces
+</violation>
+<violation beginline="72" endline="73" begincolumn="41" endcolumn="150" rule="AvoidDeeplyNestedIfStmts" ruleset="Design" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="BinCardController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#AvoidDeeplyNestedIfStmts" priority="3">
 Deeply nested if..then statements are hard to read
 </violation>
-<violation beginline="168" endline="172" begincolumn="89" endcolumn="89" rule="CollapsibleIfStatements" ruleset="Basic" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoWebService" method="findCDsFuncConf" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/basic.html#CollapsibleIfStatements" priority="3">
-These nested if statements could be combined
-</violation>
-<violation beginline="192" endline="192" begincolumn="57" endcolumn="105" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoWebService" method="findCDsFuncConf" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
-Avoid using if...else statements without curly braces
-</violation>
-<violation beginline="200" endline="200" begincolumn="41" endcolumn="73" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoWebService" method="findCDsFuncConf" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
-Avoid using if...else statements without curly braces
-</violation>
-<violation beginline="226" endline="286" begincolumn="16" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoWebService" method="getSubbodegasCD" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
-The method 'getSubbodegasCD' has a Cyclomatic Complexity of 11.
-</violation>
-<violation beginline="226" endline="286" begincolumn="16" endcolumn="9" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoWebService" method="getSubbodegasCD" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
-The method 'getSubbodegasCD' has a Modified Cyclomatic Complexity of 10.
-</violation>
-<violation beginline="226" endline="286" begincolumn="16" endcolumn="9" rule="StdCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoWebService" method="getSubbodegasCD" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
-The method 'getSubbodegasCD' has a Standard Cyclomatic Complexity of 10.
-</violation>
-<violation beginline="431" endline="462" begincolumn="17" endcolumn="17" rule="ConfusingTernary" ruleset="Design" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoWebService" method="findValidarSubbodega" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#ConfusingTernary" priority="3">
-Avoid if (x != y) ..; else ..;
-</violation>
-<violation beginline="443" endline="447" begincolumn="41" endcolumn="41" rule="CollapsibleIfStatements" ruleset="Basic" package="ec.com.smx.sic.webservices.pedidoAsistido" class="PedidoAsistidoWebService" method="findValidarSubbodega" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/basic.html#CollapsibleIfStatements" priority="3">
-These nested if statements could be combined
+<violation beginline="142" endline="143" begincolumn="25" endcolumn="97" rule="IfStmtsMustUseBraces" ruleset="Braces" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="BinCardController" method="create" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/braces.html#IfStmtsMustUseBraces" priority="3">
+Avoid using if statements without curly braces
 </violation>
 </file>
 <file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\controller\ContentController.java">
 <violation beginline="1" endline="1" begincolumn="9" endcolumn="58" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.controller" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
 Package name contains upper case characters
 </violation>
-<violation beginline="31" endline="260" begincolumn="14" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
-The class 'ContentController' has a Cyclomatic Complexity of 8 (Highest = 16).
+<violation beginline="34" endline="326" begincolumn="14" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+The class 'ContentController' has a Cyclomatic Complexity of 7 (Highest = 16).
 </violation>
-<violation beginline="31" endline="260" begincolumn="14" endcolumn="1" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
+<violation beginline="34" endline="326" begincolumn="14" endcolumn="1" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
 The class 'ContentController' has a Modified Cyclomatic Complexity of 6 (Highest = 12).
 </violation>
-<violation beginline="31" endline="260" begincolumn="14" endcolumn="1" rule="StdCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
-The class 'ContentController' has a Standard Cyclomatic Complexity of 8 (Highest = 16).
+<violation beginline="34" endline="326" begincolumn="14" endcolumn="1" rule="StdCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
+The class 'ContentController' has a Standard Cyclomatic Complexity of 7 (Highest = 16).
 </violation>
-<violation beginline="36" endline="87" begincolumn="23" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+<violation beginline="39" endline="93" begincolumn="23" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
 The method 'findAll' has a Cyclomatic Complexity of 12.
 </violation>
-<violation beginline="36" endline="87" begincolumn="23" endcolumn="9" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
+<violation beginline="39" endline="93" begincolumn="23" endcolumn="9" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
 The method 'findAll' has a Modified Cyclomatic Complexity of 10.
 </violation>
-<violation beginline="36" endline="87" begincolumn="23" endcolumn="9" rule="StdCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
+<violation beginline="39" endline="93" begincolumn="23" endcolumn="9" rule="StdCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
 The method 'findAll' has a Standard Cyclomatic Complexity of 12.
 </violation>
-<violation beginline="62" endline="74" begincolumn="57" endcolumn="57" rule="AvoidDeeplyNestedIfStmts" ruleset="Design" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#AvoidDeeplyNestedIfStmts" priority="3">
+<violation beginline="65" endline="80" begincolumn="57" endcolumn="57" rule="AvoidDeeplyNestedIfStmts" ruleset="Design" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#AvoidDeeplyNestedIfStmts" priority="3">
 Deeply nested if..then statements are hard to read
 </violation>
-<violation beginline="63" endline="73" begincolumn="65" endcolumn="65" rule="SwitchStmtsShouldHaveDefault" ruleset="Design" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#SwitchStmtsShouldHaveDefault" priority="3">
+<violation beginline="66" endline="79" begincolumn="65" endcolumn="65" rule="SwitchStmtsShouldHaveDefault" ruleset="Design" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#SwitchStmtsShouldHaveDefault" priority="3">
 Switch statements should have a default label
 </violation>
-<violation beginline="64" endline="64" begincolumn="70" endcolumn="74" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
-The String literal &quot;IMC&quot; appears 4 times in this file; the first occurrence is on line 64
-</violation>
 <violation beginline="67" endline="67" begincolumn="70" endcolumn="74" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
-The String literal &quot;IMT&quot; appears 4 times in this file; the first occurrence is on line 67
+The String literal &quot;IMC&quot; appears 4 times in this file; the first occurrence is on line 67
 </violation>
-<violation beginline="81" endline="81" begincolumn="59" endcolumn="79" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
-The String literal &quot;content/findAll: {}&quot; appears 4 times in this file; the first occurrence is on line 81
+<violation beginline="71" endline="71" begincolumn="70" endcolumn="74" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;IMT&quot; appears 4 times in this file; the first occurrence is on line 71
 </violation>
-<violation beginline="172" endline="257" begincolumn="23" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAllByGroup" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+<violation beginline="87" endline="87" begincolumn="59" endcolumn="79" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAll" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;content/findAll: {}&quot; appears 4 times in this file; the first occurrence is on line 87
+</violation>
+<violation beginline="95" endline="204" begincolumn="23" endcolumn="9" rule="ExcessiveMethodLength" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="create" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessiveMethodLength" priority="3">
+Avoid really long methods.
+</violation>
+<violation beginline="95" endline="204" begincolumn="23" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="create" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+The method 'create' has a Cyclomatic Complexity of 10.
+</violation>
+<violation beginline="221" endline="311" begincolumn="23" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAllByGroup" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
 The method 'findAllByGroup' has a Cyclomatic Complexity of 16.
 </violation>
-<violation beginline="172" endline="257" begincolumn="23" endcolumn="9" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAllByGroup" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
+<violation beginline="221" endline="311" begincolumn="23" endcolumn="9" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAllByGroup" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
 The method 'findAllByGroup' has a Modified Cyclomatic Complexity of 12.
 </violation>
-<violation beginline="172" endline="257" begincolumn="23" endcolumn="9" rule="StdCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAllByGroup" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
+<violation beginline="221" endline="311" begincolumn="23" endcolumn="9" rule="StdCyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAllByGroup" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
 The method 'findAllByGroup' has a Standard Cyclomatic Complexity of 16.
 </violation>
-<violation beginline="209" endline="211" begincolumn="72" endcolumn="65" rule="AvoidDeeplyNestedIfStmts" ruleset="Design" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAllByGroup" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#AvoidDeeplyNestedIfStmts" priority="3">
+<violation beginline="258" endline="260" begincolumn="72" endcolumn="65" rule="AvoidDeeplyNestedIfStmts" ruleset="Design" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAllByGroup" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#AvoidDeeplyNestedIfStmts" priority="3">
 Deeply nested if..then statements are hard to read
 </violation>
-<violation beginline="216" endline="232" begincolumn="41" endcolumn="41" rule="SwitchStmtsShouldHaveDefault" ruleset="Design" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAllByGroup" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#SwitchStmtsShouldHaveDefault" priority="3">
+<violation beginline="265" endline="286" begincolumn="41" endcolumn="41" rule="SwitchStmtsShouldHaveDefault" ruleset="Design" package="ec.com.smx.sic.webservices.recargaCupon.controller" class="ContentController" method="findAllByGroup" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#SwitchStmtsShouldHaveDefault" priority="3">
 Switch statements should have a default label
 </violation>
 </file>
@@ -908,9 +993,79 @@ Package name contains upper case characters
 Package name contains upper case characters
 </violation>
 </file>
+<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\jsonObjects\Articulo.java">
+<violation beginline="1" endline="1" begincolumn="9" endcolumn="59" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.jsonObjects" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
+Package name contains upper case characters
+</violation>
+</file>
+<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\jsonObjects\ArticuloConvenio.java">
+<violation beginline="1" endline="1" begincolumn="9" endcolumn="59" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.jsonObjects" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
+Package name contains upper case characters
+</violation>
+</file>
+<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\jsonObjects\BinTarjeta.java">
+<violation beginline="1" endline="1" begincolumn="9" endcolumn="59" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.jsonObjects" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
+Package name contains upper case characters
+</violation>
+</file>
+<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\jsonObjects\BinTarjetaDelete.java">
+<violation beginline="1" endline="1" begincolumn="9" endcolumn="59" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.jsonObjects" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
+Package name contains upper case characters
+</violation>
+</file>
+<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\jsonObjects\BinesTarjetas.java">
+<violation beginline="1" endline="1" begincolumn="9" endcolumn="59" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.jsonObjects" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
+Package name contains upper case characters
+</violation>
+</file>
+<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\jsonObjects\CatalogoValorConvenio.java">
+<violation beginline="1" endline="1" begincolumn="9" endcolumn="59" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.jsonObjects" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
+Package name contains upper case characters
+</violation>
+</file>
+<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\jsonObjects\ClienteConvenio.java">
+<violation beginline="1" endline="1" begincolumn="9" endcolumn="59" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.jsonObjects" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
+Package name contains upper case characters
+</violation>
+</file>
+<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\jsonObjects\Convenio.java">
+<violation beginline="1" endline="1" begincolumn="9" endcolumn="59" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.jsonObjects" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
+Package name contains upper case characters
+</violation>
+<violation beginline="8" endline="170" begincolumn="8" endcolumn="1" rule="TooManyFields" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.jsonObjects" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#TooManyFields" priority="3">
+Too many fields
+</violation>
+</file>
+<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\jsonObjects\ConvenioRequest.java">
+<violation beginline="1" endline="1" begincolumn="9" endcolumn="59" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.jsonObjects" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
+Package name contains upper case characters
+</violation>
+</file>
+<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\jsonObjects\ConvenioResponse.java">
+<violation beginline="1" endline="1" begincolumn="9" endcolumn="59" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.jsonObjects" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
+Package name contains upper case characters
+</violation>
+</file>
+<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\jsonObjects\File.java">
+<violation beginline="1" endline="1" begincolumn="9" endcolumn="59" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.jsonObjects" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
+Package name contains upper case characters
+</violation>
+<violation beginline="5" endline="29" begincolumn="8" endcolumn="1" rule="ShortClassName" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.jsonObjects" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#ShortClassName" priority="4">
+Avoid short class names like File
+</violation>
+<violation beginline="7" endline="7" begincolumn="17" endcolumn="28" rule="AvoidFieldNameMatchingTypeName" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.jsonObjects" class="File" variable="file" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#AvoidFieldNameMatchingTypeName" priority="3">
+It is somewhat confusing to have a field name matching the declaring class name
+</violation>
+<violation beginline="18" endline="18" begincolumn="29" endcolumn="39" rule="UseVarargs" ruleset="Design" package="ec.com.smx.sic.webservices.recargaCupon.jsonObjects" class="File" method="setFile" variable="file" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#UseVarargs" priority="4">
+Consider using varargs for methods or constructors which take an array the last parameter.
+</violation>
+</file>
 <file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\jsonObjects\Promotion.java">
 <violation beginline="1" endline="1" begincolumn="9" endcolumn="59" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.jsonObjects" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
 Package name contains upper case characters
+</violation>
+<violation beginline="8" endline="158" begincolumn="8" endcolumn="1" rule="TooManyFields" ruleset="Code Size" package="ec.com.smx.sic.webservices.recargaCupon.jsonObjects" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#TooManyFields" priority="3">
+Too many fields
 </violation>
 </file>
 <file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\jsonObjects\Promotions.java">
@@ -921,23 +1076,76 @@ Package name contains upper case characters
 It is somewhat confusing to have a field name matching the declaring class name
 </violation>
 </file>
+<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\ws\IBinCardResourceService.java">
+<violation beginline="1" endline="1" begincolumn="9" endcolumn="50" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.ws" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
+Package name contains upper case characters
+</violation>
+</file>
 <file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\ws\IContentResourceService.java">
 <violation beginline="1" endline="1" begincolumn="9" endcolumn="50" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.ws" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
 Package name contains upper case characters
 </violation>
-<violation beginline="57" endline="57" begincolumn="16" endcolumn="84" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.webservices.recargaCupon.ws" class="IContentResourceService" method="delete" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+</file>
+<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\ws\IConveniosResourceService.java">
+<violation beginline="1" endline="1" begincolumn="9" endcolumn="50" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.ws" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
+Package name contains upper case characters
+</violation>
+<violation beginline="32" endline="32" begincolumn="55" endcolumn="72" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.recargaCupon.ws" class="IConveniosResourceService" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;application/json&quot; appears 8 times in this file; the first occurrence is on line 32
+</violation>
+<violation beginline="34" endline="34" begincolumn="16" endcolumn="118" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.webservices.recargaCupon.ws" class="IConveniosResourceService" method="create" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
 Avoid modifiers which are implied by the context
 </violation>
-<violation beginline="64" endline="64" begincolumn="30" endcolumn="69" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.webservices.recargaCupon.ws" class="IContentResourceService" method="findAllByGroup" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+<violation beginline="38" endline="38" begincolumn="16" endcolumn="121" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.webservices.recargaCupon.ws" class="IConveniosResourceService" method="createCliente" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
 Avoid modifiers which are implied by the context
+</violation>
+<violation beginline="42" endline="42" begincolumn="16" endcolumn="126" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.webservices.recargaCupon.ws" class="IConveniosResourceService" method="findConvenios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+Avoid modifiers which are implied by the context
+</violation>
+<violation beginline="46" endline="46" begincolumn="16" endcolumn="118" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.webservices.recargaCupon.ws" class="IConveniosResourceService" method="findCatalogoConvenio" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+Avoid modifiers which are implied by the context
+</violation>
+<violation beginline="50" endline="50" begincolumn="16" endcolumn="136" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.webservices.recargaCupon.ws" class="IConveniosResourceService" method="findArticulo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+Avoid modifiers which are implied by the context
+</violation>
+<violation beginline="54" endline="54" begincolumn="16" endcolumn="146" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.webservices.recargaCupon.ws" class="IConveniosResourceService" method="findCliente" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+Avoid modifiers which are implied by the context
+</violation>
+<violation beginline="58" endline="58" begincolumn="16" endcolumn="156" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.webservices.recargaCupon.ws" class="IConveniosResourceService" method="findArticulosConvenio" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+Avoid modifiers which are implied by the context
+</violation>
+<violation beginline="62" endline="62" begincolumn="16" endcolumn="155" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.webservices.recargaCupon.ws" class="IConveniosResourceService" method="findClientesConvenio" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+Avoid modifiers which are implied by the context
+</violation>
+</file>
+<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\ws\impl\BinCardResourceService.java">
+<violation beginline="1" endline="1" begincolumn="9" endcolumn="55" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.ws.impl" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
+Package name contains upper case characters
+</violation>
+<violation beginline="40" endline="40" begincolumn="22" endcolumn="34" rule="UnusedPrivateMethod" ruleset="Unused Code" package="ec.com.smx.sic.webservices.recargaCupon.ws.impl" class="BinCardResourceService" method="inicializar" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedPrivateMethod" priority="3">
+Avoid unused private methods such as 'inicializar()'.
 </violation>
 </file>
 <file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\ws\impl\ContentResourceService.java">
 <violation beginline="1" endline="1" begincolumn="9" endcolumn="55" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.ws.impl" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
 Package name contains upper case characters
 </violation>
-<violation beginline="43" endline="43" begincolumn="22" endcolumn="34" rule="UnusedPrivateMethod" ruleset="Unused Code" package="ec.com.smx.sic.webservices.recargaCupon.ws.impl" class="ContentResourceService" method="inicializar" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedPrivateMethod" priority="3">
+<violation beginline="51" endline="51" begincolumn="22" endcolumn="34" rule="UnusedPrivateMethod" ruleset="Unused Code" package="ec.com.smx.sic.webservices.recargaCupon.ws.impl" class="ContentResourceService" method="inicializar" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedPrivateMethod" priority="3">
 Avoid unused private methods such as 'inicializar()'.
+</violation>
+</file>
+<file name="D:\WORKSPACE\prjWebServicesSICWeb\src\main\java\ec\com\smx\sic\webservices\recargaCupon\ws\impl\ConvenioResorceService.java">
+<violation beginline="1" endline="1" begincolumn="9" endcolumn="55" rule="PackageCase" ruleset="Naming" package="ec.com.smx.sic.webservices.recargaCupon.ws.impl" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#PackageCase" priority="3">
+Package name contains upper case characters
+</violation>
+<violation beginline="44" endline="44" begincolumn="84" endcolumn="101" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.recargaCupon.ws.impl" class="ConvenioResorceService" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;application/json&quot; appears 8 times in this file; the first occurrence is on line 44
+</violation>
+<violation beginline="194" endline="194" begincolumn="26" endcolumn="34" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.webservices.recargaCupon.ws.impl" class="ConvenioResorceService" method="findConvenios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
+Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+</violation>
+<violation beginline="195" endline="195" begincolumn="41" endcolumn="51" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.webservices.recargaCupon.ws.impl" class="ConvenioResorceService" method="findConvenios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;Error: {}&quot; appears 6 times in this file; the first occurrence is on line 195
 </violation>
 </file>
 </pmd>

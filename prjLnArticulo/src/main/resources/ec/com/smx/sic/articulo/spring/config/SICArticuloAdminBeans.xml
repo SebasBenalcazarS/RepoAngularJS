@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/batch 
+	http://www.springframework.org/schema/batch/spring-batch.xsd" default-lazy-init="true">
+	
+	<bean id="sicBaseArticuloGestor" class="ec.com.smx.sic.articulo.gestor.admin.BaseArticuloGestor" abstract="true" >
+		<property name="dataGestor"><ref bean="dataGestor"/></property>	
+		<property name="articuloUnidadManejoGestor"><ref bean="sicArticuloUnidadManejoGestor"/></property>
+		<property name="calculoArticuloGestor"><ref bean="sicCalculoArticuloGestor"/></property>
+		<property name="articuloBitacoraGestor"><ref bean="sicArticuloBitacoraGestor"/></property>
+		<property name="articuloComercialGestor"><ref bean="sicArticuloComercialGestor"/></property>
+		<property name="articuloAlcanceGestor"><ref bean="sicArticuloAlcanceGestor"/></property>
+		<property name="articuloProveedorGestor"><ref bean="sicArticuloProveedorGestor"/></property>
+	</bean>
+	
+	<bean id="sicArticuloGestor" class="ec.com.smx.sic.articulo.gestor.admin.ArticuloGestor" parent="sicBaseArticuloGestor">
+		<property name="articuloArchivoGestor"><ref bean="sicArticuloArchivoGestor"/></property>
+		<property name="calculoBusquedaArticuloGestor"><ref bean="sicCalculoBusquedaArticuloGestor"/></property>
+		<property name="calculoBusquedaArticuloGestorB2B"><ref bean="sicCalculoBusquedaArticuloGestorB2B"/></property>
+		<property name="calculoArticuloProveedorNovedadGestor"><ref bean="sicCalculoArticuloProveedorNovedadGestor"/></property>
+		<property name="validacionArticuloGestor"><ref bean="sicValidacionArticuloGestor"/></property>
+		<property name="articuloRegistroSanitarioGestor"><ref bean="sicArticuloRegistroSanitarioGestor"/></property>
+		<property name="articuloDAO"><ref bean="sicArticuloDAO"/></property>
+		<property name="articuloLocalPrecioDAO"><ref bean="sicArticuloLocalPrecioDAO"/></property>
+		<property name="accionArticuloGestor"><ref bean="sicAccionArticuloGestor"/></property>
+		<property name="calculoArticuloLeyenda"><ref bean="sicCalculoArticuloLeyenda"/></property>
+		<property name="articuloBitacoraGestor"><ref bean="sicArticuloBitacoraGestor"/></property>
+		<property name="almacenamientoAuditoriaArticuloGestor"><ref bean="sicAlmacenamientoAuditoriaArticuloGestor"/></property>
+		<property name="validacionArticuloReglasComercialesGestor"><ref bean="sicValidacionArticuloReglasComercialesGestor"/></property>
+		<property name="camposMercanciaDAO"><ref bean="sicVistaCampoMercanciaDAO"/></property>
+		<property name="parametroGestor"><ref bean="sicParametroGestor"/></property>
+		<property name="articuloMercanciaGestor"><ref bean="sicArticuloMercanciaGestor"/></property>
+		<property name="articuloClaseGestor" ref="sicArticuloClaseGestor" />
+		<property name="articuloNuevoImportadoDAO" ref="sicArticuloNuevoImportadoDAO" />
+		<property name="articuloLeyMercadoGestor" ref="sicArticuloLeyMercadoGestor"/>
+		<property name="articuloAgrupadorGestor"><ref bean="sicArticuloAgrupadorGestor"/></property>
+		<property name="articuloPrecioDiferenciadoGestor"><ref bean="sicArticuloPrecioDiferenciadoGestor"/></property>
+		<property name="articuloEdicionMasivaGestor"><ref bean="sicArticuloEdicionMasivaGestor"/></property>
+		<property name="articuloIntegracionDAO" ref="sicArticuloIntegracionDAO"/>
+	</bean>
+	
+	<!-- Articulo recepecion gestor -->
+	<bean id="sicArticuloRecepcionGestor" class="ec.com.smx.sic.articulo.gestor.admin.ArticuloRecepcionGestor" parent="sicBaseArticuloGestor">	
+		<property name="articuloUnidadManejoGestor"><ref bean="sicArticuloUnidadManejoRecepcionGestor"/></property>
+		<property name="articuloProveedorImportacionGestor"><ref bean="sicArticuloProveedorImportacionGestor"/></property>
+		<property name="hibernateH"><ref bean="hibernateH"/></property>
+	</bean>
+	
+	<!-- Articulo recepecion gestor decorator --><!-- Articulo recepecion gestor decorator -->
+	<bean id="sicArticuloRecepcionGestorDecorator" class="ec.com.smx.sic.articulo.gestor.decorator.ArticuloRecepcionGestorDecorator">	
+		<constructor-arg><ref bean="sicArticuloRecepcionGestor"/></constructor-arg>
+	</bean>
+	
+	<bean id="sicCalculoArticuloGestor" class="ec.com.smx.sic.articulo.gestor.admin.calculo.CalculoArticuloGestor">
+		<property name="dataGestor"><ref bean="dataGestor"/></property>
+		<property name="articuloDAO"><ref bean="sicArticuloDAO"/></property>
+		<property name="articuloBitacoraCodigoBarrasDAO"><ref bean="sicArticuloBitacoraCodigoBarrasDAO"/></property>
+	</bean>
+	
+	<bean id="sicCalculoArticuloBitacoraRecepcionGestor" class="ec.com.smx.sic.articulo.gestor.admin.calculo.CalculoArticuloBitacoraRecepcionGestor">
+		<property name="dataGestor"><ref bean="dataGestor"/></property>
+		<property name="articuloDAO"><ref bean="sicArticuloDAO"/></property>
+		<property name="articuloBitacoraCodigoBarrasDAO"><ref bean="sicArticuloBitacoraCodigoBarrasDAO"/></property>
+	</bean>
+	
+	
+	<bean id="sicCalculoBusquedaArticuloGestor" class="ec.com.smx.sic.articulo.gestor.admin.calculo.CalculoBusquedaArticuloGestor">
+		<property name="articuloDAO"><ref bean="sicArticuloDAO"/></property>
+		<property name="dataGestor"><ref bean="dataGestor"/></property>
+		<property name="calculoDatosProveedorGestor"><ref bean="sicCalculoDatosProveedorGestor"/></property>
+		<property name="articuloProveedorDAO"><ref bean="sicArticuloProveedorDAO"/></property>
+		<property name="validacionArticuloGestor"><ref bean="sicValidacionArticuloGestor"/></property>
+		<property name="calculoArticuloGestor"><ref bean="sicCalculoArticuloGestor"/></property>
+		<property name="busquedaArticuloLocalPedidoDAO"><ref bean="sicBusquedaArticuloLocalPedidoDAO"/></property>
+		<property name="articuloNuevoImportadoDAO" ref="sicArticuloNuevoImportadoDAO"/>
+		<property name="articuloBitacoraDAO" ref="sicArticuloBitacoraCodigoBarrasDAO"/>
+	</bean>
+	<bean id="sicCalculoBusquedaArticuloGestorB2B" class="ec.com.smx.sic.articulo.gestor.admin.calculo.CalculoBusquedaArticuloGestorB2B">
+		<property name="articuloDAO"><ref bean="sicArticuloDAO"/></property>
+		<property name="dataGestor"><ref bean="dataGestor"/></property>		
+	</bean>
+	<bean id="sicCalculoArticuloLocalGestor" class="ec.com.smx.sic.articulo.gestor.admin.calculo.CalculoArticuloLocalGestor">
+		<property name="dataGestor"><ref bean="dataGestor"/></property>
+		<property name="articuloLocalDAO"><ref bean="sicArticuloLocalDAO"/></property>
+	</bean>
+	<bean id="sicCalculoArticuloProveedorNovedadGestor" class="ec.com.smx.sic.articulo.gestor.admin.calculo.CalculoArticuloProveedorNovedadGestor">
+		<property name="dataGestor"><ref bean="dataGestor"/></property>
+	</bean>
+	<bean id="sicCalculoArticuloEnvaseGestor" class="ec.com.smx.sic.articulo.gestor.admin.calculo.CalculoArticuloEnvaseGestor">
+		<property name="dataGestor"><ref bean="dataGestor"/></property>
+	</bean>
+		
+	<bean id="sicValidacionArticuloGestor" class="ec.com.smx.sic.articulo.gestor.admin.validacion.ValidacionArticuloGestor">
+		<property name="dataGestor"><ref bean="dataGestor"/></property>
+		<property name="articuloLocalDAO"><ref bean="sicArticuloLocalDAO"/></property>
+		<property name="validacionUnidadManejoGestor"><ref bean="sicValidacionUnidadManejoGestor"/></property>
+		<property name="cuponGestor"><ref bean="sacCuponGestor"/></property>
+	</bean>
+	
+	<bean id="sicValidacionArticuloJugueteGestor" class="ec.com.smx.sic.articulo.gestor.admin.validacion.ValidacionArticuloJugueteGestor">
+		<property name="parametroGestor"><ref bean="sicParametroGestor"/></property>
+		<property name="dataGestor"><ref bean="dataGestor"/></property>
+	</bean>
+	
+	<!-- Gestores ArticuloClase -->
+	<bean id="sicArticuloClaseGestor" class="ec.com.smx.sic.articulo.gestor.clase.ArticuloClaseGestor">
+		<property name="articuloClaseDAO" ref="sicArticuloClaseDAO" />
+		<property name="articuloBitacoraClaseDAO" ref="sicArticuloBitacoraClaseDAO" />
+	</bean>
+	
+	<!-- DAO ArticuloClase -->
+	<bean id="sicArticuloClaseDAO" class="ec.com.smx.sic.articulo.persistence.dao.clase.ArticuloClaseDAO">
+		<property name="hibernateH" ref="hibernateH" />
+	</bean>
+	
+	<!-- Gestores ArticuloLeyMercado -->
+	<bean id="sicArticuloLeyMercadoGestor" class="ec.com.smx.sic.articulo.gestor.ley.podermercado.ArticuloLeyMercadoGestor">
+		<property name="articuloLeyMercadoDAO" ref="sicArticuloLeyMercadoDAO" />
+		<property name="articuloBitacoraLeyMercadoDAO" ref="sicArticuloBitacoraLeyMercadoDAO" />
+		<property name="parametroGestor" ref="sicParametroGestor"/>
+		<property name="articuloDAO" ref="sicArticuloDAO"/>
+	</bean>
+	
+	<!-- DAO ArticuloLeyMercado -->
+	<bean id="sicArticuloLeyMercadoDAO" class="ec.com.smx.sic.articulo.persistence.dao.ley.podermercado.ArticuloLeyMercadoDAO">
+		<property name="hibernateH" ref="hibernateH" />
+	</bean>
+	
+	<!-- DAO ArticuloLeyMercado-->
+	<bean id="sicArticuloBitacoraLeyMercadoDAO" class="ec.com.smx.sic.articulo.persistence.dao.ley.podermercado.ArticuloBitacoraLeyMercadoDAO">
+		<property name="hibernateH" ref="hibernateH" />
+	</bean> 
+	
+	<!-- DAO ArticuloBitacoraEstado>-->
+	<!--<bean id="sicArticuloBitacoraEstadoDAO" class="ec.com.smx.sic.articulo.persistence.dao.estado.ArticuloBitacoraEstadoDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>--> 
+	
+	<bean id="sicArticuloBitacoraClaseDAO" class="ec.com.smx.sic.articulo.persistence.dao.clase.ArticuloBitacoraClaseDAO">
+		<property name="hibernateH" ref="hibernateH" />
+	</bean>
+	
+	<!-- DAO ArticuloPendienteIntegracion -->
+	<bean id="sicArticuloPendienteIntegracionDAO" class="ec.com.smx.sic.articulo.persistence.dao.pendienteintegracion.ArticuloPendienteIntegracionDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="sicCalculoArticuloLeyenda" class="ec.com.smx.sic.articulo.gestor.admin.calculo.CalculoArticuloLeyenda">
+		<property name="dataGestor"><ref bean="dataGestor"/></property>
+		<property name="articuloAgrupadorDAO"><ref bean="sicArticuloAgrupadorDAO"/></property>
+	</bean>
+	
+	<bean id="sicArticuloDAO" class="ec.com.smx.sic.articulo.persistence.dao.ArticuloDAO">
+		<property name="hibernateH"><ref bean="hibernateH"/></property>
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<!-- <property name="secuenciaTablaDAO"><ref bean="sicSecuenciaTablaDAO"/></property> -->
+	</bean>
+	<bean id="sicArticuloLocalDAO" class="ec.com.smx.sic.articulo.persistence.dao.ArticuloLocalDAO">
+		<property name="hibernateH"><ref bean="hibernateH"/></property>
+	</bean>
+	<bean id="sicArticuloLocalPrecioDAO" class="ec.com.smx.sic.articulo.persistence.dao.ArticuloLocalPrecioDAO">
+		<property name="hibernateH"><ref bean="hibernateH"/></property>
+	</bean>
+	<bean id="sicArticuloBitacoraCodigoBarrasDAO" class="ec.com.smx.sic.articulo.persistence.dao.ArticuloBitacoraCodigoBarrasDAO">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="hibernateH"><ref bean="hibernateH"/></property>
+	</bean>
+	<bean id="sicArticuloAgrupadorDAO" class="ec.com.smx.sic.articulo.persistence.dao.ArticuloAgrupadorDAO">
+		<property name="dataGestor"><ref bean="dataGestor"/></property>
+		<property name="hibernateH"><ref bean="hibernateH"/></property>
+	</bean>
+	
+	<!-- Articulo Comercial gestor -->
+	<bean id="sicArticuloComercialGestor" class="ec.com.smx.sic.articulo.gestor.articuloComercial.ArticuloComercialGestor">
+		<property name="dataGestor"><ref bean="dataGestor"/></property>
+		<property name="articuloComercialDAO"><ref bean="sicArticuloComercialDAO"/></property>
+	</bean>
+	<bean id="sicArticuloComercialDAO" class="ec.com.smx.sic.articulo.persistence.dao.ArticuloComercialDAO">
+		<property name="hibernateH"><ref bean="hibernateH"/></property>
+	</bean>
+	
+	
+	<!-- Articulo bitacora gestor -->
+	<bean id="sicArticuloBitacoraGestor" class="ec.com.smx.sic.articulo.gestor.articuloBitacora.ArticuloBitacoraGestor" >
+		<property name="dataGestor"><ref bean="dataGestor"/></property>	
+		<property name="calculoArticuloBitacoraGestor"><ref bean="sicCalculoArticuloBitacoraRecepcionGestor"/></property>
+		<property name="articuloBitacoraCodigoBarrasDAO"><ref bean="sicArticuloBitacoraCodigoBarrasDAO"/></property>
+	</bean>
+	<!-- Articulo cracion por archivo INICIO -->
+	<!-- Gestores -->
+	<bean id="sicArticuloCreacionPorArchivoGestor" class="ec.com.smx.sic.articulo.gestor.admin.ArticuloCreacionPorArchivoGestor">
+		<property name="dataGestor"><ref bean="dataGestor"/></property>
+		<property name="articuloGestor"><ref bean="sicArticuloGestor"/></property>
+		<property name="creacionPorArchivoDAO"><ref bean="sicArticuloCreacionPorArchivoDAO"/></property>
+		<property name="mensajeriaG"><ref bean="mensajeriaG"/></property>
+		<property name="validacionReglasComerciales"><ref bean="sicValidacionArticuloReglasComercialesGestor"/></property>
+	</bean>
+	<bean id="sicArticuloValidacionCreacionPorArchivoGestor" class="ec.com.smx.sic.articulo.gestor.admin.validacion.ValidacionArticuloCreacionPorArchivoGestor">
+		<property name="dataGestor"><ref bean="dataGestor"/></property>
+		<property name="creacionPorArchivoDAO"><ref bean="sicArticuloCreacionPorArchivoDAO"/></property>
+		<property name="validacionArticuloCampos"><ref bean="sicValidacionArticuloCamposCreacionPorArchivoGestor"/></property>
+		<property name="validacionReglasComerciales"><ref bean="sicValidacionArticuloReglasComercialesGestor"/></property>
+	</bean>
+	<bean id="sicValidacionArticuloCamposCreacionPorArchivoGestor" class="ec.com.smx.sic.articulo.gestor.admin.validacion.ValidacionArticuloCamposCreacionPorArchivoGestor">
+		<property name="creacionPorArchivoDAO"><ref bean="sicArticuloCreacionPorArchivoDAO"/></property>
+		<property name="parametroGestor"><ref bean="sicParametroGestor"/></property>
+	</bean>
+	<bean id="sicValidacionArticuloReglasComercialesGestor" class="ec.com.smx.sic.articulo.gestor.admin.validacion.precios.ValidacionArticuloReglasComercialesGestor">
+		<property name="calculoArticuloGestor" ref="sicCalculoArticuloGestor"/>
+		<property name="parametroGestor" ref="sicParametroGestor"/>
+		<property name="calculoAlmacenamientoEstructuraLogisticaGestor" ref="sicCalculoAlmacenamientoEstructuraLogisticaGestor" />
+	</bean>
+	
+	<bean id="sicArticuloImportacionCorporativaGestor" class="ec.com.smx.sic.articulo.gestor.admin.ArticuloImportacionCorporativaGestor" >
+		<property name="dataGestor" ref="dataGestor" />
+		<property name="articuloGestor" ref="sicArticuloGestor" />
+		<property name="articuloUnidadManejoGestor" ref="sicArticuloUnidadManejoGestor" />		
+		<property name="articuloComercialGestor" ref="sicArticuloComercialGestor" />
+		<property name="articuloAlcanceGestor" ref="sicArticuloAlcanceGestor" />
+		<property name="calculoBusquedaArticuloGestor" ref="sicCalculoBusquedaArticuloGestor" />
+		<property name="accionArticuloProveedorGestor" ref="sicAccionArticuloProveedorGestor" />
+		<property name="calculoDatosMarcaProveedorGestor" ref="sicCalculoDatosMarcaProveedorGestor" />
+		<property name="estructuraComercialGestor" ref="sicEstructuraComercialGestor" />
+		<property name="almacenamientoAuditoriaArticuloGestor" ref="sicAlmacenamientoAuditoriaArticuloGestor" />
+		<property name="articuloProveedorImportacionGestor" ref="sicArticuloProveedorImportacionGestor" />
+		<property name="articuloNuevoImportadoDAO"><ref bean="sicArticuloNuevoImportadoDAO"/></property>
+		<property name="lineaComercialDAO"><ref bean="sicLineaComercialDAO"/></property>
+		<property name="articuloDAO"><ref bean="sicArticuloDAO"/></property>
+	
+	</bean>
+	
+	<!-- DAOs -->
+	<bean id="sicArticuloCreacionPorArchivoDAO" class="ec.com.smx.sic.articulo.persistence.dao.ArticuloCreacionPorArchivoDAO">
+		<property name="hibernateH"><ref bean="hibernateH"/></property>
+	</bean>
+	<!-- Articulo cracion por archivo FIN-->
+	
+	<bean id="sicArticuloEdicionMasivaGestor" class="ec.com.smx.sic.articulo.gestor.admin.ArticuloEdicionMasivaGestor">
+		<property name="articuloRegistroMasivoDAO"><ref bean="sicArticuloRegistroMasivoDAO"/></property>
+		<property name="articuloAlcanceGestor"><ref bean="sicArticuloAlcanceGestor"/></property>
+		<property name="dataGestor"><ref bean="dataGestor"/></property>
+		<property name="mensajeriaG"><ref bean="mensajeriaG"/></property>
+		<property name="calculoArticuloGestor"><ref bean="sicCalculoArticuloGestor"/></property>
+		<property name="articuloClaseGestor"><ref bean="sicArticuloClaseGestor"/></property>
+		<property name="edicionMasivaArticulosJob"><ref bean="sicEdicionMasivaArticulosJob"/></property>
+		<property name="jobLauncher"><ref bean="sicJobLauncherArticuloALcances"/></property>
+		<property name="articuloLeyMercadoGestor"><ref bean="sicArticuloLeyMercadoGestor"/></property>
+		<property name="calculoBusquedaArticuloGestor"><ref bean="sicCalculoBusquedaArticuloGestor"/></property>
+		<property name="articuloProveedorImportacionGestor"><ref bean="sicArticuloProveedorImportacionGestor"/></property>
+	</bean>
+	
+	<!-- DAOs -->
+	<bean id="sicArticuloRegistroMasivoDAO" class="ec.com.smx.sic.articulo.persistence.dao.ArticuloRegistroMasivoDAO">
+		<property name="sessionFactory"><ref bean="sessionFactory"/></property>
+	</bean>
+	
+	<!-- DAOs campos Mercancia -->
+	<bean id="sicVistaCampoMercanciaDAO" class="ec.com.smx.sic.articulo.persistence.dao.VistaCampoMercanciaDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<!-- DAOs articulo local pedido -->
+	<bean id="sicBusquedaArticuloLocalPedidoDAO" class="ec.com.smx.sic.articulo.persistence.dao.BusquedaArticuloLocalPedidoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- Articulo edicion por archivo INICIO-->
+	<!-- Gestores -->
+
+	<bean id="sicArticuloEdicionArchivoGestor" class="ec.com.smx.sic.articulo.gestor.admin.edicion.ArticuloEdicionArchivoGestor">
+		<property name="validacionArticuloEdicionArchivoGestor"><ref bean="sicValidacionArticuloEdicionArchivoGestor"/></property>
+		<property name="articuloEdicionArchivoDAO"><ref bean="sicArticuloEdicionArchivoDAO"/></property>
+		<property name="articuloRegistroMasivoDAO"><ref bean="sicArticuloRegistroMasivoDAO"/></property>
+		<property name="articuloClaseGestor"> <ref bean="sicArticuloClaseGestor"/> </property>
+		<property name="mensajeriaG"><ref bean="mensajeriaG"/></property>
+		<property name="articuloLeyMercadoGestor" ref="sicArticuloLeyMercadoGestor"/>
+		<property name="articuloEdicionMasivaGestor" ref="sicArticuloEdicionMasivaGestor"/>
+	</bean>
+	<bean id="sicValidacionArticuloEdicionArchivoGestor" class="ec.com.smx.sic.articulo.gestor.admin.edicion.ValidacionArticuloEdicionArchivoGestor">
+		<property name="articuloEdicionArchivoDAO"><ref bean="sicArticuloEdicionArchivoDAO"/></property>
+		<property name="creacionPorArchivoDAO"><ref bean="sicArticuloCreacionPorArchivoDAO"/></property>
+		<property name="validacionArticuloCreacionPorArchivoGestor"><ref bean="sicArticuloValidacionCreacionPorArchivoGestor"/></property>
+		<property name="validacionArticuloCamposEdicionArchivoGestor"><ref bean="sicValidacionArticuloCamposEdicionArchivoGestor"/></property>
+	</bean>
+	<bean id="sicValidacionArticuloCamposEdicionArchivoGestor" class="ec.com.smx.sic.articulo.gestor.admin.edicion.ValidacionArticuloCamposEdicionArchivoGestor">
+		<property name="articuloEdicionArchivoDAO"><ref bean="sicArticuloEdicionArchivoDAO"/></property>
+		<property name="validacionArticuloCampos"><ref bean="sicValidacionArticuloCamposCreacionPorArchivoGestor"/></property>
+		<property name="creacionPorArchivoDAO"><ref bean="sicArticuloCreacionPorArchivoDAO"/></property>
+		<property name="articuloClaseDAO" ref="sicArticuloClaseDAO"/>
+	</bean>
+	<!-- DAOs -->
+	<bean id="sicArticuloEdicionArchivoDAO" class="ec.com.smx.sic.articulo.persistence.dao.edicion.ArticuloEdicionArchivoDAO">
+		<property name="sessionFactory"><ref bean="sessionFactory"/></property>
+	</bean>
+	<!-- Articulo edicion por archivo FIN-->
+	
+	<!-- Articulo precio diferenciado -->
+	<!-- 	Gestor -->
+	<bean id="sicArticuloPrecioDiferenciadoGestor" class="ec.com.smx.sic.articulo.gestor.articuloPrecioDiferenciado.ArticuloPrecioDiferenciadoGestor">
+		<property name="articuloPrecioDiferenciadoDAO"><ref bean="sicArticuloPrecioDiferenciadoDAO"/></property>
+<!-- 		<property name="articuloPrecioDiferenciadoMasivoDAO"><ref bean="sicArticuloPrecioDiferenciadoMasivoDAO"/></property> -->
+		<property name="articuloLocalGestionPrecioDAO"><ref bean="sicArticuloLocalGestionPrecioDAO"/></property>
+		<property name="almacenamientoDatosCambioPreciosGestor"><ref bean="sicAlmacenamientoDatosCambioPreciosGestor"/></property>
+	</bean>
+<!-- 	<bean id="sicAccionArticuloPrecioDiferenciadoGestor" class="ec.com.smx.sic.articulo.gestor.articuloPrecioDiferenciado.AccionArticuloPrecioDiferenciadoGestor"> -->
+<!-- 		<property name="articuloPrecioDiferenciadoDAO"><ref bean="sicArticuloPrecioDiferenciadoDAO"/></property> -->
+<!-- 		<property name="accionArticuloPrecioDiferenciadoDAO"><ref bean="sicAccionArticuloPrecioDiferenciadoDAO"/></property> -->
+<!-- 	</bean>	 -->
+	<!-- 	DAO -->
+	<bean id="sicArticuloPrecioDiferenciadoDAO" class="ec.com.smx.sic.articulo.persistence.dao.preciodiferenciado.ArticuloPrecioDiferenciadoDAO">
+		<property name="hibernateH"><ref bean="hibernateH"/></property>
+	</bean>
+	<bean id="sicArticuloLocalGestionPrecioDAO" class="ec.com.smx.sic.articulo.persistence.dao.preciodiferenciado.ArticuloLocalGestionPrecioDAO">
+		<property name="hibernateH"><ref bean="hibernateH"/></property>
+		<property name="sequenceGenerator"><ref bean="sequenceDataBaseGenerator"/></property>
+	</bean>
+<!-- 	<bean id="sicAccionArticuloPrecioDiferenciadoDAO" class="ec.com.smx.sic.articulo.persistence.dao.preciodiferenciado.AccionArticuloPrecioDiferenciadoDAO"> -->
+<!-- 		<property name="sessionFactory"><ref bean="sessionFactory"/></property> -->
+<!-- 	</bean>	 -->
+<!-- 	<bean id="sicArticuloPrecioDiferenciadoMasivoDAO" class="ec.com.smx.sic.articulo.persistence.dao.preciodiferenciado.ArticuloPrecioDiferenciadoMasivoDAO"> -->
+<!-- 		<property name="sessionFactory"><ref bean="sessionFactory"/></property> -->
+<!-- 	</bean> -->
+	<!-- Articulo precio diferenciado FIN-->
+	
+	<!-- ARTICULO CONTROL DE ETIQUETADO INICIO-->
+	<bean id="sicArticuloControlEtiquetadoGestor" class="ec.com.smx.sic.articulo.gestor.etiquetado.ArticuloControlEtiquetadoGestor">
+		<property name="articuloControlEtiquetadoDAO"><ref bean="sicArticuloControlEtiquetadoDAO"/></property>
+	</bean>
+	
+	<bean id="sicArticuloControlEtiquetadoDAO" class="ec.com.smx.sic.articulo.persistence.dao.etiquetado.ArticuloControlEtiquetadoDAO">
+		<property name="sessionFactory"><ref bean="sessionFactory"/></property>
+	</bean>
+	<!-- ARTICULO CONTROL DE ETIQUETADO FIN-->
+	
+	<!-- MARCA ARTICULO INICIO-->
+	<bean id="sicMarcaArticuloGestor" class="ec.com.smx.sic.articulo.gestor.marca.MarcaArticuloGestor">
+		<property name="marcaArticuloDAO"><ref bean="sicMarcaArticuloDAO"/></property>
+	</bean>
+	
+	<bean id="sicMarcaArticuloDAO" class="ec.com.smx.sic.articulo.persistence.dao.marca.MarcaArticuloDAO">
+		<property name="sessionFactory"><ref bean="sessionFactory"/></property>
+	</bean>
+	<!-- MARCA ARTICULO FIN-->
+</beans>

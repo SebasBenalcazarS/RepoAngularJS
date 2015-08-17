@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
+	version="2.0">
+
+	<!-- *************************************************************************** -->
+	<!-- ENTIDADES TEMPORALES DEL B2B PARA QUITAR LA DEPENDENCIA DEL B2B EN 
+		EL MAX -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.b2b.ArchivoDatoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.b2b.ArchivoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.b2b.ArchivoTipoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.b2b.CaracteristicaPedidoDTO" />
+	<entity
+		class="ec.com.smx.sic.cliente.mdl.dto.b2b.DetalleOrdenCompraDescuentoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.b2b.DetalleOrdenCompraDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.b2b.EstadoOrdenCompraDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.b2b.EstadoPedidoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.b2b.PedidoArchivoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.b2b.PedidoDetalleDTO" />
+	<entity
+		class="ec.com.smx.sic.cliente.mdl.dto.b2b.PedidoDetalleRelacionadoDTO" />	<entity class="ec.com.smx.sic.cliente.mdl.dto.b2b.PedidoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.b2b.PedidoHistoricoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.b2b.TipoPedidoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.b2b.UsuarioClasificacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.b2b.UsuarioCompradorDTO" />
+
+	<!-- *************************************************************************** -->
+
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ProveedorB2BDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ProveedorImportadoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ProveedorClasificacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ProveedorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TipoProveedorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ProveedorFinancieroDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ProveedorComercialDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ProveedorNegociacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ProveedorMarcaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.OficinaExteriorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ProveedorOficinaExteriorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloLeyendaDTO" />
+	<entity
+		class="ec.com.smx.sic.cliente.mdl.dto.ArticuloDuracionConservacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloArchivoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloAreaTrabajoBitacoraDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloAgrupadorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloAgrupadorRelacionDTO" />
+	<entity
+		class="ec.com.smx.sic.cliente.mdl.dto.ArticuloBitacoraCodigoBarrasDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloBitacoraEstadoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloComercialDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloCuotaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloDefinicionArchivoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloProcesoLogisticoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloEtiquetaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloUsoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloImpuestoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloImportacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloGarantiaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloInternetDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloLocalDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloLocalGestionPrecioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloLocalPrecioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloLocalMargenDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloLocalPedidoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloMaterialDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloProveedorNovedadDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloPendienteIntegracionDTO" />
+	<!-- <entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloEnvaseDTO"/> -->
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.ArticuloProveedorNovedadReferenciaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloPrecioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloPrecioDiferenciadoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloProveedorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloEstructuraComercialDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloUnidadManejoDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.ArticuloUnidadManejoProveedorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloUnidadManejoProveedorEquivalenciaDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloUnidadManejoUsoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloTemporadaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloMedidaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloRegistroSanitarioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloRelacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloEstablecimientoDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.BitacoraRevisionRegistroSanitarioDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.BitacoraArticuloLocalPrecioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.BodegaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.CaracteristicaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ClaseArticuloDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ClasificacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ClasificacionEtiquetaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ClasificacionRelacionadaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ClasificacionUsuarioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.CompradorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ConceptoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ConceptoClasificacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.CuotaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DescuentoProveedorArticuloDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.DescuentoProveedorClasificacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DescuentoVentaArticuloDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.EquivalenciaDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.EquivalenciaPorcentajeDescuentoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.EstadoCodificacionArticuloDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.EstadoTipoArticuloDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.FrecuenciaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.FrecuenciaArticuloDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.GrupoImpuestoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.IndicadorPropietarioDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.IndicadorPropietarioEstablecimientoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.MarcaArticuloDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ParametroDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.RangoSecuenciaCodigoBarrasDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.SecuenciaDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.SecuenciaInternaCodigoBarrasDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.SegmentoCreacionArticuloDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.SubClasificacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TipoArticuloDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TipoArticuloPasosCreacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TipoCaracteristicaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TipoImpuestoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TipoPrecioArticuloDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TipoCodigoArticuloDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TipoMargenDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TipoDescuentoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.AsignacionTipoDescuentoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TipoClasificacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TipoEquivalenciaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TransporteDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.UsuarioEntidadProveedorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaGrupoAlcanceLocalDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaArticuloGrupoAlcanceDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaArticuloClasificacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaBodegaSubbodegaAlcanceDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.ConfiguracionNivelPagoReporteCaracteristicaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaProveedorDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.ClasificacionConfiguracionPlantillaDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.ArticuloValorConfiguracionPlantillaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaOficinaExteriorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloRotuladoReporteDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.CaracteristicaProveedorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ComponenteNutricionalDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.RelacionArticuloRegistroSanitarioDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.ArticuloInformacionNutricionalDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.FormulaComponenteRegistroSanitarioDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.SecuenciaCodigoBarrasDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.ArticuloEtiquetaMercanciaDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.ArticuloEtiquetaMercanciaCatalogoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ClasificacionArchivoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ClasificacionContenidoArchivoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ConfiguracionTablaMasivaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloImportacionHistoricoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloProveedorImpuestoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.articulo.auditoria.ArticuloAuditoriaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.AlcanceBitacoraDetalleDTO" />
+	
+	<!-- Campos Mercancia -->
+    <entity class="ec.com.smx.sic.cliente.mdl.dto.VistaCampoMercanciaDTO"/>
+    <entity class="ec.com.smx.sic.cliente.mdl.dto.VistaArticuloCodBarrasEtiquetaMercanciaDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaRazonSocialProveedorDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaArticuloCaracteristicasMercanciaDTO"/>
+	
+	<!-- Bitacora precios -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.BitacoraPrecioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.BitacoraArticuloProveedorDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.BitacoraArticuloProveedorPrecioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.BitacoraPrecioEstadoDTO" />
+
+	<!-- Gestion de precios -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.GestionPrecioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.GestionPrecioRelacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TipoAfectacionPrecioDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.ConfiguracionAfectacionPrecioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ValorAfectacionPrecioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.GrupoAfectacionPrecioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloGestionPrecioDTO"/>
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.PrecioDiferenciadoArticuloGestionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.BitacoraArticuloGestionPrecioDTO"/>	
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ValorCostoGestionDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.BitacoraValorCostoDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloProveedorGestionPrecioDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.OrdenCompraGestionDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloOrdenCompraGestionDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DescuentoArticuloOrdenCompraGestionDTO"/>
+
+	<!-- Historial gestion cambio precios -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.HistorialArticuloPrecioDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.HistorialArticuloProveedorPrecioDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.HistorialPrecioDiferenciadoArticuloDTO"/>
+	
+	<!-- Orden de compra -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArchivoContenidoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArchivoInformacionDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.OrdenCompraDetalleEstadoDescuentoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.OrdenCompraDetalleEstadoDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.OrdenCompraDetalleEstadoRelacionDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.OrdenCompraDetalleEstadoImpuestoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.OrdenCompraDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.OrdenCompraEstadoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.OrdenCompraEstadoImpuestoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.OrdenCompraRelacionadaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.OrdenCompraHistoricoEstadoDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.OrdenCompraFacturaImportacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.PedidoArchivoInformacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.PedidoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.PedidoEstadoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.PedidoPlantillaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.PedidoPlantillaDetalleDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.PedidoRelacionadoDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.VistaArticuloRegistroSanitarioEstadoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ContenedorInformacionDTO" />
+
+	<!-- Pedido asistido -->
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.AreaTrabajoCalendarioProcesoConfiguracionDetalleDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.AreaTrabajoCalendarioProcesoConfiguracionDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.AreaTrabajoCalendarioProcesoDetalleDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.AreaTrabajoCalendarioProcesoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.PedidoAreaTrabajoDetalleDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.PedidoAreaTrabajoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.PedidoAreaTrabajoEstadoDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.PedidoAreaTrabajoInformacionDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.PedidoAreaTrabajoClasificacionDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.PedidoPlantillaAreaTrabajoDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.PedidoPlantillaAreaTrabajoDetalleDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.PedidoAreaTrabajoAutorizacionDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.InterfacePedidoAreaTrabajoDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.InterfacePedidoAreaTrabajoDetalleDTO" />
+
+	<!-- Linea comercial -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.LineaComercialDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.LineaComercialClasificacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.LineaComercialFuncionarioDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.LineaComercialFuncionarioClasificacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.FuncionarioTipoMarcaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.MarcaFuncionarioTipoMarcaDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.LineaComercialFuncionarioTipoMarcaDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.LineaComercialFuncionarioProcesoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaAreaTrabajoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.LineaComercialClienteImportacionDTO"></entity>
+	
+	<!-- Estructura logistica -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.SeccionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DetalleSeccionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.RelacionSeccionDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.DefinicionEstructuraLogisticaDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.AsignacionArticuloUnidadManejoDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.CaracteristicaDetalleSeccionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.CaracteristicaDinamicaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.CategoriaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.CategoriaDetalleSeccionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.CategoriaClasificacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ProveedorDetalleSeccionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TipoFurgonDetalleSeccionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaUbicacionesDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaUbicacionArticuloDTO" />		
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.BalanzaDetalleSeccionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.AreaTrabajoDetalleSeccionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.MigracionEstructuraLogisticaUbicacionesDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.UbicacionPendienteIntegracionDTO"/>
+	
+	<!-- Usuario autorizacion -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.UsuarioArticuloDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.UsuarioClasificacionProcesoDTO" />
+	
+	<!-- Control de rutas-->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.FurgonDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TipoFurgonDTO" />	
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ChoferDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.FurgonAreaTrabajoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VehiculoFurgonDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VehiculoAreaTrabajoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VehiculoChoferDTO" />	
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.PrefijoFurgonDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ParametrizacionDistanciaDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaLocalizacionFunFilDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaControlRutasTransportistaDTO"/>
+	
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.RutaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DestinoDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.RutaParticipanteRegistroDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.RutaParticipanteRegistroNovedadDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.GuiaTransporteDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.GuiaTransporteDocumentoDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.RutaDetalleDTO"/>	
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaMonitorRutasDTO"/>
+
+	<!-- Recarga cupones -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ClienteArticuloDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.CuponLocalDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.CuponDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.VistaArticuloEstablecimientoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaArticuloLocalDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaClienteArticuloDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaClienteArticuloLocalDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.VistaClienteCuponDispositivoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaCuponRentabilidadDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloNovedadCuponDTO"></entity>
+	
+	<!-- Asistenete Compras -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.ClienteRelacionadoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.DetalleListaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.DetalleListaRecetaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.HistorialAhorroDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.ListaClientePedidoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.ListaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.ListaRecetaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.ClienteCuponCompartidoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.VistaDetalleListaProductoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.VistaColaboracionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.nopersistente.HistorialDescuentoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.nopersistente.RecetasPopularesDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.RecetaClientePedidoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.CuponKioskoDTO" />
+	<!-- <entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.VistaCuponTramaPosDTO" />-->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.ConvenioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.ArticuloConvenioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.ClienteConvenioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.ClienteArticuloConvenioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.ContenidoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.ContenidoDefinicionArchivoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.ContenidoArchivoDto" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.BinTarjetaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.BinTarjetaDefinicionArchivoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.asistentecompras.BinTarjetaArchivoDTO" /> 
+	
+	<!-- Bodega -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.EntregaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.EntregaEstadoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.EntregaOrdenCompraEstadoDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.EntregaCalendarioBodegaProveedorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.FacturaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.FacturaDatoFinancieroDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.FacturaDetalleDatoFinancieroDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.RepositorioArchivosAdjuntosDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.RepositorioDatosArchivoAdjuntoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.FacturaDetalleDatoFinancieroCentroCostoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.UsuarioParticipanteFlujoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.FacturaDesgloseImpuestoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArchivoDocumentoXmlDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.FacturaEstadoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DatosDocumentoProcesoDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.FacturaEstadoDescuentoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.FacturaEstadoImpuestoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DetalleFacturaEstadoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.FacturaRelacionadaDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.FlujoEstadoFacturaDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ValidacionDocumentoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.CalendarioBodegaProveedorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.EntregaRecepcionProveedorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.RecepcionProveedorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.RecepcionProveedorArticuloDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.RecepcionProveedorFacturaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.RecepcionProveedorControlLogisticoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.FuncionarioProcesoPerfilAreaTrabajoDetalleSeccionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ControlLogisticoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ProcesoLogisticoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DatosTareaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DatosTareaEstadoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TipoContenedorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TipoTareaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TipoTareaFuncionarioLogisticoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TareaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TareaDatosTareaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DetalleTareaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TareaEstadoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.TipoTareaPerfilDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.CalendarioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.HoraCalendarioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DetalleCalendarioDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.EntregaDetalleCalendarioProveedorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.AutorizacionHoraCalendarioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ProcesoLogisticoEstadoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.GrupoNovedadArticuloDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ProcesoLogisticoGrupoNovedadArticuloDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.NovedadArticuloDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.NovedadArticuloJustificacionDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.VistaCalendarioPlanificacionBodegaDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.VistaProveedorPlanificacionBodegaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaPerchasArticulosDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaBodegaCDAreaTrabajoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaDatosSolicitudDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.VistaListaProveedoresRecepcionEntregaDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.VistaArticuloOrdenCompraEstadoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaProcesoLogisticoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaEntregaFacturaDigitalDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaAutorizacionMasivaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaAndenesPasillosDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DetalleRecepcionEntregaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DetalleRecepcionProveedorDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.DetalleRecepcionEntregaAutorizacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DetalleDatosTareaDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.JustificacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.JustificacionAreaTrabajoPerfilDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.NovedadArticuloJustificacionDetalleRecipienteDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DiferenciaProcesoLogisticoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DatosTareaRelacionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaArticuloUnidadManejoRecepcionDTO"/>	
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaEntregaDetalleCalendarioDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaPaletOrdenCompraDetalleEstadoDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaArticuloUnidadManejoInformacionRecepcionDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaOrdenCompraDetalleEstadoDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaOrdenCompraEstadoDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaFuncionarioPerfilDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaAsignacionArticuloUnidadManejoUbicacionDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaPedidoDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaUbicacionPalletMontacarguistaDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaAutorizacionFacturaProveedorDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ConfiguracionNotificacionProcesoDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaMonitorMontacargaCorredorDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaPalletsBultosNaveDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaCatalogoTareaRecepcionDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaTareaEstadoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaArticuloRecepcionDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaRecepcionOrdenCompraDetalleEstadoFacturaDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaRecepcionOrdenCompraDetalleEstadoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaFacturaRelacionadaDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.AjusteFacturaEstadoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.AjusteFacturaDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DetalleAjusteFacturaEstadoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.FlujoEstadoDetalleAjusteDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.PalletJackDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.PalletJackPesoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.EstructuraComercialCuentaContableProcesoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloProcesoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DatosTareaDetalleRecipienteDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ProcesoLogisticoAutorizacionDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.RecepcionProveedorArticuloJustificacionDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaIntegracionRecepcionPalletDetalleDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloPendienteIntegracionBodegaDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.RecepcionProveedorDetalleSeccionDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.PeriodoTrabajoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.RangoAccionPeriodoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ResumenTotalDocumentoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ValoresResumenDocumentoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaFuncionarioAndenesDTO"></entity>
+	
+	<!-- para consulta de datos de facturas para atar con el comrprobante de retencion -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaInformacionFacturaDTO"></entity>
+	
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaRecepcionCantidadOrdenCompraDetalleEstadoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaArticuloUnidadManejoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaDiferenciaFacturasRecepcionDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaNovedadRecepcionArticuloDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaRecepcionCantidadesRecibidasDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaArticuloTipoControlCostosDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaTareaDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaTareaDatosTareaDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaJabasPalletRecepcionDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaPalletsRecepcionPesoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaRecepcionPereciblesBatchDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaPerfilMonitorRecolectorDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.NovedadArticuloJustificacionUnidadManejoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.NovedadArticuloJustificacionProveedorDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.JustificacionProcesoTipoAutorizacionDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaNovedadArticuloRecepcionDTO"></entity>
+	
+	<!-- Despacho -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaAreaTrabajoBodegaDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaGrupoTrabajoPorBodegaDTO"></entity>
+<!-- 	<entity class="ec.com.smx.sic.cliente.mdl.dto.FuncionarioPerfilDetalleSeccionDTO"></entity> -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaRecepcionJugueteDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.VistaTareaPalletDTO"/> 
+	
+	<!-- Datos basicos de proveedor -->
+
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.DatoBasicoProveedorDTO" />
+
+
+	<!-- Proceso -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ProcesoClaseDTO" />
+
+	<!-- entidades no persistentes -->
+	<entity class="ec.com.smx.sic.cliente.mdl.nopersistente.CantidadCuponLocal" />
+	<entity class="ec.com.smx.sic.cliente.mdl.nopersistente.ValorSecuenciaActual" />
+	<entity class="ec.com.smx.sic.cliente.mdl.nopersistente.ClasificacionArticuloCountTrasient" />
+	<entity class="ec.com.smx.sic.cliente.mdl.nopersistente.ArticuloAnomaliaTrasient" />
+	<!-- <entity class="ec.com.smx.sic.cliente.mdl.nopersistente.CuponesMasUtilizados" />
+	<entity class="ec.com.smx.sic.cliente.mdl.nopersistente.DatoCuponesPersonas" /> -->
+	<entity class="ec.com.smx.sic.cliente.mdl.nopersistente.LogMigracion" />
+	
+	<!-- Entidades para migracion de datos -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.MigracionArticuloGeneralDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.MigracionProveedorServiciosDTO" />
+	
+	<!-- Recipientes -->
+	
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ContenedorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ContenedorDetalleDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.ContenedorEstadoDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.TransferenciaDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.ContenedorRelacionadoDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.MovimientoInternoDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.ProcesoLogisticoTransaccionDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.nopersistente.ContenedorEstadoCountTrasient" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.nopersistente.ContenedorEstadoPalletRutaTrasient" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.nopersistente.TransferenciaCountTrasient" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.nopersistente.TransaccionCausalProcesoRelacionTrasient" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.nopersistente.BusquedaTransferenciaTrasient" />
+	<!-- Recipientes - Canje a proveedor -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ControlRecipienteDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ControlRecipienteDetalleDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.OrdenSalidaRecipienteDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.OrdenSalidaRecipienteDetalleDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.OrdenSalidaControlRecipienteDetalleDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.ControlRecipienteTaraDetalleDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.RecepcionProveedorControlRecipienteDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.RecipienteTaraDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.nopersistente.BusquedaRecipienteArticuloTrasient" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.nopersistente.RecipienteProveedorDocumentoTrasient" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.nopersistente.RecipienteCabeceraProveedorDocumentoTrasient" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.nopersistente.RecipienteCabeceraEntregaTrasient" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.nopersistente.TareaEntregaRecipientesTrasient" />
+	
+	<!-- Produccion-->	
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.LineaEmpaqueDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.BitacoraMantenimientoLineaEmpaqueDTO" />
+	<entity	class="ec.com.smx.sic.cliente.mdl.dto.LineaEmpaqueArticuloDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.LineaEmpaqueFuncionarioDTO" />
+
+	<!-- *************************************************************************** -->
+	<!-- ENTIDADES TEMPORALES DE IMPORTACIONES(LINK) PARA QUITAR LA DEPENDENCIA DE IMPORTACIONES EN EL MAX -->
+	
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.AgenteAduaneroDTO"/>                         
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.ArancelDTO"/>                                
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.ArancelRequisitoDTO"/>                       
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.ArchivoImpDTO"/>                             
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.ArticuloProveedorArancelDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.BitacoraTramiteEmbarqueImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.CabeceraEnvioDetalleImpDTO"/>                
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.CabeceraEnvioImpDTO"/>                       
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.CatalogoTipoImpDTO"/>                        
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.CatalogoValorBeneficiarioDTO"/>              
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.CatalogoValorGastoEmbDTO"/>                  
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.CatalogoValorImpDTO"/>                       
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.CatalogoValorTipoImpDTO"/>                   
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.ClienteImportacionCompradorDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.ClienteImportacionDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.ConceptoCatalogoValorImpDTO"/>               
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.CondicionGastoEmbarqueDTO"/>                 
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.ContenidoArchivoImpDTO"/>
+ 	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.EmbarqueContenedorImpDTO"/>                  
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.EmbarqueDocumentoImpDTO"/>                   
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.EmbarqueEstadoImpDTO"/>                      
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.EmbarqueFactorDTO"/>                         
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.EmbarqueFactorFacturaDocumentoDTO"/>
+	
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.EmbarqueImpDTO"/>                          
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.EmbarqueLiquidacionImpDTO"/>                 
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.FactorDetalleDTO"/>                          
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.FactorDTO"/>                                 
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.FacturaDetalleEstadoAdicionalDTO"/>          
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.FacturaDetalleEstadoImpDTO"/>                
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.FacturaDetalleImpDTO"/>                      
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.FacturaEstadoImpDTO"/>                       
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.FacturaGastoEmbarqueContenedorImpDTO"/>      
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.FacturaGastoEmbarqueEstadoImpDTO"/>          
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.FacturaGastoEmbarqueImpDTO"/>                
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.FacturaImpDTO"/>                             
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.FleteNacionalDTO"/>                          
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.GastoEmbarqueDTO"/>                          
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.GastosEmbarqueFactorDTO"/>                   
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.ObservacionImpDTO"/>                         
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.OrdenCompraDetalleArancelReqDTO"/>           
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.OrdenCompraDetalleEstadoImpDTO"/>            
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.OrdenCompraDetalleImpDTO"/>                  
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.OrdenCompraEstadoImpDTO"/>                   
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.OrdenCompraFacturaImpDTO"/>                  
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.OrdenCompraImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.TramiteArchivoImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.TramiteEmbarqueImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.VistaEmbarqueFacturasDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.VistaEmbarqueDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.VistaEmbarqueAgeDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.VistaDetalleFacturaDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.impcorp.VistaEmbarqueAsistenteWorkFlowDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.articulo.validacion.ArticuloValidacionSIC"/>
+	
+	
+	
+	
+	
+	<!-- *************************************************************************** -->
+	<!-- Solicitud de impresion Articulo -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloDetalleSolicitudImpresionDTO"/>
+	
+	<!-- Despachos -->
+	<!-- <entity class="ec.com.smx.sic.cliente.mdl.dto.DetalleSeccionAreaTrabajoDTO"/> -->
+	
+	<!-- *************************************************************************** -->
+	<!-- MERCANCIAS - GARANTIA -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.articulo.garantia.ArticuloRangoExtensionGarantiaDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.articulo.garantia.GarantiaArticuloDTO"/>
+	
+	<!-- CAUSALES - ARTICULOS - LEY CONTROL PODER MERCADO -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.articulo.clase.ArticuloClaseDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.articulo.clase.ArticuloBitacoraClaseDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.articulo.adicional.ArticuloInformacionAdicionalDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.articulo.ley.podermercado.ArticuloLeyMercadoDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.articulo.ley.podermercado.ArticuloBitacoraLeyMercadoDTO"/>
+	<!-- COSTOS - ARTICULOS - COSTOS PROYECTADOS -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloProveedorCostoDTO"/>
+	<!-- CLASE - ARTICULOS - EDICION INTERNA -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloEdicionInternaDTO"></entity>
+	<!-- 	ARTICULO OBSERVACION -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.articulo.observacion.ArticuloObservacionDTO"></entity>
+	
+	<!-- Certificados Proveedor-->	
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.CertificadoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ProveedorCertificadoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ProveedorCertificadoDefinicionArchivoDTO"></entity>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ProveedorCertificadoArchivoDTO"></entity>
+	
+	<!-- Relacion entre proveedores y areas de trabajo -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ProveedorAreaTrabajoDTO"/>
+	
+	<!-- LOG PROCESOS MIGRACION -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.LogProcesosMigracionDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ResultadoProcesoDTO"/>
+	
+	<!-- Vista para migrar ArticuloLocalDTO a orientDB -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.articulo.nosql.VistaArticuloLocalNoSqlDTO"/>
+	
+	<!-- FRUVER - Solicitud de proveedores -->
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ArticuloOfertaProveedorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.OfertaProveedorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.FechaOfertaProveedorDTO" />
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.ParametroRangoFechaDTO" />
+
+</entity-mappings>

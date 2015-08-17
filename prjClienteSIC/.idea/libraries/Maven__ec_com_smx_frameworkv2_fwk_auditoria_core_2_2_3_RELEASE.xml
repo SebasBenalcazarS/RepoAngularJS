@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: ec.com.smx.frameworkv2:fwk-auditoria-core:2.2.3-RELEASE">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/ec/com/smx/frameworkv2/fwk-auditoria-core/2.2.3-RELEASE/fwk-auditoria-core-2.2.3-RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/ec/com/smx/frameworkv2/fwk-auditoria-core/2.2.3-RELEASE/fwk-auditoria-core-2.2.3-RELEASE-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/ec/com/smx/frameworkv2/fwk-auditoria-core/2.2.3-RELEASE/fwk-auditoria-core-2.2.3-RELEASE-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd" default-lazy-init="true">
+	
+	<!-- Gestores -->
+	<bean id="sicArticuloAlcanceMigracionNoSqlGestor" class="ec.com.smx.sic.articulo.gestor.articulo.alcance.nosql.almacenamiento.ArticuloAlcanceMigracionNoSqlGestor">
+		<property name="articuloAlcanceDAO"><ref bean="sicArticuloAlcanceDAO"/></property>
+		<property name="jobLauncherMigracionArticuloAlcanceNoSql"><ref bean="sicJobLauncherMigracionArticuloAlcanceNoSql"/></property>
+		<property name="migracionArticuloAlcanceNoSqlJob"><ref bean="sicMigracionArticuloAlcanceNoSqlJob"/></property>
+<!-- 		<property name="jobLauncherMigracionArticuloAlcanceBitacoraNoSql"><ref bean="sicJobLauncherMigracionArticuloAlcanceBitacoraNoSql"/></property> -->
+<!-- 		<property name="migracionArticuloAlcanceBitacoraNoSqlJob"><ref bean="sicMigracionArticuloAlcanceBitacoraNoSqlJob"/></property> -->
+	</bean>
+	
+	<bean id="sicAlmacenamientoArticuloAlcanceNoSqlGestor" class="ec.com.smx.sic.articulo.gestor.articulo.alcance.nosql.almacenamiento.AlmacenamientoArticuloAlcanceNoSqlGestor">
+		<property name="simpleOrientDocumentDbManager"><ref bean="sicOrientDbManagerDataSource"/></property>
+		<property name="validacionArticuloAlcanceNoSqlGestor"><ref bean="sicValidacionArticuloAlcanceNoSqlGestor"/></property>
+		<property name="articuloLocalODocumentDAO"><ref bean="sicArticuloLocalODocumentDAO"/></property>
+		<property name="articuloAreaTrabajoBitacoraODocumentDAO"><ref bean="sicArticuloLocalBitacoraODocumentDAO"/></property>
+		<property name="articuloAlcanceNoSqlDAO"><ref bean="sicArticuloAlcanceNoSqlDAO"/> </property>
+		<property name="articuloAlcanceDAO"><ref bean="sicArticuloAlcanceDAO"/></property>
+	</bean>
+	
+	<bean id="sicCalculoArticuloAlcanceNoSqlGestor" class="ec.com.smx.sic.articulo.gestor.articulo.alcance.nosql.calculo.CalculoArticuloAlcanceNoSqlGestor">
+		<property name="simpleOrientDocumentDbManager"><ref bean="sicOrientDbManagerDataSource"/></property>
+		<property name="articuloLocalODocumentDAO"><ref bean="sicArticuloLocalODocumentDAO"/></property>
+		<property name="articuloAlcanceDAO"><ref bean="sicArticuloAlcanceDAO"/></property>
+	</bean>
+	
+	<bean id="sicValidacionArticuloAlcanceNoSqlGestor" class="ec.com.smx.sic.articulo.gestor.articulo.alcance.nosql.validacion.ValidacionArticuloAlcanceNoSqlGestor">
+	</bean>
+	
+	<!-- DAO's -->
+	<bean id="sicArticuloLocalODocumentDAO" class="ec.com.smx.sic.articulo.persistence.dao.nosql.ArticuloLocalODocumentDAO">
+	</bean>
+	
+	<bean id="sicArticuloLocalBitacoraODocumentDAO" class="ec.com.smx.sic.articulo.persistence.dao.nosql.ArticuloAreaTrabajoBitacoraODocumentDAO">
+	</bean>
+	
+	<bean id="sicArticuloAlcanceNoSqlDAO" class="ec.com.smx.sic.articulo.persistence.dao.nosql.ArticuloAlcanceNoSqlDAO">
+	</bean>
+	
+	
+</beans>

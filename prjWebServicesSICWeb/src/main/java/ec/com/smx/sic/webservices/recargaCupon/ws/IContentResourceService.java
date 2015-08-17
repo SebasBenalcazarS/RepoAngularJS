@@ -54,13 +54,13 @@ public interface IContentResourceService {
 	 * @return
 	 */
 	@RequestMapping(value = "/delete", consumes = HeaderType.APPLICATION_JSON, method = RequestMethod.POST)
-	public ResponseEntity<Answer> delete(@RequestBody Map<String, Object> data);
+	ResponseEntity<Answer> delete(@RequestBody Map<String, Object> data);
 	
 	/**
 	 * Obtienen todas las promociones por grupos.
 	 * @return
 	 */
 	@RequestMapping(value = "/findAllByGroup", consumes = HeaderType.APPLICATION_JSON, method = RequestMethod.POST)
-	public @ResponseBody Collection<Promotions> findAllByGroup();
+	@ResponseBody Collection<Promotions> findAllByGroup();
 
 }

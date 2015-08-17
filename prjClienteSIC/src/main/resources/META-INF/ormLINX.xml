@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
+
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.AgenteAduaneroDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.ArancelDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.ArancelRequisitoDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.ArchivoImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.ArticuloProveedorArancelDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.CabeceraEnvioDetalleImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.CabeceraEnvioImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.CatalogoTipoImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.CatalogoValorImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.CatalogoValorTipoImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.ClienteImportacionCompradorDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.ClienteImportacionDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.ConceptoCatalogoValorImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.CondicionGastoEmbarqueDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.ContenidoArchivoImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.EmbarqueContenedorImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.EmbarqueEstadoImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.EmbarqueFactorDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.EmbarqueImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.EmbarqueLiquidacionImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.FactorDetalleDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.FactorDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.FacturaDetalleEstadoAdicionalDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.FacturaDetalleEstadoImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.FacturaDetalleImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.FacturaEstadoImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.FacturaGastoEmbarqueContenedorImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.FacturaGastoEmbarqueEstadoImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.FacturaGastoEmbarqueImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.FacturaImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.GastoEmbarqueDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.ObservacionImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.OrdenCompraDetalleEstadoImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.OrdenCompraDetalleImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.OrdenCompraEstadoImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.OrdenCompraFacturaImpDTO"/>
+	<entity class="ec.com.smx.sic.cliente.mdl.dto.linx.OrdenCompraImpDTO"/>
+
+</entity-mappings>

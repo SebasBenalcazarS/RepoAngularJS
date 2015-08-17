@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<guiaTransporte>
+	<codigoRuta>878</codigoRuta>
+	<numeroGuia>4456454</numeroGuia>
+	<furgon>F25</furgon>
+	<fechaGuia>2015-02-02</fechaGuia>
+	<horometro>12:05:05</horometro>
+	<transportista>1002966404 BARAHONA ESTEBAN</transportista>
+	<chofer1>MARIO LOPEZ</chofer1>
+	<chofer2>FERNANDO COLLAGUAZO</chofer2>
+	<selloSalida1>564564</selloSalida1>
+	<selloSalida2>645454</selloSalida2>
+	<despachador>MPUGA</despachador>
+	<vehiculo>PLJ4444</vehiculo>
+	<destinos>
+		<destino>
+			<nombreDestino>106 EL BOSQUE</nombreDestino>
+		</destino>
+		<destino>
+			<nombreDestino>107 MULTICENTRO</nombreDestino>
+		</destino>
+		<destino>
+			<nombreDestino>102 COTOCOLLAO</nombreDestino>
+		</destino>		
+	</destinos>
+	<detalles>
+		<codigoDocumento>1</codigoDocumento>
+		<descripcion>Descripcion</descripcion>
+	</detalles>
+</guiaTransporte>
