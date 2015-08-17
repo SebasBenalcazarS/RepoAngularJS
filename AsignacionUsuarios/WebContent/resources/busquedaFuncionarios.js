@@ -57,6 +57,15 @@ angular.module('asignacionUsuarios',['ngRoute','angularGrid', 'checklist-model',
 		    },
 		    "urlWebServiceDesactivarArticulos" : {
 		    	"url" : "/prjWebServicesSICWeb/ws/autorizacionUsuariosCreacion/desactivarArticuloFuncionario",
+		    },		    
+		    "reporteAutorizacionUsuarioClasificaciones" : {
+		    	"url" : "/prjWebServicesSICWeb/ws/autorizacionUsuarios/reporteAutorizacionUsuarioClasificaciones",
+		    	"codigoCompania": 1,
+		    	"maxResult":100,
+		    	"firstResult" : 0,
+		    	"usuarioSesion" : 'USU03',
+		    	"codigoUsuario" : "",
+		    	"codigoEstructura" : ""
 		    },
 		    "urlWebServiceCreacionClasificacionFuncionario"	:"/prjWebServicesSICWeb/ws/autorizacionUsuariosCreacion/creacionClasificacionFuncionario",
 		    "urlWebServiceCreacionArticulosRelacionados"	: "/prjWebServicesSICWeb/ws/autorizacionUsuariosCreacion/creacionArticuloFuncionario",

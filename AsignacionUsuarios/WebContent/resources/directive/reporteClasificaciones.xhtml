@@ -1,18 +1,50 @@
  <script src="resources/vendors/dist/angularGrid.js"></script>
 <link rel="stylesheet" href="resources/vendors/dist/angularGrid.css">
 <link rel="stylesheet" href="resources/css/bootstrap.css" />
+
 <script src="resources/controller/clasificacionRelacionadaUsuarioController.js"></script>
 <script src="resources/controller/reporteClasificacionesController.js"></script>
 
+<script src="resources/service/reporteService.js"></script>
+
+<table>
+	<tr>
+		<td valign="top" style="padding-top: 0px;">
+			<div class="headerTab" style="width:200px;">
+					<b>Filtro básico</b>
+			</div>
+			<div style="border: 1px solid #d6e6fb; width: 200px; " class="container"><br /> <br /> 
+				
+		        <b>Código estructura:</b><br /> 
+		        <input valid-number	ng-model="reporteCtrl.txtCodigoEstructura" id="idCodigoQuery"
+		                          type="text" size="20" maxlength="6"	style="margin-left: 5px; margin-right: 5px"> 
+		        <br /><br /> 
+		        <b>Usuario:</b><br /> 
+		        <input 	ng-model="reporteCtrl.txtUsuario" id="idCodigoQuery"
+		                          type="text" 	style="margin-left: 5px; margin-right: 5px"> <br /> <br />                         
+	    	</div> 	<br />	
+
+	   	 	<button style="float: right;"  ng-click="reporteCtrl.buscarReporteClasificaciones()" class="btn btn-sm btn-asignacionUsuarios"><span  class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar</button>
+	   	</td>
+	
 
 <!-- <tab heading="Reporte"  style="width:10px; "  id="TabReportes" active="false">  -->
 	
-			<nav>
-			  <ul class="pagination">
-			    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-			    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-			    ...
-			  </ul>
-			</nav>
-           <div   ag-grid="reporteCtrl.gridOptions"  class="ag-fresh" style="width:580px; height: 550px;" ></div>
+		<td valign="top">
+				
+				<div style="width: 590px;">
+			    		<div class="headerTab">
+			    			<table>
+			    			<tr> 
+			    			<td><b>Lista de Usuarios</b></td>
+							<td><div paginacion-directiva></div></td>
+							</tr>
+							 </table>
+						</div>
+			           	<div   ag-grid="reporteCtrl.gridOptions"  class="ag-fresh" style="width:590px; height: 550px;" ></div>
+			    </div>
+		   
+	    </td>
+    </tr>
+</table>
    <!-- </tab> -->
