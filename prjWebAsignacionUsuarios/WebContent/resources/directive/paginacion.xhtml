@@ -1,0 +1,24 @@
+<script src="resources/vendors/dist/angularGrid.js"></script>
+<link rel="stylesheet" href="resources/vendors/dist/angularGrid.css">
+<link rel="stylesheet" href="resources/css/bootstrap.css" />
+<script src="resources/controller/articulosNoRelacionadosController.js"></script>
+
+	<div ng-controller="ArticulosNoRelacionadosController as aNRCtrl">
+    	<button class="btn btn-sm btn-asignacionUsuarios" ng-click="pagCtrl.primeraPagina()" ng-disabled="pagCtrl.numPagActual==1" >
+		 	<span  class="glyphicon glyphicon-fast-backward" ></span> 
+		</button>
+		<button class="btn btn-sm btn-asignacionUsuarios" ng-click="pagCtrl.paginaAnterior()" ng-disabled="pagCtrl.numPagActual==1" >
+		 	<span  class="glyphicon glyphicon-backward" ></span> 
+		</button>
+			{{pagCtrl.numPagActual}} de {{pagCtrl.numeroTotalPaginas}}
+		<button class="btn btn-sm btn-asignacionUsuarios" ng-click="pagCtrl.paginaSiguiente()" ng-disabled="pagCtrl.numPagActual==pagCtrl.numeroTotalPaginas">
+		 	<span  class="glyphicon glyphicon-forward" ></span> 
+		</button>
+		<button class="btn btn-sm btn-asignacionUsuarios" ng-click="pagCtrl.ultimaPagina()" ng-disabled="pagCtrl.numPagActual==pagCtrl.numeroTotalPaginas">
+		 	<span  class="glyphicon glyphicon-fast-forward" ></span> 
+		</button>
+		<input type="text"/ style="width:30px;" ng-model="pagCtrl.numPagActual">
+		<button class="btn btn-sm btn-asignacionUsuarios" ng-click="pagCtrl.irAPagina()" ng-disabled="pagCtrl.numPagActual==pagCtrl.numeroTotalPaginas">
+		 	<span  class="glyphicon glyphicon-share-alt" ></span> 
+		</button>
+	</div>
