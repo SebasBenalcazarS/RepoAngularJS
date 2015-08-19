@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+
+    <title>Nested Layouts</title> 
+
+    <script type="text/javascript" src="resources/js/jquery.js"></script> 
+    <script type="text/javascript" src="resources/js/jquery.layout.js"></script> 
+    <script type="text/javascript" src="resources/js/jquery.ui.all.js"></script> 
+    <link rel="stylesheet" href="resources/css/style.css" />
+    <script> 
+
+        var outerLayout, middleLayout, innerLayout; 
+
+        $(document).ready(function () { 
+
+            outerLayout = $('body').layout({ 
+                center__paneSelector:   ".outer-center" 
+                ,   west__paneSelector:     ".outer-west" 
+                ,   east__paneSelector:     ".outer-east" 
+                ,   west__size:             125 
+                ,   east__size:             125 
+        ,   spacing_open:           8 // ALL panes
+        ,   spacing_closed:         12 // ALL panes
+        ,   north__spacing_open:    0
+        ,   south__spacing_open:    0
+        ,   center__onresize:       "middleLayout.resizeAll" 
+    }); 
+
+            middleLayout = $('div.outer-center').layout({ 
+                center__paneSelector:   ".middle-center" 
+                ,   west__paneSelector:     ".middle-west" 
+                ,   east__paneSelector:     ".middle-east" 
+                ,   west__size:             100 
+                ,   east__size:             100 
+        ,   spacing_open:           8  // ALL panes
+        ,   spacing_closed:         12 // ALL panes
+        ,   center__onresize:       "innerLayout.resizeAll" 
+    }); 
+
+            innerLayout = $('div.middle-center').layout({ 
+                center__paneSelector:   ".inner-center" 
+                ,   west__paneSelector:     ".inner-west" 
+                ,   east__paneSelector:     ".inner-east" 
+                ,   west__size:             75 
+                ,   east__size:             75 
+        ,   spacing_open:           8  // ALL panes
+        ,   spacing_closed:         8  // ALL panes
+        ,   west__spacing_closed:   12
+        ,   east__spacing_closed:   12
+    }); 
+
+        }); 
+
+
+</script> 
+</head> 
+<body> 
+    <div class="ui-layout-north">
+    </div>
+    <div class="outer-center">
+        <div style="width:900px; border-width: 5px;" ng-controller="AutorizacionUsuarioController as auCtrl">
+          <!-- <span style="font-size: 15px;">{{auCtrl.funcionarioSeleccionado.userName}}</span> -->
+          <table>
+            <h6>HOLAA</h6><span style="font-size: 15px;">{{auCtrl.funcionarioSeleccionado.userName}}</span>|
+            <td><img class="img" ng-src="{{auCtrl.propiedadesWeb.imagenes.img1}}" /></td>
+            <td><b>Seleccione los usuarios</b></td>             
+        </table>  
+    </br> </br>           
+    <table>
+        <tr>
+            <th>
+
+                <div class="panel panel-default" style=" background-color: #EFFBFB; width:900px;">
+                    <div class="panel-heading" style="color:red;"> &#8213;Usuario origen <HR width=50% align="center"></div>
+                    <!--<div class="panel-body">-->
+                    <b>Usuario</b><input type="text" id="idTextQuery" ng-model="query"/><img class="link1" ng-src="{{bfCtrl.propiedadesWeb.imagenes.imgBuscar}}" />
+                </br> </br>
+                <div style="overflow-y: scroll; overflow-x: scroll; height: 500px;">
+                    <table ng-controller="AutorizacionUsuarioController as auCtrl">
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr ng-repeat="funcionario in bfCtrl.funcionarios | filter:query"
+                        ng-click="auCtrl.update($index, funcionario);bfCtrl.setFuncionarioSeleccionado(funcionario);auCtrl.cambiarTabClasificaciones();"
+                        ng-class='{selected: $index==auCtrl.selectedRow}'>
+                        <td><img class="link1" ng-src="{{bfCtrl.propiedadesWeb.imagenes.imgPersona}}" /></td>
+                        <td>
+                            <span class="link1" style="font-size: 10px;">({{funcionario.userName}})
+                                {{funcionario.userCompleteName}}</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <table class="table" style="width:550px; heigth: 100px;">
+                    <thead  style="width: 550px;">
+                        <tr>
+                            <th style="text-align: center; background-color: #d6e6fb;">Código</th>
+                            <th style="text-align: center; background-color: #d6e6fb;">Nombre</th>
+                        </tr>
+                        <tr style="width: 550px;">
+                            <td class="celda" style="background-color: white;">{{auCtrl.funcionarioSeleccionado.userName}}}</td>
+                            <td class="celda" style="background-color: white;">{{auCtrl.funcionarioSeleccionado.userCompleteName}}</td>
+                        </tr>
+                    </thead>
+                </table>
+                <!--</div>-->
+                
+            </div>
+            <div class="panel panel-default" style="margin:30px; justified="true"; background-color: white; width:900px; margin:10px;" >
+                <div class="panel-heading" style="color:black;"> Clasificaciones <HR width=50% align="right" color="black" draggable="true"></div>
+                <table class="table" style="width:250px; heigth: 100px;">
+                    <thead  style="width: 250px;">
+                        <tr>
+                            <th style="text-align: center; background-color: #d6e6fb;">Código</th>
+                            <th style="text-align: center; background-color: #d6e6fb;">Descripcion</th>
+                        </tr>
+                        <tr style="width: 250px;">
+                            <td class="celda" style="background-color: white;">Codigo</td>
+                            <td class="celda" style="background-color: white;">Descripcion</td>
+                        </tr>
+                    </thead>
+                </table>
+                <!--</div>-->
+                
+            </div>
+        </th>
+    </tr>
+    <tr>
+        <th>
+
+            <div class="panel panel-default" style=" background-color: #EFFBFB; width:900px;">
+                <div class="panel-heading" style="color:red;"> &#8213;Usuario Destino <HR width=50% align="center"></div>
+                <!--<div class="panel-body">-->
+                <b>Usuario</b><input type="text" id="idTextQuery" ng-model="query"/>
+            </br> </br>
+            <table class="table" style="width:250px; heigth: 100px;">
+                <thead  style="width: 250px;">
+                    <tr>
+                        <th style="text-align: center; background-color: #d6e6fb;">Código</th>
+                        <th style="text-align: center; background-color: #d6e6fb;">Nombre</th>
+                    </tr>
+                    <tr style="width: 250px;">
+                        <td class="celda" style="background-color: white;">Codigo</td>
+                        <td class="celda" style="background-color: white;">Nombre de usuario</td>
+                    </tr>
+                </thead>
+            </table>
+            <!--</div>-->
+            
+        </div>
+        <div class="panel panel-default" style="margin:30px; justified="true"; background-color: white; width:900px; margin:10px;"  >
+            <div class="panel-heading" style="color:black;"> Clasificaciones <HR width=50% align="center" ></div>
+            <table class="table" style="width:250px; heigth: 100px;">
+                <thead  style="width: 250px;">
+                    <tr>
+                        <th style="text-align: center; background-color: #d6e6fb;">Código</th>
+                        <th style="text-align: center; background-color: #d6e6fb;">Descripcion</th>
+                    </tr>
+                    <tr style="width: 250px;">
+                        <td class="celda" style="background-color: white;">Codigo</td>
+                        <td class="celda" style="background-color: white;">Descripcion</td>
+                    </tr>
+                </thead>
+            </table>
+            <!--</div>-->
+            
+        </div>
+        
+    </tr>
+</table>
+</div>
+</div> 
+<!-- <div class="outer-west" style="width:0px;"></div>  -->
+<div class="outer-east"></div> 
+
+</body> 
+</html>

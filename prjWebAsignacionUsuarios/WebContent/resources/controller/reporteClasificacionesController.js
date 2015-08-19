@@ -17,12 +17,14 @@ angular.module('asignacionUsuarios').controller('ReporteClasificacionesControlle
 		//rowData: null,
 		//rowSelection: 'multiple',
 		//rowHeight: 25,
-    	//virtualPaging: true,
+    	virtualPaging: true,
+    	overflowSize: 20,
+    	rowsBuffer:20,
     	pageSize: 20,
     	enableColResize: true,
     	columnDefs: [
-    	{headerName: "Usuario", field: "userId", width: 95, headerTooltip: "Usuario"},
-    	{headerName: "Descripci&oacute;n usuario", field: "userCompleteName", width: 180,headerTooltip: "Descripción usuario"},
+    	{headerName: "Usuario", field: "codigoUsuario", width: 95, headerTooltip: "Usuario", filter: 'set'},
+    	{headerName: "Descripci&oacute;n usuario", field: "userCompleteName", width: 180,headerTooltip: "Descripción usuario", filter: 'set'},
     	{headerName: "Cod. Clasificaci&oacute;n", field: "codigoClasificacion", width: 110, headerTooltip: "Código clasificación"},
     	{headerName: "Descripci&oacute;n Clasificaci&oacute;n", field: "descripcionClasificacion", width: 205, headerTooltip: "Descripción clasificación"}
     	]
@@ -31,7 +33,8 @@ angular.module('asignacionUsuarios').controller('ReporteClasificacionesControlle
     reporteController.data = {
             rowCount: null, // behave as infinite scroll
             pageSize: 20,
-            //overflowSize: 100,
+            rowsBuffer:20,
+            overflowSize: 20,
            
             getRows: function (params) {              
             	setTimeout( function() {
@@ -73,11 +76,11 @@ angular.module('asignacionUsuarios').controller('ReporteClasificacionesControlle
 
 		reporteService.getReporteClasificaciones(reporteController.req).then(function(result){
 			reporteController.listaClasificaciones=[];
-			for (var i = 0; i < result.length; i++) {
-				reporteController.listaClasificaciones.push(result[i]);
+			for (var i = 0; i <= result.coleccionClasificaciones.length-1 ; i++) {
+				reporteController.listaClasificaciones.push(result.coleccionClasificaciones[i]);
 			};
 			reporteController.crearDataSource(reporteController.listaClasificaciones);
-            		$scope.$broadcast('numeroRegistrosANR', reporteController.listaClasificaciones.length-1, reporteController.max);
+            		$scope.$broadcast('numeroClasificaciones', result.numeroClasificaciones, reporteController.max);
        				console.log('reporteController.listaClasificaciones: '+ reporteController.listaClasificaciones.length);
 			/*
 			if (reporteController.gridOptions.api) {
@@ -87,9 +90,12 @@ angular.module('asignacionUsuarios').controller('ReporteClasificacionesControlle
 		})
 	}
 
-	$scope.$on('numPaginaaMostrar', function(event, numPagina){
-		reporteController.filaInicio=(numPagina*reporteController.max)- reporteController.max;	
-		reporteController.buscarReporteClasificaciones();
+	$scope.$on('numPaginaaMostrar', function(event, numPagina, estado){
+		if(estado){
+			reporteController.filaInicio=(numPagina*reporteController.max)- reporteController.max;	
+			reporteController.buscarReporteClasificaciones();
+		}
+		
 		//event.stopPropagation();
 	});
 
@@ -98,6 +104,10 @@ angular.module('asignacionUsuarios').controller('ReporteClasificacionesControlle
             	var dataSource = {
                 rowCount: -1, 
                 pageSize: 20,
+                overflowSize: 20,
+                virtualPaging: true,
+                enableSorting: true,
+        		enableFilter: true,
 
                 getRows: function (params) {
                     console.log('asking for ' + reporteController.filaInicio + ' to ' + (reporteController.filaInicio+20));

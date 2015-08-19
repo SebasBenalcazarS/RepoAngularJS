@@ -10,7 +10,7 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
 	articulosNoRelacionadosController.listaCArticulos=[];
 	//articulosNoRelacionadosController.listaticulosSeleccionados=[];
 	articulosNoRelacionadosController.datalistaClasesArticulos;
-	articulosNoRelacionadosController.datalistaArticulosRelacionados;
+	//articulosNoRelacionadosController.datalistaArticulosRelacionados;
 	articulosNoRelacionadosController.cargardata=false;
 	articulosNoRelacionadosController.hayDatos=true;
 	articulosNoRelacionadosController.dataArticulosNoRelacionados=[];
@@ -25,10 +25,10 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
 		articulosNoRelacionadosController.listaCArticulos=[];
 		articulosNoRelacionadosController.cargardata=true;
 	});
-	$scope.$on('dataArticulosRelacionada', function(event, dataRelacionada) {
+	/*$scope.$on('dataArticulosRelacionada', function(event, dataRelacionada) {
 		articulosNoRelacionadosController.datalistaArticulosRelacionados = dataRelacionada;
 		event.stopPropagation();
-	});
+	});*/
 	
 	//capturar lista de clases seleccionadas en una sola variable. articulosNoRelacionadosController.listaCArticulos 
 	$scope.$on('checkAllClaseArti', function(event, estado, listaC) {
@@ -109,8 +109,10 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
 		//rowData: null,
 		rowSelection: 'multiple',
 		//rowHeight: 25,
-    	//virtualPaging: true,
+    	pageSize: 25,
+    	virtualPaging: true,
     	enableColResize: true,
+    	rowsBuffer: 25,
     	columnDefs: [/*{headerName: "#", width: 25, cellRenderer: function(params) {
             return params.node.id + 1;
         } },*/
@@ -124,11 +126,8 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
     };
     articulosNoRelacionadosController.data = {
           rowCount: null, // behave as infinite scroll
-           //rowCount: null, // behave as infinite scroll
           pageSize: 25,
           overflowSize: 50,
-          maxConcurrentRequests: 2,
-          maxPagesInCache: 2,
            getRows: function (params) {              
            	setTimeout( function() {
            		var rowsThisPage = articulosNoRelacionadosController.dataArticulosNoRelacionados.slice(params.startRow, params.endRow);
@@ -220,6 +219,8 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
             	var dataSource = {
                 rowCount: -1, 
                 pageSize: 25,
+                rowsBuffer:25,
+                virtualPaging: true,
 
                 getRows: function (params) {
                     console.log('asking for ' + articulosNoRelacionadosController.filaInicio + ' to ' + (articulosNoRelacionadosController.filaInicio+25));
@@ -236,10 +237,11 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
             };
             if (articulosNoRelacionadosController.gridOptions.api) {
             	articulosNoRelacionadosController.gridOptions.api.setDatasource(dataSource);
+            	articulosNoRelacionadosController.gridOptions.api.showLoading(false);
             };
 	}
 
-	articulosNoRelacionadosController.eliminarArticulosRelacionados = function(dataDeArticulosRelacionados){
+	/*articulosNoRelacionadosController.eliminarArticulosRelacionados = function(dataDeArticulosRelacionados){
 
 		for (var i = 0 ; i < (dataDeArticulosRelacionados != undefined && dataDeArticulosRelacionados.length) ; i++){
 			for (var j = 0 ; j < (articulosNoRelacionadosController.datalistaArticulosRelacionados != undefined && dataDeArticulosRelacionados[i] != undefined && articulosNoRelacionadosController.datalistaArticulosRelacionados.length) ; j++ ){
@@ -249,7 +251,7 @@ angular.module('asignacionUsuarios').controller("ArticulosNoRelacionadosControll
 			}
 		}
 		return dataDeArticulosRelacionados;
-	}	
+	}	*/
 	
 	articulosNoRelacionadosController.desagregar = function(){
 		$scope.$broadcast('desagregarArticulosEvent', articulosNoRelacionadosController.listaArticulosSeleccionados);

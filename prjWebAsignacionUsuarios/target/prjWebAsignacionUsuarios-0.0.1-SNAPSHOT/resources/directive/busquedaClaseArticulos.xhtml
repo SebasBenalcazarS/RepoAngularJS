@@ -1,0 +1,27 @@
+<script src="resources/vendors/dist/angularGrid.js"></script>
+<link rel="stylesheet" href="resources/vendors/dist/angularGrid.css">
+<link rel="stylesheet" href="resources/css/bootstrap.css" />
+	<div>
+
+			<table class="table">
+				<thead class="tableheader">
+					<tr>
+						<th class="trth" style="width: 25px; padding: 3px">
+							<input type="checkbox" ng-model="bCArtCtrl.estado" ng-click="bCArtCtrl.checkAll()"/>
+						</th>
+						<th class="trth" style="width: 162px; padding: 3px;">Codigo - Nombre</th>
+					</tr>					
+				</thead>
+				<tbody class="tablebodyCArt">
+					<tr ng-repeat="claseArticulos in bCArtCtrl.claseArticulos  ">
+						<td style="border: 1px solid #c0c0c0; display: inline-block; padding: 3px; width: 25px;">
+							<input type="checkbox" checklist-model="bCArtCtrl.listaCA" ng-click="bCArtCtrl.check()"   checklist-value="claseArticulos" /><!--ng-click="bCArtCtrl.check()"  -->
+						</td>
+						<td>
+							<span style="font-size: 8px;">{{claseArticulos.codigoclasearticulo}} - {{claseArticulos.name}}
+							</span>
+						</td>
+					</tr>							
+				</tbody>				
+			</table>
+	</div>
