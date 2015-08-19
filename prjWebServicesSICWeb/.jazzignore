@@ -18,7 +18,5 @@ core.ignore.recursive= \
 	{*.class} 
 
 core.ignore= \
-	{.jazzignore} \
-	{.project} \
 	{bin} \
 	{target} 

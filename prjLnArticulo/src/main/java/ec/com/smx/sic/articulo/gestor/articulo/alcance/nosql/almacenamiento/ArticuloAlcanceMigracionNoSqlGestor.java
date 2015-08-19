@@ -215,6 +215,33 @@ public class ArticuloAlcanceMigracionNoSqlGestor implements IArticuloAlcanceMigr
 				"WHERE ARTBIT.CODIGOCOMPANIA = :pCodigoCompania ", 
 				"AND ARTBIT.CODIGOAREATRABAJO = :pCodigoLocal ");
 		
+//		StringBuilder sql = CentroDistribucionUtil.getInstancia().appendObject(
+//				"SELECT * FROM ( ",
+//					"SELECT ",
+//					"ARTBIT.CODIGOCOMPANIA {vista.id.codigoCompania}, ", 
+//					"ARTBIT.CODARTARETRABIT {vista.id.codigoArticuloAreaTrabajoBitacora}, ",
+//					"ARTBIT.CODIGOAREATRABAJO {vista.codigoAreaTrabajo}, ",
+//					"ARTBIT.CODIGOARTICULO {vista.codigoArticulo}, ",
+//					"ARTBIT.CODIGOSISTEMA {vista.codigoSistema}, ",
+//					"ARTBIT.CODIGOOPCION {vista.codigoOpcion}, ",
+//					"ARTBIT.ESTADOALCANCE {vista.estadoAlcance}, ",
+//					"ARTBIT.USUARIOALCANCE {vista.usuarioAlcance}, ",
+//					"ARTBIT.FECHAALCANCE {vista.fechaAlcance}, ",
+//					"ARTBIT.FECHAREGISTRO {vista.fechaRegistro}, ",
+//					"ARTBIT.ESTADO {vista.estado}, ",
+//					"ARTBIT.FECHAINICIALALCANCE {vista.fechaInicialAlcance}, ",
+//					"ARTBIT.FECHAFINALALCANCE {vista.fechaFinalAlcance}, ",
+//					"ARTBIT.TIPOASIGNACIONVALOR {vista.tipoAsignacionValor}, ",
+//					"ARTBIT.CODIGOTIPOASIGNACION {vista.codigoTipoAsignacion}, ",
+//					"ARTBIT.TIPOBITACORAVALOR {vista.tipoBitacoraValor}, ",
+//					"ARTBIT.CODIGOTIPOBITACORA {vista.codigoTipoBitacora}, ",
+//					"rownumber() OVER (ORDER BY CODIGOCOMPANIA)  AS ROW_NEXT ",
+//					"FROM SCSADTARTARETRABIT", sufijoTabla, " ARTBIT ", 
+//					"WHERE ARTBIT.CODIGOCOMPANIA = :pCodigoCompania ", 
+//					"AND ARTBIT.CODIGOAREATRABAJO = :pCodigoLocal ",
+//				" ) AS PRODUCT_TEMP WHERE ROW_NEXT BETWEEN :pMin and :pMax"
+//				);
+		
 		return sql.toString();
 	}
 	
@@ -236,7 +263,7 @@ public class ArticuloAlcanceMigracionNoSqlGestor implements IArticuloAlcanceMigr
 				"FROM SCARTTARTEST", " ARTEST ",
 				"INNER JOIN SSPCOTESTABLECIMIENTO EST ON EST.CODIGOCOMPANIA = ARTEST.CODIGOCOMPANIA AND EST.CODIGOESTABLECIMIENTO = ARTEST.CODIGOESTABLECIMIENTO ",
 				"INNER JOIN SCSPETARTICULO ART ON ART.CODIGOCOMPANIA = ARTEST.CODIGOCOMPANIA AND ARTEST.CODIGOARTICULO = ART.CODIGOARTICULO ",
-				"INNER JOIN SCSADTART", sufijoTabla, " ARTLOC ", "ON ARTLOC.CODIGOCOMPANIA = ART.CODIGOCOMPANIA AND ARTLOC.CODIGOARTICULO = ART.CODIGOARTICULO ", 
+				"INNER JOIN SCSADTARTLOC ARTLOC ", "ON ARTLOC.CODIGOCOMPANIA = ART.CODIGOCOMPANIA AND ARTLOC.CODIGOARTICULO = ART.CODIGOARTICULO ", 
 				"WHERE ARTEST.CODIGOCOMPANIA = :pCodigoCompania ", 
 				"AND ARTLOC.CODIGOLOCAL = :pCodigoLocal ");
 		

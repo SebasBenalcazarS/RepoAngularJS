@@ -256,4 +256,5 @@ public interface IAlmacenamientoRecepcionProveedoresGestor {
 	 * @param recepcionProveedor
 	 */
 	void reactivarRecepcionProveedorDetalleSeccion(RecepcionProveedorDTO recepcionProveedor);
+
 }

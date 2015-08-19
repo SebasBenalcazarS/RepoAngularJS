@@ -301,4 +301,11 @@ public interface IArticuloDAO {
 	 * @throws SICException
 	 */
 	public ArticuloDTO buscarArticuloId(Integer codigoCompania, String codigoArticulo)throws SICException;
+	
+	//public Collection<ArticuloLocalPrecioDTO> obtenerPreciosPorLocal(Integer codigoCompania , String codigoArticulo) throws SICException;
+	
+//	/**
+//	 * metodo que retorna las areas de trabajo por prototipo
+//	 */
+//	public Collection<GrupoAreaTrabajoDTO> cargarLocalesPrototipoAlcance(Integer codigoCompania, Long codigoGrupoTrabajo,Boolean asignacionMasivaArticulos);
 }

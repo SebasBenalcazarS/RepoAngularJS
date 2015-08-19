@@ -9,7 +9,6 @@ import ec.com.smx.sic.cliente.exception.SICException;
 import ec.com.smx.sic.cliente.mdl.dto.ArticuloDTO;
 import ec.com.smx.sic.cliente.mdl.dto.ClaseArticuloDTO;
 import ec.com.smx.sic.cliente.mdl.dto.ClasificacionDTO;
-import ec.com.smx.sic.cliente.mdl.dto.UsuarioClasificacionProcesoDTO;
 import ec.com.smx.sic.cliente.mdl.vo.ArticuloVO;
 import ec.com.smx.sic.cliente.mdl.vo.ClasificacionVO;
 
@@ -79,7 +78,7 @@ public interface ICalculoUsuarioAutorizacionGestor {
 	 * @return
 	 * @throws SICException
 	 */
-	public Collection<UsuarioClasificacionProcesoDTO> reportesUsuarios(Integer codigoCompania, String codigoclasificacion,String user)throws SICException;
+	public Map<String, Object> reportesUsuarios(Integer codigoCompania, String codigoclasificacion,String user, Integer firstResult, Integer maxResult)throws SICException;
 	
 	/**
 	 * Obtiene una coleccion de clases de articulo

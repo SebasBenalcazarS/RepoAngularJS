@@ -1625,6 +1625,7 @@ public class ArticuloDAO implements Logeable, IArticuloDAO {
 					.add(Projections.property("articuloMedidaDTO.referenciaMedida"),"articuloMedidaDTO.referenciaMedida")
 					.add(Projections.property("estadoArticulo"),"estadoArticulo"));
 				
+			select.createAlias("articuloMedidaDTO", "articuloMedidaDTO",JoinType.INNER.ordinal());
 			select.add(Restrictions.eq("art.estadoArticulo", SICConstantes.ESTADO_ACTIVO_NUMERICO));
 			select.add(Restrictions.eq("art.id.codigoArticulo", codigoArticulo));
 			select.add(Restrictions.eq("art.id.codigoCompania", codigoCompania));
@@ -2661,6 +2662,80 @@ public class ArticuloDAO implements Logeable, IArticuloDAO {
 		
 		return articulosCol;
 	}
+	
+//	public Collection<ArticuloLocalPrecioDTO> obtenerPreciosPorLocal(Integer codigoCompania , String codigoArticulo) throws SICException{
+//		try{
+//			Session session = sessionFactory.getCurrentSession();
+//			session.clear();
+//			Criteria criteria = session.createCriteria(ArticuloLocalPrecioDTO.class);
+//			criteria.add(Restrictions.eq("id.codigoCompania", codigoCompania));
+//			criteria.add(Restrictions.eq("id.codigoArticulo", codigoArticulo));
+//			criteria.add(Restrictions.eq("estadoPrecio", SICConstantes.ESTADO_ACTIVO_NUMERICO));
+//			ProjectionList proList = Projections.projectionList();
+//			proList.add(Projections.property("valorActual"),("valorActual"));
+//			proList.add(Projections.property("id.codigoTipoPrecio"),("id.codigoTipoPrecio"));
+//			proList.add(Projections.property("id.codigoLocal"),("id.codigoLocal"));
+//			criteria.setProjection(proList);
+//			criteria.setResultTransformer(new DtoResultTransformer(ArticuloLocalPrecioDTO.class));
+//			Collection<ArticuloLocalPrecioDTO> articuloLocalPrecioCol = criteria.list();
+//			return articuloLocalPrecioCol;
+//		}catch(Exception e){
+//			throw new SICException("Ocurrio un error al consultar los precios por local");
+//		}
+//	}
+	
+//	/**
+//	 * metodo que retorna las areas de trabajo por prototipo
+//	 */
+//	public Collection<GrupoAreaTrabajoDTO> cargarLocalesPrototipoAlcance(Integer codigoCompania, Long codigoGrupoTrabajo,Boolean asignacionMasivaArticulos)throws SICException{
+//		try{
+//			Session session = sessionFactory.getCurrentSession();
+//			session.clear();
+//			Criteria criteria = session.createCriteria(GrupoAreaTrabajoDTO.class);
+//			
+//			//proyecciones
+//			ProjectionList projection = Projections.projectionList();
+//			projection.add(Projections.property("areaTrabajoDTO.id.codigoAreaTrabajo"),("areaTrabajoDTO.id.codigoAreaTrabajo"));
+//			projection.add(Projections.property("areaTrabajoDTO.nombreAreaTrabajo"),("areaTrabajoDTO.nombreAreaTrabajo"));
+//			projection.add(Projections.property("areaTrabajoDTO.codigoEstablecimiento"),("areaTrabajoDTO.codigoEstablecimiento"));
+//			projection.add(Projections.property("areaTrabajoDTOEstablecimientoCiudadDTOEstablecimientoDTO.id.codigoEstablecimiento"),("areaTrabajoDTO.establecimientoCiudadDTO.establecimientoDTO.id.codigoEstablecimiento"));
+//			projection.add(Projections.property("areaTrabajoDTOEstablecimientoCiudadDTOEstablecimientoDTO.nombreEstablecimiento"),("areaTrabajoDTO.establecimientoCiudadDTO.establecimientoDTO.nombreEstablecimiento"));
+//			
+//			if(asignacionMasivaArticulos){
+//				projection.add(Projections.property("areaTrabajoDTOEstablecimientoCiudadDTOCiudadDTO.nombreDivGeoPol"),("areaTrabajoDTO.establecimientoCiudadDTO.ciudadDTO.nombreDivGeoPol"));
+//			}
+//			
+//			criteria.add(Restrictions.eq("id.codigoCompania", codigoCompania));
+//			criteria.add(Restrictions.eq("id.codigoGrupoTrabajo", codigoGrupoTrabajo));
+//			criteria.add(Restrictions.eq("estadoGrupoAreaTrabajo", SICConstantes.ESTADO_ACTIVO_LITERAL));
+//			//join de area de trabajo
+//			criteria.createAlias("areaTrabajoDTO", "areaTrabajoDTO",JoinType.LEFT.ordinal());
+//			criteria.add(Restrictions.eq("areaTrabajoDTO.tipoAreaTrabajoTIC", TiposCatalogoConstantes.TIPO_AREA_TRABAJO));
+//			criteria.add(Restrictions.eq("areaTrabajoDTO.tipoAreaTrabajoValor", CorporativoConstantes.TIPO_AREATRABAJO_LOCAL));
+//			criteria.add(Restrictions.eq("areaTrabajoDTO.estadoAreaTrabajo", SICConstantes.ESTADO_ACTIVO_LITERAL));
+//			
+//			//join con el establecimiento
+//			criteria.createAlias("areaTrabajoDTO.establecimientoCiudadDTO", "areaTrabajoDTOEstablecimientoCiudadDTO",JoinType.LEFT.ordinal());
+//			criteria.createAlias("areaTrabajoDTO.establecimientoCiudadDTO.establecimientoDTO", "areaTrabajoDTOEstablecimientoCiudadDTOEstablecimientoDTO",JoinType.LEFT.ordinal());
+//			
+//			//join con ciudad
+//			if(asignacionMasivaArticulos){
+//				criteria.createAlias("areaTrabajoDTO.establecimientoCiudadDTO.ciudadDTO", "areaTrabajoDTOEstablecimientoCiudadDTOCiudadDTO",JoinType.LEFT.ordinal());
+//			}
+//			
+//			criteria.addOrder(Order.asc("areaTrabajoDTO.codigoEstablecimiento"));
+//			criteria.addOrder(Order.asc("id.codigoAreaTrabajo"));
+//			criteria.setProjection(projection);
+//			criteria.setResultTransformer(new DtoResultTransformer(GrupoAreaTrabajoDTO.class));
+//			
+//			Collection<GrupoAreaTrabajoDTO> areasTrabajoCol = criteria.list();
+//			
+//			return areasTrabajoCol;
+//		}catch(Exception e){
+//			Logeable.LOG_SICV2.error("Ha ocurrido un error al consultar las areas de trabajo, "+e.getMessage());
+//			throw new SICException("Ha ocurrido un error al consultar las areas de trabajo");
+//		}
+//	}
 	
 	public void setHibernateH(IHibernateH<SearchDTO> hibernateH) {
 		this.hibernateH = hibernateH;

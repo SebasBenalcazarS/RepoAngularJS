@@ -5,10 +5,15 @@ package ec.com.smx.sic.cliente.mdl.vo;
 
 import java.util.Collection;
 
+import org.apache.commons.collections.CollectionUtils;
+
 import ec.com.smx.bi.dto.ConfiguracionNivelPagoDTO;
 import ec.com.smx.corpv2.common.util.TiposCatalogoConstantes;
 import ec.com.smx.corpv2.dto.CatalogoValorDTO;
+import ec.com.smx.sic.cliente.common.SICConstantes;
 import ec.com.smx.sic.cliente.common.proveedor.TipoCatalogosProveedor;
+import ec.com.smx.sic.cliente.common.proveedor.TipoProveedor;
+import ec.com.smx.sic.cliente.mdl.dto.TipoProveedorDTO;
 import ec.com.smx.sic.cliente.mdl.dto.interfaces.IProveedor;
 
 /**
@@ -96,7 +101,24 @@ public abstract class CaracteristicaProveedorVO extends CaracteristicaNivelRepor
 	 * @return
 	 */
 	public Integer getIndiceCaracteristicaAutorizadoProntoPago(){
-		return this.getIndiceCaracteristicaSeleccionada(TiposCatalogoConstantes.TIPO_CARACTERISTICA_PERFIL_AUTORIZADO_PRONTOPAGO);
+		Boolean esArticulo = Boolean.FALSE;
+		Boolean esServicios = Boolean.FALSE;
+				
+		if (super.getBaseDTO().getTiposProveedor() != null && CollectionUtils.isNotEmpty(super.getBaseDTO().getTiposProveedor())) {
+			for (TipoProveedorDTO tipos : super.getBaseDTO().getTiposProveedor()) {
+				if (TipoProveedor.SERVICIOS.getValorTipoProveedor().equals(tipos.getId().getValorTipoProveedor())) {
+					esServicios = Boolean.TRUE;
+				} else {
+					esArticulo = Boolean.TRUE;
+				}
+			}
+		} 
+		
+		if (esServicios && !esArticulo) {
+			return this.getIndiceCaracteristicaSeleccionada(SICConstantes.TIPO_CARACTERISTICA_PERFIL_AUTORIZADO_PRONTOPAGO_SERVICIOS);
+		} else {
+			return this.getIndiceCaracteristicaSeleccionada(TiposCatalogoConstantes.TIPO_CARACTERISTICA_PERFIL_AUTORIZADO_PRONTOPAGO);
+		}
 	}
 	
 	
@@ -105,7 +127,24 @@ public abstract class CaracteristicaProveedorVO extends CaracteristicaNivelRepor
 	 * @param indiceCaracteristica
 	 */
 	public void setIndiceCaracteristicaAutorizadoProntoPago(Integer indiceCaracteristica){
-		this.setIndiceCaracteristicaSeleccionada(indiceCaracteristica, TiposCatalogoConstantes.TIPO_CARACTERISTICA_PERFIL_AUTORIZADO_PRONTOPAGO);
+		Boolean esArticulo = Boolean.FALSE;
+		Boolean esServicios = Boolean.FALSE;
+				
+		if (super.getBaseDTO().getTiposProveedor() != null && CollectionUtils.isNotEmpty(super.getBaseDTO().getTiposProveedor())) {
+			for (TipoProveedorDTO tipos : super.getBaseDTO().getTiposProveedor()) {
+				if (TipoProveedor.SERVICIOS.getValorTipoProveedor().equals(tipos.getId().getValorTipoProveedor())) {
+					esServicios = Boolean.TRUE;
+				} else {
+					esArticulo = Boolean.TRUE;
+				}
+			}
+		} 
+		
+		if (esServicios && !esArticulo) {
+			this.setIndiceCaracteristicaSeleccionada(indiceCaracteristica, SICConstantes.TIPO_CARACTERISTICA_PERFIL_AUTORIZADO_PRONTOPAGO_SERVICIOS);
+		} else {
+			this.setIndiceCaracteristicaSeleccionada(indiceCaracteristica, TiposCatalogoConstantes.TIPO_CARACTERISTICA_PERFIL_AUTORIZADO_PRONTOPAGO);
+		}
 	}
 	
 	

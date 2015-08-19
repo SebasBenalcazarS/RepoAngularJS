@@ -634,4 +634,13 @@ public interface ICalculoRecepcionProveedorGestor {
 	 * @return
 	 */
 	Collection<VistaResumenPalletsNavesSubnaves> obtenerTotalesPallets(Integer codigoCompania,Integer codigoAreaTrabajo,Integer codigoAreaTrabajoBodega,Integer codigoAreaTrabajoSubbodega) throws SICException;
+
+	/**
+	 * Obtiene un pallet filtrado por codigo de pallet
+	 * @param codigoCompania
+	 * @param codigoDatosTarea
+	 * @return
+	 * @throws SICException
+	 */
+	DatosTareaDTO obtenerPalletPorId(Integer codigoCompania, Long codigoDatosTarea) throws SICException;
 }

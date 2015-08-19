@@ -149,9 +149,9 @@ public class VistaRecibidoNoFacturadoDTO extends SearchDTO{
 	private String estiloRegistro;
 	private Collection<ISearchTemplate> filtrosBusqueda;//Se almacena los filtros de busqueda para obtener los reportes excel
 	private String numeroDocumentos;
+	
+	private PeriodoTrabajoDTO periodoTrabajoDTO;//Se almacena el periodo de trabajo actual
 
-	
-	
 	public String getNumeroFactura() {
 		return numeroFactura;
 	}
@@ -1168,5 +1168,10 @@ public class VistaRecibidoNoFacturadoDTO extends SearchDTO{
 	public void setNumeroDocumentos(String numeroDocumentos) {
 		this.numeroDocumentos = numeroDocumentos;
 	}
-	
+	public PeriodoTrabajoDTO getPeriodoTrabajoDTO() {
+		return periodoTrabajoDTO;
+	}
+	public void setPeriodoTrabajoDTO(PeriodoTrabajoDTO periodoTrabajoDTO) {
+		this.periodoTrabajoDTO = periodoTrabajoDTO;
+	}
 }

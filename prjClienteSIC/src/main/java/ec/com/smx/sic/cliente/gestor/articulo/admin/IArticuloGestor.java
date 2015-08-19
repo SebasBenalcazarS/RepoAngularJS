@@ -307,4 +307,13 @@ public interface IArticuloGestor extends IArticuloRegistroGestor {
 	 * @author derazo
 	 */
 	Collection<ArticuloDTO> obtenerArticulosSinPaginar (ArticuloVO articuloVO, Integer codigoCompania, Boolean obtenerRelaciones, Collection <String> colClasificacionLeyMercado)throws SICException;
+	
+	/**
+	 * devuelve un articulo en base al codigoCompania y codigoArticulo
+	 * @param codigoCompania
+	 * @param codigoArticulo
+	 * @return
+	 * @throws SICException
+	 */
+	public ArticuloDTO buscarArticuloId(Integer codigoCompania, String codigoArticulo)throws SICException;
 }

@@ -19,4 +19,12 @@ public interface ITareaProgramadaProcesamientoVentas {
 	
 	
 	void ejecutarTareaProgramadaCobrosDiariosProyectados(Integer companyId, String userId, Date fecha);
+	
+	/**
+	 * Genera las prefacturas de los cobros no procesados
+	 * @param companyId
+	 * @param userId
+	 * @param diasEsperados
+	 */
+	void ejecutarTareaProgramadaPrefacturasCobrosNoProcesados(Integer companyId, String userId, Integer diasEsperados);
 }

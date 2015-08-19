@@ -24,34 +24,34 @@ import ec.com.smx.sic.cliente.persistencia.articulos.dao.nosql.IArticuloLocalODo
  */
 public class ArticuloLocalODocumentDAO implements IArticuloLocalODocumentDAO, Logeable {
 
-	/* (non-Javadoc)
-	 * @see ec.com.smx.sic.cliente.persistencia.articulos.dao.nosql.IArticuloLocalODocumentDAO#registrarArticuloLocalDocument(java.lang.String, java.util.Collection)
-	 */
-	@Override
-	public void registrarArticuloLocalDocument(String iClusterName, Collection<ODocument> colODocumentArticuloLocal) throws SICException {
-		try {
-			
-			for (ODocument oDocumentArticuloLocal : colODocumentArticuloLocal) {
-				this.registrarArticuloLocalDocument(iClusterName, oDocumentArticuloLocal);
-			}
-			
-		} catch (SICException e) {
-			LOG_SICV2.error("Error al ejecutar registrarArticuloLocalDocument: {}", e.toString());
-			throw e;
-		}
-	}
-
-	/* (non-Javadoc)
-	 * @see ec.com.smx.sic.cliente.persistencia.articulos.dao.nosql.IArticuloLocalODocumentDAO#registrarArticuloLocalDocument(java.lang.String, com.orientechnologies.orient.core.record.impl.ODocument)
-	 */
-	@Override
-	public void registrarArticuloLocalDocument(String iClusterName, ODocument oDocumentArticuloLocal) throws SICException {
-		try {
-			oDocumentArticuloLocal.save(iClusterName);
-		} catch (Exception e) {
-			throw new SICException(e);
-		}
-	}
+//	/* (non-Javadoc)
+//	 * @see ec.com.smx.sic.cliente.persistencia.articulos.dao.nosql.IArticuloLocalODocumentDAO#registrarArticuloLocalDocument(java.lang.String, java.util.Collection)
+//	 */
+//	@Override
+//	public void registrarArticuloLocalDocument(String iClusterName, Collection<ODocument> colODocumentArticuloLocal) throws SICException {
+//		try {
+//			
+//			for (ODocument oDocumentArticuloLocal : colODocumentArticuloLocal) {
+//				this.registrarArticuloLocalDocument(iClusterName, oDocumentArticuloLocal);
+//			}
+//			
+//		} catch (SICException e) {
+//			LOG_SICV2.error("Error al ejecutar registrarArticuloLocalDocument: {}", e.toString());
+//			throw e;
+//		}
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see ec.com.smx.sic.cliente.persistencia.articulos.dao.nosql.IArticuloLocalODocumentDAO#registrarArticuloLocalDocument(java.lang.String, com.orientechnologies.orient.core.record.impl.ODocument)
+//	 */
+//	@Override
+//	public void registrarArticuloLocalDocument(String iClusterName, ODocument oDocumentArticuloLocal) throws SICException {
+//		try {
+//			oDocumentArticuloLocal.save(iClusterName);
+//		} catch (Exception e) {
+//			throw new SICException(e);
+//		}
+//	}
 	
 	@Override
 	public Collection<ODocument> obtenerIndiceLocalArticulo (String indexName, List<Object[]> listKey, String... projections) throws SICException {

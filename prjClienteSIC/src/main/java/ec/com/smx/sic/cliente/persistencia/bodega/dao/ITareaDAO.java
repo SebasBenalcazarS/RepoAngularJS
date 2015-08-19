@@ -5,7 +5,9 @@ import java.util.Collection;
 import java.util.Date;
 
 import ec.com.smx.corpv2.dto.CatalogoValorDTO;
+import ec.com.smx.corpv2.dto.FuncionarioPerfilDTO;
 import ec.com.smx.corpv2.dto.FuncionarioProcesoPerfilAreaTrabajoDTO;
+import ec.com.smx.frameworkv2.security.dto.UserDto;
 import ec.com.smx.sic.cliente.exception.SICException;
 import ec.com.smx.sic.cliente.mdl.dto.DatosTareaDTO;
 import ec.com.smx.sic.cliente.mdl.dto.DetalleSeccionDTO;
@@ -279,12 +281,20 @@ public interface ITareaDAO {
 	Collection<TareaDTO> obtenerTareasProcesoLogistico(Integer codigoCompania, Long codigoProcesoLogistico) throws SICException;
 	
 	/**
+	 * Obtener datos tarea proceso logistico
 	 * @param codigoTareaCol
 	 * @return
 	 * @throws SICException
 	 */
 	Collection<DatosTareaDTO> obtenerTareaDatosTareaProcesoLogistico(Collection<Long> codigoTareaCol) throws SICException;
 
-	 
+	/**
+	 * Obtener funcionario perfil por usuario
+	 * @param userDto
+	 * @param referenceCode
+	 * @return
+	 * @throws SICException
+	 */
+	FuncionarioPerfilDTO obtenerFuncionarioPerfilPorUsuario(UserDto userDto, String referenceCode) throws SICException; 
 	
 }

@@ -37,6 +37,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import ec.com.kruger.utilitario.dao.commons.dto.SearchResultDTO;
 import ec.com.kruger.utilitario.dao.commons.enumeration.ComparatorTypeEnum;
 import ec.com.smx.framework.ad.json.JsonPojoMapper;
 import ec.com.smx.framework.common.util.transformer.GetInvokerTransformer;
@@ -45,6 +46,7 @@ import ec.com.smx.sic.cliente.common.factory.SICFactory;
 import ec.com.smx.sic.cliente.common.fruver.FruverConstantes;
 import ec.com.smx.sic.cliente.common.fruver.util.FruverDateUtil;
 import ec.com.smx.sic.cliente.common.ordenCompra.SICOrdenCompraConstantes;
+import ec.com.smx.sic.cliente.exception.SICException;
 import ec.com.smx.sic.cliente.mdl.dto.ArticuloOfertaProveedorDTO;
 import ec.com.smx.sic.cliente.mdl.dto.FechaOfertaProveedorDTO;
 import ec.com.smx.sic.cliente.mdl.dto.OfertaProveedorDTO;
@@ -90,6 +92,7 @@ public class OfertaProveedor {
 			@RequestParam(value = "condicionalDescripcion", required = false) String condicionalDescripcion,
 			@RequestParam(value = "firstResult", required = true) Integer  firstResult,
 			@RequestParam(value = "maxResult", required = true) Integer maxResult,
+			@RequestParam(value = "numeroTotalRegistros", required = false) Boolean numeroTotalRegistros,
 			@RequestParam(value = "usuarioSesion", required = true) String usuarioSesion) {
 
 
@@ -99,19 +102,27 @@ public class OfertaProveedor {
 		String datos = "[]";
 
 		try{
+			
+			if(numeroTotalRegistros == null){
+				numeroTotalRegistros = Boolean.FALSE;
+			}
 
-			datosBusqueda = buscarArticulosOfertaProveedor(codigoCompania, codigoProveedor, codigoBarras, descripcion, condicionalCodigoBarras, condicionalDescripcion, usuarioSesion,firstResult,maxResult);
+			datosBusqueda = buscarArticulosOfertaProveedor(codigoCompania, codigoProveedor, codigoBarras, descripcion, condicionalCodigoBarras, condicionalDescripcion, usuarioSesion,firstResult,maxResult,numeroTotalRegistros);
 			if( datosBusqueda != null ){
 				datos = JsonPojoMapper.getInstance().writeValueAsString(datosBusqueda);
 			}
 
 			headers = new HttpHeaders();					
 			headers.add("Content-Type", "application/json; charset=utf-8");
-		}catch(Exception e){
+			return new ResponseEntity<String>(datos, headers, HttpStatus.OK);
+		}catch(SICException e){
 			LOG_SICV2.error("Error al consultar articulos: {}", e.getMessage());
-			return new ResponseEntity<String>(datos, headers, HttpStatus.EXPECTATION_FAILED);
+			return new ResponseEntity<String>(e.getMessage(), headers, HttpStatus.EXPECTATION_FAILED);
+		}catch(Exception e){
+			LOG_SICV2.error("Error al consultar articulos: {}", e);
+			return new ResponseEntity<String>("Error al consultar articulos oferta proveedor", headers, HttpStatus.EXPECTATION_FAILED);
 		}
-		return new ResponseEntity<String>(datos, headers, HttpStatus.OK);
+
 	}
 
 	@RequestMapping(value = "/validarAccesoSolicitudes", method = RequestMethod.GET, headers = "Accept= application/json")
@@ -138,6 +149,7 @@ public class OfertaProveedor {
 			}
 		}catch(Exception e){
 			LOG_SICV2.error("Error al validar datos de acceso al sistema: {}", e.getMessage());
+			return new ResponseEntity<String>(datos, headers, HttpStatus.EXPECTATION_FAILED);
 		}
 		return new ResponseEntity<String>(datos, headers, HttpStatus.OK);
 	}
@@ -146,7 +158,7 @@ public class OfertaProveedor {
 	public @ResponseBody ResponseEntity<String>  esOfertaEnviada(
 			@RequestParam(value = "codigoCompania", required = true) Integer codigoCompania,
 			@RequestParam(value = "codigoProveedor", required = true) String codigoProveedor){
-		
+
 		HttpHeaders headers = null;
 		String datos = "{}";
 		try{			
@@ -301,88 +313,95 @@ public class OfertaProveedor {
 	 * @param usuarioSesion
 	 * @return
 	 */
-	public DatosBusquedaArticulosJSON buscarArticulosOfertaProveedor( Integer codigoCompania, String codigoProveedor, String  codigoBarras, String descripcion, String condicionalCodigoBarras, String condicionalDescripcion, String usuarioSesion,Integer firstResult, Integer maxResult){
+	public DatosBusquedaArticulosJSON buscarArticulosOfertaProveedor( Integer codigoCompania, String codigoProveedor, String  codigoBarras, String descripcion, String condicionalCodigoBarras, String condicionalDescripcion, String usuarioSesion,Integer firstResult, Integer maxResult, Boolean numeroTotalRegistros) throws SICException{
+		try{
+			Map<String,Object> filtros = cargarFiltros(codigoCompania, codigoBarras, descripcion, condicionalCodigoBarras,condicionalDescripcion,firstResult,maxResult);
 
-		Map<String,Object> filtros = cargarFiltros(codigoCompania, codigoBarras, descripcion, condicionalCodigoBarras,condicionalDescripcion,firstResult,maxResult);
+			ParametroRangoFechaDTO  parametroRangoFechaDTO = SICFactory.getInstancia().fruver.getFruverServicio().obtenerParametroRangoFecha(codigoCompania, FruverConstantes.CODIGO_RANGO_FECHAS);
+			SearchResultDTO<ArticuloOfertaProveedorDTO> articulosOfertaSR = SICFactory.getInstancia().fruver.getFruverServicio().buscarArticulosOfertaProveedor(codigoCompania, codigoProveedor, filtros, parametroRangoFechaDTO,numeroTotalRegistros);
 
-		ParametroRangoFechaDTO  parametroRangoFechaDTO = SICFactory.getInstancia().fruver.getFruverServicio().obtenerParametroRangoFecha(codigoCompania, FruverConstantes.CODIGO_RANGO_FECHAS);
-		Collection<ArticuloOfertaProveedorDTO> articulosOfertaCol = SICFactory.getInstancia().fruver.getFruverServicio().buscarArticulosOfertaProveedor(codigoCompania, codigoProveedor, filtros, parametroRangoFechaDTO);
+			//Recorrer articulos encontrados
+			Collection<Articulo> articuloCol = null;
+			Map<String,Object> datosGenerales = null;
+			if(CollectionUtils.isNotEmpty(articulosOfertaSR.getResults())){
 
-		//Recorrer articulos encontrados
-		Collection<Articulo> articuloCol = null;
-		Map<String,Object> datosGenerales = null;
-		if(CollectionUtils.isNotEmpty(articulosOfertaCol)){
+				datosGenerales = new HashMap<>();
+				articuloCol = new ArrayList<>();
+				SimpleDateFormat simple = new SimpleDateFormat("dd/MM/yyyy");
 
-			datosGenerales = new HashMap<>();
-			articuloCol = new ArrayList<>();
-			SimpleDateFormat simple = new SimpleDateFormat("dd/MM/yyyy");
+				HashMap<String, Articulo> articulos = new HashMap<>();
 
-			HashMap<String, Articulo> articulos = new HashMap<>();
+				for(ArticuloOfertaProveedorDTO articuloOfertaProveedorDTO: articulosOfertaSR.getResults()){
 
-			for(ArticuloOfertaProveedorDTO articuloOfertaProveedorDTO: articulosOfertaCol){
-
-				if(!datosGenerales.containsKey("codigoOferta")){
-					datosGenerales.put("codigoOferta", articuloOfertaProveedorDTO.getFechaOfertaProveedor().getCodigoOferta());
-					datosGenerales.put("codigoCompania", codigoCompania);
-					datosGenerales.put("codigoProveedor", codigoProveedor);
-				}
-
-				//Verificamos si no se ha registrado el articulo
-				if(!articulos.containsKey(articuloOfertaProveedorDTO.getCodigoArticulo())){
-
-					Articulo articulo = new Articulo();
-					articulo.setCodigoBarras(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloUnidadManejoDTO().getArticulo().getCodigoBarras());
-					articulo.setDescripcion(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloUnidadManejoDTO().getArticulo().getDescripcionArticulo());
-					articulo.setTamanio(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloUnidadManejoDTO().getArticulo().getArticuloMedidaDTO().getReferenciaMedida());
-					articulo.setTipoControlCosto(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloUnidadManejoDTO().getArticulo().getArticuloComercialDTO().getValorTipoControlCosto());
-					articulo.setCodigoArticulo(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloUnidadManejoDTO().getArticulo().getId().getCodigoArticulo());
-					articulo.setCantidadMaxima(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloProveedor().getCantidadMaximaOfertada());
-					articulo.setPesoMaximo(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloProveedor().getPesoMaximoOfertado());
-					articulo.setCodigoUnidadManejo(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getId().getCodigoUnidadManejo());
-					articulo.setValorUnidadManejo(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloUnidadManejoDTO().getValorUnidadManejo());
-					articulo.setPesoAproximado(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloUnidadManejoDTO().getArticulo().getArticuloComercialDTO().getPesoAproximadoRecepcion());
-					articulo.setUnidadManejo(
-							articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloUnidadManejoDTO().getValorUnidadManejo().toString().concat(" ")
-							.concat(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloUnidadManejoDTO().getValorTipoUnidadEmpaque()));
-
-					articulo.setValores(new HashMap<String,Object>());
-
-					for(int i=0;i<parametroRangoFechaDTO.getCantidadDias(); i++){
-
-						Date fecha = FruverDateUtil.sumarFechasDias(parametroRangoFechaDTO.getFechaInicial(), i);
-
-						// Buscamos si existe una oferta de ese articulo en esa fecha
-						ArticuloOfertaProveedorDTO articuloOferta =  
-								(ArticuloOfertaProveedorDTO) CollectionUtils.find(articulosOfertaCol, 
-										PredicateUtils.andPredicate(
-												PredicateUtils.andPredicate(
-														PredicateUtils.transformedPredicate(new GetInvokerTransformer("codigoArticulo"), PredicateUtils.equalPredicate(articuloOfertaProveedorDTO.getCodigoArticulo())), 
-														PredicateUtils.transformedPredicate(new GetInvokerTransformer("fechaOfertaProveedor.fecha"), PredicateUtils.equalPredicate(fecha))),
-												PredicateUtils.transformedPredicate(new GetInvokerTransformer("codigoUnidadManejo"), PredicateUtils.equalPredicate(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getId().getCodigoUnidadManejo()))));
-
-						//Seteamos los valores de la oferta
-						cargarValores(simple, articulo, i, articuloOferta);
-
+					if(!datosGenerales.containsKey("codigoOferta")){
+						datosGenerales.put("codigoOferta", articuloOfertaProveedorDTO.getFechaOfertaProveedor().getCodigoOferta());
 					}
-					//Agrupamos los resultados encontrados
-					articulos.put(articuloOfertaProveedorDTO.getCodigoArticulo(), articulo);
-				}
-			}	
 
-			//Recorremos los resusltados agrupados
-			Iterator<Entry<String, Articulo>> it = articulos.entrySet().iterator();
-			while (it.hasNext()) {
-				Map.Entry<String, Articulo> entry = (Map.Entry<String, OfertaProveedor.Articulo>)it.next();
-				articuloCol.add((Articulo) entry.getValue());
+					if(!datosGenerales.containsKey("numeroRegistros")){
+						datosGenerales.put("numeroRegistros", articulosOfertaSR.getCountResults());
+					}
+
+					//Verificamos si no se ha registrado el articulo
+					if(!articulos.containsKey(articuloOfertaProveedorDTO.getCodigoArticulo())){
+
+						Articulo articulo = new Articulo();
+						articulo.setCodigoBarras(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloUnidadManejoDTO().getArticulo().getCodigoBarras());
+						articulo.setDescripcion(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloUnidadManejoDTO().getArticulo().getDescripcionArticulo());
+						articulo.setTamanio(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloUnidadManejoDTO().getArticulo().getArticuloMedidaDTO().getReferenciaMedida());
+						articulo.setTipoControlCosto(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloUnidadManejoDTO().getArticulo().getArticuloComercialDTO().getValorTipoControlCosto());
+						articulo.setCodigoArticulo(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloUnidadManejoDTO().getArticulo().getId().getCodigoArticulo());
+						articulo.setCantidadMaxima(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloProveedor().getCantidadMaximaOfertada());
+						articulo.setPesoMaximo(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloProveedor().getPesoMaximoOfertado());
+						articulo.setCodigoUnidadManejo(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getId().getCodigoUnidadManejo());
+						articulo.setValorUnidadManejo(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloUnidadManejoDTO().getValorUnidadManejo());
+						articulo.setPesoAproximado(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloUnidadManejoDTO().getArticulo().getArticuloComercialDTO().getPesoAproximadoRecepcion());
+						articulo.setUnidadManejo(
+								articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloUnidadManejoDTO().getValorUnidadManejo().toString().concat(" ")
+								.concat(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getArticuloUnidadManejoDTO().getValorTipoUnidadEmpaque()));
+
+						articulo.setValores(new HashMap<String,Object>());
+
+						for(int i=0;i<parametroRangoFechaDTO.getCantidadDias(); i++){
+
+							Date fecha = FruverDateUtil.sumarFechasDias(parametroRangoFechaDTO.getFechaInicial(), i);
+
+							// Buscamos si existe una oferta de ese articulo en esa fecha
+							ArticuloOfertaProveedorDTO articuloOferta =  
+									(ArticuloOfertaProveedorDTO) CollectionUtils.find(articulosOfertaSR.getResults(), 
+											PredicateUtils.andPredicate(
+													PredicateUtils.andPredicate(
+															PredicateUtils.transformedPredicate(new GetInvokerTransformer("codigoArticulo"), PredicateUtils.equalPredicate(articuloOfertaProveedorDTO.getCodigoArticulo())), 
+															PredicateUtils.transformedPredicate(new GetInvokerTransformer("fechaOfertaProveedor.fecha"), PredicateUtils.equalPredicate(fecha))),
+													PredicateUtils.transformedPredicate(new GetInvokerTransformer("articuloUnidadManejoProveedorDTO.id.codigoUnidadManejo"), PredicateUtils.equalPredicate(articuloOfertaProveedorDTO.getArticuloUnidadManejoProveedorDTO().getId().getCodigoUnidadManejo()))));
+
+							//Seteamos los valores de la oferta
+							cargarValores(simple, articulo, i, articuloOferta);
+
+						}
+						//Agrupamos los resultados encontrados
+						articulos.put(articuloOfertaProveedorDTO.getCodigoArticulo(), articulo);
+					}
+				}	
+
+				//Recorremos los resusltados agrupados
+				Iterator<Entry<String, Articulo>> it = articulos.entrySet().iterator();
+				while (it.hasNext()) {
+					Map.Entry<String, Articulo> entry = (Map.Entry<String, OfertaProveedor.Articulo>)it.next();
+					articuloCol.add((Articulo) entry.getValue());
+				}
 			}
+
+			DatosBusquedaArticulosJSON datos = new DatosBusquedaArticulosJSON();
+			datos.setColumnasCabecera(obtenerCabecera(parametroRangoFechaDTO));
+			datos.setDatosGenerales(datosGenerales);
+			datos.setDatosArticuloCol(articuloCol);
+			return datos;
+		}catch(SICException e){
+			throw e;
+		}catch (Exception e) {
+			throw new SICException("Se ha producido un error al buscar los artículos {}", e.getMessage());
 		}
 
-		DatosBusquedaArticulosJSON datos = new DatosBusquedaArticulosJSON();
-		datos.setColumnasCabecera(obtenerCabecera(parametroRangoFechaDTO));
-		datos.setDatosGenerales(datosGenerales);
-		datos.setDatosArticuloCol(articuloCol);
-
-		return datos;
 	}
 
 	private void cargarValores(SimpleDateFormat simple, Articulo articulo, int i,ArticuloOfertaProveedorDTO articuloOferta) {

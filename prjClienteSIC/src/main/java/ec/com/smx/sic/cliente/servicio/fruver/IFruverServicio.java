@@ -1,9 +1,9 @@
 package ec.com.smx.sic.cliente.servicio.fruver;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Map;
 
+import ec.com.kruger.utilitario.dao.commons.dto.SearchResultDTO;
 import ec.com.smx.sic.cliente.exception.SICException;
 import ec.com.smx.sic.cliente.mdl.dto.ArticuloOfertaProveedorDTO;
 import ec.com.smx.sic.cliente.mdl.dto.OfertaProveedorDTO;
@@ -18,17 +18,7 @@ import ec.com.smx.sic.cliente.mdl.dto.ParametroRangoFechaDTO;
 public interface IFruverServicio extends Serializable {
 
 	/* BUSQUEDA*/
-	/**
-	 * 
-	 * @param codigoCompania
-	 * @param codigoProveedor
-	 * @param filtros
-	 * @param parametroRangoFechaDTO
-	 * @return
-	 * @throws SICException
-	 */
-	Collection<ArticuloOfertaProveedorDTO> buscarArticulosOfertaProveedor(Integer codigoCompania, String codigoProveedor, Map<String, Object> filtros, ParametroRangoFechaDTO parametroRangoFechaDTO) throws SICException;
-
+	
 	/**
 	 * Permite obtener el parametro de un determinado rango de fechas
 	 * @param codigoCompania Codigo de la compania
@@ -37,6 +27,18 @@ public interface IFruverServicio extends Serializable {
 	 * @throws SICException
 	 */
 	ParametroRangoFechaDTO obtenerParametroRangoFecha(Integer codigoCompania, Integer codigoParametroRangoFecha) throws SICException;
+	
+	/**
+	 * Busca articulos que puede ofertar un proveedor 
+	 * @param codigoCompania
+	 * @param codigoProveedor
+	 * @param filtros
+	 * @param parametroRangoFechaDTO
+	 * @param numeroTotalRegistros
+	 * @return SearchResultDTO<ArticuloOfertaProveedorDTO>
+	 * @throws SICException
+	 */
+	SearchResultDTO<ArticuloOfertaProveedorDTO> buscarArticulosOfertaProveedor(Integer codigoCompania, String codigoProveedor, Map<String, Object> filtros, ParametroRangoFechaDTO parametroRangoFechaDTO, Boolean numeroTotalRegistros) throws SICException;
 
 	/* ALMACENAMIENTO */
 	/**
@@ -62,5 +64,6 @@ public interface IFruverServicio extends Serializable {
 	 * @param codigoProveedor
 	 * @return
 	 */
-	Boolean esOfertaEnviada(Integer codigoCompania, String codigoProveedor);
+	Boolean esOfertaEnviada(Integer codigoCompania, String codigoProveedor) throws SICException;
+
 }

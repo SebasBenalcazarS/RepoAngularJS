@@ -17,6 +17,7 @@ public class VistaProcesamientoVentasDTO implements Serializable{
 	private java.lang.Long codigoDetalleNegociacion;
 	private java.lang.Long codigoNegociacionGestionPrecioConvenioParticipante;
 	private java.lang.Long codigoDetalleNegociacionGestionPrecioConvenioParticipante;
+	private java.lang.String codigoValorEstadoCobro;
 	private java.util.Date fechaCobro;
 	private java.lang.Integer cuotas;	
 	private java.math.BigDecimal valorMonetarioCobro;
@@ -204,5 +205,11 @@ public class VistaProcesamientoVentasDTO implements Serializable{
 	}
 	public void setCodigoValorCobroCosto(java.lang.String codigoValorCobroCosto) {
 		this.codigoValorCobroCosto = codigoValorCobroCosto;
+	}
+	public java.lang.String getCodigoValorEstadoCobro() {
+		return codigoValorEstadoCobro;
+	}
+	public void setCodigoValorEstadoCobro(java.lang.String codigoValorEstadoCobro) {
+		this.codigoValorEstadoCobro = codigoValorEstadoCobro;
 	}
 }

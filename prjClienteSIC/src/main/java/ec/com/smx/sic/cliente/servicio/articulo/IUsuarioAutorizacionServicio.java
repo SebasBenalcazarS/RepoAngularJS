@@ -81,7 +81,7 @@ public interface IUsuarioAutorizacionServicio {
 	 * @return
 	 * @throws SICException
 	 */
-	public Collection<UsuarioClasificacionProcesoDTO> reportesUsuarios(Integer codigoCompania, String codigoclasificacion, String user)throws SICException;
+	public Map<String, Object> reportesUsuarios(Integer codigoCompania, String codigoclasificacion, String user, Integer firstResult, Integer maxResult)throws SICException;
 	
 	/**
 	 * Obtiene una coleccion de clases de articulo

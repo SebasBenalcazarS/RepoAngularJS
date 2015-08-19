@@ -58,7 +58,7 @@ public final class SICArticuloCalculo implements Logeable{
 	/**
 	 * Calcula el costo (Bruto, Neto), en base al precio supermaxi y el margen supermaxi,
 	 * no utilizar este metodo cuando se desea calcular el costo neto en base a la cadena de descuentos.
-	 * F�rmula: Costo = Precio * (1 - Margen/100)
+	 * Formula: Costo = Precio * (1 - Margen/100)
 	 * 
 	 * @param precioSupermaxi
 	 * @param margenSupermaxi
@@ -71,7 +71,7 @@ public final class SICArticuloCalculo implements Logeable{
 	
 	/**
 	 * Calcula el margen sobre venta en base al precio (Supermaxi o PVP) y costo (Bruto o Neto)
-	 * F�rmula: Margen = (1 - Costo / Precio) * 100
+	 * Formula: Margen = (1 - Costo / Precio) * 100
 	 * 
 	 * @param precio
 	 * @param costo
@@ -83,7 +83,7 @@ public final class SICArticuloCalculo implements Logeable{
 	
 	/**
 	 * Calcula el margen sobre compra en base al precio (Supermaxi o PVP) y costo (Bruto o Neto)
-	 * F�rmula: Margen = (1 - Costo / Precio) * 100
+	 * Formula: Margen = (1 - Costo / Precio) * 100
 	 * 
 	 * @param precio
 	 * @param costo
@@ -120,7 +120,7 @@ public final class SICArticuloCalculo implements Logeable{
 	
 	
 	/**
-	 * Este m�todo empieza redondeando el resultado con una cierta cantidad de deciamales que luego va decrementando
+	 * Este metodo empieza redondeando el resultado con una cierta cantidad de deciamales que luego va decrementando
 	 * @param precioInicial
 	 * @param esParaVenta
 	 * @param impuestos
@@ -133,7 +133,7 @@ public final class SICArticuloCalculo implements Logeable{
 	}
 	
 	/**
-	 * Este m�todo empieza redondeando el resultado con una cierta cantidad de decimales que luego va decrementando
+	 * Este metodo empieza redondeando el resultado con una cierta cantidad de decimales que luego va decrementando
 	 * @param precioInicial
 	 * @param valoresImpuesto
 	 * @param esParaVenta
@@ -165,7 +165,7 @@ public final class SICArticuloCalculo implements Logeable{
 	}
 	
 	/**
-	 * Este m�todo empieza redondeando el resultado con una cierta cantidad de decimales que luego va decrementando
+	 * Este metodo empieza redondeando el resultado con una cierta cantidad de decimales que luego va decrementando
 	 * @param precioInicial
 	 * @param valoresImpuesto
 	 * @param esParaVenta
@@ -279,7 +279,7 @@ public final class SICArticuloCalculo implements Logeable{
 
 	
 	/**
-	 * Obtiene el nuevo c�digo de cada nivel de la estructura comercial para el MAX desde un c�digo SIC
+	 * Obtiene el nuevo codigo de cada nivel de la estructura comercial para el MAX desde un codigo SIC
 	 * @param codigoSIC
 	 * @return
 	 */
@@ -315,7 +315,7 @@ public final class SICArticuloCalculo implements Logeable{
 	}
 	
 	/**
-	 * Obtiene el c�digo SIC de cada nivel de la estructura comercial desde un c�digo MAX
+	 * Obtiene el codigo SIC de cada nivel de la estructura comercial desde un codigo MAX
 	 * @param codigoMAX
 	 * @return
 	 */
@@ -542,7 +542,7 @@ public final class SICArticuloCalculo implements Logeable{
 	
 	/**
 	 * Calcula el precio con descuento de un articulo
-	 * F�rmula: Precio = precioBase - {(precioBase * ((totalAcumuladoDescuento * 100) / (totalAcumuladoVentas - totalAcumuladoDevolucion)) )/ 100} 
+	 * Formula: Precio = precioBase - {(precioBase * ((totalAcumuladoDescuento * 100) / (totalAcumuladoVentas - totalAcumuladoDevolucion)) )/ 100} 
 	 * 
 	 * @param totalAcumuladoVentas
 	 * @param totalAcumuladoDevolucion
@@ -566,7 +566,7 @@ public final class SICArticuloCalculo implements Logeable{
 	
 	/**
 	 * Calcula el precio con recuperacion de un articulo
-	 * F�rmula: Precio = precioBase - {(precioBase * (((totalAcumuladoDescuento - totalAcumuladoRecuperacion) * 100) / (totalAcumuladoVentas - totalAcumuladoDevolucion)) )/ 100} 
+	 * Formula: Precio = precioBase - {(precioBase * (((totalAcumuladoDescuento - totalAcumuladoRecuperacion) * 100) / (totalAcumuladoVentas - totalAcumuladoDevolucion)) )/ 100} 
 	 * 
 	 * @param totalAcumuladoVentas
 	 * @param totalAcumuladoDevolucion

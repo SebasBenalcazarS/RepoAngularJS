@@ -640,4 +640,13 @@ public interface ICalculoDatosProveedorGestor extends Serializable {
 	 * @throws SICException
 	 */
 	TipoProveedorDTO obtenerTiposProveedorInactivo(ProveedorID proveedorID, TipoEstadoProveedor tipoEstadoProveedor, String valorTipoProveedor) throws SICException;
+
+	/**
+	 * 
+	 * @param catalogoTipo
+	 * @param ordenadoPor
+	 * @return
+	 * @throws SICException
+	 */
+	Collection<CatalogoValorDTO> obtenerCatalogosValorProveedores(Integer catalogoTipo, String ordenadoPor) throws SICException;
 }

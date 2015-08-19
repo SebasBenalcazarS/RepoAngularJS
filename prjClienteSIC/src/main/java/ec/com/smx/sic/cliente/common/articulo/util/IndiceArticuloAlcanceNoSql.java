@@ -39,6 +39,28 @@ public final class IndiceArticuloAlcanceNoSql {
 	// --
 	// Indices para la class ArticuloAreaTrabajoBitacoraDTO
 	private OIndex<?> indiceBitRidArtLocRidBitArt;
+	private OIndex<?> indiceBitacoraArticuloAreaTrabajo;
+	private OIndex<?> indiceBitacoraAreaTrabajoArticulo;
+
+	/**
+	 * @return the indiceBitacoraAreaTrabajoArticulo
+	 */
+	public OIndex<?> getIndiceBitacoraAreaTrabajoArticulo(ODatabaseDocumentTx db) {
+		if (indiceBitacoraAreaTrabajoArticulo == null) {
+			indiceBitacoraAreaTrabajoArticulo = obtenerIndiceBitacoraAreaTrabajoArticulo(db);
+		}
+		return indiceBitacoraAreaTrabajoArticulo;
+	}
+
+	/**
+	 * @return the indiceBitacoraArticuloAreaTrabajo
+	 */
+	public OIndex<?> getIndiceBitacoraArticuloAreaTrabajo(ODatabaseDocumentTx db) {
+		if (this.indiceBitacoraArticuloAreaTrabajo == null){
+			this.indiceBitacoraArticuloAreaTrabajo = this.obtenerIndiceBitacoraArticuloAreaTrabajo(db);
+		}
+		return indiceBitacoraArticuloAreaTrabajo;
+	}
 
 	public OIndex<?> getIndiceBitRidArtLocRidBitArt(ODatabaseDocumentTx db) {
 		if (this.indiceBitRidArtLocRidBitArt == null){
@@ -171,8 +193,30 @@ public final class IndiceArticuloAlcanceNoSql {
 	}
 	// FIN INDICES PARA ARTICULO LOCAL
 	
+	// INDICES ARTICULO AREATRABAJO BITACORA DTO
+	
 	private OIndex<?> obtenerIndiceBitRidArtLocRidBitArt(ODatabaseDocumentTx db){
 		return ArticuloAlcanceIndexNoSqlUtil.obtenerOIndex(db, ArticuloLocalIndices.INDEX_BIT_RIDARTARETRA_RIDBITARTARETRA, new OType[]{OType.LINK, OType.LINK});
+	}
+	
+	/**
+	 * metodo q devuelve el indice Articulo-AreaTrabajo, key = [codCom,tipAreTra,codArt,codAreTra,ridBitacoraDTO]
+	 * @param db
+	 * @return
+	 */
+	private OIndex<?> obtenerIndiceBitacoraArticuloAreaTrabajo(ODatabaseDocumentTx db){
+		//return obtenerOIndex(db, ArticuloLocalIndices.ART_LOC_BIT_INDEX_ARTICULO_LOCAL, new OType[]{OType.INTEGER, OType.STRING, OType.STRING, OType.INTEGER,OType.LINK});
+		return ArticuloAlcanceIndexNoSqlUtil.obtenerOIndex(db, ArticuloLocalIndices.INDEX_BIT_ARTICULO_AREATRABAJO, new OType[]{OType.INTEGER, OType.STRING, OType.INTEGER,OType.LINK});
+	}
+
+	/**
+	 * metodo q devuelve el indice AreaTrabajo-Articulo, key = [codCom,tipAreTra,codAreTra,codArt,ridBitacoraDTO] 
+	 * @param db
+	 * @return
+	 */
+	private OIndex<?> obtenerIndiceBitacoraAreaTrabajoArticulo(ODatabaseDocumentTx db){
+		//return obtenerOIndex(db, ArticuloLocalIndices.ART_LOC_BIT_INDEX_LOCAL_ARTICULO, new OType[]{OType.INTEGER, OType.STRING, OType.INTEGER, OType.STRING, OType.LINK});
+		return ArticuloAlcanceIndexNoSqlUtil.obtenerOIndex(db, ArticuloLocalIndices.INDEX_BIT_AREATRABAJO_ARTICULO, new OType[]{OType.INTEGER, OType.INTEGER, OType.STRING, OType.LINK});
 	}
 }
 

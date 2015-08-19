@@ -157,8 +157,9 @@ public final class SICRecibidoNoContabilizadoConstantes {
 	public static final String PARAMETRO_TOLERANCIA_RECIBIDO_NO_FACTURADO_NOTA_INGRESO = SICRecibidoNoContabilizadoMessages.getInstancia().getString("ec.com.smx.sic.bodega.recepcion.parametro.tolerancia.diferencias.recibidoNoFacturado.nota.ingreso");
 	public static final String PARAMETRO_SUBBODEGA_DEPARTAMENTO_IMPUESTO_VERDE = SICRecibidoNoContabilizadoMessages.getInstancia().getString("ec.com.smx.sic.bodega.recepcion.parametro.subbodega.departamento.impuesto.verde");
 	public static final String PARAMETRO_VALOR_TOTAL_CALCULADO_NOTA_INGRESO = SICRecibidoNoContabilizadoMessages.getInstancia().getString("ec.com.smx.sic.bodega.recepcion.parametro.valor.total.calculado.nota.ingreso");
-	public static final String PARAMETRO_DIAS_NOTA_INGRESO_PENDIENTES = SICRecibidoNoContabilizadoMessages.getInstancia().getString("ec.com.smx.sic.recibido.no.cotejado.parametro.dias.nota.ingreso.pendiente");
-	public static final String PARAMETRO_DIA_INICIO_NOTA_INGRESO_PENDIENTES = SICRecibidoNoContabilizadoMessages.getInstancia().getString("ec.com.smx.sic.recibido.no.cotejado.parametro.dia.fecha.inicio.nota.ingreso.pendiente");
+	public static final String PARAMETRO_FRECUENCIA_CREACION_PERIODO_TRABAJO = SICRecibidoNoContabilizadoMessages.getInstancia().getString("ec.com.smx.sic.recibido.no.cotejado.parametro.frecuencia.creacion.periodo.trabajo");
+	public static final String PARAMETRO_DIA_INICIO_CREACION_ACCION_PERIODO_TRABAJO = SICRecibidoNoContabilizadoMessages.getInstancia().getString("ec.com.smx.sic.recibido.no.cotejado.parametro.dia.fecha.inicio.accion.creacion.accion.periodo.trabajo");
+	public static final String PARAMETRO_DIA_FIN_CREACION_ACCION_PERIODO_TRABAJO = SICRecibidoNoContabilizadoMessages.getInstancia().getString("ec.com.smx.sic.recibido.no.cotejado.parametro.dia.fecha.fin.accion.creacion.accion.periodo.trabajo");
 	public static final String PARAMETRO_DIA_INICIO_NOTA_INGRESO_CONTABILIZAR = SICRecibidoNoContabilizadoMessages.getInstancia().getString("ec.com.smx.sic.recibido.no.cotejado.parametro.dia.fecha.inicio.nota.ingreso.contabilizar");
 	public static final String PARAMETRO_RUTAS_LINUX_ARCHIVOS_JDE_APLICACION = SICRecibidoNoContabilizadoMessages.getInstancia().getString("ec.com.smx.sic.recibido.no.cotejado.parametro.rutas.linux.archivos.jde.aplicacion");
 	public static final String PARAMETRO_RUTAS_LINUX_ARCHIVOS_JDE_TAREA_PROGRAMADA = SICRecibidoNoContabilizadoMessages.getInstancia().getString("ec.com.smx.sic.recibido.no.cotejado.parametro.rutas.linux.archivos.jde.tareas.programadas");
@@ -181,4 +182,13 @@ public final class SICRecibidoNoContabilizadoConstantes {
 	public static final String CODIGO_TIPO_REPORTE_TOTALES_FECHA = SICRecibidoNoContabilizadoMessages.getInstancia().getString("ec.com.smx.sic.recibido.no.cotejado.tipo.reporte.totalesFecha");
 	public static final String CODIGO_TIPO_REPORTE_FECHA_ESTADO  = SICRecibidoNoContabilizadoMessages.getInstancia().getString("ec.com.smx.sic.recibido.no.cotejado.tipo.reporte.fechaEstado");
 	
+	//Separadores tabla de parametros
+	public static final String SEPARADOR_COMA = SICRecibidoNoContabilizadoMessages.getInstancia().getString("ec.com.smx.sic.recibido.no.cotejado.separador.coma");
+	
+	//Frecuencias periodos de trabajo
+	public static final String CODIGO_FRECUENCIA_MES = SICRecibidoNoContabilizadoMessages.getInstancia().getString("ec.com.smx.sic.recibido.no.cotejado.frecuencia.mes");
+	public static final String CODIGO_FRECUENCIA_DIA = SICRecibidoNoContabilizadoMessages.getInstancia().getString("ec.com.smx.sic.recibido.no.cotejado.frecuencia.dia");
+	
+	//Referencia periodo de trabajo
+	public static final String CODIGO_REFERENCIA_PERIODO_TRABAJO = SICRecibidoNoContabilizadoMessages.getInstancia().getString("ec.com.smx.sic.recibido.no.cotejado.codigo.referencia.periodo.trabajo");
 }

@@ -506,6 +506,45 @@ public final class ArticuloAlcanceNoSqlUtil implements Logeable {
 		return oDocArtAreTraDTO;
 	}
 	
+	/**
+	 * llena el objeto de tipo oDocument para la clase ArticuloLocalDTO
+	 * @return ODocument
+	 * @author bymontesdeoca
+	 */
+	public static ODocument getODocumentArticuloAreaTrabajo (String codigoArticulo,Integer codigoAreTra,ODocument artAreTraSaved) {
+		
+		ODocument oDocArtAreTraDTO;
+		
+		// actualiza
+		oDocArtAreTraDTO = new ODocument(((ODocument)artAreTraSaved.field("rid")).getIdentity());
+		oDocArtAreTraDTO.field(ArticuloLocalFields.USUARIO_MODIFICACION, artAreTraSaved.field(ArticuloLocalFields.USUARIO_MODIFICACION));
+		oDocArtAreTraDTO.field(ArticuloLocalFields.FECHA_MODIFICACION, artAreTraSaved.field(ArticuloLocalFields.FECHA_MODIFICACION));
+		//Clave primaria en DB2
+		oDocArtAreTraDTO.field(ArticuloLocalFields.CODIGO_COMPANIA, artAreTraSaved.field(ArticuloLocalFields.CODIGO_COMPANIA));
+		oDocArtAreTraDTO.field(ArticuloLocalFields.CODIGO_ARTICULO, codigoArticulo);
+		oDocArtAreTraDTO.field(ArticuloLocalFields.CODIGO_LOCAL, codigoAreTra);
+		oDocArtAreTraDTO.field(ArticuloLocalFields.FECHA_INICIAL_ALCANCE, artAreTraSaved.field(ArticuloLocalFields.FECHA_INICIAL_ALCANCE));
+		oDocArtAreTraDTO.field(ArticuloLocalFields.FECHA_FINAL_ALCANCE, artAreTraSaved.field(ArticuloLocalFields.FECHA_FINAL_ALCANCE));
+		oDocArtAreTraDTO.field(ArticuloLocalFields.ESTADO_ARTICULO_LOCAL, artAreTraSaved.field(ArticuloLocalFields.ESTADO_ARTICULO_LOCAL));
+		oDocArtAreTraDTO.field(ArticuloLocalFields.CODIGO_REFERENCIA, artAreTraSaved.field(ArticuloLocalFields.CODIGO_REFERENCIA));
+		oDocArtAreTraDTO.field(ArticuloLocalFields.ESTADO_CODIGO_REFERENCIA, artAreTraSaved.field(ArticuloLocalFields.ESTADO_CODIGO_REFERENCIA));
+		oDocArtAreTraDTO.field(ArticuloLocalFields.ESTADO_INTEGRACION_ALCANCE, artAreTraSaved.field(ArticuloLocalFields.ESTADO_INTEGRACION_ALCANCE));
+		oDocArtAreTraDTO.field(ArticuloLocalFields.ID_USUARIO_ACTIVACION, artAreTraSaved.field(ArticuloLocalFields.ID_USUARIO_ACTIVACION));
+		oDocArtAreTraDTO.field(ArticuloLocalFields.FECHA_ACTIVACION, artAreTraSaved.field(ArticuloLocalFields.FECHA_ACTIVACION));
+		oDocArtAreTraDTO.field(ArticuloLocalFields.ID_USUARIO_INACTIVACION, artAreTraSaved.field(ArticuloLocalFields.ID_USUARIO_INACTIVACION));
+		oDocArtAreTraDTO.field(ArticuloLocalFields.FECHA_INACTIVACION, artAreTraSaved.field(ArticuloLocalFields.FECHA_INACTIVACION));
+		oDocArtAreTraDTO.field(ArticuloLocalFields.CODIGO_SISTEMA, artAreTraSaved.field(ArticuloLocalFields.CODIGO_SISTEMA));
+		oDocArtAreTraDTO.field(ArticuloLocalFields.CODIGO_OPCION, artAreTraSaved.field(ArticuloLocalFields.CODIGO_OPCION));
+		oDocArtAreTraDTO.field(ArticuloLocalFields.VALOR_TIPO_ASIGNACION, artAreTraSaved.field(ArticuloLocalFields.VALOR_TIPO_ASIGNACION));
+		oDocArtAreTraDTO.field(ArticuloLocalFields.CODIGO_TIPO_ASIGNACION, artAreTraSaved.field(ArticuloLocalFields.CODIGO_TIPO_ASIGNACION));
+		oDocArtAreTraDTO.field(ArticuloLocalFields.NOTIFICAR_LOCAL, artAreTraSaved.field(ArticuloLocalFields.NOTIFICAR_LOCAL));
+		oDocArtAreTraDTO.field(ArticuloLocalFields.CODIGO_TIPO_AREA_TRABAJO, TiposCatalogoConstantes.TIPO_AREA_TRABAJO);
+		oDocArtAreTraDTO.field(ArticuloLocalFields.VALOR_TIPO_AREA_TRABAJO, artAreTraSaved.field(ArticuloLocalFields.VALOR_TIPO_AREA_TRABAJO));
+		
+		//Campos de auditoria
+		oDocArtAreTraDTO.field(ArticuloLocalFields.ESTADO, BooleanUtils.toBoolean(Integer.valueOf(artAreTraSaved.field(ArticuloLocalFields.ESTADO_ARTICULO_LOCAL)+"")));
+		return oDocArtAreTraDTO;
+	}
 	
 	
 	/**

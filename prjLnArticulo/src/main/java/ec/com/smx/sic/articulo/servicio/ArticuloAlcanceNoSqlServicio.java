@@ -13,9 +13,10 @@ import ec.com.smx.sic.cliente.gestor.articulo.alcance.nosql.almacenamiento.IAlma
 import ec.com.smx.sic.cliente.gestor.articulo.alcance.nosql.almacenamiento.IArticuloAlcanceMigracionNoSqlGestor;
 import ec.com.smx.sic.cliente.gestor.articulo.alcance.nosql.calculo.ICalculoArticuloAlcanceNoSqlGestor;
 import ec.com.smx.sic.cliente.mdl.dto.ArticuloAreaTrabajoBitacoraDTO;
-import ec.com.smx.sic.cliente.mdl.dto.ArticuloDTO;
+import ec.com.smx.sic.cliente.mdl.dto.ArticuloEstablecimientoDTO;
 import ec.com.smx.sic.cliente.mdl.dto.ArticuloLocalDTO;
 import ec.com.smx.sic.cliente.mdl.dto.articulo.nosql.ArticuloAreaTrabajoNoSqlDTO;
+import ec.com.smx.sic.cliente.mdl.dto.articulo.nosql.VistaArticuloLocalNoSqlDTO;
 import ec.com.smx.sic.cliente.servicio.articulo.IArticuloAlcanceNoSqlServicio;
 
 /**
@@ -31,6 +32,11 @@ public class ArticuloAlcanceNoSqlServicio implements IArticuloAlcanceNoSqlServic
 	
 	
 	
+	@Override
+	public List<ArticuloLocalDTO> findAlcanceAreaTrabajo(Integer codCompania, String tipAreTra, Integer codigoAreaTrabajo, Integer estado) throws SICException {
+		return this.almacenamientoArticuloAlcanceNoSqlGestor.findAlcanceAreaTrabajo(codCompania, tipAreTra, codigoAreaTrabajo, estado);
+	}
+
 	public void setAlmacenamientoArticuloAlcanceNoSqlGestor(IAlmacenamientoArticuloAlcanceNoSqlGestor almacenamientoArticuloAlcanceNoSqlGestor) {
 		this.almacenamientoArticuloAlcanceNoSqlGestor = almacenamientoArticuloAlcanceNoSqlGestor;
 	}
@@ -67,6 +73,28 @@ public class ArticuloAlcanceNoSqlServicio implements IArticuloAlcanceNoSqlServic
 		this.articuloAlcanceMigracionNoSqlGestor.migrarArticuloAlcanceDTONoSql(codigoCompania, codigoLocal, sufijoTabla);
 	}
 	
+	@Override
+	public void findMigrarArticuloLocalDTOWriter(Integer codigoCompania, 
+			Collection<VistaArticuloLocalNoSqlDTO> colVistaMigrarArticuloLocalDTO, String sufijoTabla) throws SICException {
+		
+		this.almacenamientoArticuloAlcanceNoSqlGestor.migrarArticuloLocal(codigoCompania, colVistaMigrarArticuloLocalDTO, sufijoTabla);
+		
+	}
+	
+	@Override
+	public void findMigrarArticuloAreaTrabajoBitacoraWriter(Integer codigoCompania, 
+			Collection<ArticuloAreaTrabajoBitacoraDTO> colArticuloAreaTrabajoBitacoraDTO, String sufijoTabla) throws SICException{
+		
+		this.almacenamientoArticuloAlcanceNoSqlGestor.migrarArticuloLocalBitacora(codigoCompania, colArticuloAreaTrabajoBitacoraDTO, sufijoTabla);
+		
+	}
+	
+	@Override
+	public void findMigrarArticuloEstablecimientoWriter (Integer codigoCompania, 
+			Collection<ArticuloEstablecimientoDTO> colArticuloEstablecimientoDTO, String sufijoTabla) throws SICException {
+		this.almacenamientoArticuloAlcanceNoSqlGestor.migrarArticuloEstablecimiento(codigoCompania, colArticuloEstablecimientoDTO, sufijoTabla);
+	}
+	
 //	/* (non-Javadoc)
 //	 * @see ec.com.smx.sic.cliente.servicio.articulo.IArticuloAlcanceNoSqlServicio#migrarArticuloAlcanceBitacoraNoSqlBatch(java.lang.Integer, java.lang.String)
 //	 */
@@ -99,13 +127,14 @@ public class ArticuloAlcanceNoSqlServicio implements IArticuloAlcanceNoSqlServic
 	
 
 	
+	
 	/*
 	 * Servicios que se utilizan en el modulo de articulos
 	 * 
 	 * */
 	
 	@Override
-	public void executeAlcanceArticulos(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSql) throws SICException {
+	public void executeAlcanceArticulos(ArticuloAreaTrabajoNoSqlDTO ... artAreTraNoSql) throws SICException {
 		this.almacenamientoArticuloAlcanceNoSqlGestor.executeAlcanceArticulos(artAreTraNoSql);
 	}
 
@@ -115,13 +144,13 @@ public class ArticuloAlcanceNoSqlServicio implements IArticuloAlcanceNoSqlServic
 		return this.almacenamientoArticuloAlcanceNoSqlGestor.findAlcanceArticulo(codCompania, tipAreTra, codigoArticulo, estado);
 	}
 
-	/* (non-Javadoc)
-	 * @see ec.com.smx.sic.cliente.servicio.articulo.IArticuloAlcanceNoSqlServicio#obtenerAreasTrabajoAsignadas(ec.com.smx.sic.cliente.mdl.dto.ArticuloDTO, java.lang.Boolean)
-	 */
-	@Override
-	public Collection<ArticuloLocalDTO> obtenerAreasTrabajoAsignadas(ArticuloDTO articuloDTO, Boolean validarEstado) throws SICException {
-		return this.calculoArticuloAlcanceNoSqlGestor.obtenerAreasTrabajoAsignadas(articuloDTO, validarEstado);
-	}
+//	/* (non-Javadoc)
+//	 * @see ec.com.smx.sic.cliente.servicio.articulo.IArticuloAlcanceNoSqlServicio#obtenerAreasTrabajoAsignadas(ec.com.smx.sic.cliente.mdl.dto.ArticuloDTO, java.lang.Boolean)
+//	 */
+//	@Override
+//	public Collection<ArticuloLocalDTO> obtenerAreasTrabajoAsignadas(ArticuloDTO articuloDTO, Boolean validarEstado) throws SICException {
+//		return this.calculoArticuloAlcanceNoSqlGestor.obtenerAreasTrabajoAsignadas(articuloDTO, validarEstado);
+//	}
 
 	@Override
 	public Set<String> getArticulosPruebaAlcance() throws SICException {
@@ -131,6 +160,11 @@ public class ArticuloAlcanceNoSqlServicio implements IArticuloAlcanceNoSqlServic
 	@Override
 	public void copiarAlcances(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSql,Integer codLocalOrigen) throws SICException {
 		this.almacenamientoArticuloAlcanceNoSqlGestor.copiarAlcances(artAreTraNoSql,codLocalOrigen);
+	}
+
+	@Override
+	public Long getNumRegistrosAlcanceEnAreaTrabajo(Integer codigoCompania, String tipAreaTrabajo, Integer codAreaTrabajo, String codArticulo) throws SICException {
+		return new Long(this.almacenamientoArticuloAlcanceNoSqlGestor.getNumRegistrosAlcanceEnAreaTrabajo(codigoCompania, tipAreaTrabajo, codAreaTrabajo, codArticulo));
 	}
 
 

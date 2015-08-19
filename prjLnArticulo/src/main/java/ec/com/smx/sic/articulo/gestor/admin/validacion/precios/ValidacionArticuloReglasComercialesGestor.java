@@ -319,7 +319,6 @@ public class ValidacionArticuloReglasComercialesGestor implements IValidacionArt
 	 * @return
 	 * @throws SICException
 	 */
-	@SuppressWarnings("unused")
 	private Boolean aplicaPrecioMayoreoEstablecimiento(ArticuloDTO articuloDTO) throws SICException{
 		try{
 			Boolean aplPreMayEst = Boolean.FALSE;
@@ -369,7 +368,7 @@ public class ValidacionArticuloReglasComercialesGestor implements IValidacionArt
 				String[] codicionLocalesCaja = this.buscarParametro(SICParametros.PARAMETRO_CODIGO_LOCALES_PRECIO_CAJA, localesCaja);
 				aplicaPrecioCajaEnLocal = this.verificarCondicionEnParametro (String.valueOf(articuloDTO.getNpCodigoLocal()), codicionLocalesCaja);
 			}
-			return aplicaPrecioCajaEnLocal || this.habilitadoTipoPrecioLocal(articuloDTO, SICArticuloConstantes.TIPO_PRECIO_CAJA);
+			return articuloDTO.getTienePrecioCaja() && (aplicaPrecioCajaEnLocal || this.aplicaPrecioCajaEstablecimiento(articuloDTO) || this.habilitadoTipoPrecioLocal(articuloDTO, SICArticuloConstantes.TIPO_PRECIO_CAJA));
 		}catch(Exception e){
 			LOG_SICV2.info("Ocurrio un  error al validar las condiciones de precio caja en local: " + e.getMessage());
 			throw new SICException("Ocurrio un error al validar los articulos.",e);
@@ -382,7 +381,6 @@ public class ValidacionArticuloReglasComercialesGestor implements IValidacionArt
 	 * @return
 	 * @throws SICException
 	 */
-	@SuppressWarnings("unused")
 	private Boolean aplicaPrecioCajaEstablecimiento(ArticuloDTO articuloDTO) throws SICException{
 		try{
 			Boolean aplicaPrecioCajaEnLocal = Boolean.FALSE;

@@ -2,7 +2,6 @@ ec\com\smx\sic\articulo\gestor\alcance\ArticuloAlcanceGestor$8.class
 ec\com\smx\sic\articulo\gestor\admin\calculo\CalculoBusquedaArticuloGestorB2B$1.class
 ec\com\smx\sic\articulo\gestor\unidadmanejo\ArticuloUnidadManejoGestor.class
 ec\com\smx\sic\articulo\persistence\dao\MarcaDAO.class
-ec\com\smx\sic\articulo\gestor\articulo\alcance\nosql\calculo\CalculoArticuloAlcanceNoSqlGestor$2.class
 ec\com\smx\sic\articulo\gestor\admin\edicion\ValidacionArticuloEdicionArchivoGestor.class
 ec\com\smx\sic\articulo\gestor\archivo\calculo\CalculoArchivoGestor.class
 ec\com\smx\sic\articulo\gestor\admin\validacion\ValidacionArticuloGestor$1.class
@@ -144,7 +143,6 @@ ec\com\smx\sic\articulo\persistence\dao\ArticuloProcesoLogisticoDAO.class
 ec\com\smx\sic\articulo\gestor\proveedor\accion\AccionArticuloProveedorGestor$2.class
 ec\com\smx\sic\articulo\gestor\lineacomercial\LineaComercialGestor$RestriccionCodigoReferencia.class
 ec\com\smx\sic\articulo\persistence\dao\ArticuloLocalPrecioDAO.class
-ec\com\smx\sic\articulo\gestor\articulo\alcance\nosql\calculo\CalculoArticuloAlcanceNoSqlGestor$1.class
 ec\com\smx\sic\articulo\servicio\ArticuloCalculoServicio.class
 ec\com\smx\sic\articulo\gestor\admin\accion\AccionArticuloGestor$4.class
 ec\com\smx\sic\articulo\gestor\batch\writer\ArticuloEstablecimientoMigracionNoSqlItemWriter.class

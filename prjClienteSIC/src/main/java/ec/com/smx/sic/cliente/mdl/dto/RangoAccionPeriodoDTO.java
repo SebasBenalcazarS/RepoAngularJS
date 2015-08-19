@@ -33,7 +33,7 @@ public class RangoAccionPeriodoDTO extends SimpleAuditDTO{
 	@EmbeddedId
 	RangoAccionPeriodoID id = new RangoAccionPeriodoID();
 	
-	private Integer codigoPeriodoTrabajo;
+	private Long codigoPeriodoTrabajo;
 	
 	@ComparatorTypeField
 	private String valorTipoAccion;
@@ -73,11 +73,11 @@ public class RangoAccionPeriodoDTO extends SimpleAuditDTO{
 		this.id = id;
 	}
 
-	public Integer getCodigoPeriodoTrabajo() {
+	public Long getCodigoPeriodoTrabajo() {
 		return codigoPeriodoTrabajo;
 	}
 
-	public void setCodigoPeriodoTrabajo(Integer codigoPeriodoTrabajo) {
+	public void setCodigoPeriodoTrabajo(Long codigoPeriodoTrabajo) {
 		this.codigoPeriodoTrabajo = codigoPeriodoTrabajo;
 	}
 

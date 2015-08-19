@@ -1113,4 +1113,12 @@ public interface IRecepcionProveedoresServicio {
 	 * @throws SICException
 	 */
 	Collection<OrdenCompraDetalleEstadoDTO> obtenerDetallesOrdenCompraEstado(Integer codigoCompania, Long codigoOrdenCompraEstado) throws SICException;
+	/**
+	 * <b>Obtiene un pallet filtrado por codigo de pallet y codigo de compania</b>
+	 * @param codigoCompania
+	 * @param codigoDatosTarea
+	 * @return
+	 * @throws SICException
+	 */
+	DatosTareaDTO obtenerPalletPorId(Integer codigoCompania, Long codigoDatosTarea) throws SICException;
 }

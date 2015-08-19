@@ -6,6 +6,7 @@
 package ec.com.smx.sic.cliente.gestor.convenio.cobros;
 
 import java.util.Collection;
+import java.util.Date;
 
 import ec.com.smx.sic.cliente.exception.SICException;
 import ec.com.smx.sic.cliente.mdl.dto.GestionPrecioDTO;
@@ -128,4 +129,12 @@ public interface IRegistroCobroGestor {
 	 * @throws SICException
 	 */
 	void rechazarRegistroCobro(Integer codigoCampania,String userId,Collection<PlanFechaRegistroCobroDTO> planRegistroSeleccionados) throws SICException ;
+	
+	/**
+	 * Obtener cobros no facturados
+	 * @param codigoCompania
+	 * @param fecha
+	 * @return
+	 */
+	Collection<Long> obtenerCobrosNoFacturados(Integer codigoCompania, Date fecha);
 }

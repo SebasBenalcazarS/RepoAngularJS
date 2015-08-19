@@ -346,6 +346,16 @@ public interface ITareaProgramadaServicio {
 	void procesarCobrosDiariosProyectados(@InformacionParametro(nombre="C&oacute;digo Compa&ntilde;&iacute;a", requerido=true, descripcion="Compa&ntilde;&iacute;a a la que pertenecen los datos", ejemplosValores={"1"}) Integer companyId, 
 							   @InformacionParametro(nombre="C&oacute;digo Usuario", requerido=true, descripcion="Usuario al que pertenecen los datos", ejemplosValores={"FRM0"}) String userId,
 								@InformacionParametro(nombre="N&uacute;mero de d&iacute;as atr&aacute;s", requerido=true, descripcion="N&uacute;mero de d&iacute;as desde donde se va a procesar, a partir de hoy", ejemplosValores={"1,5,10"}) Date fecha);
+	/**
+	 * Genera las prefacturas de los cobros no procesados
+	 * @param companyId
+	 * @param userId
+	 * @param diasEsperados
+	 */
+	@InformacionMetodo(descripcion = "Procesa el cobro a proveedores de las ventas de promociones diarias")
+	void generarPrefacturasCobrosNoProcesados(@InformacionParametro(nombre="C&oacute;digo Compa&ntilde;&iacute;a", requerido=true, descripcion="Compa&ntilde;&iacute;a a la que pertenecen los datos", ejemplosValores={"1"}) Integer companyId, 
+			   @InformacionParametro(nombre="C&oacute;digo Usuario", requerido=true, descripcion="Usuario al que pertenecen los datos", ejemplosValores={"FRM0"}) String userId,
+				@InformacionParametro(nombre="N&uacute;mero de d&iacute;as atr&aacute;s", requerido=true, descripcion="N&uacute;mero de d&iacute;as desde donde se va a procesar, a partir de hoy", ejemplosValores={"1,5,10"}) Integer diasEsperados);
 	
 	/**
 	 * Metodo para carga de archivos xml de retenciones

@@ -3,6 +3,7 @@ package ec.com.smx.sic.cliente.persistencia.fruver.dao;
 import java.util.Collection;
 import java.util.Map;
 
+import ec.com.kruger.utilitario.dao.commons.dto.SearchResultDTO;
 import ec.com.smx.sic.cliente.exception.SICException;
 import ec.com.smx.sic.cliente.mdl.dto.ArticuloOfertaProveedorDTO;
 import ec.com.smx.sic.cliente.mdl.dto.ArticuloUnidadManejoProveedorDTO;
@@ -24,16 +25,6 @@ public interface IArticuloOfertaProveedorDAO {
 	Collection<ArticuloOfertaProveedorDTO> getArticulosOfertaProveedor(Integer codigoCompania, String codigoProveedor, Map<String, Object> restricciones) throws SICException;
 
 	/**
-	 * 
-	 * @param codigoCompania
-	 * @param codigoProveedor
-	 * @param filtros
-	 * @return
-	 * @throws SICException
-	 */
-	Collection<ArticuloUnidadManejoProveedorDTO> getArticulosUnidadManejoProveedor(Integer codigoCompania, String codigoProveedor, Map<String, Object> filtros) throws SICException;
-
-	/**
 	 * Permite cambiar el estado de las ofertas a enviadas
 	 * @param codigoCompania Codigo de la compania
 	 * @param codigoOferta Codigo de la oferta que se esta enviando
@@ -41,5 +32,16 @@ public interface IArticuloOfertaProveedorDAO {
 	 * @throws SICException
 	 */
 	void enviarOfertasProveedor(Integer codigoCompania, Integer codigoOferta, String codigoProveedor) throws SICException;
+
+	/**
+	 * Consultar articulos unidad de manejo por proveedor
+	 * @param codigoCompania
+	 * @param codigoProveedor
+	 * @param filtros
+	 * @param numeroTotalRegistros
+	 * @return
+	 * @throws SICException
+	 */
+	SearchResultDTO<ArticuloUnidadManejoProveedorDTO> getArticulosUnidadManejoProveedor(Integer codigoCompania, String codigoProveedor, Map<String, Object> filtros, Boolean numeroTotalRegistros) throws SICException;
 
 }

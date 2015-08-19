@@ -119,7 +119,7 @@
 								<td class="styleFilDet" width="2%" align="justify" height="20px">S</td>
 								<td class="styleFilDet" width="8%" align="left" height="20px">Codigo Barras</td>
 								<td class="styleFilDet" width="4%" align="right" height="20px">UC.</td>
-								<td class="styleFilDet" width="8%" align="right" height="20px">Prec. Costo</td>
+								<td class="styleFilDet" width="8%" align="right" height="20px"><xsl:value-of select="tituloCabeceraCosto"/></td>
 								<td class="styleFilDet" width="5%" align="right" height="20px">DxUC</td>
 								<td class="styleFilDet" width="5%" align="right" height="20px">Des-1</td>
 								<td class="styleFilDet" width="5%" align="right" height="20px">Des-2</td>
@@ -228,7 +228,7 @@
 						<td class="styleFilDet" align="right">!</td>
 					</tr>
 					<tr>
-						<td class="styleFilDet" align="justify" rowspan="7">SR.PROVEEDOR:   LE RECORDAMOS QUE DEBE REVISAR QUE **PRECIOS/CONDICIONES** DE SU FACTURA ESTEN DE ACUERDO CON LOS DE NUESTRA ORDEN DE COMPRA PARA EVITAR DESFASES Y PROBLEMAS EN LOS PAGOS,  FAVOR CONSTAR UNID.MANEJO Y NUMERO DE CODIGO DE BARRAS EN SUS FACTURAS  * GRACIAS * </td>
+						<td class="styleFilDet" align="justify" rowspan="7"><xsl:value-of select="mensajeReporte"/></td>
 						<td class="styleFilDet" align="justify"> </td>
 						<td class="styleFilDet" align="left">! </td>
 						<td class="styleFilDet" align="left">! </td>

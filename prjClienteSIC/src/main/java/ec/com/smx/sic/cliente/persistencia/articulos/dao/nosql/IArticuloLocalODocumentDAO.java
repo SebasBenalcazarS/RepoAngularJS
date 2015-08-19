@@ -16,21 +16,21 @@ import ec.com.smx.sic.cliente.mdl.dto.ArticuloLocalDTO;
  */
 public interface IArticuloLocalODocumentDAO {
 	
-	/**
-	 * 
-	 * @param iClusterName
-	 * @param colODocumentArticuloLocal
-	 * @throws SICException
-	 */
-	void registrarArticuloLocalDocument(String iClusterName, Collection<ODocument> colODocumentArticuloLocal) throws SICException;
-	
-	/**
-	 * 
-	 * @param iClusterName
-	 * @param oDocumentArticuloLocal
-	 * @throws SICException
-	 */
-	void registrarArticuloLocalDocument(String iClusterName, ODocument oDocumentArticuloLocal) throws SICException;
+//	/**
+//	 * 
+//	 * @param iClusterName
+//	 * @param colODocumentArticuloLocal
+//	 * @throws SICException
+//	 */
+//	void registrarArticuloLocalDocument(String iClusterName, Collection<ODocument> colODocumentArticuloLocal) throws SICException;
+//	
+//	/**
+//	 * 
+//	 * @param iClusterName
+//	 * @param oDocumentArticuloLocal
+//	 * @throws SICException
+//	 */
+//	void registrarArticuloLocalDocument(String iClusterName, ODocument oDocumentArticuloLocal) throws SICException;
 	
 	/**
 	 * 

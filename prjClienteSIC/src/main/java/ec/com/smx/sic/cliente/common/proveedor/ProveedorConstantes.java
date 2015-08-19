@@ -98,7 +98,6 @@ public final class ProveedorConstantes {
 	public static final List<OrigenProveedor> ORIGEN_PROVEEDOR = OrigenProveedor.getOrigenProveedor();
 	public static final List<TipoBusquedaProveedor> TIPO_BUSQUEDAS_PROVEEDOR = TipoBusquedaProveedor.getTipoBusquedasProveedor();
 	public static final String VALOR_PLAZO_PAGO_DEFECTO = SICProveedorMessages.getInstancia().getString("ec.com.smx.max.proveedor.clasificacion.valor.plazopago.defecto");
-	public static final String CODIGO_CATALOGO_VALOR_FACTURA_EN_SITIO_SI = SICProveedorMessages.getInstancia().getString("ec.com.smx.max.proveedor.codigo.catalogoValor.facturaEnSitio.si");
 	public static final String CODIGO_FACTURAR_PROMOCION_OFICINA_EXTERIOR_SI = SICProveedorMessages.getInstancia().getString("ec.com.smx.max.proveedor.codigo.catalogoValor.facturar.promocion.oficina.exterior.si");
 	public static final String IMAGEN_CABECERA_CORREO_ELECTRONICO = SICProveedorMessages.getInstancia().getString("ec.com.smx.sic.proveedor.correo.electronico.imagen.cabecera");
 	public static final String PROVEEDOR_SERVICIOS_DOCUMENTO = SICProveedorMessages.getInstancia().getString("ec.com.smx.sic.proveedor.servicios.migracion.documento");

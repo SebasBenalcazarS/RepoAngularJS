@@ -62,7 +62,7 @@ public interface ICalculoCalendariosBodegaGestor {
 	 * @param horaColumnaReporte
 	 * @return
 	 */
-	public HSSFWorkbook obtenerDatosExcel(String tipoOpcionCalendario, String datosJSon, Map<String, String> horaDiaMap)throws SICException;
+	public HSSFWorkbook obtenerDatosExcel(Integer codigoCompania,String tipoExportacionExcel, Integer fechaPlanificacion, Date fechaPuntual, String tipoOpcionCalendario, String datosJSon, Map<String, String> horaDiaMap)throws SICException;
 	/**
 	 * Este m&eacute;todo devuelve la vista completa de la planificaci&oacute;n de las entregas diario
 	 * @param codigoCompania

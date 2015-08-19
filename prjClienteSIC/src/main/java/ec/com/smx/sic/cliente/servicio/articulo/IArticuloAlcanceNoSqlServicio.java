@@ -9,9 +9,10 @@ import java.util.Set;
 
 import ec.com.smx.sic.cliente.exception.SICException;
 import ec.com.smx.sic.cliente.mdl.dto.ArticuloAreaTrabajoBitacoraDTO;
-import ec.com.smx.sic.cliente.mdl.dto.ArticuloDTO;
+import ec.com.smx.sic.cliente.mdl.dto.ArticuloEstablecimientoDTO;
 import ec.com.smx.sic.cliente.mdl.dto.ArticuloLocalDTO;
 import ec.com.smx.sic.cliente.mdl.dto.articulo.nosql.ArticuloAreaTrabajoNoSqlDTO;
+import ec.com.smx.sic.cliente.mdl.dto.articulo.nosql.VistaArticuloLocalNoSqlDTO;
 
 /**
  * @author wcaiza
@@ -36,6 +37,33 @@ public interface IArticuloAlcanceNoSqlServicio {
 	 * @throws SICException
 	 */
 	void migrarArticuloAlcanceDTONoSqlBatch(Integer codigoCompania, Integer codigoLocal, String sufijoTabla) throws SICException;
+	
+	/**
+	 * 
+	 * @param codigoCompania
+	 * @param colVistaMigrarArticuloLocalDTO
+	 * @param sufijoTabla
+	 * @throws SICException
+	 */
+	void findMigrarArticuloLocalDTOWriter(Integer codigoCompania, Collection<VistaArticuloLocalNoSqlDTO> colVistaMigrarArticuloLocalDTO, String sufijoTabla) throws SICException;
+	
+	/**
+	 * 
+	 * @param codigoCompania
+	 * @param colVistaMigrarArticuloLocalDTO
+	 * @param sufijoTabla
+	 * @throws SICException
+	 */
+	void findMigrarArticuloAreaTrabajoBitacoraWriter(Integer codigoCompania, Collection<ArticuloAreaTrabajoBitacoraDTO> colArticuloAreaTrabajoBitacoraDTO, String sufijoTabla) throws SICException;
+	
+	/**
+	 * 
+	 * @param codigoCompania
+	 * @param colArticuloEstablecimientoDTO
+	 * @param sufijoTabla
+	 * @throws SICException
+	 */
+	void findMigrarArticuloEstablecimientoWriter (Integer codigoCompania, Collection<ArticuloEstablecimientoDTO> colArticuloEstablecimientoDTO, String sufijoTabla) throws SICException;
 	
 //	/**
 //	 * Ejecutar el proceso spring batch para migrar los datos de la tabla SCSADTARTARETRABIT - ArticuloAreaTrabajoBitacoraDTO 
@@ -84,14 +112,14 @@ public interface IArticuloAlcanceNoSqlServicio {
 	 * 
 	 * */
 	
-	/**
-	 * Permite consultar las areas de trabajo en las que el {@link ArticuloDTO} tiene alcance
-	 * @param articuloDTO
-	 * @param validarEstado <code>TRUE</code> si debe obtener solo los registros en estado activo, <code>FALSE</code> no se valida el estado
-	 * @return
-	 * @throws SICException
-	 */
-	Collection<ArticuloLocalDTO> obtenerAreasTrabajoAsignadas(ArticuloDTO articuloDTO, Boolean validarEstado) throws SICException;
+//	/**
+//	 * Permite consultar las areas de trabajo en las que el {@link ArticuloDTO} tiene alcance
+//	 * @param articuloDTO
+//	 * @param validarEstado <code>TRUE</code> si debe obtener solo los registros en estado activo, <code>FALSE</code> no se valida el estado
+//	 * @return
+//	 * @throws SICException
+//	 */
+//	Collection<ArticuloLocalDTO> obtenerAreasTrabajoAsignadas(ArticuloDTO articuloDTO, Boolean validarEstado) throws SICException;
 	
 	
 	/**
@@ -100,7 +128,7 @@ public interface IArticuloAlcanceNoSqlServicio {
 	 * @throws SICException
 	 * @author bymontesdeoca
 	 */
-	void executeAlcanceArticulos(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSql) throws SICException;
+	void executeAlcanceArticulos(ArticuloAreaTrabajoNoSqlDTO ... artAreTraNoSql) throws SICException;
 	
 	/**
 	 * metodo que busca en que areas de trabajo se encuentra registrado alcance para un articulo.  
@@ -127,11 +155,30 @@ public interface IArticuloAlcanceNoSqlServicio {
 	void copiarAlcances(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSql,Integer codLocalOrigen) throws SICException;
 	
 	
+	/**
+	 * metodo que busca los articulos q se encuentran registrado alcance para una area de trabajo.  
+	 * @param codCompania
+	 * @param tipAreTra : 'OFI'/'LOC'/'BOD'
+	 * @param codigoAreaTrabajo
+	 * @param estado : 1(activo), 0(inactivo), null (activos e inactivos) 
+	 * @return List de tipo ArticuloLocalDTO
+	 * @throws SICException
+	 */
+	List<ArticuloLocalDTO> findAlcanceAreaTrabajo(Integer codCompania,String tipAreTra,Integer codigoAreaTrabajo,Integer estado) throws SICException;	
 	
 	
 	
-	
-	
+	/**
+	 * retorna el numero de filas 
+	 * @param codigoCompania
+	 * @param tipAreaTrabajo
+	 * @param codAreaTrabajo
+	 * @param codArticulo
+	 * @return
+	 * @throws SICException
+	 */
+	Long getNumRegistrosAlcanceEnAreaTrabajo(Integer codigoCompania,String tipAreaTrabajo,Integer codAreaTrabajo,String codArticulo) throws SICException;
+
 	
 	
 	

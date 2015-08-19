@@ -25,6 +25,8 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.MapUtils;
+
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
@@ -37,9 +39,9 @@ import ec.com.smx.sic.cliente.common.Logeable;
 import ec.com.smx.sic.cliente.common.SICConstantes;
 import ec.com.smx.sic.cliente.common.articulo.EnumClasesArticuloAlcanceNoSql;
 import ec.com.smx.sic.cliente.common.articulo.SICArticuloConstantes;
-import ec.com.smx.sic.cliente.common.articulo.util.ArticuloAlcanceIndexNoSqlUtil;
 import ec.com.smx.sic.cliente.common.articulo.util.ArticuloAlcanceNoSqlUtil;
 import ec.com.smx.sic.cliente.common.nosql.articulo.ArticuloAreaTrabajoBitacoraFields;
+import ec.com.smx.sic.cliente.common.nosql.articulo.ArticuloEstablecimientoFields;
 import ec.com.smx.sic.cliente.common.nosql.articulo.ArticuloLocalFields;
 import ec.com.smx.sic.cliente.exception.SICException;
 import ec.com.smx.sic.cliente.gestor.articulo.alcance.nosql.almacenamiento.IAlmacenamientoArticuloAlcanceNoSqlGestor;
@@ -52,7 +54,6 @@ import ec.com.smx.sic.cliente.mdl.dto.articulo.nosql.VistaArticuloLocalNoSqlDTO;
 import ec.com.smx.sic.cliente.mdl.vo.ArticuloVO;
 import ec.com.smx.sic.cliente.persistencia.articulos.dao.IArticuloAlcanceDAO;
 import ec.com.smx.sic.cliente.persistencia.articulos.dao.nosql.IArticuloAlcanceNoSqlDAO;
-import ec.com.smx.sic.cliente.persistencia.articulos.dao.nosql.IArticuloAreaTrabajoBitacoraODocumentDAO;
 import ec.com.smx.sic.cliente.persistencia.articulos.dao.nosql.IArticuloLocalODocumentDAO;
 import ec.com.smx.sic.cliente.resources.SICMessages;
 
@@ -68,7 +69,7 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 	private SimpleOrientDocumentDbManager simpleOrientDocumentDbManager;
 	private IValidacionArticuloAlcanceNoSqlGestor validacionArticuloAlcanceNoSqlGestor;
 	private IArticuloLocalODocumentDAO articuloLocalODocumentDAO;
-	private IArticuloAreaTrabajoBitacoraODocumentDAO articuloAreaTrabajoBitacoraODocumentDAO;
+//	private IArticuloAreaTrabajoBitacoraODocumentDAO articuloAreaTrabajoBitacoraODocumentDAO;
 	private IArticuloAlcanceNoSqlDAO articuloAlcanceNoSqlDAO;
 	private IArticuloAlcanceDAO articuloAlcanceDAO;
 
@@ -102,12 +103,12 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 		this.articuloLocalODocumentDAO = articuloLocalODocumentDAO;
 	}
 
-	/**
-	 * @param articuloAreaTrabajoBitacoraODocumentDAO the articuloAreaTrabajoBitacoraODocumentDAO to set
-	 */
-	public void setArticuloAreaTrabajoBitacoraODocumentDAO(IArticuloAreaTrabajoBitacoraODocumentDAO articuloAreaTrabajoBitacoraODocumentDAO) {
-		this.articuloAreaTrabajoBitacoraODocumentDAO = articuloAreaTrabajoBitacoraODocumentDAO;
-	}
+//	/**
+//	 * @param articuloAreaTrabajoBitacoraODocumentDAO the articuloAreaTrabajoBitacoraODocumentDAO to set
+//	 */
+//	public void setArticuloAreaTrabajoBitacoraODocumentDAO(IArticuloAreaTrabajoBitacoraODocumentDAO articuloAreaTrabajoBitacoraODocumentDAO) {
+//		this.articuloAreaTrabajoBitacoraODocumentDAO = articuloAreaTrabajoBitacoraODocumentDAO;
+//	}
 
 	/* (non-Javadoc)
 	 * @see ec.com.smx.sic.cliente.gestor.articulo.alcance.nosql.almacenamiento.IAlmacenamientoArticuloAlcanceNoSqlGestor#registrarArticuloLocal(java.lang.Integer, java.util.Collection)
@@ -130,13 +131,16 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 				
 				String iClusterName = ArticuloAlcanceNoSqlUtil.validarCrearClusterPorLocal(
 						db, EnumClasesArticuloAlcanceNoSql.ArticuloLocalDTO.getName(), colVistaMigrarArticuloLocalDTO.iterator().next().getId().getCodigoLocal());
-				this.articuloLocalODocumentDAO.registrarArticuloLocalDocument(iClusterName, colODocumentArticuloLocalRegistrar);
+				this.articuloAlcanceNoSqlDAO.registrarArticuloLocalDocument(iClusterName, colODocumentArticuloLocalRegistrar);
 				
 				// fin transaccion
 				db.commit();
 				
-				ArticuloAlcanceIndexNoSqlUtil.registrarIndicesODocumentArticuloLocalDTO(
-						db, colODocumentArticuloLocalRegistrar.toArray(new ODocument[colODocumentArticuloLocalRegistrar.size()]));
+//				ArticuloAlcanceIndexNoSqlUtil.registrarIndicesODocumentArticuloLocalDTO(
+//						db, colODocumentArticuloLocalRegistrar.toArray(new ODocument[colODocumentArticuloLocalRegistrar.size()]));
+				
+				this.articuloAlcanceNoSqlDAO.registrarIndicesArticuloAreatrabajo(db, 
+						colODocumentArticuloLocalRegistrar.toArray(new ODocument[colODocumentArticuloLocalRegistrar.size()]));
 				
 //				Collection<String> colCodigoArticulo = CentroDistribucionUtil.getInstancia().obtenerColeccionDesdeAtributo(colVistaMigrarArticuloLocalDTO, "id.codigoArticulo");
 //				this.migrarArticuloLocalBitacora(codigoCompania, colCodigoArticulo, sufijoTabla);
@@ -284,7 +288,10 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 				// fin transaccion
 				db.commit();
 				
-				ArticuloAlcanceIndexNoSqlUtil.registrarIndicesODocumentArticuloLocalBitacora(db, 
+//				ArticuloAlcanceIndexNoSqlUtil.registrarIndicesODocumentArticuloLocalBitacora(db, 
+//						colODocumentArticuloLocalBitacora.toArray(new ODocument[colODocumentArticuloLocalBitacora.size()]));
+				
+				this.articuloAlcanceNoSqlDAO.registrarIndicesArticuloAreatrabajoBitacora(db, 
 						colODocumentArticuloLocalBitacora.toArray(new ODocument[colODocumentArticuloLocalBitacora.size()]));
 				
 		} catch (NoSQLException e) {
@@ -432,7 +439,7 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 				String clusterName = ArticuloAlcanceNoSqlUtil.obtenerNombreClusterArticuloLocalBitacora(
 						EnumClasesArticuloAlcanceNoSql.ArticuloAreaTrabajoBitacoraDTO.getName(), articuloAreaTrabajoBitacoraDTO.getFechaRegistro());
 				ArticuloAlcanceNoSqlUtil.validarCrearClusterArticuloLocalBitacora(db, EnumClasesArticuloAlcanceNoSql.ArticuloAreaTrabajoBitacoraDTO.getName() , clusterName);
-				this.articuloAreaTrabajoBitacoraODocumentDAO.registrarArticuloLocalBitacoraDocument(clusterName, oDocumentRegistrar);
+				this.articuloAlcanceNoSqlDAO.registrarArticuloLocalBitacoraDocument(clusterName, oDocumentRegistrar);
 				
 			}
 			
@@ -487,13 +494,13 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 						oDocumentArticuloLocalDTO.field(ArticuloLocalFields.CODIGO_ARTICULO, articuloVO.getBaseDTO().getId().getCodigoArticulo());
 						oDocumentArticuloLocalDTO.field(ArticuloLocalFields.ESTADO_ARTICULO_LOCAL, SICConstantes.ESTADO_ACTIVO_NUMERICO);
 						ArticuloAlcanceNoSqlUtil.setearPlantilla(oDocumentArticuloLocalDTO, null, articuloVO, Boolean.TRUE);
-						this.articuloLocalODocumentDAO.registrarArticuloLocalDocument(iClusterName, oDocumentArticuloLocalDTO);
+						this.articuloAlcanceNoSqlDAO.registrarArticuloLocalDocument(iClusterName, oDocumentArticuloLocalDTO);
 						
 					} else {
 						
 						oDocumentArticuloLocalDTO = colODocumentIndiceArtLoc.iterator().next();
 						ArticuloAlcanceNoSqlUtil.setearPlantilla(oDocumentArticuloLocalDTO, null, articuloVO, Boolean.TRUE);
-						this.articuloLocalODocumentDAO.registrarArticuloLocalDocument(iClusterName, oDocumentArticuloLocalDTO);
+						this.articuloAlcanceNoSqlDAO.registrarArticuloLocalDocument(iClusterName, oDocumentArticuloLocalDTO);
 					}
 					
 					this.insertarBitacoraArticuloAreaTrabajo(oDocumentArticuloLocalDTO, articuloVO.getFechaAplicacion(), opcionTipoAsignacionAlcance);
@@ -620,7 +627,7 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 		String iClusterName = ArticuloAlcanceNoSqlUtil.obtenerNombreClusterArticuloLocalBitacora(
 				EnumClasesArticuloAlcanceNoSql.ArticuloAreaTrabajoBitacoraDTO.getName(), fechaAplicacion);
 		
-		this.articuloAreaTrabajoBitacoraODocumentDAO.registrarArticuloLocalBitacoraDocument(iClusterName, oDocArtAreTraBit);
+		this.articuloAlcanceNoSqlDAO.registrarArticuloLocalBitacoraDocument(iClusterName, oDocArtAreTraBit);
 		
 	}
 
@@ -659,24 +666,122 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 	
 	
 	@Override
-	public void executeAlcanceArticulos(Collection<ArticuloAreaTrabajoNoSqlDTO> colArtAreTraNoSql) throws SICException {
+	public void executeAlcanceArticulos(String codigoArticulo, ArticuloAreaTrabajoNoSqlDTO... colArtAreTraNoSql) throws SICException {
+		
+		Map<Integer,List<String>> mapGruAlcArt=null; // clave:grupo alcance, valor: lista codigos de Articulo
+		ODatabaseDocumentTx db=null;
 		try{
-			if (colArtAreTraNoSql==null || CollectionUtils.isEmpty(colArtAreTraNoSql)){
+			
+			if (colArtAreTraNoSql==null || colArtAreTraNoSql.length<1
+					|| codigoArticulo==null || codigoArticulo.isEmpty()){
 				return;
 			}
-			for(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSql:colArtAreTraNoSql){
-				executeAlcanceArticulos(artAreTraNoSql);
+			
+			Calendar calendar = Calendar.getInstance(LOCALE_ES);
+			String horaIni=calendar.get(Calendar.HOUR_OF_DAY)+":"+calendar.get(Calendar.MINUTE)+":"+calendar.get(Calendar.SECOND);
+
+			this.validateCreateIndexAlcances();// valida q existan los indices necesarios, si no existen los crea
+
+			mapGruAlcArt=new HashMap<Integer,List<String>>();
+			
+			final Integer codigoCompania = colArtAreTraNoSql[0].getCodigoCompania();
+			
+			Map<String,Integer> mapPrototipos = this.articuloAlcanceDAO.getMapVistaPrototipoAlcance(codigoCompania);// mapa con los prototipos traidos de la vista
+			//mapa para gestionar articuloEstablecimiento 
+			Map<Integer,Integer> mapLocalEstablecimiento = this.articuloAlcanceDAO.getMapLocalEstablecimiento(codigoCompania);//mapa con los locales y su establecimiento
+
+			db = this.simpleOrientDocumentDbManager.getCurrentDatabaseFromPool();
+			
+			if (colArtAreTraNoSql[0].getTipoAsignacionAlcance().equalsIgnoreCase(SICMessages.getInstancia().getString("valor.articulo.alcance.asignacion.prototipo"))
+					&& colArtAreTraNoSql[0].getOpcionAsignacion().equalsIgnoreCase(SICConstantes.ALCANCE_OPCION_REMPLAZAR)){
+				// si es alcance por prototipo y la opcion de asignacion es reemplazar
+				// quita los alcances del articulo en todas las areas q exista
+				quitarAlcance(colArtAreTraNoSql[0], db, codigoArticulo);
 			}
+			
+			for(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSql:colArtAreTraNoSql){
+				this.executeAlcanceArticulos(codigoArticulo,artAreTraNoSql, db,mapPrototipos, mapLocalEstablecimiento, mapGruAlcArt);
+			}
+			
+			Calendar calendarFin = Calendar.getInstance(LOCALE_ES);
+			String horaFin=calendarFin.get(Calendar.HOUR_OF_DAY)+":"+calendarFin.get(Calendar.MINUTE)+":"+calendarFin.get(Calendar.SECOND);
+			LOG_SICV2.info("fin alcance sin update en db2 "+horaIni+" / "+horaFin);
+			
+//			this.actualizarGrupoAlcanceArticulo(colArtAreTraNoSql[0], mapGruAlcArt);
 			
 		} catch (Exception e) {
 			Logeable.LOG_SICV2.error("Ocurrio un error al registrarArticuloLocal: {}", e.toString());
 			throw new SICException(e);
-		} 
-		
+		} finally {
+			if (db != null) {
+				db.close();
+			}
+			// Se actualiza a el prototipo a los articulos que si se dieron alcance
+			if (MapUtils.isNotEmpty(mapGruAlcArt)) {
+				this.actualizarGrupoAlcanceArticulo(colArtAreTraNoSql[0], mapGruAlcArt);
+			}
+			
+		}
+
+
 	}
 
 	@Override
-	public void executeAlcanceArticulos(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSql) throws SICException {
+	public void executeAlcanceArticulos(ArticuloAreaTrabajoNoSqlDTO ... colArtAreTraNoSql) throws SICException {
+		
+		Map<Integer,List<String>> mapGruAlcArt=null; // clave:grupo alcance, valor: lista codigos de Articulo
+		ODatabaseDocumentTx db=null;
+		try{
+			
+			if (colArtAreTraNoSql==null || colArtAreTraNoSql.length<1){
+				return;
+			}
+			
+			Calendar calendar = Calendar.getInstance(LOCALE_ES);
+			String horaIni=calendar.get(Calendar.HOUR_OF_DAY)+":"+calendar.get(Calendar.MINUTE)+":"+calendar.get(Calendar.SECOND);
+
+			this.validateCreateIndexAlcances();// valida q existan los indices necesarios, si no existen los crea
+
+			mapGruAlcArt=new HashMap<Integer,List<String>>();
+			
+			final Integer codigoCompania = colArtAreTraNoSql[0].getCodigoCompania();
+			
+			Map<String,Integer> mapPrototipos = this.articuloAlcanceDAO.getMapVistaPrototipoAlcance(codigoCompania);// mapa con los prototipos traidos de la vista
+			//mapa para gestionar articuloEstablecimiento 
+			Map<Integer,Integer> mapLocalEstablecimiento = this.articuloAlcanceDAO.getMapLocalEstablecimiento(codigoCompania);//mapa con los locales y su establecimiento
+
+			db = this.simpleOrientDocumentDbManager.getCurrentDatabaseFromPool();
+			
+			
+			for(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSql:colArtAreTraNoSql){
+				this.executeAlcanceArticulos(null,artAreTraNoSql, db,mapPrototipos, mapLocalEstablecimiento, mapGruAlcArt);
+			}
+			
+			Calendar calendarFin = Calendar.getInstance(LOCALE_ES);
+			String horaFin=calendarFin.get(Calendar.HOUR_OF_DAY)+":"+calendarFin.get(Calendar.MINUTE)+":"+calendarFin.get(Calendar.SECOND);
+			LOG_SICV2.info("fin alcance sin update en db2 "+horaIni+" / "+horaFin);
+			
+//			this.actualizarGrupoAlcanceArticulo(colArtAreTraNoSql[0], mapGruAlcArt);
+			
+		} catch (Exception e) {
+			Logeable.LOG_SICV2.error("Ocurrio un error al registrarArticuloLocal: {}", e.toString());
+			throw new SICException(e);
+		} finally {
+			if (db != null) {
+				db.close();
+			}
+			// Se actualiza a el prototipo a los articulos que si se dieron alcance
+			if (MapUtils.isNotEmpty(mapGruAlcArt)) {
+				this.actualizarGrupoAlcanceArticulo(colArtAreTraNoSql[0], mapGruAlcArt);
+			}
+			
+		}
+		
+	}
+
+//	@Override
+	private void executeAlcanceArticulos(String codigoArticulo,ArticuloAreaTrabajoNoSqlDTO artAreTraNoSql, ODatabaseDocumentTx db,Map<String,Integer> mapPrototipos, 
+			Map<Integer,Integer> mapLocalEstablecimiento, Map<Integer, List<String>> mapGruAlcArt) throws SICException {
 		try {
 			if (artAreTraNoSql==null){
 				return;
@@ -697,7 +802,7 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 				Calendar calendar = Calendar.getInstance(LOCALE_ES);
 				artAreTraNoSql.setFechaRegistro(calendar.getTime());
 			}
-
+			
 			artAreTraNoSql.setEstadoIntegracionAlcance(SICConstantes.ESTADO_INACTIVO_NUMERICO);// estado integracion inactivo
 			
 			artAreTraNoSql.setCodigoTipoAsignacion(TiposCatalogoConstantes.TIPO_ASIGNACION_ALCANCE); // tipo asignacion 
@@ -705,14 +810,7 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 			if (artAreTraNoSql.getValorTipoAsignacion()==null || artAreTraNoSql.getValorTipoAsignacion().isEmpty()){
 				artAreTraNoSql.setValorTipoAsignacion(CorporativoConstantes.TIPO_ASIGNACION_ALCANCE_NORMAL); // valor tipo asignacion 
 			}
-
 			
-			// valida el grupo alcance(prototipo) solo locales deben tener prototipo; 
-//			if (artAreTraNoSql.getTipoAreaTrabajo()==null || artAreTraNoSql.getTipoAreaTrabajo().isEmpty()
-//					|| !artAreTraNoSql.getTipoAreaTrabajo().equalsIgnoreCase(SICConstantes.SUFIJO_TIPO_AREA_TRABAJO_LOCAL)){
-//			//	artAreTraNoSql.setCodigoGrupoAlcance(-1);  // -1 significa no tiene prototipo(grupo alcance)
-//			}
-				
 			if (artAreTraNoSql.getOpcionAsignacion().equalsIgnoreCase(SICConstantes.ALCANCE_OPCION_ANADIR)
 					|| artAreTraNoSql.getOpcionAsignacion().equalsIgnoreCase(SICConstantes.ALCANCE_OPCION_REMPLAZAR)){
 				Calendar fechaIniAlc = Calendar.getInstance(LOCALE_ES);
@@ -729,8 +827,6 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 					artAreTraNoSql.setIdUsuarioInactivacion(artAreTraNoSql.getIdUsuario());
 					artAreTraNoSql.setFechaInactivacion(artAreTraNoSql.getFechaRegistro());
 				}
-				
-				this.registrarAlcance(artAreTraNoSql);// registra o reemplaza el alcance
 				
 			}else if (artAreTraNoSql.getOpcionAsignacion().equalsIgnoreCase(SICConstantes.ALCANCE_OPCION_QUITAR)){
 				// quitar alcance
@@ -750,39 +846,16 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 					artAreTraNoSql.setFechaActivacion(artAreTraNoSql.getFechaRegistro());
 				}
 				
-				this.quitarAlcance(artAreTraNoSql);// quita el alcance 
 			}
-
-		} catch (Exception e) {
-			Logeable.LOG_SICV2.error("Ocurrio un error al registrarArticuloLocal: {}", e.toString());
-			throw new SICException(e);
-		} 
-		
-	}
-
-	@Override
-	public void registrarAlcance(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSqlDTO) throws SICException {
-		
-		ODatabaseDocumentTx db = null;
-//		List<ODocument> lisAlcancesRegistrados=new ArrayList<>(); // contiene todos los alcances registrados para poder registrar los indices
-//		List<ODocument> lisBitacoraAlcancesRegistrados=new ArrayList<>(); // contiene todas las bitacoras de alcances registrados para poder registrar los indices
-//		List<ODocument> lisArtEstRegistrados=new ArrayList<>(); // contiene todos los articulo establecimiento registrados para despues poder registrar los indices
-		
-		//mapas para gestionar la relacion grupo alcance en el articulo en DB2		
-		//mapa que almacena los articulos q deben ser actualizados el grupo alcance del articulo en DB2
-		Map<Integer,List<String>> mapGruAlcArt=new HashMap<Integer,List<String>>(); // clave:grupo alcance, valor: lista codigos de Articulo  
-		Map<String,Integer> mapPrototipos=this.articuloAlcanceDAO.getMapVistaPrototipoAlcance(artAreTraNoSqlDTO.getCodigoCompania());// mapa con los prototipos traidos de la vista
-		
-		//mapa para gestionar articuloEstablecimiento 
-		Map<Integer,Integer> mapLocalEstablecimiento=this.articuloAlcanceDAO.getMapLocalEstablecimiento(artAreTraNoSqlDTO.getCodigoCompania());//mapa con los locales y su establecimiento
-		try {
-			if (artAreTraNoSqlDTO!=null) {
-				db = this.simpleOrientDocumentDbManager.getCurrentDatabaseFromPool();
-				this.articuloAlcanceNoSqlDAO.validateCreateIndexAlcances(db);// valida q existan los indices necesarios, si no existen los crea
-				
-				registrarAlcanceNoSql(artAreTraNoSqlDTO, db, mapGruAlcArt, mapPrototipos,mapLocalEstablecimiento);
-				actualizarGrupoAlcanceArticulo(artAreTraNoSqlDTO, mapGruAlcArt);
+			
+			if (codigoArticulo==null || codigoArticulo.isEmpty()){
+				this.registrarAlcanceNoSql(artAreTraNoSql, db, mapGruAlcArt, mapPrototipos, mapLocalEstablecimiento);
+			}else{
+				// un mismo articulo y varias areas de trabajo con diferentes fechas de alcance (alcance desde pantalla articulos)
+				this.registrarAlcanceNoSql(codigoArticulo, artAreTraNoSql, db, mapGruAlcArt, mapPrototipos, mapLocalEstablecimiento);
 			}
+			
+			
 		} catch (NoSQLException e) {
 			db.rollback(); //solo se hace rollback de lo que esta dentro de la transaccion
 			Logeable.LOG_SICV2.error("Ocurrio un error al registrarArticuloLocal: {}", e.toString());
@@ -795,12 +868,10 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 			db.rollback(); //solo se hace rollback de lo que esta dentro de la transaccion
 			Logeable.LOG_SICV2.error("Ocurrio un error al registrarArticuloLocal: {}", e.toString());
 			throw new SICException(e);
-		} finally {
-			if (db != null) {
-				db.close();
-			}
 		}
 	}
+
+
 
 //	private void registrarAlcanceNoSql(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSqlDTO, ODatabaseDocumentTx db, Map<Integer, List<String>> mapGruAlcArt, 
 //			List<ODocument> lisAlcancesRegistrados, List<ODocument> lisBitacoraAlcancesRegistrados, List<ODocument> lisArtEstRegistrados, Map<String, Integer> mapPrototipos,
@@ -815,6 +886,9 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 				|| artAreTraNoSqlDTO.getTipoAsignacionAlcance().equalsIgnoreCase(SICMessages.getInstancia().getString("valor.articulo.alcance.asignacion.copia"))){
 			isTipoAsignacionLocalCopiaPrototipo=true;
 		}
+		String strLocalesExistentesAlcanceActivo="";
+		String strLocalesExistentesAlcanceInactivo="";
+		Map<Integer,Object[]> mapEstabArtEst=new HashMap<>();
 
 		for (Iterator iterator = artAreTraNoSqlDTO.getSetCodArt().iterator(); iterator.hasNext();) {
 			try {
@@ -836,7 +910,6 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 									codAreaTrabajo);
 					
 					if (articuloAreTraSaved!=null){
-						
 						if (artAreTraNoSqlDTO.getOpcionAsignacion().equalsIgnoreCase(SICConstantes.ALCANCE_OPCION_QUITAR)){
 							changeFechaInicialAndFinalAlcance(artAreTraNoSqlDTO, articuloAreTraSaved);// cambia la fecha inicial y final del alcance
 						}
@@ -882,23 +955,108 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 				//db.commit();
 				// despues de dar alcance
 				if (isTipoAsignacionLocalCopiaPrototipo){
+					strLocalesExistentesAlcanceActivo=this.articuloAlcanceNoSqlDAO.findLocalesArticuloAsString(artAreTraNoSqlDTO.getCodigoCompania(), codArticulo,1);
+					strLocalesExistentesAlcanceInactivo=this.articuloAlcanceNoSqlDAO.findLocalesArticuloAsString(artAreTraNoSqlDTO.getCodigoCompania(), codArticulo,0);// locales en los cuales existe alcance en estado inactivo para el articulo.
 					// verifica si el articulo necesita cambiar de prototipo (si encaja en algun prototipo) y lo carga en el mapa (mapGruAlcArt).
-					cargarMapaPrototipoArticulos(artAreTraNoSqlDTO, mapGruAlcArt, mapPrototipos, codArticulo);
+					cargarMapaPrototipoArticulos(strLocalesExistentesAlcanceActivo, mapGruAlcArt, mapPrototipos, codArticulo);
 					//registrarArticuloEstablecimiento
-					// registra con el estado inactivo
-					String strLocalesExistentesAlcanceInactivo=this.articuloAlcanceNoSqlDAO.findLocalesArticuloAsString(artAreTraNoSqlDTO.getCodigoCompania(), codArticulo,0);// locales en los cuales existe alcance en estado inactivo para el articulo.
-					registrarArticuloEstablecimiento(artAreTraNoSqlDTO, db, mapLocalEstablecimiento, codArticulo, strLocalesExistentesAlcanceInactivo, 0);
-					// registra con el estado activo
-					String strLocalesExistentesAlcanceActivo=this.articuloAlcanceNoSqlDAO.findLocalesArticuloAsString(artAreTraNoSqlDTO.getCodigoCompania(), codArticulo,1);// locales en los cuales existe alcance en estado activo para el articulo.
-					registrarArticuloEstablecimiento(artAreTraNoSqlDTO, db, mapLocalEstablecimiento, codArticulo, strLocalesExistentesAlcanceActivo, 1);
-
+					registrarArticuloEstablecimientoNoSql(artAreTraNoSqlDTO, db, mapLocalEstablecimiento, codArticulo, strLocalesExistentesAlcanceActivo, strLocalesExistentesAlcanceInactivo, mapEstabArtEst);
 				}
 			} catch (SICException e) {
+				db.rollback();
 				LOG_SICV2.info("error alcance articulo "+codArticulo);
 			}			
 		}
 	}
 
+	private void registrarAlcanceNoSql(String codigoArticulo,ArticuloAreaTrabajoNoSqlDTO artAreTraNoSqlDTO, ODatabaseDocumentTx db, Map<Integer, List<String>> mapGruAlcArt, 
+			Map<String, Integer> mapPrototipos,Map<Integer,Integer> mapLocalEstablecimiento) throws SICException{
+		
+		boolean isTipoAsignacionLocalCopiaPrototipo=false;
+		if (artAreTraNoSqlDTO.getTipoAsignacionAlcance().equalsIgnoreCase(SICMessages.getInstancia().getString("valor.articulo.alcance.asignacion.local"))
+				|| artAreTraNoSqlDTO.getTipoAsignacionAlcance().equalsIgnoreCase(SICMessages.getInstancia().getString("valor.articulo.alcance.asignacion.prototipo"))
+				|| artAreTraNoSqlDTO.getTipoAsignacionAlcance().equalsIgnoreCase(SICMessages.getInstancia().getString("valor.articulo.alcance.asignacion.copia"))){
+			isTipoAsignacionLocalCopiaPrototipo=true;
+		}
+
+		
+			try {
+				String strLocalesExistentesAlcanceActivo="";
+				String strLocalesExistentesAlcanceInactivo="";
+				Map<Integer,Object[]> mapEstabArtEst=new HashMap<>();
+
+				//db.begin();
+				for(Integer codAreaTrabajo:artAreTraNoSqlDTO.getSetCodAreTra()){
+					db.begin();
+					ODocument oDocBitacoraAlcance;
+					ODocument articuloAreTraSaved=this.articuloAlcanceNoSqlDAO.findAlcanceUnique(artAreTraNoSqlDTO.getCodigoCompania(), 
+									artAreTraNoSqlDTO.getTipoAreaTrabajo(),
+									codigoArticulo, 
+									codAreaTrabajo);
+					
+					if (articuloAreTraSaved!=null){
+						if (artAreTraNoSqlDTO.getOpcionAsignacion().equalsIgnoreCase(SICConstantes.ALCANCE_OPCION_QUITAR)){
+							changeFechaInicialAndFinalAlcance(artAreTraNoSqlDTO, articuloAreTraSaved);// cambia la fecha inicial y final del alcance
+						}
+						// actualiza alcance
+						ODocument oDocArtAreTra=this.articuloAlcanceNoSqlDAO.registrarAlcance(db, codigoArticulo, codAreaTrabajo,artAreTraNoSqlDTO, ((ODocument)articuloAreTraSaved.field("rid")).getIdentity());
+						oDocBitacoraAlcance=this.articuloAlcanceNoSqlDAO.registrarBitacoraAlcance(db, oDocArtAreTra, artAreTraNoSqlDTO.getFechaRegistro());
+						db.commit();
+						this.articuloAlcanceNoSqlDAO.registrarIndicesArticuloAreatrabajoBitacora(db,oDocBitacoraAlcance);
+						//lisBitacoraAlcancesRegistrados.add(oDocBitacoraAlcance);
+						// valida si la fecha inicial alcance recibida es diferente a la fecha inicial alcance guardado 
+						// entonces borrar y registrar indiceFechaIniAlcRidArtLoc 
+						if (articuloAreTraSaved.field(ArticuloLocalFields.FECHA_INICIAL_ALCANCE)!=null 
+								&& !String.valueOf(articuloAreTraSaved.field(ArticuloLocalFields.FECHA_INICIAL_ALCANCE)).isEmpty()){
+							if (isFechasDiferentes((Date)articuloAreTraSaved.field(ArticuloLocalFields.FECHA_INICIAL_ALCANCE), artAreTraNoSqlDTO.getFechaInicialAlcance())){
+								// borrar indice y registrar con nueva fecha ini
+								this.articuloAlcanceNoSqlDAO.borrarRegistrarIndiceFechaIniAlcRidArtLoc(db, articuloAreTraSaved, oDocArtAreTra);
+							}
+						}
+						// valida si la fecha final alcance recibida es diferente a la fecha final alcance guardado 
+						// entonces borrar y registrar indiceFechaFinAlcRidArtLoc 
+						if (articuloAreTraSaved.field(ArticuloLocalFields.FECHA_FINAL_ALCANCE)!=null 
+								&& !String.valueOf(articuloAreTraSaved.field(ArticuloLocalFields.FECHA_FINAL_ALCANCE)).isEmpty()){
+							if (isFechasDiferentes((Date)articuloAreTraSaved.field(ArticuloLocalFields.FECHA_FINAL_ALCANCE), artAreTraNoSqlDTO.getFechaInicialAlcance())){
+								// borrar indice y registrar con nueva fecha fin
+								this.articuloAlcanceNoSqlDAO.borrarRegistrarIndiceFechaFinAlcRidArtLoc(db, articuloAreTraSaved, oDocArtAreTra);
+							}
+						}
+					}else{
+						if (!artAreTraNoSqlDTO.getOpcionAsignacion().equalsIgnoreCase(SICConstantes.ALCANCE_OPCION_QUITAR)){
+							// crea alcance
+							ODocument oDocArtAreTra=this.articuloAlcanceNoSqlDAO.registrarAlcance(db, codigoArticulo, codAreaTrabajo,artAreTraNoSqlDTO, null);
+							oDocBitacoraAlcance=this.articuloAlcanceNoSqlDAO.registrarBitacoraAlcance(db, oDocArtAreTra, artAreTraNoSqlDTO.getFechaRegistro());
+							db.commit();
+							this.articuloAlcanceNoSqlDAO.registrarIndicesArticuloAreatrabajo(db,oDocArtAreTra);
+							this.articuloAlcanceNoSqlDAO.registrarIndicesArticuloAreatrabajoBitacora(db,oDocBitacoraAlcance);
+//							lisAlcancesRegistrados.add(oDocArtAreTra);
+//							lisBitacoraAlcancesRegistrados.add(oDocBitacoraAlcance);
+						}
+					}
+				}
+				LOG_SICV2.info("articulo "+codigoArticulo);
+				
+				//db.commit();
+				// despues de dar alcance
+				if (isTipoAsignacionLocalCopiaPrototipo){
+					strLocalesExistentesAlcanceActivo=this.articuloAlcanceNoSqlDAO.findLocalesArticuloAsString(artAreTraNoSqlDTO.getCodigoCompania(), codigoArticulo,1);
+					// verifica si el articulo necesita cambiar de prototipo (si encaja en algun prototipo) y lo carga en el mapa (mapGruAlcArt).
+					cargarMapaPrototipoArticulos(strLocalesExistentesAlcanceActivo, mapGruAlcArt, mapPrototipos, codigoArticulo);
+					//registrarArticuloEstablecimiento
+					// registra con el estado inactivo
+					strLocalesExistentesAlcanceInactivo=this.articuloAlcanceNoSqlDAO.findLocalesArticuloAsString(artAreTraNoSqlDTO.getCodigoCompania(), codigoArticulo,0);// locales en los cuales existe alcance en estado inactivo para el articulo.
+
+					registrarArticuloEstablecimientoNoSql(artAreTraNoSqlDTO, db, mapLocalEstablecimiento, codigoArticulo, strLocalesExistentesAlcanceActivo, strLocalesExistentesAlcanceInactivo, mapEstabArtEst);
+				}
+			} catch (SICException e) {
+				db.rollback();
+				LOG_SICV2.info("error alcance articulo "+codigoArticulo);
+			}			
+		
+	}
+	
+	
 	private boolean isFechasDiferentes(Date fecha1,Date fecha2){
 		if (fecha1 != null && fecha2 != null){
 			Calendar calFecha1=Calendar.getInstance(LOCALE_ES);
@@ -919,35 +1077,60 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 		if (strLocalesExistentes!=null && !strLocalesExistentes.isEmpty()){
 			for(String strCodAreTra:strLocalesExistentes.split(",")){
 				if (mapLocalEstablecimiento.get(Integer.parseInt(strCodAreTra))!=null){
-				ODocument oDocArtEst= this.articuloAlcanceNoSqlDAO.findArticuloEstablecimientoUnique(artAreTraNoSqlDTO.getCodigoCompania(), 
-						codArticulo, 
-						mapLocalEstablecimiento.get(Integer.parseInt(strCodAreTra)));
-				if (oDocArtEst==null){
-					//registrar
-					ODocument oDocArtEstInserted=this.articuloAlcanceNoSqlDAO.registrarArticuloEstablecimiento(db, codArticulo, 
-							mapLocalEstablecimiento.get(Integer.parseInt(strCodAreTra)),estado, artAreTraNoSqlDTO, null);
-					
-					this.articuloAlcanceNoSqlDAO.registrarIndicesArticuloEstablecimiento(db,oDocArtEstInserted);
-
-					//lisArtEstRegistrados.add(oDocArtEstInserted);
-				}else{
-					//actualizar
-					this.articuloAlcanceNoSqlDAO.registrarArticuloEstablecimiento(db, codArticulo, 
-							mapLocalEstablecimiento.get(Integer.parseInt(strCodAreTra)),estado, artAreTraNoSqlDTO,((ODocument)oDocArtEst.field("rid")).getIdentity());
-				}
+					ODocument oDocArtEst= this.articuloAlcanceNoSqlDAO.findArticuloEstablecimientoUnique(artAreTraNoSqlDTO.getCodigoCompania(), 
+							codArticulo, 
+							mapLocalEstablecimiento.get(Integer.parseInt(strCodAreTra)));
+					if (oDocArtEst==null){
+						//registrar
+						ODocument oDocArtEstInserted=this.articuloAlcanceNoSqlDAO.registrarArticuloEstablecimiento(db, codArticulo, 
+								mapLocalEstablecimiento.get(Integer.parseInt(strCodAreTra)),estado, artAreTraNoSqlDTO, null);
+						
+						this.articuloAlcanceNoSqlDAO.registrarIndicesArticuloEstablecimiento(db,oDocArtEstInserted);
+	
+						//lisArtEstRegistrados.add(oDocArtEstInserted);
+					}else{
+						//actualizar
+						this.articuloAlcanceNoSqlDAO.registrarArticuloEstablecimiento(db, codArticulo, 
+								mapLocalEstablecimiento.get(Integer.parseInt(strCodAreTra)),estado, artAreTraNoSqlDTO,((ODocument)oDocArtEst.field("rid")).getIdentity());
+					}
 				}
 			}
 		}
 	}
 
+	private void registrarArticuloEstablecimiento(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSqlDTO, ODatabaseDocumentTx db, Map<Integer,Object[]> mapEstabArtEst) {
+		if (!MapUtils.isEmpty(mapEstabArtEst)){
+			for (Entry<Integer, Object[]> e:mapEstabArtEst.entrySet()){
+				ODocument oDocArtEst= this.articuloAlcanceNoSqlDAO.findArticuloEstablecimientoUnique(artAreTraNoSqlDTO.getCodigoCompania(), 
+						String.valueOf(mapEstabArtEst.get(e.getKey())[0]), //cod articulo
+						e.getKey()//cod establecimiento
+						);
+				if (oDocArtEst==null){
+					//registrar
+					ODocument oDocArtEstInserted=this.articuloAlcanceNoSqlDAO.registrarArticuloEstablecimiento(db, String.valueOf(mapEstabArtEst.get(e.getKey())[0]), 
+							e.getKey(),Integer.parseInt(String.valueOf(mapEstabArtEst.get(e.getKey())[1])), artAreTraNoSqlDTO, null);
+					this.articuloAlcanceNoSqlDAO.registrarIndicesArticuloEstablecimiento(db,oDocArtEstInserted);
+				}else{
+					if (oDocArtEst.field(ArticuloEstablecimientoFields.ESTADO_ARTICULO_ESTABLECIMIENTO)==null
+							|| oDocArtEst.field(ArticuloEstablecimientoFields.ESTADO_ARTICULO_ESTABLECIMIENTO).toString().isEmpty()
+							|| Integer.parseInt(oDocArtEst.field(ArticuloEstablecimientoFields.ESTADO_ARTICULO_ESTABLECIMIENTO).toString())!=Integer.parseInt(String.valueOf(mapEstabArtEst.get(e.getKey())[1]))){
+						//actualizar
+						this.articuloAlcanceNoSqlDAO.registrarArticuloEstablecimiento(db, String.valueOf(mapEstabArtEst.get(e.getKey())[0]), 
+								e.getKey(),Integer.parseInt(String.valueOf(mapEstabArtEst.get(e.getKey())[1])), artAreTraNoSqlDTO,((ODocument)oDocArtEst.field("rid")).getIdentity());
+					}
+				}
+			}
+		}
+	}
+	
 	
 //	private void quitarAlcance(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSqlDTO, ODatabaseDocumentTx db, List<ODocument> lisBitacoraAlcancesRegistrados, String codArticulo) throws SICException{
 	private void quitarAlcance(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSqlDTO, ODatabaseDocumentTx db, String codArticulo) throws SICException{	
-		String strLocalesExistentes=this.articuloAlcanceNoSqlDAO.findLocalesArticuloAsString(artAreTraNoSqlDTO.getCodigoCompania(), codArticulo,null);// locales en los cuales existe registrado alcance para el articulo q se esta recorriendo (OrientDB)
-		if (strLocalesExistentes!=null && !strLocalesExistentes.isEmpty()){
+		String strLocalesExistentesAlcanceAct=this.articuloAlcanceNoSqlDAO.findLocalesArticuloAsString(artAreTraNoSqlDTO.getCodigoCompania(), codArticulo,1);// locales en los cuales existe registrado alcance para el articulo q se esta recorriendo (OrientDB)
+		if (strLocalesExistentesAlcanceAct!=null && !strLocalesExistentesAlcanceAct.isEmpty()){
 			db.begin();
 			//desactivar los q ya se encuentran dado alcance
-			for(String strCodAreTra:strLocalesExistentes.split(",")){
+			for(String strCodAreTra:strLocalesExistentesAlcanceAct.split(",")){
 				ODocument oDocBitacoraAlcance;
 				ODocument articuloAreTra=this.articuloAlcanceNoSqlDAO.findAlcanceUnique(artAreTraNoSqlDTO.getCodigoCompania(), 
 								artAreTraNoSqlDTO.getTipoAreaTrabajo(),
@@ -996,13 +1179,15 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 			 Map<Integer, List<String>> mapGruAlcArt, Map<String, Integer> mapPrototipos,Map<Integer,Integer> mapLocalEstablecimiento) throws SICException {
 		
 		String codArticulo="";
-		boolean cargarMapaPrototipoArticulo=false;
+		boolean isTipoAsignacionLocalCopiaPrototipo=false;
 		if (artAreTraNoSqlDTO.getTipoAsignacionAlcance().equalsIgnoreCase(SICMessages.getInstancia().getString("valor.articulo.alcance.asignacion.local"))
 				|| artAreTraNoSqlDTO.getTipoAsignacionAlcance().equalsIgnoreCase(SICMessages.getInstancia().getString("valor.articulo.alcance.asignacion.prototipo"))
 				|| artAreTraNoSqlDTO.getTipoAsignacionAlcance().equalsIgnoreCase(SICMessages.getInstancia().getString("valor.articulo.alcance.asignacion.copia"))){
-			cargarMapaPrototipoArticulo=true;
+			isTipoAsignacionLocalCopiaPrototipo=true;
 		}
-		
+		String strLocalesExistentesAlcanceActivo="";
+		String strLocalesExistentesAlcanceInactivo="";
+		Map<Integer,Object[]> mapEstabArtEst=new HashMap<>();
 		for(ODocument oDoc:lisArticuloLocal){
 			try {
 				db.begin();
@@ -1055,64 +1240,52 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 				//LOG_SICV2.info("articulo copia "+codArticulo);
 				//db.commit();
 				
-				if (cargarMapaPrototipoArticulo){
+				if (isTipoAsignacionLocalCopiaPrototipo){
+					strLocalesExistentesAlcanceActivo=this.articuloAlcanceNoSqlDAO.findLocalesArticuloAsString(artAreTraNoSqlDTO.getCodigoCompania(), codArticulo,1);
+					strLocalesExistentesAlcanceInactivo=this.articuloAlcanceNoSqlDAO.findLocalesArticuloAsString(artAreTraNoSqlDTO.getCodigoCompania(), codArticulo,0);// locales en los cuales existe alcance en estado inactivo para el articulo.
+
 					// verifica si el articulo necesita cambiar de prototipo (si encaja en algun prototipo) y lo carga en el mapa (mapGruAlcArt).
-					cargarMapaPrototipoArticulos(artAreTraNoSqlDTO, mapGruAlcArt, mapPrototipos, codArticulo);
+					cargarMapaPrototipoArticulos(strLocalesExistentesAlcanceActivo, mapGruAlcArt, mapPrototipos, codArticulo);
 					
-					//registrarArticuloEstablecimiento
-					// registra con el estado inactivo
-					String strLocalesExistentesAlcanceInactivo=this.articuloAlcanceNoSqlDAO.findLocalesArticuloAsString(artAreTraNoSqlDTO.getCodigoCompania(), codArticulo,0);// locales en los cuales existe alcance en estado inactivo para el articulo.
-					registrarArticuloEstablecimiento(artAreTraNoSqlDTO, db, mapLocalEstablecimiento, codArticulo, strLocalesExistentesAlcanceInactivo, 0);
-					// registra con el estado activo
-					String strLocalesExistentesAlcanceActivo=this.articuloAlcanceNoSqlDAO.findLocalesArticuloAsString(artAreTraNoSqlDTO.getCodigoCompania(), codArticulo,1);// locales en los cuales existe alcance en estado activo para el articulo.
-					registrarArticuloEstablecimiento(artAreTraNoSqlDTO, db, mapLocalEstablecimiento, codArticulo, strLocalesExistentesAlcanceActivo, 1);
+					registrarArticuloEstablecimientoNoSql(artAreTraNoSqlDTO, db, mapLocalEstablecimiento, codArticulo, strLocalesExistentesAlcanceActivo, strLocalesExistentesAlcanceInactivo, mapEstabArtEst);
 				}	
 				
 			} catch (SICException e) {
+				db.rollback();
 				LOG_SICV2.info("error articulo copia "+codArticulo);
 			}
 		}
 		
 	}
-	
 
-	@Override
-	public void quitarAlcance(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSqlDTO) throws SICException {
-		ODatabaseDocumentTx db = null;
-		//mapa que almacena los articulos q deben ser actualizados el grupo alcance del articulo en DB2
-		Map<Integer,List<String>> mapGruAlcArt=new HashMap<Integer,List<String>>(); // clave:grupo alcance, valor: codigo Articulo
-//		List<ODocument> lisBitacoraAlcancesRegistrados=new ArrayList<>(); // contiene todas las bitacoras de alcances registrados para poder registrar los indices
-//		List<ODocument> lisArtEstRegistrados=new ArrayList<>(); // contiene todos los articulo establecimiento registrados para despues poder registrar los indices
-		// mapa con los prototipos traidos de la vista
-		Map<String,Integer> mapPrototipos=this.articuloAlcanceDAO.getMapVistaPrototipoAlcance(artAreTraNoSqlDTO.getCodigoCompania());
-		//mapa para gestionar articuloEstablecimiento 
-		Map<Integer,Integer> mapLocalEstablecimiento=this.articuloAlcanceDAO.getMapLocalEstablecimiento(artAreTraNoSqlDTO.getCodigoCompania());//mapa con los locales y su establecimiento
-		try {
-			if (artAreTraNoSqlDTO!=null) {
-				db = this.simpleOrientDocumentDbManager.getCurrentDatabaseFromPool();
-				this.articuloAlcanceNoSqlDAO.validateCreateIndexAlcances(db);// valida q existan los indices necesarios, si no existen los crea
-
-				registrarAlcanceNoSql(artAreTraNoSqlDTO, db, mapGruAlcArt, mapPrototipos, mapLocalEstablecimiento);
-				actualizarGrupoAlcanceArticulo(artAreTraNoSqlDTO, mapGruAlcArt);
-			}
-		} catch (NoSQLException e) {
-			db.rollback(); //solo se hace rollback de lo que esta dentro de la transaccion
-			Logeable.LOG_SICV2.error("Ocurrio un error al quitarAlcance: {}", e.toString());
-			throw new SICException(e);
-		} catch (SICException e) {
-			db.rollback(); //solo se hace rollback de lo que esta dentro de la transaccion
-			Logeable.LOG_SICV2.error("Ocurrio un error al quitarAlcance: {}", e.toString());
-			throw e;
-		} catch (Exception e) {
-			db.rollback(); //solo se hace rollback de lo que esta dentro de la transaccion
-			Logeable.LOG_SICV2.error("Ocurrio un error al quitarAlcance: {}", e.toString());
-			throw new SICException(e);
-		} finally {
-			if (db != null) {
-				db.close();
+	private void registrarArticuloEstablecimientoNoSql(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSqlDTO, ODatabaseDocumentTx db, Map<Integer, Integer> mapLocalEstablecimiento, String codArticulo, String strLocalesExistentesAlcanceActivo, String strLocalesExistentesAlcanceInactivo, Map<Integer, Object[]> mapEstabArtEst) {
+		mapEstabArtEst.clear();
+		if (strLocalesExistentesAlcanceInactivo!=null && !strLocalesExistentesAlcanceInactivo.isEmpty()){
+			for(String strCodAreTra:strLocalesExistentesAlcanceInactivo.split(",")){
+				if (mapLocalEstablecimiento.get(Integer.parseInt(strCodAreTra))!=null){
+					Object[] obj=new Object[2];
+					obj[0]=codArticulo;
+					obj[1]=0;//estado inactivo
+					mapEstabArtEst.put(mapLocalEstablecimiento.get(Integer.parseInt(strCodAreTra)), obj);
+				}
 			}
 		}
+		if (strLocalesExistentesAlcanceActivo!=null && !strLocalesExistentesAlcanceActivo.isEmpty()){
+			for(String strCodAreTra:strLocalesExistentesAlcanceActivo.split(",")){
+				if (mapLocalEstablecimiento.get(Integer.parseInt(strCodAreTra))!=null){
+					Object[] obj=new Object[2];
+					obj[0]=codArticulo;
+					obj[1]=1;//estado activo
+					mapEstabArtEst.put(mapLocalEstablecimiento.get(Integer.parseInt(strCodAreTra)), obj);
+				}
+			}
+		}
+		
+		//registrarArticuloEstablecimiento
+		registrarArticuloEstablecimiento(artAreTraNoSqlDTO, db, mapEstabArtEst);
 	}
+	
+
 
 	
 	public static Date sumarFechasDias(Date fch, int dias) {
@@ -1139,6 +1312,25 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 		}	
 		return lisArtLocDTO;	
 	}
+
+	
+	
+	@Override
+	public List<ArticuloLocalDTO> findAlcanceAreaTrabajo(Integer codCompania, String tipAreTra, Integer codigoAreaTrabajo, Integer estado) throws SICException {
+		ODatabaseDocumentTx db = null;
+		List<ArticuloLocalDTO> lisArtLocDTO;
+		try {
+			db = simpleOrientDocumentDbManager.getCurrentDatabase();
+			lisArtLocDTO=this.articuloAlcanceNoSqlDAO.findAlcanceAreaTrabajo(codCompania, tipAreTra, codigoAreaTrabajo, estado);
+		} catch (Exception e) {
+			LOG_SICV2.error("Error al buscar el alcance de articulos. findAlcanceAreaTrabajo");
+			throw new SICException(e);
+		} finally{
+			if (db != null) {
+				db.close();
+			}
+		}	
+		return lisArtLocDTO;		}
 
 	@Override
 	public Set<String> getArticulosPruebaAlcance() throws SICException {
@@ -1189,84 +1381,97 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 
 	@Override
 	public void copiarAlcances(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSql,Integer codLocalOrigen) throws SICException {
-		LOG_SICV2.info("inicia copia alcance");
-		Calendar calendar = Calendar.getInstance(LOCALE_ES);
-		String horaIni=calendar.get(Calendar.HOUR_OF_DAY)+":"+calendar.get(Calendar.MINUTE)+":"+calendar.get(Calendar.SECOND);
-		if (artAreTraNoSql==null){
-			return;
-		}
-		if (artAreTraNoSql.getTipoAsignacionAlcance() == null || artAreTraNoSql.getTipoAsignacionAlcance().isEmpty()){// valida exista tipo asignacion
-			return;
-		}
-		if (artAreTraNoSql.getTipoAreaTrabajo() == null || artAreTraNoSql.getTipoAreaTrabajo().isEmpty()){// valida exista tipo area trabajo
-			return;
-		}
-		if (CollectionUtils.isEmpty(artAreTraNoSql.getSetCodAreTra())){ // valida q exista area de trabajo destino
-			return;
-		}
-		if (codLocalOrigen==null){// valida q exista codigoLocal Origen
-			return;
-		}
-		if (artAreTraNoSql.getFechaRegistro()==null){ // valida q existe fecha de registro
-			artAreTraNoSql.setFechaRegistro(calendar.getTime());
-		}
 		
-		if (artAreTraNoSql.getTipoAsignacionAlcance().equalsIgnoreCase(SICMessages.getInstancia().getString("valor.articulo.alcance.asignacion.copia"))
-				|| artAreTraNoSql.getTipoAsignacionAlcance().equalsIgnoreCase(SICMessages.getInstancia().getString("valor.articulo.alcance.asignacion.copia.oficina"))){
-			artAreTraNoSql.setEstadoIntegracionAlcance(SICConstantes.ESTADO_INACTIVO_NUMERICO);// estado integracion inactivo	
-			
-			Calendar fechaIniAlc = Calendar.getInstance(LOCALE_ES);
-			fechaIniAlc.setTime(artAreTraNoSql.getFechaInicialAlcance()); // format yyyy-mm-dd 
-			if (fechaIniAlc.compareTo(getFechaActualFormatYearMonthDay())==0){  
-				// activar estado alcance, // si la fechaInicialAlcance es igual a la fechaActual 
-				artAreTraNoSql.setEstadoAlcance(SICConstantes.ESTADO_ACTIVO_NUMERICO);
-				artAreTraNoSql.setIdUsuarioActivacion(artAreTraNoSql.getIdUsuario());
-				artAreTraNoSql.setFechaActivacion(artAreTraNoSql.getFechaRegistro());
-			}else{
-				// desactivar estado alcance
-				artAreTraNoSql.setEstadoAlcance(SICConstantes.ESTADO_INACTIVO_NUMERICO);
-				artAreTraNoSql.setIdUsuarioInactivacion(artAreTraNoSql.getIdUsuario());
-				artAreTraNoSql.setFechaInactivacion(artAreTraNoSql.getFechaRegistro());
+		
+		try{
+		
+			LOG_SICV2.info("inicia copia alcance");
+			Calendar calendar = Calendar.getInstance(LOCALE_ES);
+			String horaIni=calendar.get(Calendar.HOUR_OF_DAY)+":"+calendar.get(Calendar.MINUTE)+":"+calendar.get(Calendar.SECOND);
+			if (artAreTraNoSql==null){
+				return;
 			}
-
-			
-			Integer numReg=this.articuloAlcanceNoSqlDAO.getNumRegistrosAlcanceEnAreaTrabajo(artAreTraNoSql.getCodigoCompania(), artAreTraNoSql.getTipoAreaTrabajo(), codLocalOrigen,null);
-			Integer numRegistrosXTrama=1000;
-			Integer numTramas=1;
-			if (numReg>numRegistrosXTrama){
-				numTramas=(numReg/numRegistrosXTrama);
-				if ((numTramas*numRegistrosXTrama)<numReg){
-					numTramas++;
-				}
+			if (artAreTraNoSql.getTipoAsignacionAlcance() == null || artAreTraNoSql.getTipoAsignacionAlcance().isEmpty()){// valida exista tipo asignacion
+				return;
 			}
-			// mapa de la vista de prototipos. clave:Combinacion locales orden ascendente; valor:codigoGrupoAlcance
-			Map<String,Integer> mapPrototipos=this.articuloAlcanceDAO.getMapVistaPrototipoAlcance(artAreTraNoSql.getCodigoCompania());
-			//mapa para gestionar articuloEstablecimiento 
-			Map<Integer,Integer> mapLocalEstablecimiento=this.articuloAlcanceDAO.getMapLocalEstablecimiento(artAreTraNoSql.getCodigoCompania());//mapa con los locales y su establecimiento
-
-			if (CollectionUtils.isEmpty(artAreTraNoSql.getSetCodArt())){
-				for (int i=0;i<numTramas;i++){
-					// copia sin filtros de la seccion 1 de pantalla de alcances
-					List<ODocument> lisArtLocDTO=this.findAlcancesEnAreaTrabajo(artAreTraNoSql.getCodigoCompania(), artAreTraNoSql.getTipoAreaTrabajo(), 
-							codLocalOrigen,null,(i*numRegistrosXTrama),numRegistrosXTrama);//lista registros a copiar
-					this.registrarAlcancePorCopia(artAreTraNoSql, lisArtLocDTO,mapPrototipos,mapLocalEstablecimiento);
+			if (artAreTraNoSql.getTipoAreaTrabajo() == null || artAreTraNoSql.getTipoAreaTrabajo().isEmpty()){// valida exista tipo area trabajo
+				return;
+			}
+			if (CollectionUtils.isEmpty(artAreTraNoSql.getSetCodAreTra())){ // valida q exista area de trabajo destino
+				return;
+			}
+			if (codLocalOrigen==null){// valida q exista codigoLocal Origen
+				return;
+			}
+			if (artAreTraNoSql.getFechaRegistro()==null){ // valida q existe fecha de registro
+				artAreTraNoSql.setFechaRegistro(calendar.getTime());
+			}
+			
+			if (artAreTraNoSql.getTipoAsignacionAlcance().equalsIgnoreCase(SICMessages.getInstancia().getString("valor.articulo.alcance.asignacion.copia"))
+					|| artAreTraNoSql.getTipoAsignacionAlcance().equalsIgnoreCase(SICMessages.getInstancia().getString("valor.articulo.alcance.asignacion.copia.oficina"))){
+				artAreTraNoSql.setEstadoIntegracionAlcance(SICConstantes.ESTADO_INACTIVO_NUMERICO);// estado integracion inactivo	
+				
+				Calendar fechaIniAlc = Calendar.getInstance(LOCALE_ES);
+				fechaIniAlc.setTime(artAreTraNoSql.getFechaInicialAlcance()); // format yyyy-mm-dd 
+				if (fechaIniAlc.compareTo(getFechaActualFormatYearMonthDay())==0){  
+					// activar estado alcance, // si la fechaInicialAlcance es igual a la fechaActual 
+					artAreTraNoSql.setEstadoAlcance(SICConstantes.ESTADO_ACTIVO_NUMERICO);
+					artAreTraNoSql.setIdUsuarioActivacion(artAreTraNoSql.getIdUsuario());
+					artAreTraNoSql.setFechaActivacion(artAreTraNoSql.getFechaRegistro());
+				}else{
+					// desactivar estado alcance
+					artAreTraNoSql.setEstadoAlcance(SICConstantes.ESTADO_INACTIVO_NUMERICO);
+					artAreTraNoSql.setIdUsuarioInactivacion(artAreTraNoSql.getIdUsuario());
+					artAreTraNoSql.setFechaInactivacion(artAreTraNoSql.getFechaRegistro());
 				}
-			}else{
-				List<ODocument> lisArtLocDTO=new ArrayList<>();//lista registros a copiar
-				// copia con filtros de la seccion 1 de pantalla de alcances
-				for (String codArt:artAreTraNoSql.getSetCodArt()){
-					List<ODocument> lis=this.findAlcancesEnAreaTrabajo(artAreTraNoSql.getCodigoCompania(), artAreTraNoSql.getTipoAreaTrabajo(), codLocalOrigen,codArt,null,null);
-					if (!CollectionUtils.isEmpty(lis)){
-						lisArtLocDTO.add(lis.get(0));
+	
+				
+				Integer numReg=this.getNumRegistrosAlcanceEnAreaTrabajo(artAreTraNoSql.getCodigoCompania(), artAreTraNoSql.getTipoAreaTrabajo(), codLocalOrigen,null);
+				Integer numRegistrosXTrama=1000;
+				Integer numTramas=1;
+				if (numReg>numRegistrosXTrama){
+					numTramas=(numReg/numRegistrosXTrama);
+					if ((numTramas*numRegistrosXTrama)<numReg){
+						numTramas++;
 					}
 				}
-				this.registrarAlcancePorCopia(artAreTraNoSql, lisArtLocDTO,mapPrototipos,mapLocalEstablecimiento);
+				// mapa de la vista de prototipos. clave:Combinacion locales orden ascendente; valor:codigoGrupoAlcance
+				Map<String,Integer> mapPrototipos=this.articuloAlcanceDAO.getMapVistaPrototipoAlcance(artAreTraNoSql.getCodigoCompania());
+				//mapa para gestionar articuloEstablecimiento 
+				Map<Integer,Integer> mapLocalEstablecimiento=this.articuloAlcanceDAO.getMapLocalEstablecimiento(artAreTraNoSql.getCodigoCompania());//mapa con los locales y su establecimiento
+	
+				
+				this.validateCreateIndexAlcances();// valida q existan los indices necesarios, si no existen los crea
+				
+				if (CollectionUtils.isEmpty(artAreTraNoSql.getSetCodArt())){
+					for (int i=0;i<numTramas;i++){
+						// copia sin filtros de la seccion 1 de pantalla de alcances
+						List<ODocument> lisArtLocDTO=this.findAlcancesEnAreaTrabajo(artAreTraNoSql.getCodigoCompania(), artAreTraNoSql.getTipoAreaTrabajo(), 
+								codLocalOrigen,null,(i*numRegistrosXTrama),numRegistrosXTrama);//lista registros a copiar
+						
+						this.registrarAlcancePorCopia(artAreTraNoSql, lisArtLocDTO,mapPrototipos,mapLocalEstablecimiento);
+						LOG_SICV2.info("num alcances procesados "+(i*numRegistrosXTrama));
+					}
+				}else{
+					List<ODocument> lisArtLocDTO=new ArrayList<>();//lista registros a copiar
+					// copia con filtros de la seccion 1 de pantalla de alcances
+					for (String codArt:artAreTraNoSql.getSetCodArt()){
+						List<ODocument> lis=this.findAlcancesEnAreaTrabajo(artAreTraNoSql.getCodigoCompania(), artAreTraNoSql.getTipoAreaTrabajo(), codLocalOrigen,codArt,null,null);
+						if (!CollectionUtils.isEmpty(lis)){
+							lisArtLocDTO.add(lis.get(0));
+						}
+					}
+					this.registrarAlcancePorCopia(artAreTraNoSql, lisArtLocDTO,mapPrototipos,mapLocalEstablecimiento);
+				}
+				
 			}
-			
-		}
-		Calendar calendarFin = Calendar.getInstance(LOCALE_ES);
-		String horaFin=calendarFin.get(Calendar.HOUR_OF_DAY)+":"+calendarFin.get(Calendar.MINUTE)+":"+calendarFin.get(Calendar.SECOND);
-		LOG_SICV2.info("fin copia alcance "+horaIni+" / "+horaFin);
+			Calendar calendarFin = Calendar.getInstance(LOCALE_ES);
+			String horaFin=calendarFin.get(Calendar.HOUR_OF_DAY)+":"+calendarFin.get(Calendar.MINUTE)+":"+calendarFin.get(Calendar.SECOND);
+			LOG_SICV2.info("fin copia alcance "+horaIni+" / "+horaFin);
+		} catch (Exception e) {
+			Logeable.LOG_SICV2.error("Ocurrio un error al copiarAlcances: {}", e.toString());
+			throw new SICException(e);
+		} 
 		
 	}
 	
@@ -1291,10 +1496,10 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 		try {
 			if (artAreTraNoSql!=null) {
 				db = this.simpleOrientDocumentDbManager.getCurrentDatabaseFromPool();
-				this.articuloAlcanceNoSqlDAO.validateCreateIndexAlcances(db);// valida q existan los indices necesarios, si no existen los crea
+//				this.articuloAlcanceNoSqlDAO.validateCreateIndexAlcances(db);// valida q existan los indices necesarios, si no existen los crea
 				registrarAlcancePorCopiaNoSql(artAreTraNoSql, lisArticuloLocal, db, mapGruAlcArt, mapPrototipos,mapLocalEstablecimiento);
 				// actualiza el grupo alcance a los articulos en DB2 si fuese el caso
-				//actualizarGrupoAlcanceArticulo(artAreTraNoSql, mapGruAlcArt);
+				actualizarGrupoAlcanceArticulo(artAreTraNoSql, mapGruAlcArt);
 			}
 		} catch (NoSQLException e) {
 			db.rollback(); //solo se hace rollback de lo que esta dentro de la transaccion
@@ -1324,27 +1529,29 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 		int numRegUpdate=100;// numero de registros para update
 		for (Entry<Integer, List<String>> e:mapGruAlcArt.entrySet()){
 			int numTramas = 1;
-			if (mapGruAlcArt.get(e.getKey()).size()>numRegUpdate){
-				numTramas = mapGruAlcArt.get(e.getKey()).size()/numRegUpdate;
-				if ((numTramas*numRegUpdate)<mapGruAlcArt.get(e.getKey()).size()){
-					numTramas=numTramas+1;
-				}
-			}
-			int limSup=0;
-			for(int i=0;i<numTramas;i++){
-				try {
-					if (i==numTramas-1){
-						limSup=mapGruAlcArt.get(e.getKey()).size();
-					}else{
-						limSup=(i*numRegUpdate)+numRegUpdate;
+			if (!CollectionUtils.isEmpty(mapGruAlcArt.get(e.getKey()))){
+				if (mapGruAlcArt.get(e.getKey()).size()>numRegUpdate){
+					numTramas = mapGruAlcArt.get(e.getKey()).size()/numRegUpdate;
+					if ((numTramas*numRegUpdate)<mapGruAlcArt.get(e.getKey()).size()){
+						numTramas=numTramas+1;
 					}
-					this.articuloAlcanceDAO.updateGrupoAlcanceArticulo(artAreTraNoSql.getCodigoCompania(), 
-							e.getKey(), 
-							mapGruAlcArt.get(e.getKey()).subList(i*numRegUpdate, limSup),
-							new Timestamp(artAreTraNoSql.getFechaRegistro().getTime()),
-							artAreTraNoSql.getIdUsuario());
-				} catch (Exception e2) {
-					LOG_SICV2.error("Error al actualizar el grupo alcance en DB2 "+mapGruAlcArt.get(e.getKey()).subList(i*numRegUpdate, limSup)+": {}",e.toString());
+				}
+				int limSup=0;
+				for(int i=0;i<numTramas;i++){
+					try {
+						if (i==numTramas-1){
+							limSup=mapGruAlcArt.get(e.getKey()).size();
+						}else{
+							limSup=(i*numRegUpdate)+numRegUpdate;
+						}
+						this.articuloAlcanceDAO.updateGrupoAlcanceArticulo(artAreTraNoSql.getCodigoCompania(), 
+								e.getKey(), 
+								mapGruAlcArt.get(e.getKey()).subList(i*numRegUpdate, limSup),
+								new Timestamp(artAreTraNoSql.getFechaRegistro().getTime()),
+								artAreTraNoSql.getIdUsuario());
+					} catch (Exception e2) {
+						LOG_SICV2.error("Error al actualizar el grupo alcance en DB2 "+mapGruAlcArt.get(e.getKey()).subList(i*numRegUpdate, limSup)+": {}",e.toString());
+					}
 				}
 			}
 		}
@@ -1379,16 +1586,16 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 	}
 
 
-	private void cargarMapaPrototipoArticulos(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSql, Map<Integer, List<String>> mapGruAlcArt, 
+	private void cargarMapaPrototipoArticulos(String strLocalesExitentesalcaneActivo,Map<Integer, List<String>> mapGruAlcArt, 
 			Map<String, Integer> mapPrototipos, String codArticulo) throws SICException{
-		List<String> setArt;
+		List<String> lisArt;
 		Integer codGrupoAlcance;
-		if (artAreTraNoSql.getTipoAsignacionAlcance().equalsIgnoreCase(SICMessages.getInstancia().getString("valor.articulo.alcance.asignacion.local"))
-			|| artAreTraNoSql.getTipoAsignacionAlcance().equalsIgnoreCase(SICMessages.getInstancia().getString("valor.articulo.alcance.asignacion.prototipo"))
-			|| artAreTraNoSql.getTipoAsignacionAlcance().equalsIgnoreCase(SICMessages.getInstancia().getString("valor.articulo.alcance.asignacion.copia"))){
+//		if (artAreTraNoSql.getTipoAsignacionAlcance().equalsIgnoreCase(SICMessages.getInstancia().getString("valor.articulo.alcance.asignacion.local"))
+//			|| artAreTraNoSql.getTipoAsignacionAlcance().equalsIgnoreCase(SICMessages.getInstancia().getString("valor.articulo.alcance.asignacion.prototipo"))
+//			|| artAreTraNoSql.getTipoAsignacionAlcance().equalsIgnoreCase(SICMessages.getInstancia().getString("valor.articulo.alcance.asignacion.copia"))){
 			//String strLocalesInput=StringUtils.join(artAreTraNoSql.getSetCodAreTra(), ",");// locales recibidos para dar alcance
 			// locales en los cuales existe dado alcance con estado alcance activo del articulo q se esta recorriendo (OrientDB)
-			String strLocalesExistentes=this.articuloAlcanceNoSqlDAO.findLocalesArticuloAsString(artAreTraNoSql.getCodigoCompania(), codArticulo,1);
+			//String strLocalesExistentes=this.articuloAlcanceNoSqlDAO.findLocalesArticuloAsString(artAreTraNoSql.getCodigoCompania(), codArticulo,1);
 //			String strLocalesMerge=""; // union de los locales recibios con los locales existentes ordenados ascendentemente
 //			if (strLocalesExistentes==null || strLocalesExistentes.isEmpty()){
 //				strLocalesMerge=strLocalesInput;
@@ -1397,32 +1604,61 @@ public class AlmacenamientoArticuloAlcanceNoSqlGestor implements IAlmacenamiento
 //			}
 			//se obtiene el prototipo que coincida con la conbinacion de locales recibidos y existentes en OrientDB
 			//codGrupoAlcance=mapPrototipos.get(strLocalesMerge);
-			codGrupoAlcance=mapPrototipos.get(strLocalesExistentes);
+			codGrupoAlcance=mapPrototipos.get(strLocalesExitentesalcaneActivo);
+			
+			for(Entry<Integer,List<String>> e:mapGruAlcArt.entrySet()){
+				if (e.getValue().contains(codArticulo)){
+					e.getValue().remove(codArticulo);
+				}
+			}
+			
 			if (codGrupoAlcance!=null){
-				setArt=new ArrayList<>();
+				lisArt=new ArrayList<>();
 				if (!CollectionUtils.isEmpty(mapGruAlcArt.get(codGrupoAlcance))){
-					setArt=mapGruAlcArt.get(codGrupoAlcance);
-					setArt.add(codArticulo);
-					mapGruAlcArt.put(codGrupoAlcance,setArt);
+					lisArt=mapGruAlcArt.get(codGrupoAlcance);
+					if (!lisArt.contains(codArticulo)){
+						lisArt.add(codArticulo);
+					}
+					mapGruAlcArt.put(codGrupoAlcance,lisArt);
 				}else{
-					setArt.add(codArticulo);
-					mapGruAlcArt.put(codGrupoAlcance,setArt);
+					lisArt.add(codArticulo);
+					mapGruAlcArt.put(codGrupoAlcance,lisArt);
 				}
 			}else{
-				setArt=new ArrayList<>();
+				lisArt=new ArrayList<>();
 				if (!CollectionUtils.isEmpty(mapGruAlcArt.get(Integer.valueOf(String.valueOf(SICArticuloConstantes.CODIGOPROTOTIPOPERSONALIZADO))))){
-					setArt=mapGruAlcArt.get(Integer.valueOf(String.valueOf(SICArticuloConstantes.CODIGOPROTOTIPOPERSONALIZADO)));
-					setArt.add(codArticulo);
-					mapGruAlcArt.put(Integer.valueOf(String.valueOf(SICArticuloConstantes.CODIGOPROTOTIPOPERSONALIZADO)),setArt);
+					lisArt=mapGruAlcArt.get(Integer.valueOf(String.valueOf(SICArticuloConstantes.CODIGOPROTOTIPOPERSONALIZADO)));
+					if (!lisArt.contains(codArticulo)){
+						lisArt.add(codArticulo);
+					}
+					mapGruAlcArt.put(Integer.valueOf(String.valueOf(SICArticuloConstantes.CODIGOPROTOTIPOPERSONALIZADO)),lisArt);
 				}else{
-					setArt.add(codArticulo);
-					mapGruAlcArt.put(Integer.valueOf(String.valueOf(SICArticuloConstantes.CODIGOPROTOTIPOPERSONALIZADO)),setArt);
+					lisArt.add(codArticulo);
+					mapGruAlcArt.put(Integer.valueOf(String.valueOf(SICArticuloConstantes.CODIGOPROTOTIPOPERSONALIZADO)),lisArt);
 				}
+			}
+		//}
+	}
+
+	@Override
+	public void validateCreateIndexAlcances() throws SICException {
+		ODatabaseDocumentTx db = null;
+		try {
+			db = simpleOrientDocumentDbManager.getCurrentDatabase();
+			this.articuloAlcanceNoSqlDAO.validateCreateIndexAlcances(db);
+		} catch (Exception e) {
+			LOG_SICV2.error("Error al buscar el alcance de articulos. findAlcanceArticulo");
+			throw new SICException(e);
+		} finally{
+			if (db != null) {
+				db.close();
 			}
 		}
 	}
 	
 
+	
+	
 /*	private void registrarIndicesAlcancesNoSql(ODatabaseDocumentTx db, List<ODocument> lisAlcancesRegistrados, 
 			List<ODocument> lisBitacoraAlcancesRegistrados) throws SICException {
 		

@@ -339,6 +339,11 @@ public final class SICConstantes {
     //Constantes Articulo - etiqueta
     public static final String  ARTICULO_RECIPIENTE = "07";
     
+    //Constantes CalendarioBodega
+    public static final String ANDENES_AUTORIZADOS = "AN_AU";
+    public static final String ANDENES_PLANIFICADOS = "AN_PL";
+    public static final String ANDENES_AUTORIZADOS_PLANIFICADOS = "AN_AU_PL";
+    
     //Combianciones de teclas
 	public static final String COMBINACION_TECLA_GUARDAR = "alt+G";
   	public static final String COMBINACION_TECLA_BUSCAR = "alt+B";
@@ -352,7 +357,10 @@ public final class SICConstantes {
   	public static final String COMBINACION_TECLA_IMPRIMIR = "alt+I";
   	public static final String COMBINACION_TECLA_ANULAR = "alt+U";
   	
+  	public static final String PERFIL_TIPO_PROVEEDOR_SERVICIOS = "TIPPROSER";
   	public static final Integer TIPO_CARACTERISTICA_PERFIL_ORIGEN_PROVEEDOR_SERVICIOS = 9190;
+  	public static final Integer TIPO_CARACTERISTICA_PERFIL_AUTORIZADO_PRONTOPAGO_SERVICIOS = 9192;
+  	public static final Long CODIGO_PERFIL_PROVEEDOR_SERVICIOS = 7L;
   	
 	private SICConstantes(){}
 	

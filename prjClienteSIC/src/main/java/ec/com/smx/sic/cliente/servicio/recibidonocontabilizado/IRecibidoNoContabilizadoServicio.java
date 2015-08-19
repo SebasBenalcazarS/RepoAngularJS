@@ -21,6 +21,8 @@ import ec.com.smx.sic.cliente.mdl.dto.AjusteFacturaDTO;
 import ec.com.smx.sic.cliente.mdl.dto.AjusteFacturaEstadoDTO;
 import ec.com.smx.sic.cliente.mdl.dto.ArchivoDocumentoXmlDTO;
 import ec.com.smx.sic.cliente.mdl.dto.FacturaDTO;
+import ec.com.smx.sic.cliente.mdl.dto.PeriodoTrabajoDTO;
+import ec.com.smx.sic.cliente.mdl.dto.RangoAccionPeriodoDTO;
 import ec.com.smx.sic.cliente.mdl.dto.ValidacionDocumentoDTO;
 import ec.com.smx.sic.cliente.mdl.dto.VistaDepartamentoPorAreaTrabajoDTO;
 import ec.com.smx.sic.cliente.mdl.dto.VistaFacturaDTO;
@@ -378,12 +380,13 @@ public interface IRecibidoNoContabilizadoServicio {
 	Map<String, List<String>> aprobarNoTransaccional(Collection<VistaRecibidoNoFacturadoDTO> recibidoNoFacturadoCol, String codigoUsuario)throws SICException;
 	
 	/**
-	 * Metodo no transaccional para aprobar las notas de ingreso forzadas
+	 * Metodo para aprobar las notas de ingreso forzadas
 	 * @param recibidoNoFacturadoCol
 	 * @param codigoUsuario
+	 * @param periodoTrabajoDTO
 	 * @throws SICException
 	 */
-	Map<String, List<String>> aprobarForzadoNoTransaccional(Collection<VistaRecibidoNoFacturadoDTO> recibidoNoFacturadoCol, String codigoUsuario)throws SICException;
+	void transAprobarForzado(Collection<VistaRecibidoNoFacturadoDTO> recibidoNoFacturadoCol, String codigoUsuario, PeriodoTrabajoDTO periodoTrabajoDTO)throws SICException;
 	
 	/**
 	 * Metodo que permite aprobar la nota de ingreso
@@ -392,14 +395,6 @@ public interface IRecibidoNoContabilizadoServicio {
 	 * @throws SICException
 	 */
 	void transAprobar(VistaRecibidoNoFacturadoDTO recibidoNoFacturadoDTO, String codigoUsuario)throws SICException;
-	
-	/**
-	 * Metodo que permite aprobar la nota de ingreso forzadas
-	 * @param recibidoNoFacturadoDTO
-	 * @param codigoUsuario
-	 * @throws SICException
-	 */
-	void transAprobarForzado(VistaRecibidoNoFacturadoDTO recibidoNoFacturadoDTO, String codigoUsuario)throws SICException;
 	
 	/**
 	 * Este metodo devuelve una coleccion de ajustes de la facturaEstado que recibe como parametro en el AjusteFacturaDTO
@@ -648,4 +643,49 @@ public interface IRecibidoNoContabilizadoServicio {
 	 * @throws SICException
 	 */
 	void transEliminarCrearTotalesNotasCreditoDebitoNotaIngreso(Integer codigoCompania, Long codigoNotaIngreso, String codigoUsuario, EnumTipoDocumentoResumen enumTipoDocumentoResumen)throws SICException;
+	
+	/**
+	 * Permite obetener el rango de accion del periodo actual
+	 * @param codigoCompania
+	 * @return
+	 * @throws SICException
+	 */
+	RangoAccionPeriodoDTO obtenerRangoAccionPeriodoActual(Integer codigoCompania)throws SICException;
+	
+	
+	/**
+	 * Permite obtener el periodo actual de trabajo
+	 * @param codigoCompania
+	 * @param obtenerRangoAccion
+	 * @return
+	 * @throws SICException
+	 */
+	PeriodoTrabajoDTO obtenerPeriodoTrabajoActual(Integer codigoCompania, Boolean obtenerRangoAccion)throws SICException;
+	
+	/**
+	 * Permite registrar el nuevo periodo de trabajo en base al periodo actual si posee
+	 * @param codigoCompania
+	 * @param codigoUsuario
+	 * @param periodoTrabajoDTO
+	 * @throws SICException
+	 */
+	void transRegistrarPeriodoTrabajo(Integer codigoCompania, String codigoUsuario, PeriodoTrabajoDTO periodoTrabajoDTO)throws SICException;
+	
+	
+	/**
+	 * Metodo no transaccional para validar aprobar las notas de ingreso forzadas
+	 * @param recibidoNoFacturadoCol
+	 * @param codigoUsuario
+	 * @param periodoTrabajoDTO
+	 * @throws SICException
+	 */
+	Map<String, List<String>> validarAprobarForzadoNoTransaccional(Collection<VistaRecibidoNoFacturadoDTO> recibidoNoFacturadoCol, String codigoUsuario, PeriodoTrabajoDTO periodoTrabajoDTO)throws SICException;
+
+	/**
+	 * Metodo para validar el aprobado forzado
+	 * @param recibidoNoFacturado
+	 * @param codigoUsuario
+	 * @throws SICException
+	 */
+	void validarAprobarForzado(VistaRecibidoNoFacturadoDTO recibidoNoFacturado, String codigoUsuario)throws SICException;
 }

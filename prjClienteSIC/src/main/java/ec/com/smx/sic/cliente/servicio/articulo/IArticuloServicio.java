@@ -529,4 +529,18 @@ public interface IArticuloServicio {
 	 */
 	public ArticuloDTO busquedaArticuloSimple(String codigoBarras , Integer codigoCompania)throws SICException;
 	
+//	/**
+//	 * metodo que retorna las areas de trabajo por prototipo
+//	 */
+//	public Collection<GrupoAreaTrabajoDTO> cargarLocalesPrototipoAlcance(Integer codigoCompania, Long codigoGrupoTrabajo,Boolean asignacionMasivaArticulos);
+	
+	/**
+	 * devuelve un articulo en base al codigoCompania y codigoArticulo
+	 * @param codigoCompania
+	 * @param codigoArticulo
+	 * @return
+	 * @throws SICException
+	 */
+	public ArticuloDTO buscarArticuloId(Integer codigoCompania, String codigoArticulo)throws SICException;
+	
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="5.2.1" timestamp="2015-08-17T14:15:36.785">
+<pmd version="5.2.1" timestamp="2015-08-18T17:20:27.978">
 <file name="D:\WORKSPACE\prjClienteSIC\src\main\java\ec\com\smx\sic\cliente\common\Logeable.java">
 <violation beginline="15" endline="19" begincolumn="8" endcolumn="1" rule="AvoidConstantsInterface" ruleset="Design" package="ec.com.smx.sic.cliente.common" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#AvoidConstantsInterface" priority="3">
 An Interface should be used only to model a behaviour; consider converting this to a class.
@@ -20,7 +20,7 @@ All methods are static.  Consider using a utility class instead. Alternatively, 
 </violation>
 </file>
 <file name="D:\WORKSPACE\prjClienteSIC\src\main\java\ec\com\smx\sic\cliente\common\SICConstantes.java">
-<violation beginline="394" endline="394" begincolumn="26" endcolumn="34" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.cliente.common" class="SICConstantes" method="verificarEstadoActivo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
+<violation beginline="399" endline="399" begincolumn="26" endcolumn="34" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.cliente.common" class="SICConstantes" method="verificarEstadoActivo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
 Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
 </violation>
 </file>
@@ -1206,37 +1206,10 @@ Package name contains upper case characters
 </violation>
 </file>
 <file name="D:\WORKSPACE\prjClienteSIC\src\main\java\ec\com\smx\sic\cliente\common\articulo\util\ArticuloAlcanceIndexNoSqlUtil.java">
-<violation beginline="30" endline="451" begincolumn="14" endcolumn="1" rule="MissingSerialVersionUID" ruleset="JavaBeans" package="ec.com.smx.sic.cliente.common.articulo.util" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/javabeans.html#MissingSerialVersionUID" priority="3">
+<violation beginline="27" endline="487" begincolumn="14" endcolumn="1" rule="MissingSerialVersionUID" ruleset="JavaBeans" package="ec.com.smx.sic.cliente.common.articulo.util" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/javabeans.html#MissingSerialVersionUID" priority="3">
 Classes implementing Serializable should set a serialVersionUID
 </violation>
-<violation beginline="65" endline="65" begincolumn="26" endcolumn="34" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.cliente.common.articulo.util" class="ArticuloAlcanceIndexNoSqlUtil" method="registrarIndicesODocumentArticuloLocalDTO" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
-Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
-</violation>
-<violation beginline="73" endline="73" begincolumn="29" endcolumn="117" rule="UnusedPrivateMethod" ruleset="Unused Code" package="ec.com.smx.sic.cliente.common.articulo.util" class="ArticuloAlcanceIndexNoSqlUtil" method="registrarIndiceGrupoAlcanceAreaTrabajo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedPrivateMethod" priority="3">
-Avoid unused private methods such as 'registrarIndiceGrupoAlcanceAreaTrabajo(ODocument,OIndex)'.
-</violation>
-<violation beginline="84" endline="84" begincolumn="26" endcolumn="34" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.cliente.common.articulo.util" class="ArticuloAlcanceIndexNoSqlUtil" method="registrarIndiceGrupoAlcanceAreaTrabajo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
-Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
-</violation>
-<violation beginline="90" endline="90" begincolumn="29" endcolumn="114" rule="UnusedPrivateMethod" ruleset="Unused Code" package="ec.com.smx.sic.cliente.common.articulo.util" class="ArticuloAlcanceIndexNoSqlUtil" method="registrarIndiceGrupoAlcanceArticulo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedPrivateMethod" priority="3">
-Avoid unused private methods such as 'registrarIndiceGrupoAlcanceArticulo(ODocument,OIndex)'.
-</violation>
-<violation beginline="101" endline="101" begincolumn="26" endcolumn="34" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.cliente.common.articulo.util" class="ArticuloAlcanceIndexNoSqlUtil" method="registrarIndiceGrupoAlcanceArticulo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
-Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
-</violation>
-<violation beginline="146" endline="146" begincolumn="29" endcolumn="141" rule="UnusedPrivateMethod" ruleset="Unused Code" package="ec.com.smx.sic.cliente.common.articulo.util" class="ArticuloAlcanceIndexNoSqlUtil" method="registarIndiceLocalArticuloAreaTrabajo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedPrivateMethod" priority="3">
-Avoid unused private methods such as 'registarIndiceLocalArticuloAreaTrabajo(ODocument,OIndex)'.
-</violation>
-<violation beginline="165" endline="165" begincolumn="29" endcolumn="141" rule="UnusedPrivateMethod" ruleset="Unused Code" package="ec.com.smx.sic.cliente.common.articulo.util" class="ArticuloAlcanceIndexNoSqlUtil" method="registarIndiceArticuloLocalAreaTrabajo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedPrivateMethod" priority="3">
-Avoid unused private methods such as 'registarIndiceArticuloLocalAreaTrabajo(ODocument,OIndex)'.
-</violation>
-<violation beginline="269" endline="269" begincolumn="29" endcolumn="170" rule="UnusedPrivateMethod" ruleset="Unused Code" package="ec.com.smx.sic.cliente.common.articulo.util" class="ArticuloAlcanceIndexNoSqlUtil" method="registarIndiceArticuloLocalBitacoraLocalArticuloAreaTrabajo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedPrivateMethod" priority="3">
-Avoid unused private methods such as 'registarIndiceArticuloLocalBitacoraLocalArticuloAreaTrabajo(ODocument,OIndex)'.
-</violation>
-<violation beginline="287" endline="287" begincolumn="29" endcolumn="171" rule="UnusedPrivateMethod" ruleset="Unused Code" package="ec.com.smx.sic.cliente.common.articulo.util" class="ArticuloAlcanceIndexNoSqlUtil" method="registarIndiceArticuloLocalBitacoraArticuloLocaloAreaTrabajo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedPrivateMethod" priority="3">
-Avoid unused private methods such as 'registarIndiceArticuloLocalBitacoraArticuloLocaloAreaTrabajo(ODocument,OIndex)'.
-</violation>
-<violation beginline="347" endline="364" begincolumn="37" endcolumn="9" rule="AvoidSynchronizedAtMethodLevel" ruleset="Design" package="ec.com.smx.sic.cliente.common.articulo.util" class="ArticuloAlcanceIndexNoSqlUtil" method="createIndexForClusterClass" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#AvoidSynchronizedAtMethodLevel" priority="3">
+<violation beginline="385" endline="402" begincolumn="37" endcolumn="9" rule="AvoidSynchronizedAtMethodLevel" ruleset="Design" package="ec.com.smx.sic.cliente.common.articulo.util" class="ArticuloAlcanceIndexNoSqlUtil" method="createIndexForClusterClass" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#AvoidSynchronizedAtMethodLevel" priority="3">
 Use block level rather than method level synchronization
 </violation>
 </file>
@@ -1262,6 +1235,9 @@ Avoid if (x != y) ..; else ..;
 <violation beginline="458" endline="469" begincolumn="17" endcolumn="17" rule="ConfusingTernary" ruleset="Design" package="ec.com.smx.sic.cliente.common.articulo.util" class="ArticuloAlcanceNoSqlUtil" method="getODocumentArticuloAreaTrabajo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#ConfusingTernary" priority="3">
 Avoid if (x != y) ..; else ..;
 </violation>
+<violation beginline="545" endline="545" begincolumn="171" endcolumn="172" rule="AddEmptyString" ruleset="Optimization" package="ec.com.smx.sic.cliente.common.articulo.util" class="ArticuloAlcanceNoSqlUtil" method="getODocumentArticuloAreaTrabajo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/optimizations.html#AddEmptyString" priority="3">
+Do not add empty strings
+</violation>
 </file>
 <file name="D:\WORKSPACE\prjClienteSIC\src\main\java\ec\com\smx\sic\cliente\common\articulo\util\IndiceArticuloAlcanceNoSql.java">
 <violation beginline="31" endline="31" begincolumn="17" endcolumn="56" rule="FieldDeclarationsShouldBeAtStartOfClass" ruleset="Design" package="ec.com.smx.sic.cliente.common.articulo.util" class="IndiceArticuloAlcanceNoSql" variable="indiceArticuloEstablecimiento" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#FieldDeclarationsShouldBeAtStartOfClass" priority="3">
@@ -1283,6 +1259,12 @@ Fields should be declared at the top of the class, before any method declaration
 Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
 </violation>
 <violation beginline="41" endline="41" begincolumn="17" endcolumn="54" rule="FieldDeclarationsShouldBeAtStartOfClass" ruleset="Design" package="ec.com.smx.sic.cliente.common.articulo.util" class="IndiceArticuloAlcanceNoSql" variable="indiceBitRidArtLocRidBitArt" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#FieldDeclarationsShouldBeAtStartOfClass" priority="3">
+Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
+</violation>
+<violation beginline="42" endline="42" begincolumn="17" endcolumn="60" rule="FieldDeclarationsShouldBeAtStartOfClass" ruleset="Design" package="ec.com.smx.sic.cliente.common.articulo.util" class="IndiceArticuloAlcanceNoSql" variable="indiceBitacoraArticuloAreaTrabajo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#FieldDeclarationsShouldBeAtStartOfClass" priority="3">
+Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
+</violation>
+<violation beginline="43" endline="43" begincolumn="17" endcolumn="60" rule="FieldDeclarationsShouldBeAtStartOfClass" ruleset="Design" package="ec.com.smx.sic.cliente.common.articulo.util" class="IndiceArticuloAlcanceNoSql" variable="indiceBitacoraAreaTrabajoArticulo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#FieldDeclarationsShouldBeAtStartOfClass" priority="3">
 Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
 </violation>
 </file>
@@ -3864,37 +3846,37 @@ To be compliant to J2EE, a webapp should not use any thread.
 </violation>
 </file>
 <file name="D:\WORKSPACE\prjClienteSIC\src\main\java\ec\com\smx\sic\cliente\common\procesamientoventas\utils\ProcesamientoVentasClusterUtil.java">
-<violation beginline="24" endline="298" begincolumn="14" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+<violation beginline="27" endline="317" begincolumn="14" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
 The class 'ProcesamientoVentasClusterUtil' has a Cyclomatic Complexity of 3 (Highest = 12).
 </violation>
-<violation beginline="92" endline="92" begincolumn="48" endcolumn="89" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="getClusterNameYearMonthTransaction" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
-The String literal &quot;Todos los parametros son obligatorios...&quot; appears 5 times in this file; the first occurrence is on line 92
+<violation beginline="95" endline="95" begincolumn="48" endcolumn="89" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="getClusterNameYearMonthTransaction" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;Todos los parametros son obligatorios...&quot; appears 5 times in this file; the first occurrence is on line 95
 </violation>
-<violation beginline="173" endline="205" begincolumn="16" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="getClusterClassName" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+<violation beginline="183" endline="215" begincolumn="16" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="getClusterClassName" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
 The method 'getClusterClassName' has a Cyclomatic Complexity of 12.
 </violation>
-<violation beginline="176" endline="176" begincolumn="17" endcolumn="46" rule="PrematureDeclaration" ruleset="Optimization" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="getClusterClassName" variable="clusterClassName" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/optimizations.html#PrematureDeclaration" priority="3">
+<violation beginline="186" endline="186" begincolumn="17" endcolumn="46" rule="PrematureDeclaration" ruleset="Optimization" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="getClusterClassName" variable="clusterClassName" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/optimizations.html#PrematureDeclaration" priority="3">
 Avoid declaring a variable if it is unreferenced before a possible exit point.
 </violation>
-<violation beginline="189" endline="201" begincolumn="17" endcolumn="17" rule="SwitchStmtsShouldHaveDefault" ruleset="Design" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="getClusterClassName" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#SwitchStmtsShouldHaveDefault" priority="3">
+<violation beginline="199" endline="211" begincolumn="17" endcolumn="17" rule="SwitchStmtsShouldHaveDefault" ruleset="Design" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="getClusterClassName" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#SwitchStmtsShouldHaveDefault" priority="3">
 Switch statements should have a default label
 </violation>
-<violation beginline="244" endline="269" begincolumn="29" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="createIndexForClusterClass" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+<violation beginline="254" endline="279" begincolumn="29" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="createIndexForClusterClass" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
 The method 'createIndexForClusterClass' has a Cyclomatic Complexity of 10.
 </violation>
-<violation beginline="244" endline="269" begincolumn="29" endcolumn="9" rule="AvoidSynchronizedAtMethodLevel" ruleset="Design" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="createIndexForClusterClass" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#AvoidSynchronizedAtMethodLevel" priority="3">
+<violation beginline="254" endline="279" begincolumn="29" endcolumn="9" rule="AvoidSynchronizedAtMethodLevel" ruleset="Design" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="createIndexForClusterClass" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#AvoidSynchronizedAtMethodLevel" priority="3">
 Use block level rather than method level synchronization
 </violation>
-<violation beginline="245" endline="245" begincolumn="86" endcolumn="107" rule="UseVarargs" ruleset="Design" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="createIndexForClusterClass" variable="dataTypesIndex" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#UseVarargs" priority="4">
+<violation beginline="255" endline="255" begincolumn="86" endcolumn="107" rule="UseVarargs" ruleset="Design" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="createIndexForClusterClass" variable="dataTypesIndex" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#UseVarargs" priority="4">
 Consider using varargs for methods or constructors which take an array the last parameter.
 </violation>
-<violation beginline="265" endline="265" begincolumn="26" endcolumn="34" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="createIndexForClusterClass" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
+<violation beginline="275" endline="275" begincolumn="26" endcolumn="34" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="createIndexForClusterClass" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
 Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
 </violation>
-<violation beginline="280" endline="296" begincolumn="29" endcolumn="9" rule="AvoidSynchronizedAtMethodLevel" ruleset="Design" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="addClusterToClass" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#AvoidSynchronizedAtMethodLevel" priority="3">
+<violation beginline="290" endline="306" begincolumn="29" endcolumn="9" rule="AvoidSynchronizedAtMethodLevel" ruleset="Design" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="addClusterToClass" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#AvoidSynchronizedAtMethodLevel" priority="3">
 Use block level rather than method level synchronization
 </violation>
-<violation beginline="293" endline="293" begincolumn="26" endcolumn="34" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="addClusterToClass" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
+<violation beginline="303" endline="303" begincolumn="26" endcolumn="34" rule="AvoidCatchingGenericException" ruleset="Strict Exceptions" package="ec.com.smx.sic.cliente.common.procesamientoventas.utils" class="ProcesamientoVentasClusterUtil" method="addClusterToClass" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strictexception.html#AvoidCatchingGenericException" priority="3">
 Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
 </violation>
 </file>
@@ -4125,25 +4107,22 @@ Fields should be declared at the top of the class, before any method declaration
 <violation beginline="100" endline="100" begincolumn="29" endcolumn="174" rule="FieldDeclarationsShouldBeAtStartOfClass" ruleset="Design" package="ec.com.smx.sic.cliente.common.proveedor" class="ProveedorConstantes" variable="VALOR_PLAZO_PAGO_DEFECTO" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#FieldDeclarationsShouldBeAtStartOfClass" priority="3">
 Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
 </violation>
-<violation beginline="101" endline="101" begincolumn="29" endcolumn="192" rule="FieldDeclarationsShouldBeAtStartOfClass" ruleset="Design" package="ec.com.smx.sic.cliente.common.proveedor" class="ProveedorConstantes" variable="CODIGO_CATALOGO_VALOR_FACTURA_EN_SITIO_SI" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#FieldDeclarationsShouldBeAtStartOfClass" priority="3">
+<violation beginline="101" endline="101" begincolumn="29" endcolumn="217" rule="FieldDeclarationsShouldBeAtStartOfClass" ruleset="Design" package="ec.com.smx.sic.cliente.common.proveedor" class="ProveedorConstantes" variable="CODIGO_FACTURAR_PROMOCION_OFICINA_EXTERIOR_SI" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#FieldDeclarationsShouldBeAtStartOfClass" priority="3">
 Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
 </violation>
-<violation beginline="102" endline="102" begincolumn="29" endcolumn="217" rule="FieldDeclarationsShouldBeAtStartOfClass" ruleset="Design" package="ec.com.smx.sic.cliente.common.proveedor" class="ProveedorConstantes" variable="CODIGO_FACTURAR_PROMOCION_OFICINA_EXTERIOR_SI" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#FieldDeclarationsShouldBeAtStartOfClass" priority="3">
+<violation beginline="102" endline="102" begincolumn="29" endcolumn="181" rule="FieldDeclarationsShouldBeAtStartOfClass" ruleset="Design" package="ec.com.smx.sic.cliente.common.proveedor" class="ProveedorConstantes" variable="IMAGEN_CABECERA_CORREO_ELECTRONICO" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#FieldDeclarationsShouldBeAtStartOfClass" priority="3">
 Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
 </violation>
-<violation beginline="103" endline="103" begincolumn="29" endcolumn="181" rule="FieldDeclarationsShouldBeAtStartOfClass" ruleset="Design" package="ec.com.smx.sic.cliente.common.proveedor" class="ProveedorConstantes" variable="IMAGEN_CABECERA_CORREO_ELECTRONICO" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#FieldDeclarationsShouldBeAtStartOfClass" priority="3">
+<violation beginline="103" endline="103" begincolumn="29" endcolumn="171" rule="FieldDeclarationsShouldBeAtStartOfClass" ruleset="Design" package="ec.com.smx.sic.cliente.common.proveedor" class="ProveedorConstantes" variable="PROVEEDOR_SERVICIOS_DOCUMENTO" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#FieldDeclarationsShouldBeAtStartOfClass" priority="3">
 Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
 </violation>
-<violation beginline="104" endline="104" begincolumn="29" endcolumn="171" rule="FieldDeclarationsShouldBeAtStartOfClass" ruleset="Design" package="ec.com.smx.sic.cliente.common.proveedor" class="ProveedorConstantes" variable="PROVEEDOR_SERVICIOS_DOCUMENTO" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#FieldDeclarationsShouldBeAtStartOfClass" priority="3">
+<violation beginline="106" endline="106" begincolumn="29" endcolumn="173" rule="FieldDeclarationsShouldBeAtStartOfClass" ruleset="Design" package="ec.com.smx.sic.cliente.common.proveedor" class="ProveedorConstantes" variable="PARAMETRO_MAXIMO_ARCHIVO_CERTIFICADO" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#FieldDeclarationsShouldBeAtStartOfClass" priority="3">
 Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
 </violation>
-<violation beginline="107" endline="107" begincolumn="29" endcolumn="173" rule="FieldDeclarationsShouldBeAtStartOfClass" ruleset="Design" package="ec.com.smx.sic.cliente.common.proveedor" class="ProveedorConstantes" variable="PARAMETRO_MAXIMO_ARCHIVO_CERTIFICADO" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#FieldDeclarationsShouldBeAtStartOfClass" priority="3">
+<violation beginline="107" endline="107" begincolumn="29" endcolumn="173" rule="FieldDeclarationsShouldBeAtStartOfClass" ruleset="Design" package="ec.com.smx.sic.cliente.common.proveedor" class="ProveedorConstantes" variable="SECUENCIAL_CERTIFICADO_ARCHIVO" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#FieldDeclarationsShouldBeAtStartOfClass" priority="3">
 Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
 </violation>
-<violation beginline="108" endline="108" begincolumn="29" endcolumn="173" rule="FieldDeclarationsShouldBeAtStartOfClass" ruleset="Design" package="ec.com.smx.sic.cliente.common.proveedor" class="ProveedorConstantes" variable="SECUENCIAL_CERTIFICADO_ARCHIVO" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#FieldDeclarationsShouldBeAtStartOfClass" priority="3">
-Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
-</violation>
-<violation beginline="109" endline="109" begincolumn="29" endcolumn="183" rule="FieldDeclarationsShouldBeAtStartOfClass" ruleset="Design" package="ec.com.smx.sic.cliente.common.proveedor" class="ProveedorConstantes" variable="SECUENCIAL_MIGRACION_PROVEEDOR_SERVICIOS" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#FieldDeclarationsShouldBeAtStartOfClass" priority="3">
+<violation beginline="108" endline="108" begincolumn="29" endcolumn="183" rule="FieldDeclarationsShouldBeAtStartOfClass" ruleset="Design" package="ec.com.smx.sic.cliente.common.proveedor" class="ProveedorConstantes" variable="SECUENCIAL_MIGRACION_PROVEEDOR_SERVICIOS" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#FieldDeclarationsShouldBeAtStartOfClass" priority="3">
 Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
 </violation>
 </file>
@@ -4990,7 +4969,7 @@ Avoid modifiers which are implied by the context
 </violation>
 </file>
 <file name="D:\WORKSPACE\prjClienteSIC\src\main\java\ec\com\smx\sic\cliente\gestor\articulo\admin\IArticuloGestor.java">
-<violation beginline="1" endline="310" begincolumn="1" endcolumn="3" rule="ExcessivePublicCount" ruleset="Code Size" package="ec.com.smx.sic.cliente.gestor.articulo.admin" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessivePublicCount" priority="3">
+<violation beginline="1" endline="319" begincolumn="1" endcolumn="3" rule="ExcessivePublicCount" ruleset="Code Size" package="ec.com.smx.sic.cliente.gestor.articulo.admin" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessivePublicCount" priority="3">
 This class has a bunch of public methods and attributes
 </violation>
 <violation beginline="48" endline="48" begincolumn="16" endcolumn="170" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.articulo.admin" class="IArticuloGestor" method="registrarArticuloMasivo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
@@ -5162,6 +5141,9 @@ Avoid modifiers which are implied by the context
 Avoid modifiers which are implied by the context
 </violation>
 <violation beginline="286" endline="286" begincolumn="16" endcolumn="124" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.articulo.admin" class="IArticuloGestor" method="registrarPrecioArticuloPorTipoPrecio" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+Avoid modifiers which are implied by the context
+</violation>
+<violation beginline="318" endline="318" begincolumn="16" endcolumn="110" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.articulo.admin" class="IArticuloGestor" method="buscarArticuloId" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
 Avoid modifiers which are implied by the context
 </violation>
 </file>
@@ -6425,28 +6407,28 @@ Avoid modifiers which are implied by the context
 </violation>
 </file>
 <file name="D:\WORKSPACE\prjClienteSIC\src\main\java\ec\com\smx\sic\cliente\gestor\articulo\usuarioautorizacion\calculo\ICalculoUsuarioAutorizacionGestor.java">
-<violation beginline="25" endline="25" begincolumn="17" endcolumn="135" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.articulo.usuarioautorizacion.calculo" class="ICalculoUsuarioAutorizacionGestor" method="obtenerClasificaciones" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+<violation beginline="24" endline="24" begincolumn="17" endcolumn="135" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.articulo.usuarioautorizacion.calculo" class="ICalculoUsuarioAutorizacionGestor" method="obtenerClasificaciones" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
 Avoid modifiers which are implied by the context
 </violation>
-<violation beginline="34" endline="34" begincolumn="16" endcolumn="141" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.articulo.usuarioautorizacion.calculo" class="ICalculoUsuarioAutorizacionGestor" method="obtenerClasificacionesUsuario" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+<violation beginline="33" endline="33" begincolumn="16" endcolumn="141" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.articulo.usuarioautorizacion.calculo" class="ICalculoUsuarioAutorizacionGestor" method="obtenerClasificacionesUsuario" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
 Avoid modifiers which are implied by the context
 </violation>
-<violation beginline="43" endline="43" begincolumn="16" endcolumn="183" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.articulo.usuarioautorizacion.calculo" class="ICalculoUsuarioAutorizacionGestor" method="consultarFuncionarioAreaTrabajoPorAreaTrabajo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+<violation beginline="42" endline="42" begincolumn="16" endcolumn="183" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.articulo.usuarioautorizacion.calculo" class="ICalculoUsuarioAutorizacionGestor" method="consultarFuncionarioAreaTrabajoPorAreaTrabajo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
 Avoid modifiers which are implied by the context
 </violation>
-<violation beginline="52" endline="52" begincolumn="17" endcolumn="110" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.articulo.usuarioautorizacion.calculo" class="ICalculoUsuarioAutorizacionGestor" method="obtenerArticulos" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+<violation beginline="51" endline="51" begincolumn="17" endcolumn="110" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.articulo.usuarioautorizacion.calculo" class="ICalculoUsuarioAutorizacionGestor" method="obtenerArticulos" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
 Avoid modifiers which are implied by the context
 </violation>
-<violation beginline="61" endline="61" begincolumn="16" endcolumn="120" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.articulo.usuarioautorizacion.calculo" class="ICalculoUsuarioAutorizacionGestor" method="obtenerArticulosUsuario" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+<violation beginline="60" endline="60" begincolumn="16" endcolumn="120" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.articulo.usuarioautorizacion.calculo" class="ICalculoUsuarioAutorizacionGestor" method="obtenerArticulosUsuario" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
 Avoid modifiers which are implied by the context
 </violation>
-<violation beginline="73" endline="73" begincolumn="16" endcolumn="174" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.articulo.usuarioautorizacion.calculo" class="ICalculoUsuarioAutorizacionGestor" method="repotesClasificaciones" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+<violation beginline="72" endline="72" begincolumn="16" endcolumn="174" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.articulo.usuarioautorizacion.calculo" class="ICalculoUsuarioAutorizacionGestor" method="repotesClasificaciones" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
 Avoid modifiers which are implied by the context
 </violation>
-<violation beginline="82" endline="82" begincolumn="16" endcolumn="158" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.articulo.usuarioautorizacion.calculo" class="ICalculoUsuarioAutorizacionGestor" method="reportesUsuarios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+<violation beginline="81" endline="81" begincolumn="16" endcolumn="175" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.articulo.usuarioautorizacion.calculo" class="ICalculoUsuarioAutorizacionGestor" method="reportesUsuarios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
 Avoid modifiers which are implied by the context
 </violation>
-<violation beginline="90" endline="90" begincolumn="16" endcolumn="111" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.articulo.usuarioautorizacion.calculo" class="ICalculoUsuarioAutorizacionGestor" method="consultarClaseArticulos" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+<violation beginline="89" endline="89" begincolumn="16" endcolumn="111" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.articulo.usuarioautorizacion.calculo" class="ICalculoUsuarioAutorizacionGestor" method="consultarClaseArticulos" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
 Avoid modifiers which are implied by the context
 </violation>
 </file>
@@ -7776,7 +7758,7 @@ Avoid modifiers which are implied by the context
 <violation beginline="56" endline="56" begincolumn="16" endcolumn="329" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.bodega.recepcion.calculo" class="ICalculoCalendariosBodegaGestor" method="guardarCalendario" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
 Avoid modifiers which are implied by the context
 </violation>
-<violation beginline="65" endline="65" begincolumn="16" endcolumn="144" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.bodega.recepcion.calculo" class="ICalculoCalendariosBodegaGestor" method="obtenerDatosExcel" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+<violation beginline="65" endline="65" begincolumn="16" endcolumn="243" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.bodega.recepcion.calculo" class="ICalculoCalendariosBodegaGestor" method="obtenerDatosExcel" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
 Avoid modifiers which are implied by the context
 </violation>
 <violation beginline="78" endline="78" begincolumn="16" endcolumn="310" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.gestor.bodega.recepcion.calculo" class="ICalculoCalendariosBodegaGestor" method="buscarCalendarioEntregasDiarioFiltrado" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
@@ -7904,7 +7886,7 @@ Avoid long parameter lists.
 </violation>
 </file>
 <file name="D:\WORKSPACE\prjClienteSIC\src\main\java\ec\com\smx\sic\cliente\gestor\bodega\recepcion\calculo\ICalculoRecepcionProveedorGestor.java">
-<violation beginline="1" endline="637" begincolumn="1" endcolumn="3" rule="ExcessivePublicCount" ruleset="Code Size" package="ec.com.smx.sic.cliente.gestor.bodega.recepcion.calculo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessivePublicCount" priority="3">
+<violation beginline="1" endline="646" begincolumn="1" endcolumn="3" rule="ExcessivePublicCount" ruleset="Code Size" package="ec.com.smx.sic.cliente.gestor.bodega.recepcion.calculo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessivePublicCount" priority="3">
 This class has a bunch of public methods and attributes
 </violation>
 </file>
@@ -12592,25 +12574,25 @@ The String literal &quot;CODIGOCOMPANIA&quot; appears 4 times in this file; the 
 </violation>
 </file>
 <file name="D:\WORKSPACE\prjClienteSIC\src\main\java\ec\com\smx\sic\cliente\mdl\dto\NegociacionArticuloDTO.java">
-<violation beginline="1" endline="555" begincolumn="1" endcolumn="3" rule="ExcessivePublicCount" ruleset="Code Size" package="ec.com.smx.sic.cliente.mdl.dto" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessivePublicCount" priority="3">
+<violation beginline="1" endline="567" begincolumn="1" endcolumn="3" rule="ExcessivePublicCount" ruleset="Code Size" package="ec.com.smx.sic.cliente.mdl.dto" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessivePublicCount" priority="3">
 This class has a bunch of public methods and attributes
 </violation>
-<violation beginline="34" endline="555" begincolumn="8" endcolumn="1" rule="TooManyFields" ruleset="Code Size" package="ec.com.smx.sic.cliente.mdl.dto" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#TooManyFields" priority="3">
+<violation beginline="34" endline="567" begincolumn="8" endcolumn="1" rule="TooManyFields" ruleset="Code Size" package="ec.com.smx.sic.cliente.mdl.dto" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#TooManyFields" priority="3">
 Too many fields
 </violation>
 <violation beginline="63" endline="63" begincolumn="22" endcolumn="42" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.cliente.mdl.dto" class="NegociacionArticuloDTO" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
 The String literal &quot;CODIGOCLASIFICACION&quot; appears 6 times in this file; the first occurrence is on line 63
 </violation>
-<violation beginline="152" endline="152" begincolumn="43" endcolumn="58" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.cliente.mdl.dto" class="NegociacionArticuloDTO" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
-The String literal &quot;CODIGOCOMPANIA&quot; appears 14 times in this file; the first occurrence is on line 152
+<violation beginline="158" endline="158" begincolumn="43" endcolumn="58" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="ec.com.smx.sic.cliente.mdl.dto" class="NegociacionArticuloDTO" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;CODIGOCOMPANIA&quot; appears 14 times in this file; the first occurrence is on line 158
 </violation>
-<violation beginline="416" endline="418" begincolumn="16" endcolumn="9" rule="BooleanGetMethodName" ruleset="Naming" package="ec.com.smx.sic.cliente.mdl.dto" class="NegociacionArticuloDTO" method="getMarcaPropia" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#BooleanGetMethodName" priority="4">
+<violation beginline="422" endline="424" begincolumn="16" endcolumn="9" rule="BooleanGetMethodName" ruleset="Naming" package="ec.com.smx.sic.cliente.mdl.dto" class="NegociacionArticuloDTO" method="getMarcaPropia" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#BooleanGetMethodName" priority="4">
 A getX() method which returns a boolean should be named isX()
 </violation>
-<violation beginline="428" endline="430" begincolumn="16" endcolumn="9" rule="BooleanGetMethodName" ruleset="Naming" package="ec.com.smx.sic.cliente.mdl.dto" class="NegociacionArticuloDTO" method="getMarcaProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#BooleanGetMethodName" priority="4">
+<violation beginline="434" endline="436" begincolumn="16" endcolumn="9" rule="BooleanGetMethodName" ruleset="Naming" package="ec.com.smx.sic.cliente.mdl.dto" class="NegociacionArticuloDTO" method="getMarcaProveedor" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/naming.html#BooleanGetMethodName" priority="4">
 A getX() method which returns a boolean should be named isX()
 </violation>
-<violation beginline="480" endline="480" begincolumn="40" endcolumn="63" rule="UseVarargs" ruleset="Design" package="ec.com.smx.sic.cliente.mdl.dto" class="NegociacionArticuloDTO" method="setCodigoTipoMarca" variable="codigoTipoMarca" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#UseVarargs" priority="4">
+<violation beginline="486" endline="486" begincolumn="40" endcolumn="63" rule="UseVarargs" ruleset="Design" package="ec.com.smx.sic.cliente.mdl.dto" class="NegociacionArticuloDTO" method="setCodigoTipoMarca" variable="codigoTipoMarca" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/design.html#UseVarargs" priority="4">
 Consider using varargs for methods or constructors which take an array the last parameter.
 </violation>
 </file>
@@ -13801,7 +13783,7 @@ Too many fields
 </violation>
 </file>
 <file name="D:\WORKSPACE\prjClienteSIC\src\main\java\ec\com\smx\sic\cliente\mdl\dto\VistaProcesamientoVentasDTO.java">
-<violation beginline="14" endline="208" begincolumn="8" endcolumn="1" rule="TooManyFields" ruleset="Code Size" package="ec.com.smx.sic.cliente.mdl.dto" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#TooManyFields" priority="3">
+<violation beginline="14" endline="215" begincolumn="8" endcolumn="1" rule="TooManyFields" ruleset="Code Size" package="ec.com.smx.sic.cliente.mdl.dto" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#TooManyFields" priority="3">
 Too many fields
 </violation>
 </file>
@@ -18711,7 +18693,7 @@ Avoid modifiers which are implied by the context
 <violation beginline="17" endline="17" begincolumn="16" endcolumn="131" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.persistencia.articulos.dao.usuarioautorizacion" class="IUsuarioClasificacionProcesoDAO" method="obtenerClasificacionesContarUsuario" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
 Avoid modifiers which are implied by the context
 </violation>
-<violation beginline="26" endline="26" begincolumn="16" endcolumn="159" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.persistencia.articulos.dao.usuarioautorizacion" class="IUsuarioClasificacionProcesoDAO" method="reportesUsuarios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+<violation beginline="26" endline="26" begincolumn="16" endcolumn="218" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.persistencia.articulos.dao.usuarioautorizacion" class="IUsuarioClasificacionProcesoDAO" method="reportesUsuarios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
 Avoid modifiers which are implied by the context
 </violation>
 <violation beginline="33" endline="33" begincolumn="16" endcolumn="112" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.persistencia.articulos.dao.usuarioautorizacion" class="IUsuarioClasificacionProcesoDAO" method="actualizarUsuarioClasificacion" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
@@ -18721,6 +18703,9 @@ Avoid modifiers which are implied by the context
 Avoid modifiers which are implied by the context
 </violation>
 <violation beginline="50" endline="50" begincolumn="16" endcolumn="147" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.persistencia.articulos.dao.usuarioautorizacion" class="IUsuarioClasificacionProcesoDAO" method="obtenerClasificacionesUsuario" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+Avoid modifiers which are implied by the context
+</violation>
+<violation beginline="60" endline="60" begincolumn="16" endcolumn="169" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.persistencia.articulos.dao.usuarioautorizacion" class="IUsuarioClasificacionProcesoDAO" method="cuentaClasificaciones" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
 Avoid modifiers which are implied by the context
 </violation>
 </file>
@@ -22571,7 +22556,7 @@ Avoid modifiers which are implied by the context
 </violation>
 </file>
 <file name="D:\WORKSPACE\prjClienteSIC\src\main\java\ec\com\smx\sic\cliente\servicio\articulo\IArticuloServicio.java">
-<violation beginline="1" endline="532" begincolumn="1" endcolumn="3" rule="ExcessivePublicCount" ruleset="Code Size" package="ec.com.smx.sic.cliente.servicio.articulo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessivePublicCount" priority="3">
+<violation beginline="1" endline="546" begincolumn="1" endcolumn="3" rule="ExcessivePublicCount" ruleset="Code Size" package="ec.com.smx.sic.cliente.servicio.articulo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessivePublicCount" priority="3">
 This class has a bunch of public methods and attributes
 </violation>
 <violation beginline="65" endline="65" begincolumn="16" endcolumn="87" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.servicio.articulo" class="IArticuloServicio" method="registrarArticulo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
@@ -22802,6 +22787,9 @@ Avoid modifiers which are implied by the context
 <violation beginline="530" endline="530" begincolumn="16" endcolumn="115" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.servicio.articulo" class="IArticuloServicio" method="busquedaArticuloSimple" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
 Avoid modifiers which are implied by the context
 </violation>
+<violation beginline="544" endline="544" begincolumn="16" endcolumn="110" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.servicio.articulo" class="IArticuloServicio" method="buscarArticuloId" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+Avoid modifiers which are implied by the context
+</violation>
 </file>
 <file name="D:\WORKSPACE\prjClienteSIC\src\main\java\ec\com\smx\sic\cliente\servicio\articulo\IArticuloValidacionServicio.java">
 <violation beginline="23" endline="23" begincolumn="16" endcolumn="74" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.servicio.articulo" class="IArticuloValidacionServicio" method="esRequeridoPesoAproximado" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
@@ -22997,7 +22985,7 @@ Avoid modifiers which are implied by the context
 <violation beginline="75" endline="75" begincolumn="16" endcolumn="174" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.servicio.articulo" class="IUsuarioAutorizacionServicio" method="repotesClasificaciones" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
 Avoid modifiers which are implied by the context
 </violation>
-<violation beginline="84" endline="84" begincolumn="16" endcolumn="159" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.servicio.articulo" class="IUsuarioAutorizacionServicio" method="reportesUsuarios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
+<violation beginline="84" endline="84" begincolumn="16" endcolumn="176" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.servicio.articulo" class="IUsuarioAutorizacionServicio" method="reportesUsuarios" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
 Avoid modifiers which are implied by the context
 </violation>
 <violation beginline="92" endline="92" begincolumn="16" endcolumn="111" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.servicio.articulo" class="IUsuarioAutorizacionServicio" method="consultarClaseArticulos" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">
@@ -23823,10 +23811,10 @@ Avoid modifiers which are implied by the context
 </violation>
 </file>
 <file name="D:\WORKSPACE\prjClienteSIC\src\main\java\ec\com\smx\sic\cliente\servicio\bodega\IRecepcionProveedoresServicio.java">
-<violation beginline="4" endline="1116" begincolumn="1" endcolumn="3" rule="ExcessivePublicCount" ruleset="Code Size" package="ec.com.smx.sic.cliente.servicio.bodega" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessivePublicCount" priority="3">
+<violation beginline="4" endline="1124" begincolumn="1" endcolumn="3" rule="ExcessivePublicCount" ruleset="Code Size" package="ec.com.smx.sic.cliente.servicio.bodega" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessivePublicCount" priority="3">
 This class has a bunch of public methods and attributes
 </violation>
-<violation beginline="70" endline="1116" begincolumn="8" endcolumn="1" rule="ExcessiveClassLength" ruleset="Code Size" package="ec.com.smx.sic.cliente.servicio.bodega" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessiveClassLength" priority="3">
+<violation beginline="70" endline="1124" begincolumn="8" endcolumn="1" rule="ExcessiveClassLength" ruleset="Code Size" package="ec.com.smx.sic.cliente.servicio.bodega" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/codesize.html#ExcessiveClassLength" priority="3">
 Avoid really long classes.
 </violation>
 <violation beginline="296" endline="296" begincolumn="18" endcolumn="155" rule="UnusedModifier" ruleset="Unused Code" package="ec.com.smx.sic.cliente.servicio.bodega" class="IRecepcionProveedoresServicio" method="transActualizarValoresParaEdicion" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.1/pmd-java/rules/java/unusedcode.html#UnusedModifier" priority="3">

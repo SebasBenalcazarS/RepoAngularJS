@@ -91,14 +91,14 @@ public interface IUbicacionDAO {
 	public Collection<DetalleSeccionDTO> buscarUbicacionBalanza(Integer codigoAreaTrabajo, Integer codigoCompania, String codigoBarrasBalanza) throws SICException;
 	/**
 	 * Devuelve una ubicacion filtrada por tipo de almacenamiento e identificador 
-	 * @param codigoCompania
 	 * @param identificador
-	 * @param valorTipoAlmacenamiento
-	 * @param codigoTipoAlmacenamiento
+	 * @param catalogoValorDTO
+	 * @param areaSublugatTrabajoDTO
 	 * @return
 	 * @throws SICException
 	 */
-	public AsignacionArticuloUnidadManejoDTO obtenerUbicacionDisponiblePorIdentificador(Integer codigoCompania, String identificador, Integer codigoAreaTrabajo, String valorTipoAlmacenamiento, Integer codigoTipoAlmacenamiento) throws SICException;
+	AsignacionArticuloUnidadManejoDTO obtenerUbicacionDisponiblePorIdentificador(String identificador, CatalogoValorDTO catalogoValorDTO,
+			AreaSublugarTrabajoDTO areaSublugatTrabajoDTO) throws SICException;
 	/**
 	 * 
 	 * @param codigoCompania

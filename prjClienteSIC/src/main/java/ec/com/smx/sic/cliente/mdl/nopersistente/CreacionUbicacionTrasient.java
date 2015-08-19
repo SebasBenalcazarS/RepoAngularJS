@@ -3,6 +3,7 @@
  */
 package ec.com.smx.sic.cliente.mdl.nopersistente;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import ec.com.smx.sic.cliente.common.bodega.SICBodegaConstantes;
 import ec.com.smx.sic.cliente.mdl.dto.DetalleSeccionDTO;
 import ec.com.smx.sic.cliente.mdl.dto.RelacionSeccionDTO;
 import ec.com.smx.sic.cliente.mdl.dto.SeccionDTO;
+import ec.com.smx.sic.cliente.mdl.dto.UbicacionPendienteIntegracionDTO;
 
 
 
@@ -49,13 +51,12 @@ public class CreacionUbicacionTrasient {
 	public Collection<SeccionDTO> platillasSeccionUbicacion(Map<EnumValorFiltrosUbicacion, Object> datos){
 		Collection<SeccionDTO> seccionDTOCol = new ArrayList<SeccionDTO>();
 		SeccionDTO seccion = null;
-		
-		if(!datos.containsKey(EnumValorFiltrosUbicacion.CODIGODETSECNAVE)){
+		//if(!datos.containsKey(EnumValorFiltrosUbicacion.CODIGODETSECNAVE)){
 			seccion = new SeccionDTO();
 			inicializarSeccion(datos, seccion);
 			seccion.setValorTipoSeccion(SICBodegaConstantes.CODIGO_VALOR_TIPO_SECCION_NAVE);
 			seccionDTOCol.add(seccion);
-		}
+		//}
 		if(!datos.containsKey(EnumValorFiltrosUbicacion.CODIGODETSECSUBNAVE)){
 			seccion = new SeccionDTO();
 			inicializarSeccion(datos, seccion);
@@ -275,6 +276,8 @@ public class CreacionUbicacionTrasient {
 		detalleSeccionDTO.addDynamicProperty(EnumValorFiltrosUbicacion.CODIGOAREATRABAJO.getValorFiltroUbicacion(), codAreaTra);
 		detalleSeccionDTO.addDynamicProperty(EnumValorFiltrosUbicacion.RACK.getValorFiltroUbicacion(), rack);
 		detalleSeccionDTO.addDynamicProperty(EnumValorFiltrosUbicacion.PASILLO.getValorFiltroUbicacion(), pasillo);
+		detalleSeccionDTO.addDynamicProperty(EnumValorFiltrosUbicacion.NIVEL.getValorFiltroUbicacion(), nivel);
+		detalleSeccionDTO.addDynamicProperty(EnumValorFiltrosUbicacion.TIPOALMACENAMIENTO.getValorFiltroUbicacion(), tipAlmacenamiento);
 	}
 	
 	private Collection<DetalleSeccionDTO> plantillaDetalleSeccionUbicacion(Map<EnumValorFiltrosUbicacion, Object> datos){
@@ -501,6 +504,31 @@ public class CreacionUbicacionTrasient {
 		return relacionSeccionDTOs;
 	}
 	
+	public Collection<UbicacionPendienteIntegracionDTO> platillasUbicacionesPendientesIntegracion(Map<EnumValorFiltrosUbicacion, Object> datos){
+		Collection<UbicacionPendienteIntegracionDTO> pendienteIntegracionDTOCol = new ArrayList<UbicacionPendienteIntegracionDTO>();
+		UbicacionPendienteIntegracionDTO ubicacionPendienteIntegracionDTO = null;
+		Collection<Object[]> ubicaciones = this.idsDetalleSeccion.get(SICBodegaConstantes.CODIGO_VALOR_TIPO_SECCION_UBICACION);
+
+		for(Object[] objectsUbicaciones :ubicaciones){
+			ubicacionPendienteIntegracionDTO = new UbicacionPendienteIntegracionDTO();
+			ubicacionPendienteIntegracionDTO.getId().setCodigoCompania((Integer)datos.get(EnumValorFiltrosUbicacion.CODIGOCOMPANIA));
+			ubicacionPendienteIntegracionDTO.setCodigoCdt((Integer)datos.get(EnumValorFiltrosUbicacion.CODIGOAREATRABAJOPADRE));
+			ubicacionPendienteIntegracionDTO.setCodigoBodega((Integer)datos.get(EnumValorFiltrosUbicacion.CODIGOAREATRABAJO));
+			ubicacionPendienteIntegracionDTO.setCodigoSubbodega((Integer)datos.get(EnumValorFiltrosUbicacion.CODIGOSUBAREATRABAJO));
+			ubicacionPendienteIntegracionDTO.setPasillo((String) objectsUbicaciones [3]);
+			ubicacionPendienteIntegracionDTO.setRack((String) objectsUbicaciones [2]);
+			ubicacionPendienteIntegracionDTO.setNivel((String) objectsUbicaciones [4]);
+			ubicacionPendienteIntegracionDTO.setTipoUbicacion(SICBodegaConstantes.CODIGO_VALOR_TIPO_UBICACION_FISICA);
+			ubicacionPendienteIntegracionDTO.setTipoAlmacenamiento((String) objectsUbicaciones [5]);
+			ubicacionPendienteIntegracionDTO.setEstado(SICConstantes.ESTADO_ACTIVO_NUMERICO);
+			ubicacionPendienteIntegracionDTO.setIdUsuarioRegistro((String) datos.get(EnumValorFiltrosUbicacion.USERID));
+			ubicacionPendienteIntegracionDTO.setFechaRegistro(new Timestamp(System.currentTimeMillis()));
+			ubicacionPendienteIntegracionDTO.setSigno("*");
+			pendienteIntegracionDTOCol.add(ubicacionPendienteIntegracionDTO);
+		}
+		return pendienteIntegracionDTOCol;
+	}
+	
 	public void registrarIdsDetalleSeccion(DetalleSeccionDTO detalleSeccionDTO){
 		String tipoSeccion = (String) detalleSeccionDTO.getDynamicProperties().get(EnumValorFiltrosUbicacion.TIPOSECCION.getValorFiltroUbicacion());
 		
@@ -514,7 +542,9 @@ public class CreacionUbicacionTrasient {
 				codDetSec.add(new Object[]{detalleSeccionDTO.getIdentificador(),
 						detalleSeccionDTO.getId().getCodigoDetalleSeccion(),
 						detalleSeccionDTO.getDynamicProperties().get(EnumValorFiltrosUbicacion.RACK.getValorFiltroUbicacion()),
-						detalleSeccionDTO.getDynamicProperties().get(EnumValorFiltrosUbicacion.PASILLO.getValorFiltroUbicacion())
+						detalleSeccionDTO.getDynamicProperties().get(EnumValorFiltrosUbicacion.PASILLO.getValorFiltroUbicacion()),
+						detalleSeccionDTO.getDynamicProperties().get(EnumValorFiltrosUbicacion.NIVEL.getValorFiltroUbicacion()),
+						detalleSeccionDTO.getDynamicProperties().get(EnumValorFiltrosUbicacion.TIPOALMACENAMIENTO.getValorFiltroUbicacion())
 						});
 			}else{
 				codDetSec.add(new Object[]{detalleSeccionDTO.getIdentificador(),detalleSeccionDTO.getId().getCodigoDetalleSeccion(),detalleSeccionDTO.getDynamicProperties().get(EnumValorFiltrosUbicacion.IDENTIFICADOR.getValorFiltroUbicacion())});
@@ -525,7 +555,9 @@ public class CreacionUbicacionTrasient {
 				codDetSec.add(new Object[]{detalleSeccionDTO.getIdentificador(),
 						detalleSeccionDTO.getId().getCodigoDetalleSeccion(),
 						detalleSeccionDTO.getDynamicProperties().get(EnumValorFiltrosUbicacion.RACK.getValorFiltroUbicacion()),
-						detalleSeccionDTO.getDynamicProperties().get(EnumValorFiltrosUbicacion.PASILLO.getValorFiltroUbicacion())
+						detalleSeccionDTO.getDynamicProperties().get(EnumValorFiltrosUbicacion.PASILLO.getValorFiltroUbicacion()),
+						detalleSeccionDTO.getDynamicProperties().get(EnumValorFiltrosUbicacion.NIVEL.getValorFiltroUbicacion()),
+						detalleSeccionDTO.getDynamicProperties().get(EnumValorFiltrosUbicacion.TIPOALMACENAMIENTO.getValorFiltroUbicacion())
 						});
 			}else{
 				codDetSec.add(new Object[]{detalleSeccionDTO.getIdentificador(),detalleSeccionDTO.getId().getCodigoDetalleSeccion(),detalleSeccionDTO.getDynamicProperties().get(EnumValorFiltrosUbicacion.IDENTIFICADOR.getValorFiltroUbicacion())});

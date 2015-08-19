@@ -8,7 +8,7 @@ import org.springframework.batch.item.ItemWriter;
 
 import ec.com.kruger.utilitario.dao.commons.dto.SearchDTO;
 import ec.com.smx.sic.cliente.common.Logeable;
-import ec.com.smx.sic.cliente.gestor.articulo.alcance.nosql.almacenamiento.IAlmacenamientoArticuloAlcanceNoSqlGestor;
+import ec.com.smx.sic.cliente.common.factory.SICFactory;
 import ec.com.smx.sic.cliente.mdl.dto.articulo.nosql.VistaArticuloLocalNoSqlDTO;
 
 /**
@@ -19,19 +19,19 @@ import ec.com.smx.sic.cliente.mdl.dto.articulo.nosql.VistaArticuloLocalNoSqlDTO;
  */
 public class ArticuloAlcanceMigracionNoSqlItemWriter<T extends SearchDTO> implements ItemWriter<VistaArticuloLocalNoSqlDTO>, Logeable {
 	
-	private IAlmacenamientoArticuloAlcanceNoSqlGestor almacenamientoArticuloAlcanceNoSqlGestor;
+//	private IAlmacenamientoArticuloAlcanceNoSqlGestor almacenamientoArticuloAlcanceNoSqlGestor;
 	private Integer codigoCompania;
 	/**
 	 * Sufijo de la tabla de donde se va consultar los datos OFI, LOC, BOD
 	 */
 	private String sufijoTabla;
 	
-	/**
-	 * @param almacenamientoArticuloAlcanceNoSqlGestor the almacenamientoArticuloAlcanceNoSqlGestor to set
-	 */
-	public void setAlmacenamientoArticuloAlcanceNoSqlGestor(IAlmacenamientoArticuloAlcanceNoSqlGestor almacenamientoArticuloAlcanceNoSqlGestor) {
-		this.almacenamientoArticuloAlcanceNoSqlGestor = almacenamientoArticuloAlcanceNoSqlGestor;
-	}
+//	/**
+//	 * @param almacenamientoArticuloAlcanceNoSqlGestor the almacenamientoArticuloAlcanceNoSqlGestor to set
+//	 */
+//	public void setAlmacenamientoArticuloAlcanceNoSqlGestor(IAlmacenamientoArticuloAlcanceNoSqlGestor almacenamientoArticuloAlcanceNoSqlGestor) {
+//		this.almacenamientoArticuloAlcanceNoSqlGestor = almacenamientoArticuloAlcanceNoSqlGestor;
+//	}
 
 	/**
 	 * @param codigoCompania the codigoCompania to set
@@ -58,8 +58,9 @@ public class ArticuloAlcanceMigracionNoSqlItemWriter<T extends SearchDTO> implem
 			LOG_SICV2.info("Total ArticuloLocalDTO a procesar {}", objetoCol.size());
 			
 			Collection<VistaArticuloLocalNoSqlDTO> colVistaMigrarArticuloLocalDTO = (Collection<VistaArticuloLocalNoSqlDTO>) objetoCol;
-			this.almacenamientoArticuloAlcanceNoSqlGestor.migrarArticuloLocal(this.codigoCompania, colVistaMigrarArticuloLocalDTO, this.sufijoTabla);
-			
+//			this.almacenamientoArticuloAlcanceNoSqlGestor.migrarArticuloLocal(this.codigoCompania, colVistaMigrarArticuloLocalDTO, this.sufijoTabla);
+			SICFactory.getInstancia().articulo.getArticuloAlcanceNoSqlServicio().
+					findMigrarArticuloLocalDTOWriter(this.codigoCompania, colVistaMigrarArticuloLocalDTO, this.sufijoTabla);
 		}
 		
 	}

@@ -135,5 +135,5 @@ public interface ICalculoDatosProcesamientoVentasDocumentDAO extends Serializabl
 	 * @param fechaFinal
 	 * @return
 	 */
-	List<ODocument> obtenerListadoPreciosMargenReal(ODatabaseDocumentTx db, String codigoArticulo, Integer codigoCompania, Date fechaInicial, Date fechaFinal);
+	List<ODocument> obtenerListadoPreciosMargenReal(ODatabaseDocumentTx db, String codigoArticulo, Integer codigoCompania, String tipoConsulta, Date fechaInicial, Date fechaFinal, List<String> listaClusterName) throws SICException;
 }

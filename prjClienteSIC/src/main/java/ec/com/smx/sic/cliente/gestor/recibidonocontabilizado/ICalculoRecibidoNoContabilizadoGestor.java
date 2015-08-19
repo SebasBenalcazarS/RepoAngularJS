@@ -17,6 +17,8 @@ import ec.com.smx.sic.cliente.exception.SICException;
 import ec.com.smx.sic.cliente.mdl.dto.AjusteFacturaDTO;
 import ec.com.smx.sic.cliente.mdl.dto.AjusteFacturaEstadoDTO;
 import ec.com.smx.sic.cliente.mdl.dto.FacturaDTO;
+import ec.com.smx.sic.cliente.mdl.dto.PeriodoTrabajoDTO;
+import ec.com.smx.sic.cliente.mdl.dto.RangoAccionPeriodoDTO;
 import ec.com.smx.sic.cliente.mdl.dto.ValidacionDocumentoDTO;
 import ec.com.smx.sic.cliente.mdl.dto.VistaDepartamentoPorAreaTrabajoDTO;
 import ec.com.smx.sic.cliente.mdl.dto.VistaFacturaDTO;
@@ -299,4 +301,21 @@ public interface ICalculoRecibidoNoContabilizadoGestor {
 	 * @throws SICException
 	 */
 	Collection<TotalesFacturasNotaIngresoEST> obtenerTotalesFacturasNotaIngreso(Integer codigoCompania, Long codigoNotaIngreso)throws SICException;
+	
+	/**
+	 * Permite obetener el rango de accion del periodo actual
+	 * @param codigoCompania
+	 * @return
+	 * @throws SICException
+	 */
+	RangoAccionPeriodoDTO obtenerRangoAccionPeriodoActual(Integer codigoCompania)throws SICException;
+	
+	/**
+	 * Permite obtener el periodo actual de trabajo
+	 * @param codigoCompania
+	 * @param obtenerRangoAccion
+	 * @return
+	 * @throws SICException
+	 */
+	PeriodoTrabajoDTO obtenerPeriodoTrabajoActual(Integer codigoCompania, Boolean obtenerRangoAccion)throws SICException;
 }

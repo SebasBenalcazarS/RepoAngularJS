@@ -528,32 +528,6 @@ public class ProcesoAutorizacionUsuarios {
 			articulos=(Collection<ArticuloDTO>)articulosNum.get("articulos");
 			numArticulos=(Integer)articulosNum.get("cantidad");
 			
-			if (CollectionUtils.isNotEmpty(articulos)) {
-				for (ArticuloDTO articulo : articulos) {
-					String vunidadManejo = "";
-					if (CollectionUtils.isNotEmpty(articulo
-							.getArticuloUnidadManejoCol())) {
-						if (articulo.getArticuloUnidadManejoCol().iterator()
-								.next().getValorUnidadManejo() != null) {
-							vunidadManejo = articulo
-									.getArticuloUnidadManejoCol().iterator()
-									.next().getValorUnidadManejo().toString();
-						}
-					}
-					Articulo art = new Articulo();
-					art.setCodigoArticulo(articulo.getId().getCodigoArticulo());
-					art.setCodigoCompania(articulo.getId().getCodigoCompania());
-					art.setDescripcion(articulo.getDescripcionArticulo());
-					art.setCodigoBarras(articulo.getCodigoBarras());
-					art.setClaseArticulo(articulo.getClaseArticulo());
-					art.setReferenciaMedida(articulo.getArticuloMedidaDTO()
-							.getReferenciaMedida());
-					art.setCodigoClasificacion(articulo
-							.getCodigoClasificacion());
-					art.setValorUnidadManejo(vunidadManejo);
-					articulosCol.add(art);
-				}
-			}
 			Map<String, Object> articulosCant= new HashMap<String, Object>();
 			articulosCant.put("cantidad", numArticulos);
 			articulosCant.put("articulos", articulos);
@@ -1036,25 +1010,38 @@ public class ProcesoAutorizacionUsuarios {
 		String user = jsonData.get("descripcion").toString().replace("\"","");
 		String codigoClasificacion= jsonData.get("codigoEstructura").toString().replace("\"","");
 //, String user
-		LOG_SICV2
-				.info("Inicio web service findReporteClasificaciones, codigoCompania: {}",
-						codigoCompania);
+		LOG_SICV2.info("Inicio web service findReporteClasificaciones, codigoCompania: {}", codigoCompania);
 		LOG_SICV2.info("codigoClasificacion: {}", codigoClasificacion);
 		LOG_SICV2.info("usuario: {}", user);
+		LOG_SICV2.info("maxResult: {}", maxResult);
+		LOG_SICV2.info("firstResult: {}", firstResult);
 		
 		Collection<UsuarioClasificacion> autorizacionClasificaciones = null;
+		Map<String, Object> clasificacionesNum= new HashMap<String, Object>();
+		Collection<UsuarioClasificacionProcesoDTO> usuClasificacionesDTOCol= null;
+		Integer numClasificaciones=0;
 
 		HttpHeaders headers = null;
 		String datos = "[]";
 		try {
-			autorizacionClasificaciones = obtenerReporteAutorizacionUsuarioClasificaciones(
-					codigoCompania, codigoClasificacion, user);
-			LOG_SICV2.info("funcionarios: {}",
-					autorizacionClasificaciones.size());
-
-			if (CollectionUtils.isNotEmpty(autorizacionClasificaciones)) {
+			
+			clasificacionesNum = obtenerReporteAutorizacionUsuarioClasificaciones(codigoCompania, codigoClasificacion, user, firstResult, maxResult);
+			
+			usuClasificacionesDTOCol= (Collection<UsuarioClasificacionProcesoDTO>) clasificacionesNum.get("clasificaciones");
+			
+			autorizacionClasificaciones= retornarClasificaciones(usuClasificacionesDTOCol);
+			numClasificaciones= (Integer)clasificacionesNum.get("cantidad");
+			
+			clasificacionesNum.clear();
+			
+			clasificacionesNum.put("numeroClasificaciones", numClasificaciones);
+			clasificacionesNum.put("coleccionClasificaciones", autorizacionClasificaciones);
+			
+			LOG_SICV2.info("funcionarios: {}", autorizacionClasificaciones.size());
+			
+			if (clasificacionesNum != null && clasificacionesNum.size()>0) {
 				datos = JsonPojoMapper.getInstance().writeValueAsString(
-						autorizacionClasificaciones);
+						clasificacionesNum);
 			}
 
 			headers = new HttpHeaders();
@@ -1065,18 +1052,27 @@ public class ProcesoAutorizacionUsuarios {
 		return new ResponseEntity<String>(datos, headers, HttpStatus.OK);
 	}
 
-	public Collection<UsuarioClasificacion> obtenerReporteAutorizacionUsuarioClasificaciones(
-			Integer codigoCompania, String codigoClasificacion, String user) {
+	public Map<String, Object> obtenerReporteAutorizacionUsuarioClasificaciones(
+			Integer codigoCompania, String codigoClasificacion, String user, Integer firstResult, Integer maxResult) {
+		
 		try {
-			Collection<UsuarioClasificacionProcesoDTO> usuClaCol = new ArrayList<UsuarioClasificacionProcesoDTO>();
+			Map<String, Object> clasificacionesNum= new HashMap<String, Object>();
+			Collection<UsuarioClasificacionProcesoDTO> usuClaDTOCol = new ArrayList<UsuarioClasificacionProcesoDTO>();
 			Collection<UsuarioClasificacion> clasificacionesCol = new ArrayList<ProcesoAutorizacionUsuarios.UsuarioClasificacion>();
+			Integer numeroClasificaciones;
 			if (codigoCompania != null) {
-				usuClaCol = SICFactory.getInstancia().articulo
+				clasificacionesNum = SICFactory.getInstancia().articulo
 						.getUsuarioAutorizacionServicio().reportesUsuarios(
-								codigoCompania, codigoClasificacion, user);
+								codigoCompania, codigoClasificacion, user, firstResult, maxResult);
+				
 			}
-			if (CollectionUtils.isNotEmpty(usuClaCol)) {
-				for (UsuarioClasificacionProcesoDTO clasificacion : usuClaCol) {
+			
+			usuClaDTOCol= 	(Collection<UsuarioClasificacionProcesoDTO>)clasificacionesNum.get("clasificaciones");
+			numeroClasificaciones = (Integer)clasificacionesNum.get("cantidad");
+			
+			if (CollectionUtils.isNotEmpty(usuClaDTOCol)) {
+				for (UsuarioClasificacionProcesoDTO clasificacion : usuClaDTOCol) {
+					
 					UsuarioClasificacion clasUsu = new UsuarioClasificacion();
 					clasUsu.setCodigoClasificacion(clasificacion.getId()
 							.getCodigoClasificacion());
@@ -1097,11 +1093,32 @@ public class ProcesoAutorizacionUsuarios {
 					clasificacionesCol.add(clasUsu);
 				}
 			}
-			return clasificacionesCol;
+			Map<String, Object> clasificacionesCant= new HashMap<String, Object>();
+			clasificacionesCant.put("cantidad", numeroClasificaciones);
+			clasificacionesCant.put("clasificaciones", usuClaDTOCol);
+			return clasificacionesCant;
 		} catch (Exception e) {
 			LOG_SICV2.error("Error: {}", e);
 			throw new SICException(e);
 		}
+	}
+	private Collection<UsuarioClasificacion> retornarClasificaciones(Collection<UsuarioClasificacionProcesoDTO> usuarioClasificacionesDTOColeccion){
+		Collection<UsuarioClasificacion> clasificacionesCol = new ArrayList<ProcesoAutorizacionUsuarios.UsuarioClasificacion>();
+		for (UsuarioClasificacionProcesoDTO usuClasificacionDTO : usuarioClasificacionesDTOColeccion) {
+			
+			UsuarioClasificacion usuarioCla= new UsuarioClasificacion();
+			usuarioCla.setCodigoClasificacion(usuClasificacionDTO.getId().getCodigoClasificacion());
+			usuarioCla.setCodigoCompania(usuClasificacionDTO.getId().getCodigoCompania());
+			usuarioCla.setCodigoProceso(usuClasificacionDTO.getCodigoProceso());
+			usuarioCla.setCodigoUsuario(usuClasificacionDTO.getId().getCodigoUsuario());
+			usuarioCla.setCodigoUsuarioClasificacion(usuClasificacionDTO.getCodigoUsuarioClasificacion());
+			usuarioCla.setDescripcionClasificacion(usuClasificacionDTO.getClasificacionDTO().getDescripcionClasificacion());
+			usuarioCla.setUserCompleteName(usuClasificacionDTO.getUserDTO().getUserCompleteName());
+			usuarioCla.setUserId(usuClasificacionDTO.getUserDTO().getUserId());
+			
+			clasificacionesCol.add(usuarioCla);
+		}
+		return clasificacionesCol;
 	}
 
 	public class UsuarioClasificacion {

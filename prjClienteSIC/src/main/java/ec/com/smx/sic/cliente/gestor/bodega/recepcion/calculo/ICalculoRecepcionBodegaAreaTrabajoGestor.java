@@ -70,13 +70,13 @@ public interface ICalculoRecepcionBodegaAreaTrabajoGestor {
 	 * @throws SICException
 	 */
 	public FuncionarioAreaTrabajoPerfilDTO obtenerFuncionarioAreaTrabajoPerfilPorUsuario(UserDto userDto) throws SICException ;
-	
+
 	/**
-	 * 
 	 * @param userDto
+	 * @param referenceCode
 	 * @return
 	 * @throws SICException
 	 */
-	public FuncionarioPerfilDTO obtenerFuncionarioPerfilPorUsuario(UserDto userDto) throws SICException ;
+	public FuncionarioPerfilDTO obtenerFuncionarioPerfilPorUsuario(UserDto userDto, String referenceCode) throws SICException ;
 	
 }

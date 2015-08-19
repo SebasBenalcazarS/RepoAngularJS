@@ -5,32 +5,23 @@ package ec.com.smx.sic.articulo.gestor.articulo.alcance.nosql.calculo;
 
 import static ec.com.smx.sic.cliente.common.SICConstantes.ESTADO_INACTIVO_NUMERICO;
 import static ec.com.smx.sic.cliente.common.nosql.articulo.ArticuloLocalFields.ESTADO_ARTICULO_LOCAL;
-import static ec.com.smx.sic.cliente.common.nosql.articulo.ArticuloLocalIndices.INDEX_ARTICULO_AREATRABAJO;
 import static ec.com.smx.sic.cliente.common.nosql.articulo.ArticuloLocalIndices.INDEX_AREATRABAJO_ARTICULO;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.Predicate;
-import org.apache.commons.collections.Transformer;
 
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
-import ec.com.smx.corpv2.dto.AreaTrabajoDTO;
-import ec.com.smx.framework.common.util.ClasesUtil;
 import ec.com.smx.framework.utilitario.nosql.common.exception.NoSQLException;
 import ec.com.smx.framework.utilitario.nosql.orientdb.SimpleOrientDocumentDbManager;
 import ec.com.smx.sic.cliente.common.Logeable;
-import ec.com.smx.sic.cliente.common.nosql.articulo.ArticuloLocalFields;
 import ec.com.smx.sic.cliente.exception.SICException;
 import ec.com.smx.sic.cliente.gestor.articulo.alcance.nosql.calculo.ICalculoArticuloAlcanceNoSqlGestor;
 import ec.com.smx.sic.cliente.mdl.dto.ArticuloAreaTrabajoBitacoraDTO;
-import ec.com.smx.sic.cliente.mdl.dto.ArticuloDTO;
-import ec.com.smx.sic.cliente.mdl.dto.ArticuloLocalDTO;
 import ec.com.smx.sic.cliente.persistencia.articulos.dao.IArticuloAlcanceDAO;
 import ec.com.smx.sic.cliente.persistencia.articulos.dao.nosql.IArticuloLocalODocumentDAO;
 
@@ -141,79 +132,79 @@ public class CalculoArticuloAlcanceNoSqlGestor implements ICalculoArticuloAlcanc
 		return estadoArticulo;
 	}
 	
-	/* (non-Javadoc)
-	 * @see ec.com.smx.sic.cliente.gestor.articulo.alcance.nosql.calculo.ICalculoArticuloAlcanceNoSqlGestor#obtenerAreasTrabajoAsignadas(ec.com.smx.sic.cliente.mdl.dto.ArticuloDTO, java.lang.Boolean)
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public Collection<ArticuloLocalDTO> obtenerAreasTrabajoAsignadas(ArticuloDTO articuloDTO, Boolean validarEstado) throws SICException {
-		
-		ODatabaseDocumentTx db = null;
-		Collection<ArticuloLocalDTO> coArticuloLocalDTO = new ArrayList<>();
-		
-		try {
-			
-			db = this.simpleOrientDocumentDbManager.getCurrentDatabaseFromPool();
-			
-			List<Object[]> listKey = new ArrayList<>();
-			listKey.add(new Object[] {articuloDTO.getId().getCodigoCompania(), articuloDTO.getId().getCodigoArticulo()});
-			Collection<ODocument> colODocumentIndiceArtLoc = this.articuloLocalODocumentDAO.obtenerIndiceLocalArticulo(INDEX_ARTICULO_AREATRABAJO, listKey);
-			
-			if (CollectionUtils.isNotEmpty(colODocumentIndiceArtLoc)) {
-				
-				Collection<Integer> colCodigoLocal = CollectionUtils.collect(colODocumentIndiceArtLoc, new Transformer() {
-					@Override
-					public Object transform(Object input) {
-						return Integer.valueOf(((ODocument)input).field(ArticuloLocalFields.CODIGO_LOCAL).toString());
-					}
-				});
-				
-				Collection<AreaTrabajoDTO>  colAreaTrabajoDTO = this.articuloAlcanceDAO.consultarDatosAreaTrabajo(
-						articuloDTO.getId().getCodigoCompania(), colCodigoLocal.toArray(new Integer[colCodigoLocal.size()]));
-				
-				this.mapearValoresODocument(coArticuloLocalDTO, colAreaTrabajoDTO, colODocumentIndiceArtLoc);
-				
-			}
-			
-		} finally {
-			
-			if (db != null) {
-				db.close();
-			}
-			
-		}
-		
-		return coArticuloLocalDTO;
-	}
+//	/* (non-Javadoc)
+//	 * @see ec.com.smx.sic.cliente.gestor.articulo.alcance.nosql.calculo.ICalculoArticuloAlcanceNoSqlGestor#obtenerAreasTrabajoAsignadas(ec.com.smx.sic.cliente.mdl.dto.ArticuloDTO, java.lang.Boolean)
+//	 */
+//	@Override
+//	@SuppressWarnings("unchecked")
+//	public Collection<ArticuloLocalDTO> obtenerAreasTrabajoAsignadas(ArticuloDTO articuloDTO, Boolean validarEstado) throws SICException {
+//		
+//		ODatabaseDocumentTx db = null;
+//		Collection<ArticuloLocalDTO> coArticuloLocalDTO = new ArrayList<>();
+//		
+//		try {
+//			
+//			db = this.simpleOrientDocumentDbManager.getCurrentDatabaseFromPool();
+//			
+//			List<Object[]> listKey = new ArrayList<>();
+//			listKey.add(new Object[] {articuloDTO.getId().getCodigoCompania(), articuloDTO.getId().getCodigoArticulo()});
+//			Collection<ODocument> colODocumentIndiceArtLoc = this.articuloLocalODocumentDAO.obtenerIndiceLocalArticulo(INDEX_ARTICULO_AREATRABAJO, listKey);
+//			
+//			if (CollectionUtils.isNotEmpty(colODocumentIndiceArtLoc)) {
+//				
+//				Collection<Integer> colCodigoLocal = CollectionUtils.collect(colODocumentIndiceArtLoc, new Transformer() {
+//					@Override
+//					public Object transform(Object input) {
+//						return Integer.valueOf(((ODocument)input).field(ArticuloLocalFields.CODIGO_LOCAL).toString());
+//					}
+//				});
+//				
+//				Collection<AreaTrabajoDTO>  colAreaTrabajoDTO = this.articuloAlcanceDAO.consultarDatosAreaTrabajo(
+//						articuloDTO.getId().getCodigoCompania(), colCodigoLocal.toArray(new Integer[colCodigoLocal.size()]));
+//				
+//				this.mapearValoresODocument(coArticuloLocalDTO, colAreaTrabajoDTO, colODocumentIndiceArtLoc);
+//				
+//			}
+//			
+//		} finally {
+//			
+//			if (db != null) {
+//				db.close();
+//			}
+//			
+//		}
+//		
+//		return coArticuloLocalDTO;
+//	}
 	
 	
-	private void mapearValoresODocument (Collection<ArticuloLocalDTO> coArticuloLocalDTO, 
-			Collection<AreaTrabajoDTO>  colAreaTrabajoDTO, Collection<ODocument> colODocumentIndiceArtLoc) {
-		
-		for (ODocument oDocument : colODocumentIndiceArtLoc) {
-			ArticuloLocalDTO articuloLocal = new ArticuloLocalDTO();
-			articuloLocal.getId().setCodigoCompania(Integer.valueOf(oDocument.field(ArticuloLocalFields.CODIGO_COMPANIA).toString()));
-			articuloLocal.getId().setCodigoArticulo(oDocument.field(ArticuloLocalFields.CODIGO_ARTICULO).toString());
-			articuloLocal.getId().setCodigoLocal(Integer.valueOf(oDocument.field(ArticuloLocalFields.CODIGO_LOCAL).toString()));
-			articuloLocal.setEstadoArticuloLocal(oDocument.field(ArticuloLocalFields.ESTADO_ARTICULO_LOCAL).toString());
-			articuloLocal.setFechaInicialAlcance((Date) oDocument.field(ArticuloLocalFields.FECHA_INICIAL_ALCANCE));
-			articuloLocal.setFechaFinalAlcance((Date) oDocument.field(ArticuloLocalFields.FECHA_FINAL_ALCANCE));
-			this.asignarAreaTrabajo(colAreaTrabajoDTO, articuloLocal, articuloLocal.getId().getCodigoLocal());
-			coArticuloLocalDTO.add(articuloLocal);
-			articuloLocal = null;
-		}
-		
-	}
-	
-	private void asignarAreaTrabajo (Collection<AreaTrabajoDTO>  colAreaTrabajoDTO, ArticuloLocalDTO articuloLocal, final Integer codigoAreaTrabajo) {
-		AreaTrabajoDTO areaTrabajoDTO = (AreaTrabajoDTO) CollectionUtils.find(colAreaTrabajoDTO, new Predicate() {
-			@Override
-			public boolean evaluate(Object object) {
-				return Integer.valueOf(ClasesUtil.invocarMetodoGet(object, "id.codigoAreaTrabajo").toString()).intValue() == codigoAreaTrabajo.intValue();
-			}
-		});
-		
-		articuloLocal.setLocal(areaTrabajoDTO);
-	}
+//	private void mapearValoresODocument (Collection<ArticuloLocalDTO> coArticuloLocalDTO, 
+//			Collection<AreaTrabajoDTO>  colAreaTrabajoDTO, Collection<ODocument> colODocumentIndiceArtLoc) {
+//		
+//		for (ODocument oDocument : colODocumentIndiceArtLoc) {
+//			ArticuloLocalDTO articuloLocal = new ArticuloLocalDTO();
+//			articuloLocal.getId().setCodigoCompania(Integer.valueOf(oDocument.field(ArticuloLocalFields.CODIGO_COMPANIA).toString()));
+//			articuloLocal.getId().setCodigoArticulo(oDocument.field(ArticuloLocalFields.CODIGO_ARTICULO).toString());
+//			articuloLocal.getId().setCodigoLocal(Integer.valueOf(oDocument.field(ArticuloLocalFields.CODIGO_LOCAL).toString()));
+//			articuloLocal.setEstadoArticuloLocal(oDocument.field(ArticuloLocalFields.ESTADO_ARTICULO_LOCAL).toString());
+//			articuloLocal.setFechaInicialAlcance((Date) oDocument.field(ArticuloLocalFields.FECHA_INICIAL_ALCANCE));
+//			articuloLocal.setFechaFinalAlcance((Date) oDocument.field(ArticuloLocalFields.FECHA_FINAL_ALCANCE));
+//			this.asignarAreaTrabajo(colAreaTrabajoDTO, articuloLocal, articuloLocal.getId().getCodigoLocal());
+//			coArticuloLocalDTO.add(articuloLocal);
+//			articuloLocal = null;
+//		}
+//		
+//	}
+//	
+//	private void asignarAreaTrabajo (Collection<AreaTrabajoDTO>  colAreaTrabajoDTO, ArticuloLocalDTO articuloLocal, final Integer codigoAreaTrabajo) {
+//		AreaTrabajoDTO areaTrabajoDTO = (AreaTrabajoDTO) CollectionUtils.find(colAreaTrabajoDTO, new Predicate() {
+//			@Override
+//			public boolean evaluate(Object object) {
+//				return Integer.valueOf(ClasesUtil.invocarMetodoGet(object, "id.codigoAreaTrabajo").toString()).intValue() == codigoAreaTrabajo.intValue();
+//			}
+//		});
+//		
+//		articuloLocal.setLocal(areaTrabajoDTO);
+//	}
 	
 }

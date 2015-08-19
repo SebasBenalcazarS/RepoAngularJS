@@ -12,6 +12,7 @@ import ec.com.smx.sic.cliente.mdl.dto.ProveedorDTO;
 import ec.com.smx.sic.cliente.mdl.dto.ProveedorOficinaExteriorDTO;
 import ec.com.smx.sic.cliente.mdl.dto.VistaEmpresaParticipanteDTO;
 import ec.com.smx.sic.cliente.mdl.dto.VistaEmpresaParticipantePromocionDTO;
+import ec.com.smx.sic.cliente.mdl.dto.id.ProveedorID;
 
 /**
  * @author srodriguez 
@@ -71,7 +72,7 @@ public interface IVistaEmpresaParticipanteDAO {
 	
 	ProveedorDTO findProveedorPorVistaEmpresaParticipante(final Integer codigoCompania, final VistaEmpresaParticipanteDTO vistaEmpresaParticipanteDTO) throws SICException;
 	
-	ProveedorOficinaExteriorDTO findProveedoresOficinaExteriorPorCodigoProveedor(final Integer codigoCompania, final String codigoProveedor) throws SICException;
+	ProveedorOficinaExteriorDTO findProveedoresOficinaExteriorDefaultFacturablePorCodigoProveedor(final Integer codigoCompania, final String codigoProveedor) throws SICException;
 	
 	ClienteDTO findClienteFacturacionPorVistaEmpresaParticipante(final Integer codigoCompania, final VistaEmpresaParticipanteDTO vistaEmpresaParticipanteDTO) throws SICException; 
 	
@@ -87,4 +88,10 @@ public interface IVistaEmpresaParticipanteDAO {
 	 */
 	Collection<VistaEmpresaParticipanteDTO> findEmpresaParticipantesMejorada(Integer codigoCompania, Long codigoJDE, String numeroDocumentoParticipante, String nombreParticipante);
 	
+	/**
+	 *  Metodo que devuelve el codigo de proveedor en el caso de que sea un proveedor Importado
+	 * @return
+	 * @throws SICException
+	 */
+	Collection<String> findProveedorImportado(Integer codigoCompania, Collection<String>  codigoProveedorCol) throws SICException;
 }

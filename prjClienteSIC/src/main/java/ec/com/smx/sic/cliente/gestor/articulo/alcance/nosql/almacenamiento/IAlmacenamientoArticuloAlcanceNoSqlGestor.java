@@ -87,32 +87,41 @@ public interface IAlmacenamientoArticuloAlcanceNoSqlGestor {
 	 * @throws SICException
 	 * @author bymontesdeoca
 	 */
-	void executeAlcanceArticulos(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSql) throws SICException;
+	void executeAlcanceArticulos(ArticuloAreaTrabajoNoSqlDTO ... colArtAreTraNoSql) throws SICException;
 	
 	/**
-	 * Registra, quita y actualiza alcances
-	 * @param colArtAreTraNoSql
+	 * Registra, quita y actualiza alcances para un mismo articulo con diferentes atributos de fechas de alcance  
+	 * @param artAreTraNoSql
 	 * @throws SICException
 	 * @author bymontesdeoca
 	 */
-	void executeAlcanceArticulos(Collection<ArticuloAreaTrabajoNoSqlDTO> colArtAreTraNoSql) throws SICException;
+	void executeAlcanceArticulos(String codigoArticulo,ArticuloAreaTrabajoNoSqlDTO ... colArtAreTraNoSql) throws SICException;
+	
+	
+//	/**
+//	 * Registra, quita y actualiza alcances
+//	 * @param colArtAreTraNoSql
+//	 * @throws SICException
+//	 * @author bymontesdeoca
+//	 */
+//	void executeAlcanceArticulos(Collection<ArticuloAreaTrabajoNoSqlDTO> colArtAreTraNoSql) throws SICException;
 
 	
-	/**
-	 * registra los alcances a partir del objeto de tipo ArticuloAreaTrabajoNoSqlDTO
-	 * @param artAreTraNoSql
-	 * @throws SICException
-	 * @author bymontesdeoca
-	 */
-	void registrarAlcance(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSql) throws SICException;
+//	/**
+//	 * registra los alcances a partir del objeto de tipo ArticuloAreaTrabajoNoSqlDTO
+//	 * @param artAreTraNoSql
+//	 * @throws SICException
+//	 * @author bymontesdeoca
+//	 */
+//	void registrarAlcance(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSql) throws SICException;
 	
-	/**
-	 * Quita los alcances a partir del objeto de tipo ArticuloAreaTrabajoNoSqlDTO
-	 * @param artAreTraNoSql
-	 * @throws SICException
-	 * @author bymontesdeoca
-	 */
-	void quitarAlcance(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSql) throws SICException;
+//	/**
+//	 * Quita los alcances a partir del objeto de tipo ArticuloAreaTrabajoNoSqlDTO
+//	 * @param artAreTraNoSql
+//	 * @throws SICException
+//	 * @author bymontesdeoca
+//	 */
+//	void quitarAlcance(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSql) throws SICException;
 	
 	
 	/**
@@ -157,4 +166,17 @@ public interface IAlmacenamientoArticuloAlcanceNoSqlGestor {
 	 * @throws SICException
 	 */
 	void copiarAlcances(ArticuloAreaTrabajoNoSqlDTO artAreTraNoSql,Integer codLocalOrigen) throws SICException;	
+	
+	/**
+	 * metodo que busca los articulos q se encuentran registrado alcance para una area de trabajo.  
+	 * @param codCompania
+	 * @param tipAreTra : 'OFI'/'LOC'/'BOD'
+	 * @param codigoAreaTrabajo
+	 * @param estado : 1(activo), 0(inactivo), null (activos e inactivos) 
+	 * @return List de tipo ArticuloLocalDTO
+	 * @throws SICException
+	 */
+	List<ArticuloLocalDTO> findAlcanceAreaTrabajo(Integer codCompania,String tipAreTra,Integer codigoAreaTrabajo,Integer estado) throws SICException;	
+	
+	void validateCreateIndexAlcances() throws SICException;
 }

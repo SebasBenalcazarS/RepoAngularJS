@@ -22,6 +22,41 @@ import ec.com.smx.sic.cliente.mdl.dto.articulo.nosql.ArticuloAreaTrabajoNoSqlDTO
  */
 public interface IArticuloAlcanceNoSqlDAO {
 	
+	// Migracion de datos
+	
+	/**
+	 * 
+	 * @param iClusterName
+	 * @param colODocumentArticuloLocal
+	 * @throws SICException
+	 */
+	void registrarArticuloLocalDocument(String iClusterName, Collection<ODocument> colODocumentArticuloLocal) throws SICException;
+	
+	/**
+	 * 
+	 * @param iClusterName
+	 * @param oDocumentArticuloLocal
+	 * @throws SICException
+	 */
+	void registrarArticuloLocalDocument(String iClusterName, ODocument oDocumentArticuloLocal) throws SICException;
+	
+	/**
+	 * 
+	 * @param iClusterName
+	 * @param colODocumentArticuloLocal
+	 * @throws SICException
+	 */
+	void registrarArticuloLocalBitacoraDocument(String iClusterName, Collection<ODocument> colODocumentArticuloAreaTrabajoBitacora) throws SICException;
+	
+	/**
+	 * 
+	 * @param iClusterName
+	 * @param oDocumentArticuloLocal
+	 * @throws SICException
+	 */
+	void registrarArticuloLocalBitacoraDocument(String iClusterName, ODocument oDocumentArticuloAreaTrabajoBitacora) throws SICException;
+	
+	// Fin migracion de datos
 	
 	void validateCreateIndexAlcances(ODatabaseDocumentTx db) throws SICException;
 	
@@ -72,7 +107,7 @@ public interface IArticuloAlcanceNoSqlDAO {
 	 * @throws SICException
 	 */
 //	void registrarIndicesArticuloAreatrabajo(ODatabaseDocumentTx db,Integer codigoCompania,String codigoArticulo,Integer codigoAreatrabajo,String tipAreTra,ORID ridArticuloLocalDTO) throws SICException;
-	void registrarIndicesArticuloAreatrabajo(ODatabaseDocumentTx db,ODocument oDocArticuloLocalDTO) throws SICException;	
+	void registrarIndicesArticuloAreatrabajo(ODatabaseDocumentTx db, ODocument ... colODocArticuloLocalDTO) throws SICException;	
 
 	
 	/**
@@ -95,7 +130,7 @@ public interface IArticuloAlcanceNoSqlDAO {
 	 * @throws SICException
 	 */
 	//void registrarIndicesArticuloAreatrabajoBitacora(ODatabaseDocumentTx db,Integer codigoCompania,String codigoArticulo,Integer codigoAreatrabajo,String tipAreTra,ORID ridBitacoraDTO) throws SICException;
-	void registrarIndicesArticuloAreatrabajoBitacora(ODatabaseDocumentTx db,ODocument articuloAreaTrabajoBitacoraDTO) throws SICException;
+	void registrarIndicesArticuloAreatrabajoBitacora(ODatabaseDocumentTx db, ODocument ... colODocArticuloAreaTrabajoBitacoraDTO) throws SICException;
 	
 	
 
@@ -189,6 +224,18 @@ public interface IArticuloAlcanceNoSqlDAO {
 	void borrarRegistrarIndiceFechaIniAlcRidArtLoc(ODatabaseDocumentTx db,ODocument artAreTraSaved,ODocument artAreTraUpdate) throws SICException;
 	
 	void borrarRegistrarIndiceFechaFinAlcRidArtLoc(ODatabaseDocumentTx db,ODocument artAreTraSaved,ODocument artAreTraUpdate) throws SICException;
+	
+	/**
+	 * metodo que busca los articulos q se encuentran registrado alcance para una area de trabajo.  
+	 * @param codCompania
+	 * @param tipAreTra : 'OFI'/'LOC'/'BOD'
+	 * @param codigoAreaTrabajo
+	 * @param estado : 1(activo), 0(inactivo), null (activos e inactivos) 
+	 * @return List de tipo ArticuloLocalDTO
+	 * @throws SICException
+	 */
+	List<ArticuloLocalDTO> findAlcanceAreaTrabajo(Integer codCompania,String tipAreTra,Integer codigoAreaTrabajo,Integer estado) throws SICException;
+	
 }
 
 

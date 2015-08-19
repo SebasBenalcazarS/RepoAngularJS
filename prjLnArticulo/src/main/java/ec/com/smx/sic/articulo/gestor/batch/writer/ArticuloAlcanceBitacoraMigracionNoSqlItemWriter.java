@@ -8,7 +8,7 @@ import org.springframework.batch.item.ItemWriter;
 
 import ec.com.kruger.utilitario.dao.commons.dto.SearchDTO;
 import ec.com.smx.sic.cliente.common.Logeable;
-import ec.com.smx.sic.cliente.gestor.articulo.alcance.nosql.almacenamiento.IAlmacenamientoArticuloAlcanceNoSqlGestor;
+import ec.com.smx.sic.cliente.common.factory.SICFactory;
 import ec.com.smx.sic.cliente.mdl.dto.ArticuloAreaTrabajoBitacoraDTO;
 
 /**
@@ -19,19 +19,19 @@ import ec.com.smx.sic.cliente.mdl.dto.ArticuloAreaTrabajoBitacoraDTO;
  */
 public class ArticuloAlcanceBitacoraMigracionNoSqlItemWriter<T extends SearchDTO> implements ItemWriter<ArticuloAreaTrabajoBitacoraDTO>, Logeable {
 	
-	private IAlmacenamientoArticuloAlcanceNoSqlGestor almacenamientoArticuloAlcanceNoSqlGestor;
+//	private IAlmacenamientoArticuloAlcanceNoSqlGestor almacenamientoArticuloAlcanceNoSqlGestor;
 	private Integer codigoCompania;
 	/**
 	 * Sufijo de la tabla de donde se va consultar los datos OFI, LOC, BOD
 	 */
 	private String sufijoTabla;
 	
-	/**
-	 * @param almacenamientoArticuloAlcanceNoSqlGestor the almacenamientoArticuloAlcanceNoSqlGestor to set
-	 */
-	public void setAlmacenamientoArticuloAlcanceNoSqlGestor(IAlmacenamientoArticuloAlcanceNoSqlGestor almacenamientoArticuloAlcanceNoSqlGestor) {
-		this.almacenamientoArticuloAlcanceNoSqlGestor = almacenamientoArticuloAlcanceNoSqlGestor;
-	}
+//	/**
+//	 * @param almacenamientoArticuloAlcanceNoSqlGestor the almacenamientoArticuloAlcanceNoSqlGestor to set
+//	 */
+//	public void setAlmacenamientoArticuloAlcanceNoSqlGestor(IAlmacenamientoArticuloAlcanceNoSqlGestor almacenamientoArticuloAlcanceNoSqlGestor) {
+//		this.almacenamientoArticuloAlcanceNoSqlGestor = almacenamientoArticuloAlcanceNoSqlGestor;
+//	}
 
 	/**
 	 * @param codigoCompania the codigoCompania to set
@@ -58,7 +58,9 @@ public class ArticuloAlcanceBitacoraMigracionNoSqlItemWriter<T extends SearchDTO
 			LOG_SICV2.info("Total ArticuloAreaTrabajoBitacoraDTO a procesar {}", objetoCol.size());
 			
 			Collection<ArticuloAreaTrabajoBitacoraDTO> colArticuloAreaTrabajoBitacoraDTO = (Collection<ArticuloAreaTrabajoBitacoraDTO>) objetoCol;
-			this.almacenamientoArticuloAlcanceNoSqlGestor.migrarArticuloLocalBitacora(this.codigoCompania, colArticuloAreaTrabajoBitacoraDTO, this.sufijoTabla);
+//			this.almacenamientoArticuloAlcanceNoSqlGestor.migrarArticuloLocalBitacora(this.codigoCompania, colArticuloAreaTrabajoBitacoraDTO, this.sufijoTabla);
+			SICFactory.getInstancia().articulo.getArticuloAlcanceNoSqlServicio().
+					findMigrarArticuloAreaTrabajoBitacoraWriter(this.codigoCompania, colArticuloAreaTrabajoBitacoraDTO, this.sufijoTabla);
 		}
 		
 	}

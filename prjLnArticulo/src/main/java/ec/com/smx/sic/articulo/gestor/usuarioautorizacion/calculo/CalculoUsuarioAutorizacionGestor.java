@@ -209,10 +209,23 @@ public class CalculoUsuarioAutorizacionGestor implements ICalculoUsuarioAutoriza
 		}
 	}
 	
-	@Override
-	public Collection<UsuarioClasificacionProcesoDTO> reportesUsuarios(Integer codigoCompania, String codigoclasificacion, String user)throws SICException{
+	@Override 
+	public  Map<String, Object> reportesUsuarios(Integer codigoCompania, String codigoclasificacion, String user, Integer firstResult, Integer maxResult)throws SICException{
+		//Collection<UsuarioClasificacionProcesoDTO>
+		Integer numCla=0;
+		Boolean paginador = Boolean.FALSE; 
+		Collection<UsuarioClasificacionProcesoDTO> clasificaciones;
 		try {
-			return usuarioClasificacionProcesoDAO.reportesUsuarios(codigoCompania, codigoclasificacion, user);
+			numCla= usuarioClasificacionProcesoDAO.cuentaClasificaciones(codigoCompania, codigoclasificacion, user, firstResult, maxResult);
+			if(maxResult < numCla){
+				paginador= Boolean.TRUE;
+			}
+			clasificaciones= usuarioClasificacionProcesoDAO.reportesUsuarios(codigoCompania, codigoclasificacion, user, firstResult, maxResult, paginador);
+			//return usuarioClasificacionProcesoDAO.reportesUsuarios(codigoCompania, codigoclasificacion, user, firstResult, maxResult, paginador);
+			Map<String, Object> articulosNum= new HashMap<String, Object>();
+			articulosNum.put("cantidad", numCla);
+			articulosNum.put("clasificaciones", clasificaciones);
+		return articulosNum;
 		} catch (SICException e) {
 			Logeable.LOG_SICV2.info("Error al buscar reportesUsuarios ");
 			throw new SICException("Error al buscar reportesUsuarios ",e);

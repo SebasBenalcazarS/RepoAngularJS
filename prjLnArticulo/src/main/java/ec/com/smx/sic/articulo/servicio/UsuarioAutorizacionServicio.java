@@ -61,8 +61,8 @@ public class UsuarioAutorizacionServicio implements IUsuarioAutorizacionServicio
 	}
 	
 	@Override
-	public Collection<UsuarioClasificacionProcesoDTO> reportesUsuarios(Integer codigoCompania, String codigoclasificacion, String user)throws SICException{
-		return calculoUsuarioAutorizacionGestor.reportesUsuarios(codigoCompania, codigoclasificacion,  user);
+	public Map<String, Object> reportesUsuarios(Integer codigoCompania, String codigoclasificacion, String user, Integer firstResult, Integer maxResult)throws SICException{
+		return calculoUsuarioAutorizacionGestor.reportesUsuarios(codigoCompania, codigoclasificacion,  user, firstResult, maxResult);
 	}
 	
 	@Override

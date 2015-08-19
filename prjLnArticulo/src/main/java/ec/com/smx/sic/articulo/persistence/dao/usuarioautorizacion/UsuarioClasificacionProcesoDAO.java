@@ -74,7 +74,61 @@ public class UsuarioClasificacionProcesoDAO implements IUsuarioClasificacionProc
 	}
 	
 	@Override
-	public Collection<UsuarioClasificacionProcesoDTO> reportesUsuarios(Integer codigoCompania, String codigoclasificacion, String user)throws SICException{
+	public  Integer cuentaClasificaciones(Integer codigoCompania, String codigoclasificacion, String user, Integer firstResult, Integer maxResult)throws SICException{
+		Logeable.LOG_SICV2.info("Metodo : cuentaClasficaciones");
+		Logeable.LOG_SICV2.info("Parametros : ");
+		Logeable.LOG_SICV2.info("codigo compania: "+codigoCompania);
+		Logeable.LOG_SICV2.info("codigo clasificacion: "+codigoclasificacion);
+		Logeable.LOG_SICV2.info("user: "+user);
+		try {
+			this.sessionFactory.getCurrentSession().clear();
+			
+			Criteria criteria = this.sessionFactory.getCurrentSession().createCriteria(UsuarioClasificacionProcesoDTO.class);
+			
+			
+			criteria.createAlias("clasificacionDTO", "cla");
+			criteria.createAlias("userDTO", "user");
+			
+			criteria.setProjection(Projections.projectionList()
+					.add(Projections.property("codigoUsuarioClasificacion"),"codigoUsuarioClasificacion")
+					.add(Projections.property("codigoProceso"),"codigoProceso")
+					.add(Projections.property("id.codigoClasificacion"),"id.codigoClasificacion")
+					.add(Projections.property("id.codigoUsuario"),"id.codigoUsuario")
+					.add(Projections.property("cla.descripcionClasificacion"),"clasificacionDTO.descripcionClasificacion")
+					.add(Projections.property("cla.id.codigoCompania"),"clasificacionDTO.id.codigoCompania")
+					.add(Projections.property("cla.id.codigoClasificacion"),"clasificacionDTO.id.codigoClasificacion")
+					.add(Projections.property("user.userId"),"userDTO.userId")
+					.add(Projections.property("user.userCompleteName"),"userDTO.userCompleteName"));
+			
+			criteria.add(Restrictions.eq("id.codigoCompania",codigoCompania));
+			criteria.add(Restrictions.eq("estado", SICConstantes.ESTADO_ACTIVO_NUMERICO));
+			if(StringUtils.isNotBlank(codigoclasificacion)){
+				criteria.add(Restrictions.eq("id.codigoClasificacion",codigoclasificacion));
+			}
+			
+			 if(StringUtils.isNotBlank(user)){
+				 Disjunction disjunction = Restrictions.disjunction();
+				 disjunction.add(Restrictions.ilike("user.userCompleteName",user, MatchMode.ANYWHERE));
+				 disjunction.add(Restrictions.ilike("user.userId",user, MatchMode.ANYWHERE));
+				 criteria.add(disjunction);
+			}
+			
+			
+			
+			//restricccionArticulo(criteria, articuloVO, userId, codigoArticulosCol, codigoClasificacionAsignadasCol);
+			
+			criteria.setProjection(Projections.rowCount());
+			Long count = (Long)criteria.uniqueResult(); 
+			Integer numReg = count.intValue();
+			return numReg;
+		} catch (SICException e) {
+			Logeable.LOG_SICV2.info("Error al buscar cuentaArticulos ");
+			throw new SICException("Error al buscar cuentaClasificaciones ",e);
+		}
+	}
+	
+	@Override
+	public Collection<UsuarioClasificacionProcesoDTO> reportesUsuarios(Integer codigoCompania, String codigoclasificacion, String user, Integer firstResult, Integer maxResult, Boolean paginador)throws SICException{
 		try {
 			Criteria criteria = this.sessionFactory.getCurrentSession().createCriteria(UsuarioClasificacionProcesoDTO.class);
 			
@@ -91,6 +145,10 @@ public class UsuarioClasificacionProcesoDAO implements IUsuarioClasificacionProc
 					.add(Projections.property("cla.id.codigoClasificacion"),"clasificacionDTO.id.codigoClasificacion")
 					.add(Projections.property("user.userId"),"userDTO.userId")
 					.add(Projections.property("user.userCompleteName"),"userDTO.userCompleteName"));
+			if(paginador){
+				criteria.setMaxResults(maxResult);
+				criteria.setFirstResult(firstResult);
+			}
 			
 			criteria.add(Restrictions.eq("id.codigoCompania",codigoCompania));
 			criteria.add(Restrictions.eq("estado", SICConstantes.ESTADO_ACTIVO_NUMERICO));

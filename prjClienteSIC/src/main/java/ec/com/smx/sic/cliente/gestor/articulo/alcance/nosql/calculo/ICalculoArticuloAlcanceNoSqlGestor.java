@@ -7,8 +7,6 @@ import java.util.Collection;
 
 import ec.com.smx.sic.cliente.exception.SICException;
 import ec.com.smx.sic.cliente.mdl.dto.ArticuloAreaTrabajoBitacoraDTO;
-import ec.com.smx.sic.cliente.mdl.dto.ArticuloDTO;
-import ec.com.smx.sic.cliente.mdl.dto.ArticuloLocalDTO;
 
 /**
  * @author wcaiza
@@ -47,13 +45,13 @@ public interface ICalculoArticuloAlcanceNoSqlGestor {
 	 */
 	Integer verificarHayArticuloEnLocal (Integer codigoCompania, Integer codigoLocal, String codigoArticulo) throws SICException;
 	
-	/**
-	 * Permite consultar las areas de trabajo en las que el {@link ArticuloDTO} tiene alcance
-	 * @param articuloDTO
-	 * @param validarEstado <code>TRUE</code> si debe obtener solo los registros en estado activo, <code>FALSE</code> no se valida el estado
-	 * @return
-	 * @throws SICException
-	 */
-	Collection<ArticuloLocalDTO> obtenerAreasTrabajoAsignadas(ArticuloDTO articuloDTO, Boolean validarEstado) throws SICException;
+//	/**
+//	 * Permite consultar las areas de trabajo en las que el {@link ArticuloDTO} tiene alcance
+//	 * @param articuloDTO
+//	 * @param validarEstado <code>TRUE</code> si debe obtener solo los registros en estado activo, <code>FALSE</code> no se valida el estado
+//	 * @return
+//	 * @throws SICException
+//	 */
+//	Collection<ArticuloLocalDTO> obtenerAreasTrabajoAsignadas(ArticuloDTO articuloDTO, Boolean validarEstado) throws SICException;
 
 }

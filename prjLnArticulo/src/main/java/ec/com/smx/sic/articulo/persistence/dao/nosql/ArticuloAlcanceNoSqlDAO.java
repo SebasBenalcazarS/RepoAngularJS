@@ -45,8 +45,6 @@ import ec.com.smx.sic.cliente.persistencia.articulos.dao.nosql.IArticuloAlcanceN
  * @author bymontesdeoca
  */
 public class ArticuloAlcanceNoSqlDAO implements IArticuloAlcanceNoSqlDAO, Logeable {
-
-	
 	
 	private OCompositeKey articuloAreaTrabajoKey =  new OCompositeKey();
 	private OCompositeKey areaTrabajoArticuloKey =  new OCompositeKey();
@@ -58,7 +56,69 @@ public class ArticuloAlcanceNoSqlDAO implements IArticuloAlcanceNoSqlDAO, Logeab
 	private	OCompositeKey fecFinKeyDelete =  new OCompositeKey();
 	private OCompositeKey artEstKey =  new OCompositeKey();
 	private OCompositeKey estArtKey =  new OCompositeKey();
+	
+	// Migracion de datos
+	
+	/* (non-Javadoc)
+	 * @see ec.com.smx.sic.cliente.persistencia.articulos.dao.nosql.IArticuloLocalODocumentDAO#registrarArticuloLocalDocument(java.lang.String, java.util.Collection)
+	 */
+	@Override
+	public void registrarArticuloLocalDocument(String iClusterName, Collection<ODocument> colODocumentArticuloLocal) throws SICException {
+		try {
+			
+			for (ODocument oDocumentArticuloLocal : colODocumentArticuloLocal) {
+				this.registrarArticuloLocalDocument(iClusterName, oDocumentArticuloLocal);
+			}
+			
+		} catch (SICException e) {
+			LOG_SICV2.error("Error al ejecutar registrarArticuloLocalDocument: {}", e.toString());
+			throw e;
+		}
+	}
 
+	/* (non-Javadoc)
+	 * @see ec.com.smx.sic.cliente.persistencia.articulos.dao.nosql.IArticuloLocalODocumentDAO#registrarArticuloLocalDocument(java.lang.String, com.orientechnologies.orient.core.record.impl.ODocument)
+	 */
+	@Override
+	public void registrarArticuloLocalDocument(String iClusterName, ODocument oDocumentArticuloLocal) throws SICException {
+		try {
+			oDocumentArticuloLocal.save(iClusterName);
+		} catch (Exception e) {
+			throw new SICException(e);
+		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see ec.com.smx.sic.cliente.persistencia.articulos.dao.nosql.IArticuloAreaTrabajoBitacoraODocumentDAO#registrarArticuloLocalBitacoraDocument(java.lang.String, java.util.Collection)
+	 */
+	@Override
+	public void registrarArticuloLocalBitacoraDocument(String iClusterName, Collection<ODocument> colODocumentArticuloAreaTrabajoBitacora) throws SICException {
+		try {
+			
+			for (ODocument oDocumentArticuloArticuloAreaBitacora : colODocumentArticuloAreaTrabajoBitacora) {
+				this.registrarArticuloLocalBitacoraDocument(iClusterName, oDocumentArticuloArticuloAreaBitacora);
+			}
+			
+		} catch (SICException e) {
+			LOG_SICV2.error("Error al ejecutar registrarArticuloLocalDocument: {}", e.toString());
+			throw e;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see ec.com.smx.sic.cliente.persistencia.articulos.dao.nosql.IArticuloAreaTrabajoBitacoraODocumentDAO#registrarArticuloLocalBitacoraDocument(java.lang.String, com.orientechnologies.orient.core.record.impl.ODocument)
+	 */
+	@Override
+	public void registrarArticuloLocalBitacoraDocument(String iClusterName, ODocument oDocumentArticuloArticuloAreaBitacora) throws SICException {
+		try {
+			oDocumentArticuloArticuloAreaBitacora.save(iClusterName);
+		} catch (Exception e) {
+			throw new SICException(e);
+		}
+	}
+	
+	// Fin Migracion de datos
+	
 	@Override
 	public void validateCreateIndexAlcances(ODatabaseDocumentTx db) throws SICException {
 		try {
@@ -73,8 +133,10 @@ public class ArticuloAlcanceNoSqlDAO implements IArticuloAlcanceNoSqlDAO, Logeab
 			
 			//bitacoraArticuloLocalDTO
 			IndiceArticuloAlcanceNoSql.getInstancia().getIndiceBitRidArtLocRidBitArt(db);
-			ArticuloAlcanceIndexNoSqlUtil.getIndiceBitacoraAreaTrabajoArticulo(db);
-			ArticuloAlcanceIndexNoSqlUtil.getIndiceBitacoraArticuloAreaTrabajo(db);
+//			ArticuloAlcanceIndexNoSqlUtil.getIndiceBitacoraAreaTrabajoArticulo(db);
+//			ArticuloAlcanceIndexNoSqlUtil.getIndiceBitacoraArticuloAreaTrabajo(db);
+			IndiceArticuloAlcanceNoSql.getInstancia().getIndiceBitacoraAreaTrabajoArticulo(db);
+			IndiceArticuloAlcanceNoSql.getInstancia().getIndiceBitacoraArticuloAreaTrabajo(db);
 			
 			// articuloEstablecimientoDTO
 			IndiceArticuloAlcanceNoSql.getInstancia().getIndiceEstablecimientoArticulo(db);
@@ -247,6 +309,7 @@ public class ArticuloAlcanceNoSqlDAO implements IArticuloAlcanceNoSqlDAO, Logeab
 			// actualiza el alcance en articuloLocalDTO
 			String clusterName=ArticuloAlcanceNoSqlUtil.obtenerNombreClusterArticuloLocal(EnumClasesArticuloAlcanceNoSql.ArticuloLocalDTO.getName(),codAreTra);
 			ODocumentUtil.addClusterToClass(db, EnumClasesArticuloAlcanceNoSql.ArticuloLocalDTO.getName(), clusterName);
+			artAreTraNoSql=ArticuloAlcanceNoSqlUtil.getODocumentArticuloAreaTrabajo(codArt, codAreTra, artAreTraNoSql);
 			artAreTraNoSql.save(clusterName);
 		} catch (Exception e) {
 			LOG_SICV2.error("Error al registrar el alcance para el articulo : {}", codArt +" "+ codAreTra +" error: "+e.toString());
@@ -254,14 +317,27 @@ public class ArticuloAlcanceNoSqlDAO implements IArticuloAlcanceNoSqlDAO, Logeab
 		}	
 		return artAreTraNoSql;
 	}
-
+	
+	/* (non-Javadoc)
+	 * @see ec.com.smx.sic.cliente.persistencia.articulos.dao.nosql.IArticuloAlcanceNoSqlDAO#registrarIndicesArticuloAreatrabajo(com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx, com.orientechnologies.orient.core.record.impl.ODocument[])
+	 */
+	@Override
+	public void registrarIndicesArticuloAreatrabajo(ODatabaseDocumentTx db, ODocument... colODocArticuloLocalDTO) throws SICException {
+		
+		if (colODocArticuloLocalDTO !=null && colODocArticuloLocalDTO.length>0) {
+			for (ODocument oDocArticuloLocalDTO : colODocArticuloLocalDTO) {
+				this.registrarIndicesArticuloAreatrabajo(db, oDocArticuloLocalDTO);
+			}
+		}
+	}	
+	
 	/**
 	 * registra los indices para la clase ArticuloLocalDTO
 	 */
-	@Override
+//	@Override
 //	public void registrarIndicesArticuloAreatrabajo(ODatabaseDocumentTx db, Integer codigoCompania, String codigoArticulo, 
 //			Integer codigoAreatrabajo, String tipAreTra,ORID ridArticuloLocalDTO) throws SICException {
-	public void registrarIndicesArticuloAreatrabajo(ODatabaseDocumentTx db, ODocument oDocArticuloLocalDTO) throws SICException {
+	private void registrarIndicesArticuloAreatrabajo(ODatabaseDocumentTx db, ODocument oDocArticuloLocalDTO) throws SICException {
 		
 		registrarIndiceArticuloAreaTrabajo(db, Integer.valueOf(String.valueOf(oDocArticuloLocalDTO.field(ArticuloLocalFields.CODIGO_COMPANIA))), 
 				String.valueOf(oDocArticuloLocalDTO.field(ArticuloLocalFields.VALOR_TIPO_AREA_TRABAJO)),
@@ -330,11 +406,22 @@ public class ArticuloAlcanceNoSqlDAO implements IArticuloAlcanceNoSqlDAO, Logeab
 		}	
 		return oDocBitacoraAlcance;
 	}
-
+	
 	@Override
+	public void registrarIndicesArticuloAreatrabajoBitacora(ODatabaseDocumentTx db, ODocument ... colODocArticuloAreaTrabajoBitacoraDTO) throws SICException {
+		
+		if (colODocArticuloAreaTrabajoBitacoraDTO != null && colODocArticuloAreaTrabajoBitacoraDTO.length>0) {
+			for (ODocument articuloAreaTrabajoBitacoraDTO : colODocArticuloAreaTrabajoBitacoraDTO) {
+				this.registrarIndicesArticuloAreatrabajoBitacora(db, articuloAreaTrabajoBitacoraDTO);
+			}
+		}
+		
+	}
+
+//	@Override
 //	public void registrarIndicesArticuloAreatrabajoBitacora(ODatabaseDocumentTx db, Integer codigoCompania, String codigoArticulo, 
 //			Integer codigoAreatrabajo, String tipAreTra, ORID ridBitacora) throws SICException {
-	public void registrarIndicesArticuloAreatrabajoBitacora(ODatabaseDocumentTx db, ODocument articuloAreaTrabajoBitacoraDTO) throws SICException {
+	private void registrarIndicesArticuloAreatrabajoBitacora(ODatabaseDocumentTx db, ODocument articuloAreaTrabajoBitacoraDTO) throws SICException {
 		
 		registrarIndiceArticuloLocalBitacoraRid(db,articuloAreaTrabajoBitacoraDTO);
 		registrarIndiceArticuloAreaTrabajoBitacora(db, 
@@ -347,6 +434,7 @@ public class ArticuloAlcanceNoSqlDAO implements IArticuloAlcanceNoSqlDAO, Logeab
 				Integer.valueOf(String.valueOf(articuloAreaTrabajoBitacoraDTO.field(ArticuloAreaTrabajoBitacoraFields.CODIGO_AREA_TRABAJO))), 
 				String.valueOf(articuloAreaTrabajoBitacoraDTO.field(ArticuloAreaTrabajoBitacoraFields.CODIGO_ARTICULO)), 
 				articuloAreaTrabajoBitacoraDTO.getIdentity());
+		
 	}
 
 	/**
@@ -417,7 +505,7 @@ public class ArticuloAlcanceNoSqlDAO implements IArticuloAlcanceNoSqlDAO, Logeab
 			articuloAreaTrabajoBitKey.addKey(codigoArticulo);
 			articuloAreaTrabajoBitKey.addKey(codigoAreatrabajo);
 			articuloAreaTrabajoBitKey.addKey(rid);
-			ArticuloAlcanceIndexNoSqlUtil.getIndiceBitacoraArticuloAreaTrabajo(db).put(articuloAreaTrabajoBitKey, rid);
+			IndiceArticuloAlcanceNoSql.getInstancia().getIndiceBitacoraArticuloAreaTrabajo(db).put(articuloAreaTrabajoBitKey, rid);
 		} catch (Exception e) {
 			LOG_SICV2.error("Error al registrar el indice articulo - area de trabajo: {}", e.toString());
 			throw new SICException(e);
@@ -432,7 +520,7 @@ public class ArticuloAlcanceNoSqlDAO implements IArticuloAlcanceNoSqlDAO, Logeab
 			areaTrabajoArticuloBitKey.addKey(codigoAreatrabajo);
 			areaTrabajoArticuloBitKey.addKey(codigoArticulo);
 			areaTrabajoArticuloBitKey.addKey(rid);
-			ArticuloAlcanceIndexNoSqlUtil.getIndiceBitacoraAreaTrabajoArticulo(db).put(areaTrabajoArticuloBitKey, rid);
+			IndiceArticuloAlcanceNoSql.getInstancia().getIndiceBitacoraAreaTrabajoArticulo(db).put(areaTrabajoArticuloBitKey, rid);
 		} catch (Exception e) {
 			LOG_SICV2.error("Error al registrar el indice area de trabajo - articulo: {}", e.toString());
 			throw new SICException(e);
@@ -545,7 +633,23 @@ public class ArticuloAlcanceNoSqlDAO implements IArticuloAlcanceNoSqlDAO, Logeab
 		
 		try {
 			
-			ArticuloAlcanceIndexNoSqlUtil.registrarIndicesODocumentArticuloEstablecimiento(db, colODocumentArticuloEstablecimiento);
+			
+			Collection<ODocument> colArticuloEstablecimientoRegistrar = new ArrayList<>();
+			
+			for (ODocument oDocumentArticuloEstablecimiento : colODocumentArticuloEstablecimiento) {
+				
+				ODocument oDocument = this.findArticuloEstablecimientoUnique(
+						Integer.valueOf(oDocumentArticuloEstablecimiento.field(ArticuloEstablecimientoFields.CODIGO_COMPANIA).toString()), 
+						oDocumentArticuloEstablecimiento.field(ArticuloEstablecimientoFields.CODIGO_ARTICULO).toString(), 
+						Integer.valueOf(oDocumentArticuloEstablecimiento.field(ArticuloEstablecimientoFields.CODIGO_ESTABLECIMIENTO).toString()));
+				
+				if (oDocument == null) {
+					colArticuloEstablecimientoRegistrar.add(oDocumentArticuloEstablecimiento);
+				}
+			}
+			
+			ArticuloAlcanceIndexNoSqlUtil.registrarIndicesODocumentArticuloEstablecimiento(db, 
+					colArticuloEstablecimientoRegistrar.toArray(new ODocument[colArticuloEstablecimientoRegistrar.size()]));
 			
 		} catch (Exception e) {
 			LOG_SICV2.error("Error al ejecutar registrarIndicesArticuloEstablecimiento: {}", e.toString());
@@ -668,10 +772,40 @@ public class ArticuloAlcanceNoSqlDAO implements IArticuloAlcanceNoSqlDAO, Logeab
 		registrarIndiceFechaFinAlcRidArtLoc(db, Integer.valueOf(String.valueOf(artAreTraUpdate.field(ArticuloLocalFields.CODIGO_COMPANIA))), 
 				(Date)artAreTraUpdate.field(ArticuloLocalFields.FECHA_INICIAL_ALCANCE), 
 				artAreTraUpdate.getIdentity());
-	}	
-	
-	
+	}
 
+	@Override
+	public List<ArticuloLocalDTO> findAlcanceAreaTrabajo(Integer codCompania, String tipAreTra, Integer codigoAreaTrabajo, Integer estado) throws SICException {
+		List<ArticuloLocalDTO> lisResult=null; 
+		try {
+			if (codCompania==null
+					|| tipAreTra==null || tipAreTra.isEmpty()
+					|| codigoAreaTrabajo==null){
+				return lisResult;
+			}
+			
+			StringBuilder sql = new StringBuilder();
+			sql.append("select * from (")
+			.append("select rid.* as '' from index:").append(ArticuloLocalIndices.INDEX_AREATRABAJO_ARTICULO)
+			.append(" where key=[").append(codCompania)
+			.append(",'").append(tipAreTra).append("'")
+			.append(",").append(codigoAreaTrabajo)
+			.append("])");
+			if (estado!=null){
+				sql.append(" where estArtLoc=").append(estado);
+			}
+			
+			final OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<>(sql.toString());
+			lisResult=ODocumentUtil.tranformODocumentObject(query.run(), ArticuloLocalDTO.class);
+		} catch (Exception e) {
+			LOG_SICV2.error("Error en findAlcanceAreaTrabajo: {}", e.toString());
+			throw new SICException(e);
+		}
+		
+		return lisResult;	}
+	
+	
+	
 }
 
 //@Override

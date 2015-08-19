@@ -23,7 +23,7 @@ public interface IUsuarioClasificacionProcesoDAO {
 	 * @return
 	 * @throws SICException
 	 */
-	public Collection<UsuarioClasificacionProcesoDTO> reportesUsuarios(Integer codigoCompania, String codigoclasificacion, String user)throws SICException;
+	public Collection<UsuarioClasificacionProcesoDTO> reportesUsuarios(Integer codigoCompania, String codigoclasificacion, String user, Integer firstResult, Integer maxResult, Boolean paginador)throws SICException;
 	
 	/**
 	 * Metodo para actualizar la relacion del usuario y clasificacion
@@ -48,4 +48,14 @@ public interface IUsuarioClasificacionProcesoDAO {
 	 * @throws SICException
 	 */
 	public Collection<UsuarioClasificacionProcesoDTO> obtenerClasificacionesUsuario(Integer codigoCompania, String usuario)throws SICException;
+	/**
+	 * Metodo para obtener el numero de clasificaciones asignadas
+	 * @param codigoCompania
+	 * @param codigoclasificacion
+	 * @param user
+	 * @param firstResult
+	 * @param maxResult
+	 * @return
+	 */
+	public Integer cuentaClasificaciones(Integer codigoCompania, String codigoclasificacion, String user, Integer firstResult, Integer maxResult)throws SICException;
 }

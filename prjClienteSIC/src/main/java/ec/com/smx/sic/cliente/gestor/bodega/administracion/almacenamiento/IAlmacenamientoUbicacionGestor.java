@@ -80,15 +80,14 @@ public interface IAlmacenamientoUbicacionGestor {
 
 	/**
 	 * Devuelve una ubicacion filtrada por identificador y tipo de almacenamiento
-	 * @param codigoCompania
 	 * @param identificador
-	 * @param codigoAreaTrabajo
-	 * @param valorTipoAlmacenamiento
-	 * @param codigoTipoAlmacenamiento
+	 * @param catalogoValorDTO
+	 * @param areaSublugarTrabajoDTO
 	 * @return
 	 * @throws SICException
 	 */
-	public AsignacionArticuloUnidadManejoDTO obtenerUbicacionDisponiblePorIdentificador(Integer codigoCompania, String identificador, Integer codigoAreaTrabajo, String valorTipoAlmacenamiento, Integer codigoTipoAlmacenamiento) throws SICException;
+	AsignacionArticuloUnidadManejoDTO obtenerUbicacionDisponiblePorIdentificador(String identificador, CatalogoValorDTO catalogoValorDTO, 
+			AreaSublugarTrabajoDTO areaSublugarTrabajoDTO) throws SICException;
 	/**
 	 * 
 	 * @param codigoCompania

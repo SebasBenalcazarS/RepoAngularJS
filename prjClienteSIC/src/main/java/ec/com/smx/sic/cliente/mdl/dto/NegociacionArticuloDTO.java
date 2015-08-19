@@ -86,6 +86,12 @@ public class NegociacionArticuloDTO extends NegociacionArticuloTransient impleme
 	private Double porcentajeCobro;
 	
 	/**
+	 * valor del porcentaje de descuento
+	 */
+	@Column(name="PORCENTAJEDESCUENTO")
+	private Double porcentajeDescuento;
+	
+	/**
 	 * valor del porcentaje de cobro
 	 */
 	@Column(name="COSTONETO")
@@ -550,6 +556,12 @@ public class NegociacionArticuloDTO extends NegociacionArticuloTransient impleme
 	 */
 	public void setPrioridad(Integer prioridad) {
 		this.prioridad = prioridad;
+	}
+	public Double getPorcentajeDescuento() {
+		return porcentajeDescuento;
+	}
+	public void setPorcentajeDescuento(Double porcentajeDescuento) {
+		this.porcentajeDescuento = porcentajeDescuento;
 	}
 	
 }

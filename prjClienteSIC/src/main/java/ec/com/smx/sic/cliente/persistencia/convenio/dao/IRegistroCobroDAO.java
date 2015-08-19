@@ -7,6 +7,7 @@ package ec.com.smx.sic.cliente.persistencia.convenio.dao;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import ec.com.smx.sic.cliente.exception.SICException;
 import ec.com.smx.sic.cliente.mdl.dto.GestionPrecioDTO;
@@ -150,5 +151,21 @@ public interface IRegistroCobroDAO {
 	 * @return
 	 */
 	 Collection<RegistroCobroDTO> findRegistroCobroPorDetNegGesPreConPart(Integer companyId,Long codigoDetNegGesPreConPar);
+	 
+	 /**
+	 * Actualizar registro cobro diario a rechazado
+	 * @param codigoCompania
+	 * @param codDetNegGesPreConPar
+	 * @param userId
+	 */
+	void actualizarRegistroCobroDiarioRechazado(Integer codigoCompania, Long codDetNegGesPreConPar, String userId);
+	
+	/**
+	 * Obtener cobros no facturados
+	 * @param codigoCompania
+	 * @param fecha
+	 * @return
+	 */
+	Collection<Long> obtenerCobrosNoFacturados(Integer codigoCompania, Date fecha);
 	
 }

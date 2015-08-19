@@ -44,4 +44,14 @@ public final class ProcesamientoVentasConstantes {
 	public static final String CODIGO_PROCESO_COPIAR_ARCHIVOS_FTP = SICProcesamientoVentasMessages.getInstancia().getString("ec.com.smx.sic.procesamiento.ventas.migracion.ftp.codigoProceso");
 	
 	public static final Integer ANIOS_RETROCEDER = SICProcesamientoVentasMessages.getInstancia().getInteger("ec.com.smx.sic.procesamiento.ventas.anios.retroceder");
+
+	// Parámetros Listado
+	public static final String NUMERO_MAXIMO_DIAS = SICProcesamientoVentasMessages.getInstancia().getString("ec.com.smx.sic.procesamiento.ventas.reporte.numeromaximodias.nombreParametro");
+	public static final String TIPO_CONSULTA_REPORTE = SICProcesamientoVentasMessages.getInstancia().getString("ec.com.smx.sic.procesamiento.ventas.reporte.tipoconsulta.nombreParametro");
+
+	public static final String MENSAJE_FECHAS_OBLIGATORIAS = SICProcesamientoVentasMessages.getInstancia().getString("ec.com.smx.sic.procesamiento.ventas.reporte.mensaje.fechas");
+	public static final String MENSAJE_VALIDACION_FECHAS = SICProcesamientoVentasMessages.getInstancia().getString("ec.com.smx.sic.procesamiento.ventas.reporte.mensaje.validacionfechas");
+	public static final String MENSAJE_NUMERO_DIAS = SICProcesamientoVentasMessages.getInstancia().getString("ec.com.smx.sic.procesamiento.ventas.reporte.mensaje.numerodias");
+	public static final String MENSAJE_TABLA_SIN_REGISTROS = SICProcesamientoVentasMessages.getInstancia().getString("ec.com.smx.sic.procesamiento.ventas.reporte.mensaje.sinregistros");
+	public static final String MENSAJE_TABLA_INICIO = SICProcesamientoVentasMessages.getInstancia().getString("ec.com.smx.sic.procesamiento.ventas.reporte.mensaje.inicio");
 }

@@ -74,7 +74,7 @@ public interface ICalendarioPlanificacionBodegaServicio {
 	 * @param horaColumnaReporte
 	 * @return
 	 */
-	HSSFWorkbook obteneReporteCalendarioPlanificacion(String tipoOpcionCalendario, String datosJSon, Map<String, String> horaDiaMap)throws SICException;
+	HSSFWorkbook obteneReporteCalendarioPlanificacion(Integer codigoCompania,String tipoExportacionExcel, Integer fechaPlanificacion, Date fechaPuntual, String tipoOpcionCalendario, String datosJSon, Map<String, String> horaDiaMap)throws SICException;
 	/**
 	 * Este m&eacute;todo devuelve la vista completa de la planificaci&oacute;n de las entregas diario
 	 * @param codigoCompania

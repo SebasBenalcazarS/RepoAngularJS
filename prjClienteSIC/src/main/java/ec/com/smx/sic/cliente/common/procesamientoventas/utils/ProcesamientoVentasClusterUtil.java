@@ -3,8 +3,14 @@
  */
 package ec.com.smx.sic.cliente.common.procesamientoventas.utils;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -13,6 +19,7 @@ import com.orientechnologies.orient.core.metadata.schema.OType;
 
 import ec.com.smx.framework.utilitario.nosql.common.util.ODocumentUtil;
 import ec.com.smx.framework.utilitario.nosql.common.util.OIndexUtil;
+import ec.com.smx.sic.cliente.common.articulo.SICArticuloConstantes;
 import ec.com.smx.sic.cliente.common.procesamientoventas.constantes.ProcesamientoVentasConstantes;
 import ec.com.smx.sic.cliente.common.procesamientoventas.constantes.TipoClusterProcesamientoVenta;
 import ec.com.smx.sic.cliente.exception.SICException;
@@ -147,7 +154,30 @@ public final class ProcesamientoVentasClusterUtil {
 		return calendarLocaleES.get(Calendar.DAY_OF_YEAR);
 
 	}
+	
+	public Date getDateForDayOfYear(Integer day, Date fecha) {
+		Calendar calendarLocaleES = Calendar.getInstance(ProcesamientoVentasConstantes.LOCALE_ES);
+		calendarLocaleES.setTime(fecha);
+		calendarLocaleES.set(Calendar.DAY_OF_YEAR, day);
+		
+		return calendarLocaleES.getTime();
+	}
 
+	public Date getDateForDayOfYear(Integer day, Integer year) {
+		Calendar calendarLocaleES = Calendar.getInstance(ProcesamientoVentasConstantes.LOCALE_ES);
+		calendarLocaleES.set(year, 1, 1);
+		calendarLocaleES.set(Calendar.DAY_OF_YEAR, day);
+		
+		return calendarLocaleES.getTime();
+	}
+
+	public Date getDateForDayOfYear(Integer day, String year) {
+		Calendar calendarLocaleES = Calendar.getInstance(ProcesamientoVentasConstantes.LOCALE_ES);
+		calendarLocaleES.set(Integer.parseInt(year), 1, 1);
+		calendarLocaleES.set(Calendar.DAY_OF_YEAR, day);
+		
+		return calendarLocaleES.getTime();
+	}
 
 	/**
 	 * @param dateValidate
@@ -295,4 +325,72 @@ public final class ProcesamientoVentasClusterUtil {
 		}
 	}
 
+	/**
+	 * 
+	 * @param mapStringString
+	 * @return
+	 */
+	public Map<Integer, BigDecimal> convertirEnMapIntegerBigDecimal(Map<String, Object> mapStringString) {
+		Map<Integer, BigDecimal> mapa = new HashMap<>();
+	
+		for (Map.Entry<String, Object> entry : mapStringString.entrySet()) {
+			mapa.put(Integer.parseInt(entry.getKey()), new BigDecimal(entry.getValue().toString()));
+		}
+		
+		return mapa;
+	}
+	
+	/**
+	 * Este método eventualmente se puede elimnar hasta encontrar la sintaxis de filtrar mapas embebidos en orientdb
+	 * @param map
+	 * @param diaInicial
+	 * @param diaFinal
+	 * @return
+	 */
+	public Map<Integer, BigDecimal> verificarFechas(Map<Integer, BigDecimal> map, Integer diaInicial, Integer diaFinal) {
+		
+		Map<Integer, BigDecimal> nuevoMapa = new HashMap<>();
+		for (Map.Entry<Integer, BigDecimal> entry : map.entrySet()) {
+			if (entry.getKey() >= diaInicial && entry.getKey() <= diaFinal) {
+				nuevoMapa.put(entry.getKey(), entry.getValue());
+			}
+		}
+		return nuevoMapa;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public Comparator<Integer> comparadorDatoPrecioMargenReal() {
+		return new Comparator<Integer>() {
+			@Override
+			public int compare(Integer i1, Integer i2) {
+				return i1.compareTo(i2);
+			}
+		};
+	}
+	
+	public String devolverTiposPrecioConcatenados(String tipoConsulta) {
+		if ("D".equals(tipoConsulta)) {
+			return "'" + SICArticuloConstantes.TIPO_PRECIO_BASE_COBRO_RECUPERACION_DESCUENTO_DIARIO +"','" + SICArticuloConstantes.TIPO_PRECIO_BASE_DESCUENTO_DIARIO + "'";
+		} else if ("A".equals(tipoConsulta)) {
+			return "'" + SICArticuloConstantes.TIPO_PRECIO_BASE_COBRO_RECUPERACION_DESCUENTO_ACUMULADO + "','" + SICArticuloConstantes.TIPO_PRECIO_BASE_DESCUENTO_ACUMULADO + "'";
+		}
+		return "";
+	}
+
+	public List<Date> devolverAniosIntermedios(Date fechaInicial, Date fechaFinal) {
+		List<Date> lista = new ArrayList<>();
+		
+		Calendar calendarLocaleES = Calendar.getInstance(ProcesamientoVentasConstantes.LOCALE_ES);
+		
+		for (int i=-1; i < (getYearForDate(fechaFinal) - getYearForDate(fechaInicial)); i++) {
+			calendarLocaleES.set(getYearForDate(fechaInicial) + 1 + i , 1, 1);
+			lista.add(calendarLocaleES.getTime());
+		}
+		
+		return lista;
+	}
+	
 }

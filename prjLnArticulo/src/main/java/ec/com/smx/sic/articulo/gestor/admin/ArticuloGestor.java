@@ -2382,6 +2382,60 @@ public class ArticuloGestor extends BaseArticuloGestor implements IArticuloGesto
 		return this.articuloUnidadManejoGestor.inactivarUnidadManejoPorPrioridad(codigoCompania, codigoArticulo, prioridad, userId, codigoUnidadManejo);
 	}
 	
+	public Collection<ArticuloAsignacionLocalVO> obtenerArticuloLocal(ArticuloID articuloId , Integer tipoAreaTrabajoTic , String tipoAreaTrabajoValor , Boolean consultarCamposAsignacion)throws SICException{
+		return this.calculoBusquedaArticuloGestor.obtenerArticuloLocal(articuloId , tipoAreaTrabajoTic , tipoAreaTrabajoValor , consultarCamposAsignacion);
+	}
+	
+	/**
+	 * @author rali
+	 * Accion que realiza la busqueda de artículos historicamente relacionados por su codigo de barras.
+	 */
+	public Collection<ArticuloDTO> obtenerArticulosCodigoBarras(Integer codigoCompania, String codbar, String codart) throws SICException {
+      return this.articuloBitacoraGestor.obtenerArticuloPorCodBarras(codigoCompania, codbar, codart);
+	}
+
+	public void setArticuloIntegracionDAO(IArticuloIntegracionDAO articuloIntegracionDAO) {
+		this.articuloIntegracionDAO = articuloIntegracionDAO;
+	}
+
+	@Override
+	public ArticuloGeneralVO obtenerArticuloEtiqueta(Integer codigoCompania, String codigoBarras, String codigoFuncionario, String... clasificaciones) throws SICException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	/**
+	 * Obtiene la coleccion de articulos en base del articuloVO
+	 * @param articuloVO
+	 * @param codigoCompania
+	 * @param obtenerRelaciones valor booleano que trae las relaciones de ArticuloDTO
+	 * @param colClasificacionLeyMercado clasificaciones a las aplica la ley de mercado
+	 * @return
+	 * @throws SICException
+	 * @author derazo
+	 */
+	@Override
+	public Collection<ArticuloDTO> obtenerArticulosSinPaginar (ArticuloVO articuloVO, Integer codigoCompania, Boolean obtenerRelaciones, Collection <String> colClasificacionLeyMercado)throws SICException{
+		if(codigoCompania == null){
+			throw new SICException("No existe codigo compania.");
+		}
+		if(articuloVO == null){
+			throw new SICException("No existe informacion para buscar los articulo.");
+		}
+		return this.articuloDAO.obtenerArticulosSinPaginar(articuloVO, codigoCompania,  obtenerRelaciones, colClasificacionLeyMercado);
+	}
+	
+	/**
+	 * devuelve un articulo en base al codigoCompania y codigoArticulo
+	 * @param codigoCompania
+	 * @param codigoArticulo
+	 * @return
+	 * @throws SICException
+	 */
+	public ArticuloDTO buscarArticuloId(Integer codigoCompania, String codigoArticulo)throws SICException{
+		return articuloDAO.buscarArticuloId(codigoCompania, codigoArticulo);
+	}
+	
+	
 	//-------------------------------------------------------------------------------------------------------------------------
 	//---------------------------------------------GETTER Y SETTERS------------------------------------------------------------
 	//-------------------------------------------------------------------------------------------------------------------------
@@ -2493,9 +2547,6 @@ public class ArticuloGestor extends BaseArticuloGestor implements IArticuloGesto
 		this.camposMercanciaDAO = camposMercanciaDAO;
 	}
 	
-	public Collection<ArticuloAsignacionLocalVO> obtenerArticuloLocal(ArticuloID articuloId , Integer tipoAreaTrabajoTic , String tipoAreaTrabajoValor , Boolean consultarCamposAsignacion)throws SICException{
-		return this.calculoBusquedaArticuloGestor.obtenerArticuloLocal(articuloId , tipoAreaTrabajoTic , tipoAreaTrabajoValor , consultarCamposAsignacion);
-	}
 	public IParametroGestor getParametroGestor() {
 		return parametroGestor;
 	}
@@ -2539,41 +2590,4 @@ public class ArticuloGestor extends BaseArticuloGestor implements IArticuloGesto
 		this.articuloEdicionMasivaGestor = articuloEdicionMasivaGestor;
 	}
 
-	/**
-	 * @author rali
-	 * Accion que realiza la busqueda de artículos historicamente relacionados por su codigo de barras.
-	 */
-	public Collection<ArticuloDTO> obtenerArticulosCodigoBarras(Integer codigoCompania, String codbar, String codart) throws SICException {
-      return this.articuloBitacoraGestor.obtenerArticuloPorCodBarras(codigoCompania, codbar, codart);
-	}
-
-	public void setArticuloIntegracionDAO(IArticuloIntegracionDAO articuloIntegracionDAO) {
-		this.articuloIntegracionDAO = articuloIntegracionDAO;
-	}
-
-	@Override
-	public ArticuloGeneralVO obtenerArticuloEtiqueta(Integer codigoCompania, String codigoBarras, String codigoFuncionario, String... clasificaciones) throws SICException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	/**
-	 * Obtiene la coleccion de articulos en base del articuloVO
-	 * @param articuloVO
-	 * @param codigoCompania
-	 * @param obtenerRelaciones valor booleano que trae las relaciones de ArticuloDTO
-	 * @param colClasificacionLeyMercado clasificaciones a las aplica la ley de mercado
-	 * @return
-	 * @throws SICException
-	 * @author derazo
-	 */
-	@Override
-	public Collection<ArticuloDTO> obtenerArticulosSinPaginar (ArticuloVO articuloVO, Integer codigoCompania, Boolean obtenerRelaciones, Collection <String> colClasificacionLeyMercado)throws SICException{
-		if(codigoCompania == null){
-			throw new SICException("No existe codigo compania.");
-		}
-		if(articuloVO == null){
-			throw new SICException("No existe informacion para buscar los articulo.");
-		}
-		return this.articuloDAO.obtenerArticulosSinPaginar(articuloVO, codigoCompania,  obtenerRelaciones, colClasificacionLeyMercado);
-	}
 }

@@ -7,6 +7,7 @@ import ec.com.smx.facturacion.dto.ClienteDTO;
 import ec.com.smx.sic.cliente.exception.SICException;
 import ec.com.smx.sic.cliente.mdl.dto.ClasificacionDTO;
 import ec.com.smx.sic.cliente.mdl.dto.ConvenioParticipanteDTO;
+import ec.com.smx.sic.cliente.mdl.dto.ProveedorOficinaExteriorDTO;
 import ec.com.smx.sic.cliente.mdl.dto.VistaEmpresaParticipanteDTO;
 import ec.com.smx.sic.cliente.mdl.dto.VistaEmpresaParticipantePromocionDTO;
 
@@ -70,5 +71,9 @@ public interface IEmpresaParticipanteServicio {
 	 * @return
 	 */
 	Collection<VistaEmpresaParticipanteDTO> findEmpresaParticipantesMejorada(Integer codigoCompania, Long codigoJDE, String numeroDocumentoParticipante, String nombreParticipante) ;
+	
+  Collection<String> findProveedorImportado(Integer codigoCompania, Collection<String>  codigoProveedorCol) throws SICException;
+  
+  ProveedorOficinaExteriorDTO findProveedoresOficinaExteriorDefaultFacturablePorCodigoProveedor(final Integer codigoCompania, final String codigoProveedor) throws SICException;
 	
 }

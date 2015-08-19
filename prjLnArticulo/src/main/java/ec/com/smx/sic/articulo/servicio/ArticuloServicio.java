@@ -645,6 +645,20 @@ public class ArticuloServicio implements IArticuloServicio {
 	public Collection<String> obtenerClasificacionesConPreciosB2B(Integer codigoCompania, String codigoProveedor)  throws SICException {
 		return this.articuloProveedorGestor.obtenerClasificacionesConPreciosB2B(codigoCompania, codigoProveedor);
 	}
+	
+	@Override
+	public ArticuloDTO busquedaArticuloSimple(String codigoBarras, Integer codigoCompania) throws SICException {
+		return calculoBusquedaArticuloGestor.busquedaArticuloSimple(codigoBarras, codigoCompania);
+	}
+	
+//	/**
+//	 * metodo que retorna las areas de trabajo por prototipo
+//	 */
+//	public Collection<GrupoAreaTrabajoDTO> cargarLocalesPrototipoAlcance(Integer codigoCompania, Long codigoGrupoTrabajo,Boolean asignacionMasivaArticulos)throws SICException{
+//		return calculoBusquedaArticuloGestor.cargarLocalesPrototipoAlcance(codigoCompania , codigoGrupoTrabajo , asignacionMasivaArticulos);
+//	}
+	
+	
 	/**
 	 * Obtiene la coleccion de articulos en base del articuloVO
 	 * @param articuloVO
@@ -664,8 +678,15 @@ public class ArticuloServicio implements IArticuloServicio {
 		this.calculoBusquedaArticuloGestor = calculoBusquedaArticuloGestor;
 	}
 	
-	@Override
-	public ArticuloDTO busquedaArticuloSimple(String codigoBarras, Integer codigoCompania) throws SICException {
-		return calculoBusquedaArticuloGestor.busquedaArticuloSimple(codigoBarras, codigoCompania);
+	/**
+	 * devuelve un articulo en base al codigoCompania y codigoArticulo
+	 * @param codigoCompania
+	 * @param codigoArticulo
+	 * @return
+	 * @throws SICException
+	 */
+	public ArticuloDTO buscarArticuloId(Integer codigoCompania, String codigoArticulo)throws SICException{
+		return this.articuloGestor.buscarArticuloId(codigoCompania, codigoArticulo);
 	}
+	
 }

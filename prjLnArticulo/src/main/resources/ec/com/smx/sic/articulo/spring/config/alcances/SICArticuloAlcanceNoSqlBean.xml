@@ -20,7 +20,7 @@
 		<property name="simpleOrientDocumentDbManager"><ref bean="sicOrientDbManagerDataSource"/></property>
 		<property name="validacionArticuloAlcanceNoSqlGestor"><ref bean="sicValidacionArticuloAlcanceNoSqlGestor"/></property>
 		<property name="articuloLocalODocumentDAO"><ref bean="sicArticuloLocalODocumentDAO"/></property>
-		<property name="articuloAreaTrabajoBitacoraODocumentDAO"><ref bean="sicArticuloLocalBitacoraODocumentDAO"/></property>
+<!-- 		<property name="articuloAreaTrabajoBitacoraODocumentDAO"><ref bean="sicArticuloLocalBitacoraODocumentDAO"/></property> -->
 		<property name="articuloAlcanceNoSqlDAO"><ref bean="sicArticuloAlcanceNoSqlDAO"/> </property>
 		<property name="articuloAlcanceDAO"><ref bean="sicArticuloAlcanceDAO"/></property>
 	</bean>
@@ -38,8 +38,8 @@
 	<bean id="sicArticuloLocalODocumentDAO" class="ec.com.smx.sic.articulo.persistence.dao.nosql.ArticuloLocalODocumentDAO">
 	</bean>
 	
-	<bean id="sicArticuloLocalBitacoraODocumentDAO" class="ec.com.smx.sic.articulo.persistence.dao.nosql.ArticuloAreaTrabajoBitacoraODocumentDAO">
-	</bean>
+<!-- 	<bean id="sicArticuloLocalBitacoraODocumentDAO" class="ec.com.smx.sic.articulo.persistence.dao.nosql.ArticuloAreaTrabajoBitacoraODocumentDAO"> -->
+<!-- 	</bean> -->
 	
 	<bean id="sicArticuloAlcanceNoSqlDAO" class="ec.com.smx.sic.articulo.persistence.dao.nosql.ArticuloAlcanceNoSqlDAO">
 	</bean>
